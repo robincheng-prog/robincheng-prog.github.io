@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Git指令 - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="查詢設定列表git config –list 123456789101112131415filter.lfs.clean&amp;#x3D;git-lfs clean -- %ffilter.lfs.smudge&amp;#x3D;git-lfs smudge -- %ffilter.lfs.process&amp;#x3D;git-lfs filter-processfilter.lfs.required&amp;#x3D;trueuser.email&amp;#x3D;you@ex"><meta property="og:type" content="blog"><meta property="og:title" content="Git指令"><meta property="og:url" content="http://example.com/2026/05/11/git-command/"><meta property="og:site_name" content="My personal blog at work"><meta property="og:description" content="查詢設定列表git config –list 123456789101112131415filter.lfs.clean&amp;#x3D;git-lfs clean -- %ffilter.lfs.smudge&amp;#x3D;git-lfs smudge -- %ffilter.lfs.process&amp;#x3D;git-lfs filter-processfilter.lfs.required&amp;#x3D;trueuser.email&amp;#x3D;you@ex"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2026-05-11T02:27:44.000Z"><meta property="article:modified_time" content="2026-05-11T02:55:49.331Z"><meta property="article:author" content="Robin Cheng"><meta property="article:tag" content="git_command"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2026/05/11/git-command/"},"headline":"Git指令","image":["http://example.com/img/og_image.png"],"datePublished":"2026-05-11T02:27:44.000Z","dateModified":"2026-05-11T02:55:49.331Z","author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"查詢設定列表git config –list 123456789101112131415filter.lfs.clean&#x3D;git-lfs clean -- %ffilter.lfs.smudge&#x3D;git-lfs smudge -- %ffilter.lfs.process&#x3D;git-lfs filter-processfilter.lfs.required&#x3D;trueuser.email&#x3D;you@ex"}</script><link rel="canonical" href="http://example.com/2026/05/11/git-command/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-11T02:27:44.000Z" title="5/11/2026, 10:27:44 AM">2026-05-11</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-11T02:55:49.331Z" title="5/11/2026, 10:55:49 AM">2026-05-11</time></span><span class="level-item">12 minutes read (About 1779 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">Git指令</h1><div class="content"><h1 id="查詢設定列表"><a href="#查詢設定列表" class="headerlink" title="查詢設定列表"></a>查詢設定列表</h1><p>git config –list</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">filter.lfs.clean=git-lfs clean -- %f</span><br><span class="line">filter.lfs.smudge=git-lfs smudge -- %f</span><br><span class="line">filter.lfs.process=git-lfs filter-process</span><br><span class="line">filter.lfs.required=<span class="literal">true</span></span><br><span class="line">user.email=you@example.com</span><br><span class="line">user.name=Your Name</span><br><span class="line">pull.rebase=<span class="literal">false</span></span><br><span class="line">core.repositoryformatversion=0</span><br><span class="line">core.filemode=<span class="literal">true</span></span><br><span class="line">core.bare=<span class="literal">false</span></span><br><span class="line">core.logallrefupdates=<span class="literal">true</span></span><br><span class="line">remote.origin.url=ssh://git@ssh.github.com:443/robincheng-prog/edat.git</span><br><span class="line">remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*</span><br><span class="line">branch.main.vscode-merge-base=origin/main</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在 Git 中，要查看哪些文件已被包含或跟蹤，可以使用以下方法：</p>
+<h2 id="1-查看已跟蹤文件"><a href="#1-查看已跟蹤文件" class="headerlink" title="1. 查看已跟蹤文件"></a>1. 查看已跟蹤文件</h2><p>運行以下命令以列出當前 Git 倉庫中已被跟蹤的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git ls-files</span><br></pre></td></tr></table></figure>
+<p>該命令會顯示所有被 Git 跟蹤的文件列表。</p>
+<h2 id="2-查看工作區的狀態"><a href="#2-查看工作區的狀態" class="headerlink" title="2. 查看工作區的狀態"></a>2. 查看工作區的狀態</h2><p>使用以下命令可以查看工作區中文件的狀態，包括新增、修改或刪除的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<p>輸出中包含：</p>
+<ul>
+<li>已暫存的文件（即將被提交的文件）</li>
+<li>未暫存的文件（修改了但還未添加到暫存區）</li>
+<li>未跟蹤的文件（新文件，尚未被 Git 跟蹤）</li>
+</ul>
+<h2 id="3-查看已暫存的文件"><a href="#3-查看已暫存的文件" class="headerlink" title="3. 查看已暫存的文件"></a>3. 查看已暫存的文件</h2><p>運行以下命令查看已經被添加到暫存區（准備提交）的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached --name-only</span><br></pre></td></tr></table></figure>
+<h2 id="4-查看提交曆史中包含的文件"><a href="#4-查看提交曆史中包含的文件" class="headerlink" title="4. 查看提交曆史中包含的文件"></a>4. 查看提交曆史中包含的文件</h2><p>如果想查看某次提交中包含的文件，可以使用以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show --name-only &lt;commit-hash&gt;</span><br></pre></td></tr></table></figure>
+<p>將 <commit-hash> 替換為具體的提交哈希值（可以通過 git log 查找）。</p>
+<h2 id="5-查看所有曆史提交中涉及的文件"><a href="#5-查看所有曆史提交中涉及的文件" class="headerlink" title="5. 查看所有曆史提交中涉及的文件"></a>5. 查看所有曆史提交中涉及的文件</h2><h3 id="列出倉庫曆史中出現過的所有文件："><a href="#列出倉庫曆史中出現過的所有文件：" class="headerlink" title="列出倉庫曆史中出現過的所有文件："></a>列出倉庫曆史中出現過的所有文件：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --pretty=format: --name-only | <span class="built_in">sort</span> | <span class="built_in">uniq</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>通過這些方法，你可以全面了解 Git 中哪些文件已經被跟蹤或包含在不同的階段。</p>
+</li>
+<li><p>要將當前目錄下的所有文件（包括子目錄中的文件）添加到 Git 的暫存區，可以使用以下命令：</p>
+</li>
+<li><p>通常情況下，推荐使用以下命令以確保所有更改都被添加到暫存區：</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -A</span><br></pre></td></tr></table></figure>
+<ul>
+<li>驗證已添加的文件：<br>在執行添加命令后，可以通過以下命令驗證哪些文件已被添加到暫存區：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<ul>
+<li>這將顯示已暫存的文件列表，確保一切都准備好提交。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;你的提交信息&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>-m 后面的內容是本次提交的描述信息，建議清晰描述本次更改的內容。</li>
+</ul>
+<h2 id="6-上傳到遠程倉庫"><a href="#6-上傳到遠程倉庫" class="headerlink" title="6. 上傳到遠程倉庫"></a>6. 上傳到遠程倉庫</h2><p>將提交推送到遠程倉庫，使用以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p>如果當前分支未關聯遠程分支：<br>首次上傳時，需要指定遠程分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin 分支名稱</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<p>這將把本地的 main 分支上傳到遠程倉庫并建立關聯，之后可以直接使用 git push。</p>
+<h2 id="7-遠程倉庫的配置"><a href="#7-遠程倉庫的配置" class="headerlink" title="7. 遠程倉庫的配置"></a>7. 遠程倉庫的配置</h2><p>要修改 Git 倉庫的遠程倉庫地址（remote.origin.url），可以按照以下步驟操作：</p>
+<h3 id="1-檢查當前遠程倉庫地址"><a href="#1-檢查當前遠程倉庫地址" class="headerlink" title="1. 檢查當前遠程倉庫地址"></a>1. 檢查當前遠程倉庫地址</h3><p>首先，查看當前配置的遠程倉庫地址：</p>
+<p>git remote -v<br>輸出類似：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">origin  https://github.com/your-username/your-repo.git (fetch)</span><br><span class="line">origin  https://github.com/your-username/your-repo.git (push)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git push origin main</span><br><span class="line">error: src refspec main does not match any</span><br><span class="line">error: failed to push some refs to <span class="string">&#x27;https://github.com...</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>出現 src refspec main does not match any 錯誤，說明你試圖推送的 main 分支在本地不存在。以下是解決方法：</li>
+</ul>
+<p>檢查原因</p>
+<ul>
+<li>本地沒有提交任何內容：如果你還沒有進行任何提交，Git 中沒有分支可以推送。<br>當前分支名稱不是 main：某些 Git 倉庫默認分支可能是 master，而不是 main。</li>
+</ul>
+<p>解決方法</p>
+<ol>
+<li>確認本地是否有提交</li>
+</ol>
+<p>確保已經提交代碼到本地倉庫。如果沒有提交過，按以下步驟操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add -A</span><br><span class="line">git commit -m <span class="string">&quot;Initial commit&quot;</span></span><br></pre></td></tr></table></figure>
+<p>然后再執行推送：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>檢查當前分支名稱<br>查看當前分支名稱：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<p>如果需要將分支名稱改為 main，執行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -m master main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>確保遠程分支存在<br>推送完成后，可以運行以下命令確認分支已關聯：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -vv</span><br></pre></td></tr></table></figure>
+<p>此時，main 或 master 分支應該已與遠程倉庫正確關聯。</p>
+<blockquote>
+<p><strong>💡 提示：</strong><br>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br>remote: Support for password authentication was removed on August 13, 2021.<br>remote: Please see <a target="_blank" rel="noopener" href="https://docs.github.com/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls">https://docs.github.com/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls</a> for information on currently recommended modes of authentication.<br>fatal: Authentication failed for ‘<a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a>…<br>    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+</blockquote>
+<p>這個錯誤是因為 GitHub 在 2021 年 8 月 13 日之后移除了對密碼認證的支持。現在必須使用 Personal Access Token (PAT) 或 SSH 密鑰來認證你的操作。</p>
+<p>以下是解決方法：</p>
+<h4 id="使用-Personal-Access-Token"><a href="#使用-Personal-Access-Token" class="headerlink" title="使用 Personal Access Token"></a>使用 Personal Access Token</h4><p>Personal Access Token 替代了密碼，具體操作如下：</p>
+<p>使用 SSH 密鑰<br>SSH 密鑰認證更安全，尤其適用於頻繁操作。具體步驟如下：</p>
+<ol>
+<li>生成 SSH 密鑰</li>
+</ol>
+<p>在本地終端運行以下命令生成 SSH 密鑰：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C <span class="string">&quot;your_email@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+<p>完成后會生成兩個文件：</p>
+<p>私鑰：~&#x2F;.ssh&#x2F;id_ed25519</p>
+<p>公鑰：~&#x2F;.ssh&#x2F;id_ed25519.pub</p>
+<ol start="2">
+<li>添加公鑰到 GitHub</li>
+</ol>
+<ul>
+<li><p>打開 SSH 設置頁面 , <a target="_blank" rel="noopener" href="https://github.com/settings/keys">https://github.com/settings/keys</a> 。</p>
+</li>
+<li><p>點擊 New SSH Key。</p>
+</li>
+<li><p>填入標題（如 My Laptop），然后粘貼 id_ed25519.pub 文件內容。<br>點擊 Add SSH Key。</p>
+</li>
+</ul>
+<ol start="3">
+<li>配置 Git 使用 SSH</li>
+</ol>
+<p>修改遠程倉庫 URL 為 SSH 格式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin git@github.com:&lt;USERNAME&gt;/&lt;REPO&gt;.git</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>測試 SSH 連接</li>
+</ol>
+<p>運行以下命令確認配置成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>如果成功，你會看到類似輸出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi &lt;USERNAME&gt;! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure>
+<p>驗證并推送<br>無論使用 Token 還是 SSH，設置完成后，重新推送代碼：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<p>完成后，你的代碼應該成功推送到 GitHub。</p>
+<blockquote>
+<p><strong>💡 提示：</strong><br>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br> ! [rejected]        main -&gt; main (non-fast-forward)<br>error: failed to push some refs to ‘github.com:……git’<br>hint: Updates were rejected because the tip of your current branch is behind<br>hint: its remote counterpart. If you want to integrate the remote changes,<br>hint: use ‘git pull’ before pushing again.<br>hint: See the ‘Note about fast-forwards’ in ‘git push –help’ for details.<br>    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br>這個錯誤說明你的本地分支 main 落后於遠程分支 main，無法直接推送，需要先同步遠程分支的更改。</p>
+</blockquote>
+<p>以下是解決方法：</p>
+<ul>
+<li><p>合并遠程更改<br>如果你希望保留遠程倉庫已有的提交，先拉取遠程分支內容并合并：</p>
+</li>
+<li><p>強制推送（覆蓋遠程分支）<br>如果確定本地分支的內容應完全覆蓋遠程分支，可以使用強制推送。但請注意，這可能導致遠程倉庫中其他更改丟失。</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin main --force-with-lease</span><br></pre></td></tr></table></figure>
+<p>–force-with-lease 會確保強制推送前沒有其他人在遠程倉庫做修改。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Git指令</p><p><a href="http://example.com/2026/05/11/git-command/">http://example.com/2026/05/11/git-command/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Robin Cheng</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-05-11</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-05-11</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/git-command/">git_command</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2026/05/11/hexo-to-github/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">hexo上傳到github</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2026/05/08/download-from-github/"><span class="level-item">在 VS Code 下載 GitHub 倉庫教學</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">3</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-11T03:13:15.000Z">2026-05-11</time></p><p class="title"><a href="/2026/05/11/hexo-to-github/">hexo上傳到github</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-11T02:27:44.000Z">2026-05-11</time></p><p class="title"><a href="/2026/05/11/git-command/">Git指令</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-08T09:11:23.000Z">2026-05-08</time></p><p class="title"><a href="/2026/05/08/download-from-github/">在 VS Code 下載 GitHub 倉庫教學</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-07T07:51:36.610Z">2026-05-07</time></p><p class="title"><a href="/2026/05/07/hello-world/">Hello World</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/download-from-github/"><span class="tag">download_from_github</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git-command/"><span class="tag">git_command</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo-to-github/"><span class="tag">hexo_to_github</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

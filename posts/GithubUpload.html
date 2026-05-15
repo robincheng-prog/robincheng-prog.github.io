@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>專案上傳到 GitHub - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="本指南將引導您將本地電腦上的專案程式碼上傳到 GitHub。我們將使用最推薦的 SSH 驗證方式 進行操作。 ⚠️ 重要前置檢查在開始上傳前，請確保您的開發環境已完成以下配置：  環境安裝：已安裝 Git 客戶端。 身分識別：已完成 git config 全域帳戶設定。 安全驗證：這是最關鍵的一步。請確認您已完成 SSH Key 的產生與 GitHub 綁定。 💡 如果您尚未完成上述步驟，請先閱"><meta property="og:type" content="blog"><meta property="og:title" content="專案上傳到 GitHub"><meta property="og:url" content="http://example.com/posts/GithubUpload.html"><meta property="og:site_name" content="My personal blog at work"><meta property="og:description" content="本指南將引導您將本地電腦上的專案程式碼上傳到 GitHub。我們將使用最推薦的 SSH 驗證方式 進行操作。 ⚠️ 重要前置檢查在開始上傳前，請確保您的開發環境已完成以下配置：  環境安裝：已安裝 Git 客戶端。 身分識別：已完成 git config 全域帳戶設定。 安全驗證：這是最關鍵的一步。請確認您已完成 SSH Key 的產生與 GitHub 綁定。 💡 如果您尚未完成上述步驟，請先閱"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2026-05-15T02:56:11.000Z"><meta property="article:modified_time" content="2026-05-15T04:14:06.359Z"><meta property="article:author" content="Robin Cheng"><meta property="article:tag" content="github"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/posts/GithubUpload.html"},"headline":"專案上傳到 GitHub","image":["http://example.com/img/og_image.png"],"datePublished":"2026-05-15T02:56:11.000Z","dateModified":"2026-05-15T04:14:06.359Z","author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"本指南將引導您將本地電腦上的專案程式碼上傳到 GitHub。我們將使用最推薦的 SSH 驗證方式 進行操作。 ⚠️ 重要前置檢查在開始上傳前，請確保您的開發環境已完成以下配置：  環境安裝：已安裝 Git 客戶端。 身分識別：已完成 git config 全域帳戶設定。 安全驗證：這是最關鍵的一步。請確認您已完成 SSH Key 的產生與 GitHub 綁定。 💡 如果您尚未完成上述步驟，請先閱"}</script><link rel="canonical" href="http://example.com/posts/GithubUpload.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-15T02:56:11.000Z" title="5/15/2026, 10:56:11 AM">2026-05-15</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-15T04:14:06.359Z" title="5/15/2026, 12:14:06 PM">2026-05-15</time></span><span class="level-item">6 minutes read (About 897 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">專案上傳到 GitHub</h1><div class="content"><p>本指南將引導您將本地電腦上的專案程式碼上傳到 GitHub。我們將使用最推薦的 SSH 驗證方式 進行操作。</p>
+<h2 id="⚠️-重要前置檢查"><a href="#⚠️-重要前置檢查" class="headerlink" title="⚠️ 重要前置檢查"></a>⚠️ 重要前置檢查</h2><p>在開始上傳前，請確保您的開發環境已完成以下配置：</p>
+<ol>
+<li><strong>環境安裝</strong>：已安裝 Git 客戶端。</li>
+<li><strong>身分識別</strong>：已完成 <code>git config</code> 全域帳戶設定。</li>
+<li><strong>安全驗證</strong>：<strong>這是最關鍵的一步</strong>。請確認您已完成 SSH Key 的產生與 GitHub 綁定。<blockquote>
+<p>💡 如果您尚未完成上述步驟，請先閱讀：</p>
+<a href="/posts/GithubDownload.html" title="在 VS Code 下載 GitHub 倉庫教學">在 VS Code 下載 GitHub 倉庫教學</a>
+<p><code>👉 在 VS Code 下載 GitHub 倉庫教學</code></p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h1 id="第一階段：本地專案初始化"><a href="#第一階段：本地專案初始化" class="headerlink" title="第一階段：本地專案初始化"></a>第一階段：本地專案初始化</h1><hr>
+<p>請在 VS Code 中開啟您的專案資料夾，並打開終端機 (Terminal)，依照以下步驟操作：</p>
+<h2 id="1-初始化本地-Git-倉庫"><a href="#1-初始化本地-Git-倉庫" class="headerlink" title="1. 初始化本地 Git 倉庫"></a>1. 初始化本地 Git 倉庫</h2><p>將目前的資料夾轉變為 Git 可以追蹤的狀態。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-將檔案加入暫存區"><a href="#2-將檔案加入暫存區" class="headerlink" title="2. 將檔案加入暫存區"></a>2. 將檔案加入暫存區</h2><p>您可以選擇加入特定檔案，或使用 . 加入資料夾內所有檔案。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">加入所有檔案</span><br><span class="line">git add .</span><br></pre></td></tr></table></figure>
+<h2 id="3-提交變更-Commit"><a href="#3-提交變更-Commit" class="headerlink" title="3. 提交變更 (Commit)"></a>3. 提交變更 (Commit)</h2><p>這會將檔案正式記錄在本地的 Git 歷史中，-m 後面請輸入本次上傳的說明。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;初次上傳：專案初始化&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-設定主分支名稱"><a href="#4-設定主分支名稱" class="headerlink" title="4. 設定主分支名稱"></a>4. 設定主分支名稱</h2><p>GitHub 目前預設的主分支名稱為 main，我們確保本地分支名稱一致：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -M main</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="第二階段：連結遠端倉庫並上傳"><a href="#第二階段：連結遠端倉庫並上傳" class="headerlink" title="第二階段：連結遠端倉庫並上傳"></a>第二階段：連結遠端倉庫並上傳</h1><hr>
+<h2 id="1-關聯遠端-GitHub-倉庫"><a href="#1-關聯遠端-GitHub-倉庫" class="headerlink" title="1. 關聯遠端 GitHub 倉庫"></a>1. 關聯遠端 GitHub 倉庫</h2><p>請將下方的網址換成您在 GitHub 建立倉庫後取得的 SSH 網址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指令格式：</span></span><br><span class="line">git remote add origin git@github.com:您的帳號/您的倉庫名.git</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-推送至-GitHub-Push"><a href="#2-推送至-GitHub-Push" class="headerlink" title="2. 推送至 GitHub (Push)"></a>2. 推送至 GitHub (Push)</h2><p>將本地的代碼推送到 GitHub 伺服器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一次推送使用 -u 指令，以後只需輸入 git push</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="第三階段：後續開發常用指令"><a href="#第三階段：後續開發常用指令" class="headerlink" title="第三階段：後續開發常用指令"></a>第三階段：後續開發常用指令</h3><hr>
+<p>當您在本地修改了程式碼，想要再次更新到 GitHub 時，只需重複以下三個動作：</p>
+<h2 id="1-更新修改記錄"><a href="#1-更新修改記錄" class="headerlink" title="1. 更新修改記錄"></a>1. 更新修改記錄</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;說明本次修改了什麼內容&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-同步雲端代碼-建議養成習慣"><a href="#2-同步雲端代碼-建議養成習慣" class="headerlink" title="2. 同步雲端代碼 (建議養成習慣)"></a>2. 同步雲端代碼 (建議養成習慣)</h2><p>在推送前先抓取雲端是否有新的變更，避免衝突：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin main</span><br></pre></td></tr></table></figure>
+<h2 id="3-推送到雲端"><a href="#3-推送到雲端" class="headerlink" title="3. 推送到雲端"></a>3. 推送到雲端</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin main</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="常見問題排錯-Q-A"><a href="#常見問題排錯-Q-A" class="headerlink" title="常見問題排錯 (Q&amp;A)"></a>常見問題排錯 (Q&amp;A)</h2><hr>
+<p>Q1: 出現 “Permission denied (publickey)” 錯誤？</p>
+<p>原因：您的電腦沒有正確配置 SSH Key，或者該 Key 沒有新增到 GitHub。</p>
+<p>檢查：輸入 ssh -T <a href="mailto:&#103;&#x69;&#116;&#64;&#103;&#105;&#x74;&#104;&#117;&#x62;&#46;&#99;&#x6f;&#109;">git@github.com</a> 測試連線。如果失敗，請重新執行 SSH Key 產生與上傳流程。</p>
+<p>Q2: 出現 “remote origin already exists” 錯誤？</p>
+<p>原因：這代表您之前已經設定過遠端網址。</p>
+<p>解決：先刪除舊的再重新加入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote remove origin</span><br><span class="line">git remote add origin [您的SSH網址]</span><br></pre></td></tr></table></figure>
+
+<p>Q3: 想要忽略某些檔案不要上傳（如：編譯產生的暫存檔）？</p>
+<p>解決：在專案根目錄建立一個名為 .gitignore 的檔案，並在裡面列出要忽略的檔案或資料夾名稱（例如：bin&#x2F; 或 obj&#x2F;）。</p>
+<blockquote>
+<p>💡 小撇步 ：</p>
+<p>在 VS Code 左側工具列點擊 「原始碼控制」圖示 (Ctrl+Shift+G)，您可以用滑鼠點擊「+」號（等於 git add）和「打勾」圖示（等於 git commit），這比打指令更直觀！</p>
+</blockquote>
+</div><div class="article-licensing box"><div class="licensing-title"><p>專案上傳到 GitHub</p><p><a href="http://example.com/posts/GithubUpload.html">http://example.com/posts/GithubUpload.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Robin Cheng</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-05-15</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-05-15</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/github/">github</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/UniqueKeyWin11.html"><span class="level-item">GitHub 建立獨立金鑰（Windows 11）</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">3</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-15T02:56:11.000Z">2026-05-15</time></p><p class="title"><a href="/posts/GithubUpload.html">專案上傳到 GitHub</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-14T05:20:08.000Z">2026-05-14</time></p><p class="title"><a href="/posts/UniqueKeyWin11.html">GitHub 建立獨立金鑰（Windows 11）</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-13T09:04:44.000Z">2026-05-13</time></p><p class="title"><a href="/posts/PullRequest.html">了解 GitHub 的 pull request 工作流程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-13T08:45:35.000Z">2026-05-13</time></p><p class="title"><a href="/posts/MdWiki.html">Markdown 文件</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-12T01:34:37.000Z">2026-05-12</time></p><p class="title"><a href="/posts/VSCodeNxp.html">Visual Studio(VS) Code using NXP MCUXpresso plugin</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/VS-Code/"><span class="tag">VS_Code</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/github/"><span class="tag">github</span><span class="tag">6</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>README.md 範本說明 - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="README.md 範本要如何勾勒出了一份專業、易讀且結構完整的 README 檔核心要素。 如果要寫出一份「README.md 內容說明（或撰寫指南）」，一份合格且讓人想讀的 README 應該包含以下五大核心維度與細分項目：  📄 核心維度一：專案門面與概述 (Header &amp;amp; Overview)這部分是讀者點進專案後的前 3 秒印象，必須精準告訴別人「這是什麼」。  專案標題與標語"><meta property="og:type" content="blog"><meta property="og:title" content="README.md 範本說明"><meta property="og:url" content="http://example.com/posts/readme-example.html"><meta property="og:site_name" content="My personal blog at work"><meta property="og:description" content="README.md 範本要如何勾勒出了一份專業、易讀且結構完整的 README 檔核心要素。 如果要寫出一份「README.md 內容說明（或撰寫指南）」，一份合格且讓人想讀的 README 應該包含以下五大核心維度與細分項目：  📄 核心維度一：專案門面與概述 (Header &amp;amp; Overview)這部分是讀者點進專案後的前 3 秒印象，必須精準告訴別人「這是什麼」。  專案標題與標語"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://img.shields.io/github/stars/%E4%BD%A0%E7%9A%84%E5%B8%B3%E8%99%9F/%E4%BD%A0%E7%9A%84%E5%B0%88%E6%A1%88.svg"><meta property="og:image" content="https://img.shields.io/github/license/%E4%BD%A0%E7%9A%84%E5%B8%B3%E8%99%9F/%E4%BD%A0%E7%9A%84%E5%B0%88%E6%A1%88.svg"><meta property="og:image" content="http://example.com/images/logo.png"><meta property="article:published_time" content="2026-05-18T05:46:26.000Z"><meta property="article:modified_time" content="2026-05-18T06:04:38.818Z"><meta property="article:author" content="Robin Cheng"><meta property="article:tag" content="githut"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://img.shields.io/github/stars/%E4%BD%A0%E7%9A%84%E5%B8%B3%E8%99%9F/%E4%BD%A0%E7%9A%84%E5%B0%88%E6%A1%88.svg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/posts/readme-example.html"},"headline":"README.md 範本說明","image":["http://example.com/images/logo.png"],"datePublished":"2026-05-18T05:46:26.000Z","dateModified":"2026-05-18T06:04:38.818Z","author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"README.md 範本要如何勾勒出了一份專業、易讀且結構完整的 README 檔核心要素。 如果要寫出一份「README.md 內容說明（或撰寫指南）」，一份合格且讓人想讀的 README 應該包含以下五大核心維度與細分項目：  📄 核心維度一：專案門面與概述 (Header &amp; Overview)這部分是讀者點進專案後的前 3 秒印象，必須精準告訴別人「這是什麼」。  專案標題與標語"}</script><link rel="canonical" href="http://example.com/posts/readme-example.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-18T05:46:26.000Z" title="5/18/2026, 1:46:26 PM">2026-05-18</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-18T06:04:38.818Z" title="5/18/2026, 2:04:38 PM">2026-05-18</time></span><span class="level-item">16 minutes read (About 2402 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">README.md 範本說明</h1><div class="content"><p><code>README.md</code> 範本要如何勾勒出了一份<strong>專業、易讀且結構完整的 README 檔</strong>核心要素。</p>
+<p>如果要寫出一份「README.md 內容說明（或撰寫指南）」，一份合格且讓人想讀的 README 應該包含以下<strong>五大核心維度</strong>與<strong>細分項目</strong>：</p>
+<hr>
+<h2 id="📄-核心維度一：專案門面與概述-Header-Overview"><a href="#📄-核心維度一：專案門面與概述-Header-Overview" class="headerlink" title="📄 核心維度一：專案門面與概述 (Header &amp; Overview)"></a>📄 核心維度一：專案門面與概述 (Header &amp; Overview)</h2><p>這部分是讀者點進專案後的前 3 秒印象，必須精準告訴別人「這是什麼」。</p>
+<ul>
+<li><strong>專案標題與標語 (Title &amp; Tagline)：</strong> 醒目的專案名稱，並用一句話（或主標題下方的引言）點出核心功能。</li>
+<li><strong>狀態徽章 (Badges)：</strong> 放置 GitHub Stars、Forks、License、npm 版本、測試覆蓋率等徽章，增加專案公信力。</li>
+<li><strong>專案封面圖&#x2F;Logo (Logo &amp; Banner)：</strong> 放置產品 Logo 或視覺封面，提升視覺質感。</li>
+<li><strong>快速導覽連結 (Quick Links)：</strong> 如線上展示（Demo）連結、官方文件連結、問題回報（Issues）連結。</li>
+<li><strong>目錄 (Table of Contents)：</strong> 當 README 內容較長時，提供錨點目錄，方便讀者快速跳轉。</li>
+</ul>
+<hr>
+<h2 id="🚀-核心維度二：功能展示與操作-Features-Demo"><a href="#🚀-核心維度二：功能展示與操作-Features-Demo" class="headerlink" title="🚀 核心維度二：功能展示與操作 (Features &amp; Demo)"></a>🚀 核心維度二：功能展示與操作 (Features &amp; Demo)</h2><p>讓使用者在下載前，就能直觀感受專案能做到什麼、畫面長怎樣。</p>
+<ul>
+<li><strong>動態&#x2F;靜態畫面展示 (Demo &#x2F; Screenshots)：</strong> 運用 GIF 動畫、操作截圖（1~3 張），直觀呈現產品介面或 CLI 互動過程。</li>
+<li><strong>功能清單 (Features Check-list)：</strong> 使用 Markdown 的核取方塊（<code>- [x]</code>）條列已完成或支援的核心功能。</li>
+<li><strong>測試帳號資訊 (Test Credentials)：</strong> 若專案包含登入系統，提供一組「僅供檢視」的測試帳密，方便他人體驗。</li>
+</ul>
+<hr>
+<h2 id="🛠️-核心維度三：開發者指南與安裝步步來-Getting-Started-Usage"><a href="#🛠️-核心維度三：開發者指南與安裝步步來-Getting-Started-Usage" class="headerlink" title="🛠️ 核心維度三：開發者指南與安裝步步來 (Getting Started &amp; Usage)"></a>🛠️ 核心維度三：開發者指南與安裝步步來 (Getting Started &amp; Usage)</h2><p>這部分是給想在本機端跑起專案的開發者看的，必須確保步驟清晰無誤。</p>
+<ul>
+<li><strong>環境與配置要求 (Prerequisites)：</strong> 明確列出限制，例如 Node.js 最低版本需求、需要哪些全域工具（如 npx）或 API Key。</li>
+<li><strong>安裝步驟 (Installation)：</strong> 從 <code>git clone</code>、移動資料夾、到安裝套件（如 <code>npm install</code>），提供一行行的終端機複製指令。</li>
+<li><strong>環境變數說明 (Environment Variables)：</strong> 說明 <code>.env</code> 檔案的複製與設定方式，並條列各個變數的用途。</li>
+<li><strong>運行專案與開啟 (Usage &amp; Running)：</strong> 提供啟動開發環境的指令（如 <code>npm run serve</code>），並標明本地瀏覽器對應的網址（如 <code>http://localhost:8080/</code>）。</li>
+</ul>
+<hr>
+<h2 id="📐-核心維度四：專案架構與技術棧-Architecture-Tech-Stack"><a href="#📐-核心維度四：專案架構與技術棧-Architecture-Tech-Stack" class="headerlink" title="📐 核心維度四：專案架構與技術棧 (Architecture &amp; Tech Stack)"></a>📐 核心維度四：專案架構與技術棧 (Architecture &amp; Tech Stack)</h2><p>幫助想深入研究原始碼、甚至參與貢獻的工程師快速理解專案內層。</p>
+<ul>
+<li><strong>資料夾&#x2F;檔案結構說明 (Project Structure)：</strong> 用樹狀圖（Tree）簡述核心資料夾（如 <code>views</code>、<code>controllers</code>、<code>assets</code>）的職責分工。</li>
+<li><strong>架構與設計模式 (Architecture)：</strong> 引導讀者查閱更詳細的架構文件（如 <code>ARCHITECTURE.md</code>）。</li>
+<li><strong>專案技術棧 (Tech Stack &amp; Tools)：</strong> 清晰羅列專案所使用的語言、核心框架（如 Vue、Vite）與關鍵第三方服務（如 Google Analytics）。</li>
+<li><strong>CI&#x2F;CD 自動化流程說明 (Continuous Integration &#x2F; Deployment)：</strong> 說明專案在發起 Pull Request 或 Merge 到特定分支時，會自動觸發的行為（如：環境建立、ESLint 掃描、測試、部署至 GitHub Pages）。</li>
+</ul>
+<hr>
+<h2 id="🤝-核心維度五：社群、版權與聯絡方式-Community-Footer"><a href="#🤝-核心維度五：社群、版權與聯絡方式-Community-Footer" class="headerlink" title="🤝 核心維度五：社群、版權與聯絡方式 (Community &amp; Footer)"></a>🤝 核心維度五：社群、版權與聯絡方式 (Community &amp; Footer)</h2><p>開源專案永續經營或個人職涯曝光的關鍵收尾。</p>
+<ul>
+<li><strong>貢獻指南 (Contributing)：</strong> 說明如何參與開源，提供 Fork、建立分支、Commit 到 Open PR 的標準工作流。</li>
+<li><strong>貢獻者與謝誌 (Contributors &amp; Acknowledgements)：</strong> 展示程式碼貢獻者或財務贊助者的頭像&#x2F;Logo，並致謝啟發本專案的其他開源工具、設計或資源。</li>
+<li><strong>作者與聯絡方式 (Author &amp; Contact)：</strong> 提供作者的社群連結（如 Twitter、GitHub、LinkedIn、部落格或 Email），建立信任感與個人品牌。</li>
+<li><strong>版權與授權說明 (License)：</strong> 聲明專案採用的開源協議（通常為 MIT 授權），保障雙方權益。</li>
+</ul>
+<hr>
+<h3 id="💡-給您的撰寫建議"><a href="#💡-給您的撰寫建議" class="headerlink" title="💡 給您的撰寫建議"></a>💡 給您的撰寫建議</h3><p>在向他人說明 README 該寫什麼時，可以強調「因地制宜」<strong>。如果只是一個</strong>小前端作品，重點應該放在「功能畫面、線上連結、技術棧、安裝運行」<strong>；如果是一個</strong>開源工具&#x2F;套件，重點則要轉移到「動態 Demo、使用參數（CLI 語法）、貢獻指南與 License」。</p>
+<hr>
+<p> 以下是一份空白的READM.md的內容，你可以依程式的方向作內容的增減：</p>
+<hr>
+<h1 id="📌-專案名稱-Project-Name"><a href="#📌-專案名稱-Project-Name" class="headerlink" title="📌 專案名稱 (Project Name)"></a>📌 專案名稱 (Project Name)</h1><blockquote>
+<p>這裡寫下用一句話介紹你的專案核心價值與功能（例如：一個基於 Node.js 的輕量級自動化 Markdown 生成工具）。</p>
+</blockquote>
+<p><img src="https://img.shields.io/github/stars/%E4%BD%A0%E7%9A%84%E5%B8%B3%E8%99%9F/%E4%BD%A0%E7%9A%84%E5%B0%88%E6%A1%88.svg"> ｜ <img src="https://img.shields.io/github/license/%E4%BD%A0%E7%9A%84%E5%B8%B3%E8%99%9F/%E4%BD%A0%E7%9A%84%E5%B0%88%E6%A1%88.svg"></p>
+<p><img src="/images/logo.png" alt="專案封面圖&#x2F;Logo"></p>
+<blockquote>
+<p>🔗 <a target="_blank" rel="noopener" href="https://your-demo-link.com/">線上觀看&#x2F;展示連結 (Live Demo)</a></p>
+</blockquote>
+<hr>
+<h2 id="🎯-專案導覽-Table-of-Contents"><a href="#🎯-專案導覽-Table-of-Contents" class="headerlink" title="🎯 專案導覽 (Table of Contents)"></a>🎯 專案導覽 (Table of Contents)</h2><ul>
+<li><a href="#-%E5%8A%9F%E8%83%BD%E7%89%B9%E9%BB%9E-features">功能特點</a></li>
+<li><a href="#-%E7%95%AB%E9%9D%A2%E5%B1%95%E7%A4%BA-screenshots">畫面展示</a></li>
+<li><a href="#-%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97-getting-started">上手指南</a></li>
+<li><a href="#-%E8%B3%87%E6%96%99%E5%A4%BE%E8%88%87%E6%9E%B6%E6%A7%8B%E8%AA%AA%E6%98%8E-project-structure">資料夾與架構說明</a></li>
+<li><a href="#-%E6%8A%80%E8%A1%93%E6%A3%A7%E8%88%87%E6%9C%8D%E5%8B%99-tech-stack">技術棧與服務</a></li>
+<li><a href="#-%E9%96%8B%E7%99%BC%E8%88%87%E8%B2%A2%E7%8D%BB-contributing">開發與貢獻</a></li>
+<li><a href="#-%E8%81%AF%E7%B5%A1%E4%BD%9C%E8%80%85%E8%88%87%E7%89%88%E6%AC%8A-author--license">聯絡作者與版權</a></li>
+</ul>
+<hr>
+<h2 id="✨-功能特點-Features"><a href="#✨-功能特點-Features" class="headerlink" title="✨ 功能特點 (Features)"></a>✨ 功能特點 (Features)</h2><h3 id="🔒-測試帳號密碼（僅供檢視）"><a href="#🔒-測試帳號密碼（僅供檢視）" class="headerlink" title="🔒 測試帳號密碼（僅供檢視）"></a>🔒 測試帳號密碼（僅供檢視）</h3><blockquote>
+<p>💡 建議只提供僅能觀看、不能操作刪除的帳號密碼。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">帳號：example@example.com</span><br><span class="line">密碼：example</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="💡-核心功能"><a href="#💡-核心功能" class="headerlink" title="💡 核心功能"></a>💡 核心功能</h3><ul>
+<li><input checked="" disabled="" type="checkbox"> 功能 A — 簡短說明功能內容（例如：支援多國語系自動切換）</li>
+<li><input checked="" disabled="" type="checkbox"> 功能 B — 簡短說明功能內容（例如：一鍵導出 PDF 與 Markdown）</li>
+<li><input disabled="" type="checkbox"> 功能 C (開發中) — 未來計畫加入的功能</li>
+</ul>
+<hr>
+<h2 id="📸-畫面展示-Screenshots-Demo"><a href="#📸-畫面展示-Screenshots-Demo" class="headerlink" title="📸 畫面展示 (Screenshots &#x2F; Demo)"></a>📸 畫面展示 (Screenshots &#x2F; Demo)</h2><blockquote>
+<p>建議提供 1~3 張 GIF 動態圖或靜態截圖，讓觀看者透過 README 就能直觀了解整體畫面。</p>
+</blockquote>
+<p><em>描述：這是主畫面的操作示意圖 &#x2F; CLI 互動過程</em></p>
+<hr>
+<h2 id="🚀-上手指南-Getting-Started"><a href="#🚀-上手指南-Getting-Started" class="headerlink" title="🚀 上手指南 (Getting Started)"></a>🚀 上手指南 (Getting Started)</h2><h3 id="📋-開發前配置要求-Prerequisites"><a href="#📋-開發前配置要求-Prerequisites" class="headerlink" title="📋 開發前配置要求 (Prerequisites)"></a>📋 開發前配置要求 (Prerequisites)</h3><ul>
+<li>Node.js 版本建議為：<code>18.x</code> 或以上</li>
+<li>需要預先申請的 API Key（例如：Google Map API）</li>
+</ul>
+<h3 id="🔧-安裝與運行步驟"><a href="#🔧-安裝與運行步驟" class="headerlink" title="🔧 安裝與運行步驟"></a>🔧 安裝與運行步驟</h3><p>請依序在終端機（Terminal）輸入以下指令：</p>
+<ol>
+<li><strong>複製專案倉庫 (Clone)</strong></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [https://github.com/你的帳號/你的專案.git](https://github.com/你的帳號/你的專案.git)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li><strong>移動到專案目錄內</strong></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 你的專案名稱</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<ol start="3">
+<li><strong>安裝相依套件</strong></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<ol start="4">
+<li><strong>環境變數設定</strong><br>請在終端機輸入以下指令來複製變數範本檔，並依據 <code>.env</code> 內容調整相關欄位：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> .env.example .<span class="built_in">env</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p><em>環境變數說明：</em></p>
+<ul>
+<li><code>API_PATH</code>：後端 API 的主機介接位置。</li>
+<li><code>SECRET_KEY</code>：第三方驗證服務的金鑰。</li>
+</ul>
+<ol start="5">
+<li><strong>運行&#x2F;啟動專案</strong></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<ol start="6">
+<li><strong>開啟專案畫面</strong><br>在瀏覽器網址列輸入以下即可看到畫面：<code>http://localhost:3000/</code></li>
+</ol>
+<hr>
+<h2 id="📐-資料夾與架構說明-Project-Structure"><a href="#📐-資料夾與架構說明-Project-Structure" class="headerlink" title="📐 資料夾與架構說明 (Project Structure)"></a>📐 資料夾與架構說明 (Project Structure)</h2><blockquote>
+<p>用簡單的樹狀圖簡述專案核心資料夾的職責，幫助其他開發者快速看懂程式碼分工。</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">my-project</span><br><span class="line">├── /src              # 核心程式碼放置處</span><br><span class="line">│   ├── /components   # 共用 UI 組件</span><br><span class="line">│   ├── /views        # 頁面/畫面放置處</span><br><span class="line">│   └── /utils        # 工具函式與商業邏輯</span><br><span class="line">├── .env.example      # 環境變數範本檔</span><br><span class="line">├── ARCHITECTURE.md   # 深度架構設計說明書</span><br><span class="line">└── README.md         # 本說明文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>💡 關於專案的詳細架構與設計模式，請查閱 <a target="_blank" rel="noopener" href="https://www.google.com/search?q=./ARCHITECTURE.md">ARCHITECTURE.md</a>。</p>
+</blockquote>
+<hr>
+<h2 id="🛠️-技術棧與服務-Tech-Stack"><a href="#🛠️-技術棧與服務-Tech-Stack" class="headerlink" title="🛠️ 技術棧與服務 (Tech Stack)"></a>🛠️ 技術棧與服務 (Tech Stack)</h2><ul>
+<li><strong>核心技術：</strong> HTML5, CSS3, JavaScript (ES6+)</li>
+<li><strong>框架與工具：</strong> React v18 &#x2F; Vue v3, Vite, TailwindCSS</li>
+<li><strong>第三方服務：</strong> Firebase (資料庫), Google Analytics (數據分析)</li>
+<li><strong>CI&#x2F;CD 自動化流程：</strong> * 當發起 <strong>Pull Request</strong> 時：會自動執行環境建立、安裝相依套件與 ESLint 語法掃描。</li>
+<li>當程式碼 <strong>Merge 到 main 分支</strong> 時：會自動執行單元測試並編譯，最後自動部署到 GitHub Pages。</li>
+</ul>
+<hr>
+<h2 id="🤝-開發與貢獻-Contributing"><a href="#🤝-開發與貢獻-Contributing" class="headerlink" title="🤝 開發與貢獻 (Contributing)"></a>🤝 開發與貢獻 (Contributing)</h2><p>歡迎任何形式的貢獻（Contributions）、回報 Bug（Issues）或提出新特性（Feature Requests）！</p>
+<ol>
+<li>Fork 本專案</li>
+<li>建立您的特性分支 (<code>git checkout -b feature/AmazingFeature</code>)</li>
+<li>提交您的修改 (<code>git commit -m &#39;Add some AmazingFeature&#39;</code>)</li>
+<li>推送到該分支 (<code>git push origin feature/AmazingFeature</code>)</li>
+<li>開啟一個 Pull Request</li>
+</ol>
+<hr>
+<h2 id="👤-作者-📝-版權-Author-License"><a href="#👤-作者-📝-版權-Author-License" class="headerlink" title="👤 作者 &amp; 📝 版權 (Author &amp; License)"></a>👤 作者 &amp; 📝 版權 (Author &amp; License)</h2><h3 id="作者資訊"><a href="#作者資訊" class="headerlink" title="作者資訊"></a>作者資訊</h3><ul>
+<li><strong>姓名&#x2F;暱稱</strong> - <a target="_blank" rel="noopener" href="https://www.google.com/search?q=https://github.com/%E4%BD%A0%E7%9A%84Github%E5%B8%B3%E8%99%9F">@你的Github帳號</a></li>
+<li><strong>聯絡方式：</strong> <a target="_blank" rel="noopener" href="https://www.google.com/search?q=%E4%BD%A0%E7%9A%84%E9%80%A3%E7%B5%90">LinkedIn</a> ｜ <a target="_blank" rel="noopener" href="https://www.google.com/search?q=%E4%BD%A0%E7%9A%84%E9%80%A3%E7%B5%90">Twitter</a> ｜ <a href="">Email</a></li>
+</ul>
+<h3 id="版權說明"><a href="#版權說明" class="headerlink" title="版權說明"></a>版權說明</h3><p>本專案採用 <strong>MIT 授權許可</strong> 進行保護。詳情請參閱 <a target="_blank" rel="noopener" href="https://www.google.com/search?q=./LICENSE">LICENSE</a> 檔案。</p>
+<hr>
+<p><em>This README was written with ❤️ by your name</em></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>README.md 範本說明</p><p><a href="http://example.com/posts/readme-example.html">http://example.com/posts/readme-example.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Robin Cheng</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-05-18</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-05-18</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/githut/">githut</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/practiveGit.html"><span class="level-item">Git 完整入門教學（Windows 初學者版）</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">13</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">4</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-18T05:46:26.000Z">2026-05-18</time></p><p class="title"><a href="/posts/readme-example.html">README.md 範本說明</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-18T02:36:23.000Z">2026-05-18</time></p><p class="title"><a href="/posts/practiveGit.html">Git 完整入門教學（Windows 初學者版）</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-15T07:56:03.000Z">2026-05-15</time></p><p class="title"><a href="/posts/sshKeygenGuide.html">ssh-keygen 參數</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-15T02:56:11.000Z">2026-05-15</time></p><p class="title"><a href="/posts/GithubUpload.html">專案上傳到 GitHub</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-14T05:20:08.000Z">2026-05-14</time></p><p class="title"><a href="/posts/UniqueKeyWin11.html">GitHub 建立獨立金鑰（Windows 11）</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/VS-Code/"><span class="tag">VS_Code</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/github/"><span class="tag">github</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/githut/"><span class="tag">githut</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

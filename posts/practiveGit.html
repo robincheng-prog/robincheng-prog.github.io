@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>practive-git - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Git 完整入門教學（Windows 初學者版）作者： Ayden 1. Git 是什麼？Git 是一種「版本控制系統（Version Control System, VCS）」，主要用途：  記錄程式碼修改歷史 多人協作開發 回復舊版本 管理不同功能分支 搭配 GitHub &amp;#x2F; GitLab 做遠端備份  簡單理解：  Git 就像程式碼的「時間機器」。   2. 安裝 Git（Win"><meta property="og:type" content="blog"><meta property="og:title" content="practive-git"><meta property="og:url" content="http://example.com/posts/practiveGit.html"><meta property="og:site_name" content="My personal blog at work"><meta property="og:description" content="Git 完整入門教學（Windows 初學者版）作者： Ayden 1. Git 是什麼？Git 是一種「版本控制系統（Version Control System, VCS）」，主要用途：  記錄程式碼修改歷史 多人協作開發 回復舊版本 管理不同功能分支 搭配 GitHub &amp;#x2F; GitLab 做遠端備份  簡單理解：  Git 就像程式碼的「時間機器」。   2. 安裝 Git（Win"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/images/git%20version.png"><meta property="og:image" content="http://example.com/images/git%20init.png"><meta property="og:image" content="http://example.com/images/git%20status.png"><meta property="og:image" content="http://example.com/images/test_commit.png"><meta property="og:image" content="http://example.com/images/new_repository.png"><meta property="og:image" content="http://example.com/images/github_create_repository.png"><meta property="og:image" content="http://example.com/images/github_SSH.png"><meta property="og:image" content="http://example.com/images/set_user.png"><meta property="og:image" content="http://example.com/images/ssh-keygen.png"><meta property="og:image" content="http://example.com/images/deploy_keys.png"><meta property="og:image" content="http://example.com/images/config_key.png"><meta property="og:image" content="http://example.com/images/ssh-t.png"><meta property="og:image" content="http://example.com/images/git_remote.png"><meta property="og:image" content="http://example.com/images/remote-v.png"><meta property="og:image" content="http://example.com/images/git_push.png"><meta property="article:published_time" content="2026-05-18T02:36:23.000Z"><meta property="article:modified_time" content="2026-05-18T02:51:23.603Z"><meta property="article:author" content="Robin Cheng"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/images/git%20version.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/posts/practiveGit.html"},"headline":"practive-git","image":["http://example.com/images/git%20version.png","http://example.com/images/git%20init.png","http://example.com/images/git%20status.png","http://example.com/images/test_commit.png","http://example.com/images/new_repository.png","http://example.com/images/github_create_repository.png","http://example.com/images/github_SSH.png","http://example.com/images/set_user.png","http://example.com/images/ssh-keygen.png","http://example.com/images/deploy_keys.png","http://example.com/images/config_key.png","http://example.com/images/ssh-t.png","http://example.com/images/git_remote.png","http://example.com/images/remote-v.png","http://example.com/images/git_push.png"],"datePublished":"2026-05-18T02:36:23.000Z","dateModified":"2026-05-18T02:51:23.603Z","author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"Git 完整入門教學（Windows 初學者版）作者： Ayden 1. Git 是什麼？Git 是一種「版本控制系統（Version Control System, VCS）」，主要用途：  記錄程式碼修改歷史 多人協作開發 回復舊版本 管理不同功能分支 搭配 GitHub &#x2F; GitLab 做遠端備份  簡單理解：  Git 就像程式碼的「時間機器」。   2. 安裝 Git（Win"}</script><link rel="canonical" href="http://example.com/posts/practiveGit.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-18T02:36:23.000Z" title="5/18/2026, 10:36:23 AM">2026-05-18</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-18T02:51:23.603Z" title="5/18/2026, 10:51:23 AM">2026-05-18</time></span><span class="level-item">14 minutes read (About 2046 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">practive-git</h1><div class="content"><h1 id="Git-完整入門教學（Windows-初學者版）"><a href="#Git-完整入門教學（Windows-初學者版）" class="headerlink" title="Git 完整入門教學（Windows 初學者版）"></a>Git 完整入門教學（Windows 初學者版）</h1><p>作者： Ayden</p>
+<h2 id="1-Git-是什麼？"><a href="#1-Git-是什麼？" class="headerlink" title="1. Git 是什麼？"></a>1. Git 是什麼？</h2><p>Git 是一種「版本控制系統（Version Control System, VCS）」，主要用途：</p>
+<ul>
+<li>記錄程式碼修改歷史</li>
+<li>多人協作開發</li>
+<li>回復舊版本</li>
+<li>管理不同功能分支</li>
+<li>搭配 GitHub &#x2F; GitLab 做遠端備份</li>
+</ul>
+<p>簡單理解：</p>
+<blockquote>
+<p>Git 就像程式碼的「時間機器」。</p>
+</blockquote>
+<hr>
+<h1 id="2-安裝-Git（Windows）"><a href="#2-安裝-Git（Windows）" class="headerlink" title="2. 安裝 Git（Windows）"></a>2. 安裝 Git（Windows）</h1><h2 id="2-1-下載-Git"><a href="#2-1-下載-Git" class="headerlink" title="2.1 下載 Git"></a>2.1 下載 Git</h2><p>前往官方網站：</p>
+<ul>
+<li>官方網站 <a target="_blank" rel="noopener" href="https://git-scm.com/install/windows">Install git download</a></li>
+</ul>
+<p>下載：</p>
+<ul>
+<li>Windows 64-bit Git</li>
+</ul>
+<hr>
+<h2 id="2-2-安裝流程"><a href="#2-2-安裝流程" class="headerlink" title="2.2 安裝流程"></a>2.2 安裝流程</h2><p>安裝時大部分選項直接 Next 即可。</p>
+<h2 id="2-3-確認安裝成功"><a href="#2-3-確認安裝成功" class="headerlink" title="2.3 確認安裝成功"></a>2.3 確認安裝成功</h2><p>打開：</p>
+<ul>
+<li>CMD</li>
+<li>PowerShell</li>
+<li>Git Bash</li>
+</ul>
+<p>輸入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<p>如果看到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git version 2.xx.x</span><br></pre></td></tr></table></figure>
+
+<p>代表安裝成功。</p>
+<p><img src="/images/git%20version.png" alt="git version"></p>
+<hr>
+<h1 id="3-Git-基本概念"><a href="#3-Git-基本概念" class="headerlink" title="3. Git 基本概念"></a>3. Git 基本概念</h1><h2 id="Git-工作流程"><a href="#Git-工作流程" class="headerlink" title="Git 工作流程"></a>Git 工作流程</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">工作資料夾</span><br><span class="line">    ↓</span><br><span class="line">git add</span><br><span class="line">    ↓</span><br><span class="line">暫存區（Stage）</span><br><span class="line">    ↓</span><br><span class="line">git commit</span><br><span class="line">    ↓</span><br><span class="line">Git Repository</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="三個重要區域"><a href="#三個重要區域" class="headerlink" title="三個重要區域"></a>三個重要區域</h2><table>
+<thead>
+<tr>
+<th>區域</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Working Directory</td>
+<td>你正在修改的檔案</td>
+</tr>
+<tr>
+<td>Staging Area</td>
+<td>準備提交的檔案</td>
+</tr>
+<tr>
+<td>Repository</td>
+<td>已正式保存的版本</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="4-建立第一個-Git-專案"><a href="#4-建立第一個-Git-專案" class="headerlink" title="4. 建立第一個 Git 專案"></a>4. 建立第一個 Git 專案</h1><h2 id="4-1-建立資料夾"><a href="#4-1-建立資料夾" class="headerlink" title="4.1 建立資料夾"></a>4.1 建立資料夾</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> MyProject</span><br><span class="line"><span class="built_in">cd</span> MyProject</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-2-初始化-Git"><a href="#4-2-初始化-Git" class="headerlink" title="4.2 初始化 Git"></a>4.2 初始化 Git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<p>成功後會看到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Initialized empty Git repository</span><br></pre></td></tr></table></figure>
+
+<p>此時資料夾內會出現：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.git</span><br></pre></td></tr></table></figure>
+
+<p>這是 Git 的版本資料庫。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/git%20init.png" alt="git init"></h2><h1 id="5-Git-常用指令"><a href="#5-Git-常用指令" class="headerlink" title="5. Git 常用指令"></a>5. Git 常用指令</h1><h1 id="5-1-git-status"><a href="#5-1-git-status" class="headerlink" title="5.1 git status"></a>5.1 git status</h1><p>查看目前狀態：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p>用途：</p>
+<ul>
+<li>哪些檔案被修改</li>
+<li>哪些檔案尚未加入</li>
+<li>哪些檔案準備 commit</li>
+</ul>
+<h2 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="/images/git%20status.png" alt="git status"></h2><h1 id="5-2-git-add"><a href="#5-2-git-add" class="headerlink" title="5.2 git add"></a>5.2 git add</h1><p>將檔案加入暫存區。</p>
+<h2 id="加入單一檔案"><a href="#加入單一檔案" class="headerlink" title="加入單一檔案"></a>加入單一檔案</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add main.c</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="加入全部檔案"><a href="#加入全部檔案" class="headerlink" title="加入全部檔案"></a>加入全部檔案</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="5-3-git-commit"><a href="#5-3-git-commit" class="headerlink" title="5.3 git commit"></a>5.3 git commit</h1><p>正式建立版本紀錄。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;First commit&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>說明：</p>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-m</td>
+<td>加入訊息</td>
+</tr>
+</tbody></table>
+<p><img src="/images/test_commit.png" alt="test commit"></p>
+<hr>
+<h1 id="5-4-git-log"><a href="#5-4-git-log" class="headerlink" title="5.4 git log"></a>5.4 git log</h1><p>查看歷史紀錄：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<p>簡潔模式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></table></figure>
+
+<p>範例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4fd123a Add USB HID feature</span><br><span class="line">12ab321 Initial commit</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="5-5-git-diff"><a href="#5-5-git-diff" class="headerlink" title="5.5 git diff"></a>5.5 git diff</h1><p>查看修改差異：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
+
+<p>可看到：</p>
+<ul>
+<li>哪行被修改</li>
+<li>新增內容</li>
+<li>刪除內容</li>
+</ul>
+<hr>
+<h1 id="5-6-git-rm"><a href="#5-6-git-rm" class="headerlink" title="5.6 git rm"></a>5.6 git rm</h1><p>刪除檔案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">rm</span> test.txt</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="5-7-git-mv"><a href="#5-7-git-mv" class="headerlink" title="5.7 git mv"></a>5.7 git mv</h1><p>重新命名檔案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">mv</span> old.c new.c</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="6-Git-Commit-觀念"><a href="#6-Git-Commit-觀念" class="headerlink" title="6. Git Commit 觀念"></a>6. Git Commit 觀念</h1><p>每次 commit 都像：</p>
+<blockquote>
+<p>建立一個時間點快照（Snapshot）</p>
+</blockquote>
+<p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Commit A → Commit B → Commit C</span><br></pre></td></tr></table></figure>
+
+<p>你可以回到任何版本。</p>
+<hr>
+<h1 id="7-查看歷史版本"><a href="#7-查看歷史版本" class="headerlink" title="7. 查看歷史版本"></a>7. 查看歷史版本</h1><h2 id="查看-commit-詳細內容"><a href="#查看-commit-詳細內容" class="headerlink" title="查看 commit 詳細內容"></a>查看 commit 詳細內容</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show commitID</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show 4fd123a</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="8-回復版本"><a href="#8-回復版本" class="headerlink" title="8. 回復版本"></a>8. 回復版本</h1><h2 id="8-1-checkout-舊版本"><a href="#8-1-checkout-舊版本" class="headerlink" title="8.1 checkout 舊版本"></a>8.1 checkout 舊版本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout commitID</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 12ab321</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<p>這是暫時查看舊版本。</p>
+<hr>
+<h2 id="8-2-回到最新版本"><a href="#8-2-回到最新版本" class="headerlink" title="8.2 回到最新版本"></a>8.2 回到最新版本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout main</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="9-Git-Branch（分支）"><a href="#9-Git-Branch（分支）" class="headerlink" title="9. Git Branch（分支）"></a>9. Git Branch（分支）</h1><p>Branch 是 Git 非常重要的功能。</p>
+<p>用途：</p>
+<ul>
+<li>開發新功能</li>
+<li>修 Bug</li>
+<li>不影響主程式</li>
+</ul>
+<hr>
+<h2 id="9-1-查看-Branch"><a href="#9-1-查看-Branch" class="headerlink" title="9.1 查看 Branch"></a>9.1 查看 Branch</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="9-2-建立-Branch"><a href="#9-2-建立-Branch" class="headerlink" title="9.2 建立 Branch"></a>9.2 建立 Branch</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch feature_usb</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="9-3-切換-Branch"><a href="#9-3-切換-Branch" class="headerlink" title="9.3 切換 Branch"></a>9.3 切換 Branch</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout feature_usb</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="9-4-建立並切換"><a href="#9-4-建立並切換" class="headerlink" title="9.4 建立並切換"></a>9.4 建立並切換</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature_usb</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="9-5-合併-Branch"><a href="#9-5-合併-Branch" class="headerlink" title="9.5 合併 Branch"></a>9.5 合併 Branch</h2><p>先切回 main：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout main</span><br></pre></td></tr></table></figure>
+
+<p>再 merge：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge feature_usb</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="10-Git-Merge-Conflict（衝突）"><a href="#10-Git-Merge-Conflict（衝突）" class="headerlink" title="10. Git Merge Conflict（衝突）"></a>10. Git Merge Conflict（衝突）</h1><p>如果兩個 branch 修改同一行：</p>
+<p>Git 會出現 conflict。</p>
+<p>範例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">main branch內容</span><br><span class="line">=======</span><br><span class="line">feature branch內容</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature_usb</span><br></pre></td></tr></table></figure>
+
+<p>需要手動修改後：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="11-Git-Ignore"><a href="#11-Git-Ignore" class="headerlink" title="11. Git Ignore"></a>11. Git Ignore</h1><p>有些檔案不想加入 Git：</p>
+<p>例如：</p>
+<ul>
+<li>build</li>
+<li>exe</li>
+<li>log</li>
+<li>temporary file</li>
+</ul>
+<p>建立：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.gitignore</span><br></pre></td></tr></table></figure>
+
+<p>範例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*.exe</span><br><span class="line">*.log</span><br><span class="line">build/</span><br><span class="line">Debug/</span><br><span class="line">Release/</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="12-Git-與-GitHub"><a href="#12-Git-與-GitHub" class="headerlink" title="12. Git 與 GitHub"></a>12. Git 與 GitHub</h1><h2 id="Git-與-GitHub-差別"><a href="#Git-與-GitHub-差別" class="headerlink" title="Git 與 GitHub 差別"></a>Git 與 GitHub 差別</h2><table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Git</td>
+<td>版本控制工具</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>Git 雲端平台</td>
+</tr>
+</tbody></table>
+<p>Git 可以離線使用。</p>
+<p>GitHub 是遠端備份與協作平台。</p>
+<hr>
+<h1 id="13-建立-GitHub-帳號"><a href="#13-建立-GitHub-帳號" class="headerlink" title="13. 建立 GitHub 帳號"></a>13. 建立 GitHub 帳號</h1><p>前往：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/">GitHub 官方網站</a></li>
+</ul>
+<p>建立帳號。</p>
+<hr>
+<h1 id="13-1-建立-GitHub-Repository"><a href="#13-1-建立-GitHub-Repository" class="headerlink" title="13.1 建立 GitHub Repository"></a>13.1 建立 GitHub Repository</h1><p>登入 GitHub 後：</p>
+<p>右上角：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ → New repository</span><br></pre></td></tr></table></figure>
+<p><img src="/images/new_repository.png" alt="new repository"></p>
+<hr>
+<h2 id="Repository-Name"><a href="#Repository-Name" class="headerlink" title="Repository Name"></a>Repository Name</h2><p>輸入專案名稱，例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USB_Test_Tool</span><br></pre></td></tr></table></figure>
+
+<p>Repository 名稱通常：</p>
+<ul>
+<li>英文</li>
+<li>不要空白</li>
+<li>可用底線 <code>_</code></li>
+<li>可用減號 <code>-</code></li>
+</ul>
+<hr>
+<h2 id="Description（可選）"><a href="#Description（可選）" class="headerlink" title="Description（可選）"></a>Description（可選）</h2><p>可輸入專案說明：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USB HID test application</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Public-Private"><a href="#Public-Private" class="headerlink" title="Public &#x2F; Private"></a>Public &#x2F; Private</h2><table>
+<thead>
+<tr>
+<th>類型</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Public</td>
+<td>所有人可看到</td>
+</tr>
+<tr>
+<td>Private</td>
+<td>只有你與授權人可看到</td>
+</tr>
+</tbody></table>
+<p>初學者推薦：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Private</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="README"><a href="#README" class="headerlink" title="README"></a>README</h2><p>建議勾選：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Add a README file</span><br></pre></td></tr></table></figure>
+
+<p>README 是專案說明文件。</p>
+<p>GitHub 會自動建立：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">README.md</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>建議依照開發語言選擇。</p>
+<p>例如：</p>
+<table>
+<thead>
+<tr>
+<th>開發環境</th>
+<th>建議</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Visual Studio C#</td>
+<td>VisualStudio</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Python</td>
+</tr>
+<tr>
+<td>C++</td>
+<td>C++</td>
+</tr>
+</tbody></table>
+<p>這會自動忽略：</p>
+<ul>
+<li>build</li>
+<li>obj</li>
+<li>Debug</li>
+<li>Release</li>
+<li>暫存檔</li>
+</ul>
+<hr>
+<h2 id="License（可選）"><a href="#License（可選）" class="headerlink" title="License（可選）"></a>License（可選）</h2><p>如果只是自己使用：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">None</span><br></pre></td></tr></table></figure>
+
+<p>即可。</p>
+<p><img src="/images/github_create_repository.png" alt="github create repository"></p>
+<hr>
+<h2 id="建立-Repository"><a href="#建立-Repository" class="headerlink" title="建立 Repository"></a>建立 Repository</h2><p>按：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Create repository</span><br></pre></td></tr></table></figure>
+
+<p>完成後會看到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/你的帳號/Repository名稱</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="13-2-GitHub-Repository-完成"><a href="#13-2-GitHub-Repository-完成" class="headerlink" title="13.2 GitHub Repository 完成"></a>13.2 GitHub Repository 完成</h1><p>GitHub 建立完成後：</p>
+<p>按：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Code</span><br></pre></td></tr></table></figure>
+
+<p>選擇：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SSH</span><br></pre></td></tr></table></figure>
+
+<p>會看到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git@github.com:帳號/Repository.git</span><br></pre></td></tr></table></figure>
+<p><img src="/images/github_SSH.png" alt="github SSH"></p>
+<hr>
+<h1 id="14-SSH-與-HTTPS"><a href="#14-SSH-與-HTTPS" class="headerlink" title="14. SSH 與 HTTPS"></a>14. SSH 與 HTTPS</h1><p>GitHub 連線有兩種方式：</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>特點</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HTTPS</td>
+<td>簡單</td>
+</tr>
+<tr>
+<td>SSH</td>
+<td>不需一直輸入密碼</td>
+</tr>
+</tbody></table>
+<p>推薦：</p>
+<ul>
+<li>SSH</li>
+</ul>
+<hr>
+<h1 id="15-設定-Git-使用者資訊"><a href="#15-設定-Git-使用者資訊" class="headerlink" title="15. 設定 Git 使用者資訊"></a>15. 設定 Git 使用者資訊</h1><h2 id="設定名稱"><a href="#設定名稱" class="headerlink" title="設定名稱"></a>設定名稱</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;YourName&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="設定-Email"><a href="#設定-Email" class="headerlink" title="設定 Email"></a>設定 Email</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="查看設定"><a href="#查看設定" class="headerlink" title="查看設定"></a>查看設定</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+<h2 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="/images/set_user.png" alt="set user"></h2><h1 id="16-產生-SSH-Key"><a href="#16-產生-SSH-Key" class="headerlink" title="16. 產生 SSH Key"></a>16. 產生 SSH Key</h1><h2 id="建立-SSH-Key"><a href="#建立-SSH-Key" class="headerlink" title="建立 SSH Key"></a>建立 SSH Key</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_practce-git -C <span class="string">&quot;you@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>一直 Enter 即可。</p>
+<p><img src="/images/ssh-keygen.png" alt="ssh-keygen"></p>
+<hr>
+<h2 id="SSH-Key-位置"><a href="#SSH-Key-位置" class="headerlink" title="SSH Key 位置"></a>SSH Key 位置</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\你的帳號\.ssh</span><br></pre></td></tr></table></figure>
+
+<p>會有：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id_ed25519</span><br><span class="line">id_ed25519.pub</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="查看-Public-Key"><a href="#查看-Public-Key" class="headerlink" title="查看 Public Key"></a>查看 Public Key</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/.ssh/id_ed25519.pub</span><br></pre></td></tr></table></figure>
+
+<p>複製內容。</p>
+<hr>
+<h2 id="加入-GitHub"><a href="#加入-GitHub" class="headerlink" title="加入 GitHub"></a>加入 GitHub</h2><p>GitHub：</p>
+<p> .pub 公鑰內容分別貼到 GitHub 各自專案的 Settings &gt; Deploy keys 中</p>
+<p><img src="/images/deploy_keys.png" alt="deploy keys"></p>
+<hr>
+<h2 id="控管-private-key"><a href="#控管-private-key" class="headerlink" title="控管 private key"></a>控管 private key</h2><p>如果你有多個 GitHub 專案，或不同 SSH Key：</p>
+<p>可以透過 SSH config 管理不同 private key。</p>
+<p>建立檔案：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.ssh/config</span><br></pre></td></tr></table></figure>
+
+<p>Windows 通常位置：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\你的帳號\.ssh\config</span><br></pre></td></tr></table></figure>
+
+<p>範例內容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 專案 KeyA</span><br><span class="line">Host keyA-deploy</span><br><span class="line">    HostName ssh.github.com</span><br><span class="line">    Port 443</span><br><span class="line">    User git</span><br><span class="line">    IdentityFile ~/.ssh/id_ed25519_practce-git</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/config_key.png" alt="config key"></p>
+<p>說明：</p>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Host</td>
+<td>自訂 SSH 名稱</td>
+</tr>
+<tr>
+<td>HostName</td>
+<td>GitHub SSH Server</td>
+</tr>
+<tr>
+<td>Port 443</td>
+<td>避免公司網路封鎖 SSH 22 Port</td>
+</tr>
+<tr>
+<td>User git</td>
+<td>GitHub 固定使用 git</td>
+</tr>
+<tr>
+<td>IdentityFile</td>
+<td>指定 private key</td>
+</tr>
+</tbody></table>
+<hr>
+<p>之後 clone 或 remote 可改成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> keyA-deploy:帳號/practice-git.git</span><br></pre></td></tr></table></figure>
+
+<p>或：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin keyA-deploy:帳號/practice-git.git</span><br></pre></td></tr></table></figure>
+
+<p>這樣 Git 就會自動使用：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id_ed25519_practce-git</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="17-測試-GitHub-SSH"><a href="#17-測試-GitHub-SSH" class="headerlink" title="17. 測試 GitHub SSH"></a>17. 測試 GitHub SSH</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>成功會看到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi username!</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="17-測試-GitHub-SSH-1"><a href="#17-測試-GitHub-SSH-1" class="headerlink" title="17. 測試 GitHub SSH"></a>17. 測試 GitHub SSH</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>成功會看到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi username!</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/ssh-t.png" alt="ssh-t"></p>
+<hr>
+<h1 id="18-本地專案連接-GitHub"><a href="#18-本地專案連接-GitHub" class="headerlink" title="18. 本地專案連接 GitHub"></a>18. 本地專案連接 GitHub</h1><h2 id="加入遠端-Repository"><a href="#加入遠端-Repository" class="headerlink" title="加入遠端 Repository"></a>加入遠端 Repository</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:帳號/Repository.git</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/git_remote.png" alt="git remote"></p>
+<hr>
+<h2 id="查看-Remote"><a href="#查看-Remote" class="headerlink" title="查看 Remote"></a>查看 Remote</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/remote-v.png" alt="remote-v"></p>
+<hr>
+<h1 id="20-Push-到-GitHub"><a href="#20-Push-到-GitHub" class="headerlink" title="20. Push 到 GitHub"></a>20. Push 到 GitHub</h1><h2 id="第一次-Push"><a href="#第一次-Push" class="headerlink" title="第一次 Push"></a>第一次 Push</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+
+<p>之後：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<p>即可。</p>
+<p><img src="/images/git_push.png" alt="git push"></p>
+<hr>
+<h1 id="21-Clone-專案"><a href="#21-Clone-專案" class="headerlink" title="21. Clone 專案"></a>21. Clone 專案</h1><p>下載別人的 Repository：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:user/project.git</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="22-Pull-最新版本"><a href="#22-Pull-最新版本" class="headerlink" title="22. Pull 最新版本"></a>22. Pull 最新版本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+
+<p>用途：</p>
+<ul>
+<li>同步最新程式碼</li>
+</ul>
+<hr>
+<h1 id="23-Fetch-與-Pull-差別"><a href="#23-Fetch-與-Pull-差別" class="headerlink" title="23. Fetch 與 Pull 差別"></a>23. Fetch 與 Pull 差別</h1><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git fetch</td>
+<td>只下載</td>
+</tr>
+<tr>
+<td>git pull</td>
+<td>下載並合併</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="24-Git-常見工作流程"><a href="#24-Git-常見工作流程" class="headerlink" title="24. Git 常見工作流程"></a>24. Git 常見工作流程</h1><h2 id="一般流程"><a href="#一般流程" class="headerlink" title="一般流程"></a>一般流程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br><span class="line">修改檔案</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;message&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="25-Git-常見錯誤"><a href="#25-Git-常見錯誤" class="headerlink" title="25. Git 常見錯誤"></a>25. Git 常見錯誤</h1><h1 id="25-1-forgot-add"><a href="#25-1-forgot-add" class="headerlink" title="25.1 forgot add"></a>25.1 forgot add</h1><p>錯誤：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nothing added to commit</span><br></pre></td></tr></table></figure>
+
+<p>原因：</p>
+<p>沒 git add。</p>
+<hr>
+<h1 id="25-2-push-被拒絕"><a href="#25-2-push-被拒絕" class="headerlink" title="25.2 push 被拒絕"></a>25.2 push 被拒絕</h1><p>錯誤：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rejected</span><br></pre></td></tr></table></figure>
+
+<p>通常原因：</p>
+<p>遠端版本比較新。</p>
+<p>解法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="25-3-merge-conflict"><a href="#25-3-merge-conflict" class="headerlink" title="25.3 merge conflict"></a>25.3 merge conflict</h1><p>原因：</p>
+<p>多人修改同一位置。</p>
+<p>需要手動解決。</p>
+<hr>
+<h1 id="26-Git-Reset"><a href="#26-Git-Reset" class="headerlink" title="26. Git Reset"></a>26. Git Reset</h1><h2 id="回到上一個-commit"><a href="#回到上一個-commit" class="headerlink" title="回到上一個 commit"></a>回到上一個 commit</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --soft HEAD~1</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="完全刪除-commit"><a href="#完全刪除-commit" class="headerlink" title="完全刪除 commit"></a>完全刪除 commit</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~1</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--hard 會刪除修改內容</span><br></pre></td></tr></table></figure>
+
+<p>要非常小心。</p>
+<hr>
+<h1 id="27-Git-Revert"><a href="#27-Git-Revert" class="headerlink" title="27. Git Revert"></a>27. Git Revert</h1><p>安全取消 commit：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert commitID</span><br></pre></td></tr></table></figure>
+
+<p>推薦團隊使用。</p>
+<hr>
+<h1 id="28-Git-Stash"><a href="#28-Git-Stash" class="headerlink" title="28. Git Stash"></a>28. Git Stash</h1><p>臨時保存修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
+
+<p>恢復：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="29-Git-Tag"><a href="#29-Git-Tag" class="headerlink" title="29. Git Tag"></a>29. Git Tag</h1><p>標記版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag v1.0</span><br></pre></td></tr></table></figure>
+
+<p>查看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="30-Git-GUI-工具推薦"><a href="#30-Git-GUI-工具推薦" class="headerlink" title="30. Git GUI 工具推薦"></a>30. Git GUI 工具推薦</h1><h2 id="SourceTree"><a href="#SourceTree" class="headerlink" title="SourceTree"></a>SourceTree</h2><p>圖形化 Git 工具。</p>
+<p>適合初學者。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/">SourceTree官方網站</a></li>
+</ul>
+<hr>
+<h1 id="31-Git-基本操作"><a href="#31-Git-基本操作" class="headerlink" title="31. Git 基本操作"></a>31. Git 基本操作</h1><p>左側：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Source Control</span><br></pre></td></tr></table></figure>
+
+<p>可進行：</p>
+<ul>
+<li>add</li>
+<li>commit</li>
+<li>push</li>
+<li>pull</li>
+<li>branch</li>
+</ul>
+<p>不用打指令。</p>
+<hr>
+<h1 id="32-Git-最佳習慣"><a href="#32-Git-最佳習慣" class="headerlink" title="32. Git 最佳習慣"></a>32. Git 最佳習慣</h1><h2 id="Commit-不要太大"><a href="#Commit-不要太大" class="headerlink" title="Commit 不要太大"></a>Commit 不要太大</h2><p>推薦：</p>
+<ul>
+<li>一個功能一個 commit</li>
+</ul>
+<hr>
+<h2 id="Commit-Message-清楚"><a href="#Commit-Message-清楚" class="headerlink" title="Commit Message 清楚"></a>Commit Message 清楚</h2><p>不推薦：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fix</span><br><span class="line">update</span><br></pre></td></tr></table></figure>
+
+<p>推薦：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Fix USB HID reconnect issue</span><br><span class="line">Add PD voltage parser</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="常常-Push"><a href="#常常-Push" class="headerlink" title="常常 Push"></a>常常 Push</h2><p>避免本地端遺失。</p>
+<hr>
+<h2 id="不要-commit-build-檔案"><a href="#不要-commit-build-檔案" class="headerlink" title="不要 commit build 檔案"></a>不要 commit build 檔案</h2><p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">exe</span><br><span class="line">obj</span><br><span class="line">bin</span><br><span class="line">Debug</span><br><span class="line">Release</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="33-Git-指令總整理"><a href="#33-Git-指令總整理" class="headerlink" title="33. Git 指令總整理"></a>33. Git 指令總整理</h1><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git init</td>
+<td>初始化 Git</td>
+</tr>
+<tr>
+<td>git status</td>
+<td>查看狀態</td>
+</tr>
+<tr>
+<td>git add .</td>
+<td>加入檔案</td>
+</tr>
+<tr>
+<td>git commit -m</td>
+<td>建立 commit</td>
+</tr>
+<tr>
+<td>git log</td>
+<td>查看歷史</td>
+</tr>
+<tr>
+<td>git diff</td>
+<td>查看差異</td>
+</tr>
+<tr>
+<td>git branch</td>
+<td>查看分支</td>
+</tr>
+<tr>
+<td>git checkout</td>
+<td>切換分支</td>
+</tr>
+<tr>
+<td>git merge</td>
+<td>合併分支</td>
+</tr>
+<tr>
+<td>git pull</td>
+<td>下載更新</td>
+</tr>
+<tr>
+<td>git push</td>
+<td>上傳 GitHub</td>
+</tr>
+<tr>
+<td>git clone</td>
+<td>下載專案</td>
+</tr>
+<tr>
+<td>git stash</td>
+<td>暫存修改</td>
+</tr>
+<tr>
+<td>git reset</td>
+<td>回復版本</td>
+</tr>
+<tr>
+<td>git revert</td>
+<td>安全取消 commit</td>
+</tr>
+</tbody></table>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>practive-git</p><p><a href="http://example.com/posts/practiveGit.html">http://example.com/posts/practiveGit.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Robin Cheng</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-05-18</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-05-18</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/sshKeygenGuide.html"><span class="level-item">ssh-keygen 參數</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">12</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">3</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-18T02:36:23.000Z">2026-05-18</time></p><p class="title"><a href="/posts/practiveGit.html">practive-git</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-15T07:56:03.000Z">2026-05-15</time></p><p class="title"><a href="/posts/sshKeygenGuide.html">ssh-keygen 參數</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-15T02:56:11.000Z">2026-05-15</time></p><p class="title"><a href="/posts/GithubUpload.html">專案上傳到 GitHub</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-14T05:20:08.000Z">2026-05-14</time></p><p class="title"><a href="/posts/UniqueKeyWin11.html">GitHub 建立獨立金鑰（Windows 11）</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-13T09:04:44.000Z">2026-05-13</time></p><p class="title"><a href="/posts/PullRequest.html">了解 GitHub 的 pull request 工作流程</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/VS-Code/"><span class="tag">VS_Code</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/github/"><span class="tag">github</span><span class="tag">6</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

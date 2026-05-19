@@ -29,7 +29,114 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-18T05:46:26.000Z" title="5/18/2026, 1:46:26 PM">2026-05-18</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-18T06:04:38.818Z" title="5/18/2026, 2:04:38 PM">2026-05-18</time></span><span class="level-item">16 minutes read (About 2402 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/readme-example.html">README.md 範本說明</a></p><div class="content"><p><code>README.md</code> 範本要如何勾勒出了一份<strong>專業、易讀且結構完整的 README 檔</strong>核心要素。</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-19T01:54:24.000Z" title="5/19/2026, 9:54:24 AM">2026-05-19</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-19T02:09:00.688Z" title="5/19/2026, 10:09:00 AM">2026-05-19</time></span><span class="level-item">9 minutes read (About 1396 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/github_gfm.html">github gfm 說明</a></p><div class="content"><p>GitHub Flavored Markdown (GFM) 是 GitHub 基於標準 Markdown 語法進行擴充與修改的 Markdown 版本。它保留了傳統 Markdown 的易讀性，並增加了許多適合軟體開發者與專案管理使用的強大功能（如表格、工作列表等）。<br>以下為 GFM 的核心擴充功能與語法說明：</p>
+<hr>
+<h2 id="1-表格-Tables"><a href="#1-表格-Tables" class="headerlink" title="1. 表格 (Tables)"></a>1. 表格 (Tables)</h2><hr>
+<p>標準 Markdown 原生不支援表格，而 GFM 完美支援。使用豎線 | 分隔欄位，第二行使用破折號 - 區隔表頭，並可用冒號 : 控制對齊方式。 </p>
+<table>
+<thead>
+<tr>
+<th align="left">項目名稱</th>
+<th align="center">數量</th>
+<th align="right">價格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">靠左對齊</td>
+<td align="center">置中對齊</td>
+<td align="right">靠右對齊</td>
+</tr>
+<tr>
+<td align="left">蘋果</td>
+<td align="center">10</td>
+<td align="right">$15</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="2-工作列表-Task-Lists"><a href="#2-工作列表-Task-Lists" class="headerlink" title="2. 工作列表 (Task Lists)"></a>2. 工作列表 (Task Lists)</h2><hr>
+<p>在無序列表語法後面加上 [ ]（未勾選）或 [x]（已勾選），即可在 GitHub 介面上直接點選或呈現核取方塊。</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 完成需求分析</li>
+<li><input disabled="" type="checkbox"> 撰寫 API 文件</li>
+<li><input disabled="" type="checkbox"> 部署測試伺服器</li>
+</ul>
+<hr>
+<h2 id="3-程式碼區塊增強-Fenced-Code-Blocks"><a href="#3-程式碼區塊增強-Fenced-Code-Blocks" class="headerlink" title="3. 程式碼區塊增強 (Fenced Code Blocks)"></a>3. 程式碼區塊增強 (Fenced Code Blocks)</h2><hr>
+<p>GFM 允許使用三個反引號 &#96;&#96;&#96; 包裹多行程式碼，並在開頭指定程式語言，即可開啟語法高亮 (Syntax Highlighting)。此外，還支援直接呈現 Mermaid 圖表。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">greet</span>(<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>!`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-刪除線-Strikethrough"><a href="#4-刪除線-Strikethrough" class="headerlink" title="4. 刪除線 (Strikethrough)"></a>4. 刪除線 (Strikethrough)</h2><hr>
+<p>在需要刪除的文字前後加上兩個波浪符號 ~~。</p>
+<p>這是一段 <del>被刪除的舊文字</del> 更新後的文字。</p>
+<hr>
+<h2 id="5-自動連結與縮寫引用"><a href="#5-自動連結與縮寫引用" class="headerlink" title="5. 自動連結與縮寫引用"></a>5. 自動連結與縮寫引用</h2><hr>
+<ul>
+<li>網址自動轉換：在 GFM 中，直接輸入網址（如 <a target="_blank" rel="noopener" href="https://github.com)會自動被轉為可點擊的超連結,不需要使用標準的/">https://github.com）會自動被轉為可點擊的超連結，不需要使用標準的</a> <a href="URL">文字</a> 語法。</li>
+<li>Issue 與 PR 引用：輸入 #123 會自動連結到該專案編號 123 的 Issue 或 PR。</li>
+<li>使用者提及：輸入 @username 會自動通知並連結到該 GitHub 使用者的個人檔案。</li>
+<li>Commit 雜湊引用：直接輸入 Commit 的 SHA 雜湊值（例如 a1b2c3d），GitHub 會自動將其轉為該提交的連結。</li>
+</ul>
+<hr>
+<h2 id="6-表情符號支援-Emoji"><a href="#6-表情符號支援-Emoji" class="headerlink" title="6. 表情符號支援 (Emoji)"></a>6. 表情符號支援 (Emoji)</h2><hr>
+<p>GFM 支援使用前後冒號包圍的關鍵字來直接顯示 Emoji。</p>
+<p>這是一個讚 :thumbsup: 和一個愛心 :heart:</p>
+<hr>
+<h2 id="7-忽略底線的單字強調"><a href="#7-忽略底線的單字強調" class="headerlink" title="7. 忽略底線的單字強調"></a>7. 忽略底線的單字強調</h2><hr>
+<p>在標準 Markdown 中，單字內的底線（如 foo_bar_baz）可能會被誤判為斜體。GFM 修正了這個問題，只有當底線兩旁有空格時才會觸發斜體，保護了程式碼變數命名的完整性。</p>
+<hr>
+<h2 id="8-分頁與換行優化"><a href="#8-分頁與換行優化" class="headerlink" title="8. 分頁與換行優化"></a>8. 分頁與換行優化</h2><hr>
+<p>GFM 對單純的換行處理更為直覺。在 GitHub 的評論區中，直接按下 Enter 鍵換行即可換行，不需要像傳統 Markdown 一樣在行末加上兩個空白鍵。 </p>
+<hr>
+<hr>
+<p>除了前面提到的擴充功能，GitHub Flavored Markdown (GFM) 還支援許多標準 Markdown 的核心語法，以及 GitHub 平台專屬的進階排版指令。<br>以下為您整理其他在寫 README 或 Issue 時非常常用的語法指令：</p>
+<hr>
+<h2 id="1-摺疊區塊-Collapsible-Details"><a href="#1-摺疊區塊-Collapsible-Details" class="headerlink" title="1. 摺疊區塊 (Collapsible Details)"></a>1. 摺疊區塊 (Collapsible Details)</h2><hr>
+<p>當文字或程式碼太長時，可以使用 HTML 的 <details> 標籤將內容隱藏，讓頁面更乾淨。讀者點擊箭頭才能展開看詳細內容。</p>
+<details>
+<summary>點擊展開看詳細程式碼</summary>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;這是一段被隱藏的秘密&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+<h2 id="2-警告與提示區塊-Alerts"><a href="#2-警告與提示區塊-Alerts" class="headerlink" title="2. 警告與提示區塊 (Alerts)"></a>2. 警告與提示區塊 (Alerts)</h2><hr>
+<p>GitHub 官方支援的特殊引用語法，可以呈現出漂亮的彩色提示框。包含五種等級：</p>
+<blockquote>
+<p>[!NOTE]&gt; 這是藍色提示框：用於補充說明、背景資訊。<br>[!TIP]&gt; 這是綠色提示框：用於提供更好的做法或建議。<br>[!IMPORTANT]&gt; 這是紫色提示框：使用者必須知道的關鍵資訊。<br>[!WARNING]&gt; 這是黃色提示框：需要立即注意的警告。<br>[!CAUTION]&gt; 這是紅色提示框：可能帶來負面後果或危險的警告。</p>
+</blockquote>
+<hr>
+<h2 id="3-多媒體嵌與呈現-Media"><a href="#3-多媒體嵌與呈現-Media" class="headerlink" title="3. 多媒體嵌與呈現 (Media)"></a>3. 多媒體嵌與呈現 (Media)</h2><hr>
+<ul>
+<li>圖片大小控制：預設的 <img src="/%E7%B6%B2%E5%9D%80" alt="描述"> 無法調整大小。若要限定寬度，請改用 HTML 標籤：</li>
+</ul>
+<img src="圖片網址" width="300">
+
+<ul>
+<li>影片嵌入：直接把 .mp4 或 .mov 影片檔拖曳到 GitHub 的編輯框，它會自動生成支援線上撥放的語法。</li>
+</ul>
+<hr>
+<h2 id="4-顏色標記-Color-Chips"><a href="#4-顏色標記-Color-Chips" class="headerlink" title="4. 顏色標記 (Color Chips)"></a>4. 顏色標記 (Color Chips)</h2><hr>
+<p>如果你在撰寫樣式文件，可以用三個反引號包裹語言為 yaml，並輸入十六進位顏色碼，GitHub 會自動在前方顯示該顏色的色塊。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">color:</span> <span class="string">&quot;#FF5733&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-錨點連結-Anchor-Links"><a href="#5-錨點連結-Anchor-Links" class="headerlink" title="5. 錨點連結 (Anchor Links)"></a>5. 錨點連結 (Anchor Links)</h2><hr>
+<p>在 GitHub 中，所有的標題（Heading）都會自動被轉為網頁錨點。你可以建立「回到目錄」或跳轉到特定段落的連結：</p>
+<h1 id="系統安裝說明點我跳轉到步驟二"><a href="#系統安裝說明點我跳轉到步驟二" class="headerlink" title="系統安裝說明點我跳轉到步驟二"></a>系統安裝說明<a href="#%E6%AD%A5%E9%A9%9F%E4%BA%8C">點我跳轉到步驟二</a></h1><h2 id="步驟一內容…"><a href="#步驟一內容…" class="headerlink" title="步驟一內容…"></a>步驟一內容…</h2><h2 id="步驟二內容…"><a href="#步驟二內容…" class="headerlink" title="步驟二內容…"></a>步驟二內容…</h2><p>小提醒：網址部分的標題英文字母必須全部小寫，且空格要變成減號 -（例如：## My Title 要寫成 (#my-title)）。</p>
+<hr>
+<h2 id="6-HTML-區塊置中與鍵盤樣式"><a href="#6-HTML-區塊置中與鍵盤樣式" class="headerlink" title="6. HTML 區塊置中與鍵盤樣式"></a>6. HTML 區塊置中與鍵盤樣式</h2><hr>
+<ul>
+<li>內容置中：Markdown 預設靠左。如果要置中文字或圖片，可使用 <p align="center">內容</p>。</li>
+<li>鍵盤快捷鍵樣式：使用 <kbd> 標籤可以讓文字看起來像鍵盤按鍵。</li>
+</ul>
+<p>請按下 <kbd>Ctrl</kbd> + <kbd>C</kbd> 複製。</p>
+<hr>
+<p>你想知道如何利用這些指令來設計一個漂亮的 GitHub 個人主頁 (Profile README)，還是想了解 Mermaid 流程圖 的畫法呢？</p>
+<hr>
+<p>如果你想進一步了解更細緻的規範，可以參考 <a target="_blank" rel="noopener" href="https://github.github.com/gfm/">GitHub 官方 GFM 規格說明書</a>。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-18T05:46:26.000Z" title="5/18/2026, 1:46:26 PM">2026-05-18</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-18T06:04:38.818Z" title="5/18/2026, 2:04:38 PM">2026-05-18</time></span><span class="level-item">16 minutes read (About 2402 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/readme-example.html">README.md 範本說明</a></p><div class="content"><p><code>README.md</code> 範本要如何勾勒出了一份<strong>專業、易讀且結構完整的 README 檔</strong>核心要素。</p>
 <p>如果要寫出一份「README.md 內容說明（或撰寫指南）」，一份合格且讓人想讀的 README 應該包含以下<strong>五大核心維度</strong>與<strong>細分項目</strong>：</p>
 <hr>
 <h2 id="📄-核心維度一：專案門面與概述-Header-Overview"><a href="#📄-核心維度一：專案門面與概述-Header-Overview" class="headerlink" title="📄 核心維度一：專案門面與概述 (Header &amp; Overview)"></a>📄 核心維度一：專案門面與概述 (Header &amp; Overview)</h2><p>這部分是讀者點進專案後的前 3 秒印象，必須精準告訴別人「這是什麼」。</p>
@@ -939,7 +1046,7 @@ ecdsa: 橢圓曲線演算法，不建議使用 (因 NIST 曲線風險)。
 <h2 id="常見問題排錯-Q-A"><a href="#常見問題排錯-Q-A" class="headerlink" title="常見問題排錯 (Q&amp;A)"></a>常見問題排錯 (Q&amp;A)</h2><hr>
 <p>Q1: 出現 “Permission denied (publickey)” 錯誤？</p>
 <p>原因：您的電腦沒有正確配置 SSH Key，或者該 Key 沒有新增到 GitHub。</p>
-<p>檢查：輸入 ssh -T <a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;">git@github.com</a> 測試連線。如果失敗，請重新執行 SSH Key 產生與上傳流程。</p>
+<p>檢查：輸入 ssh -T <a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#105;&#116;&#104;&#x75;&#x62;&#46;&#99;&#111;&#109;">git@github.com</a> 測試連線。如果失敗，請重新執行 SSH Key 產生與上傳流程。</p>
 <p>Q2: 出現 “remote origin already exists” 錯誤？</p>
 <p>原因：這代表您之前已經設定過遠端網址。</p>
 <p>解決：先刪除舊的再重新加入：</p>
@@ -1684,7 +1791,7 @@ equivalent of &lt;code&gt;&amp;amp;mdash;&lt;/code&gt;.&lt;/p&gt;
 &amp;#109;&quot;&gt;&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;
 &amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;&amp;#109;&lt;/a&gt;
 </code></pre>
-<p>在瀏覽器裡面，這段字串會變成一個可以點擊的「<a href="mailto:&#97;&#100;&#x64;&#114;&#101;&#115;&#115;&#x40;&#101;&#120;&#97;&#x6d;&#x70;&#108;&#101;&#46;&#x63;&#111;&#109;">address@example.com</a>」連結。</p>
+<p>在瀏覽器裡面，這段字串會變成一個可以點擊的「<a href="mailto:&#97;&#x64;&#100;&#114;&#x65;&#115;&#x73;&#x40;&#x65;&#x78;&#x61;&#109;&#112;&#x6c;&#101;&#x2e;&#99;&#x6f;&#109;">address@example.com</a>」連結。</p>
 <p>（這種作法雖然可以混淆不少的機器人，但並無法全部擋下來，不過這樣也比什麼都不做好些。無論如何，公開你的信箱終究會引來廣告信件的。）</p>
 <h3 id="backslash">跳脫字元</h3>
 
@@ -1749,41 +1856,7 @@ _   底線
 
 
 <p>重點提示：<br>為什麼要改 URL 的 Host 部份？ 因為對電腦來說，目的地都是 :&#x2F;&#x2F;github.com。如果不改別名，電腦不知道執行 git pull 時該拿 keyA 的金鑰還是 keyB 的金鑰。<br>使用 ssh:&#x2F;&#x2F;…:443&#x2F; 這種語法時，路徑開頭必須是 &#x2F;。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-11T03:13:15.000Z" title="5/11/2026, 11:13:15 AM">2026-05-11</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-15T04:29:55.340Z" title="5/15/2026, 12:29:55 PM">2026-05-15</time></span><span class="level-item">3 minutes read (About 483 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/HexoToGithub.html">hexo上傳到github</a></p><div class="content"><blockquote>
-<p><strong>💡 提示：</strong></p>
-<p>將 Hexo 部落格上傳（部署）到 GitHub Pages，關鍵步驟為: </p>
-<ul>
-<li>安裝 hexo-deployer-git 插件。</li>
-<li>修改根目錄 _config.yml 的 deploy 設定。</li>
-<li>並執行 hexo clean &amp;&amp; hexo d 指令。</li>
-<li>建議在 GitHub 上建立一個名稱為 &lt;你的使用者名稱&gt;.github.io 的儲存庫以做為個人主頁。</li>
-</ul>
-</blockquote>
-<h1 id="一、-準備工作"><a href="#一、-準備工作" class="headerlink" title="一、 準備工作"></a>一、 準備工作</h1><p>建立 GitHub 儲存庫：在 GitHub 建立一個名為 &lt;Username&gt;.github.io 的 Public 儲存庫。<br>安裝 Git 部署插件：在 Hexo 根目錄下執行以下指令安裝套件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<h1 id="二、-配置-Hexo"><a href="#二、-配置-Hexo" class="headerlink" title="二、 配置 Hexo"></a>二、 配置 Hexo</h1><p>開啟根目錄下的 _config.yml 檔案，在檔案末尾找到並修改 deploy 設定： </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yaml</span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: git@github.com:&lt;Username&gt;/&lt;Username&gt;.github.io.git</span><br><span class="line">  branch: main  <span class="comment"># 或者 master</span></span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<p>請將&lt;Username&gt;替換為你的 GitHub 使用者名稱。</p>
-<h1 id="三、-部署至-GitHub"><a href="#三、-部署至-GitHub" class="headerlink" title="三、 部署至 GitHub"></a>三、 部署至 GitHub</h1><p>執行以下指令將產生的靜態檔案發佈到 GitHub： </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
-<ul>
-<li>hexo clean：清除舊的靜態檔案（public 資料夾）。</li>
-<li>hexo g：生成新的靜態檔案。</li>
-<li>hexo d：部署到 GitHub。</li>
-</ul>
-<p>部署到github之前要確認配置 Hexo 的 _config.yml</p>
-<p>打開你的 Hexo 博客根目錄下的 _config.yml 文件，修改 deploy 設定：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yaml</span><br><span class="line">deploy:</span><br><span class="line"> <span class="built_in">type</span>: git</span><br><span class="line"> <span class="comment"># 格式為: git@github.com:你的GitHub使用者名稱/你的倉庫名稱.github.io.git</span></span><br><span class="line"> repo: git@github.com:yourname/yourname.github.io.git  &lt;- 和git config –list 中remote.origin.url一樣</span><br><span class="line"> branch: main <span class="comment"># 或是 master，取決於你的倉庫預設分支</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="四、-確認與排錯"><a href="#四、-確認與排錯" class="headerlink" title="四、 確認與排錯"></a>四、 確認與排錯</h1><p>查看網站：</p>
-<p>部署完成後，即可透過 https:&#x2F;&#x2F;&lt;Username&gt;.github.io 存取網站。</p>
-<p>處理自定義網域：若使用自定義網域，在 source 資料夾下建立 CNAME 檔案並填入網域。</p>
-<p>錯誤排除：若部署失敗，請確認 SSH Key 是否已設定至 GitHub，或嘗試使用 HTTPS 連結。 </p>
-<hr>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">Previous</a></div><div class="pagination-next"><a href="/page/2/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">13</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">4</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-18T05:46:26.000Z">2026-05-18</time></p><p class="title"><a href="/posts/readme-example.html">README.md 範本說明</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-18T02:36:23.000Z">2026-05-18</time></p><p class="title"><a href="/posts/practiveGit.html">Git 完整入門教學（Windows 初學者版）</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-15T07:56:03.000Z">2026-05-15</time></p><p class="title"><a href="/posts/sshKeygenGuide.html">ssh-keygen 參數</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-15T02:56:11.000Z">2026-05-15</time></p><p class="title"><a href="/posts/GithubUpload.html">專案上傳到 GitHub</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-14T05:20:08.000Z">2026-05-14</time></p><p class="title"><a href="/posts/UniqueKeyWin11.html">GitHub 建立獨立金鑰（Windows 11）</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/VS-Code/"><span class="tag">VS_Code</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/github/"><span class="tag">github</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/githut/"><span class="tag">githut</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">Previous</a></div><div class="pagination-next"><a href="/page/2/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">14</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">4</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-19T01:54:24.000Z">2026-05-19</time></p><p class="title"><a href="/posts/github_gfm.html">github gfm 說明</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-18T05:46:26.000Z">2026-05-18</time></p><p class="title"><a href="/posts/readme-example.html">README.md 範本說明</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-18T02:36:23.000Z">2026-05-18</time></p><p class="title"><a href="/posts/practiveGit.html">Git 完整入門教學（Windows 初學者版）</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-15T07:56:03.000Z">2026-05-15</time></p><p class="title"><a href="/posts/sshKeygenGuide.html">ssh-keygen 參數</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-15T02:56:11.000Z">2026-05-15</time></p><p class="title"><a href="/posts/GithubUpload.html">專案上傳到 GitHub</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/VS-Code/"><span class="tag">VS_Code</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/github/"><span class="tag">github</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/githut/"><span class="tag">githut</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,

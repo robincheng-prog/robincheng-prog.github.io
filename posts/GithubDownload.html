@@ -88,7 +88,7 @@
 <h3 id="1-測試連通性-解決網路擋牆"><a href="#1-測試連通性-解決網路擋牆" class="headerlink" title="1. 測試連通性 (解決網路擋牆)"></a>1. 測試連通性 (解決網路擋牆)</h3><p>某些公司或學校環境會封鎖 SSH 預設的 22 端口，若連線失敗，請嘗試強制走 443 端口：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T -p 443 git@ssh.github.com</span><br></pre></td></tr></table></figure>
 <p>若看到 Hi username! You’ve successfully authenticated… 即代表設定完全正確。</p>
-<h3 id="2-執行-Git-Clone"><a href="#2-執行-Git-Clone" class="headerlink" title="2. 執行 Git Clone"></a>2. 執行 Git Clone</h3><p>回到 GitHub 倉庫頁面，點擊綠色的 Code 按鈕，切換到 SSH 分頁並複製網址（應以 <a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#46;&#99;&#111;&#x6d;">git@github.com</a>… 開頭）。</p>
+<h3 id="2-執行-Git-Clone"><a href="#2-執行-Git-Clone" class="headerlink" title="2. 執行 Git Clone"></a>2. 執行 Git Clone</h3><p>回到 GitHub 倉庫頁面，點擊綠色的 Code 按鈕，切換到 SSH 分頁並複製網址（應以 <a href="mailto:&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#x6d;">git@github.com</a>… 開頭）。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 進入你想存放專案的資料夾 (例如：cd Desktop)</span></span><br><span class="line"><span class="comment"># 然後執行克隆</span></span><br><span class="line">git <span class="built_in">clone</span> git@github.com:robincheng-prog/EDAT.git</span><br></pre></td></tr></table></figure>
 <p>###3. 在 VS Code 中開啟</p>
 <p>下載完成後，輸入：</p>

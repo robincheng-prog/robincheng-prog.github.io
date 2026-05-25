@@ -88,7 +88,7 @@
 <h3 id="1-測試連通性-解決網路擋牆"><a href="#1-測試連通性-解決網路擋牆" class="headerlink" title="1. 測試連通性 (解決網路擋牆)"></a>1. 測試連通性 (解決網路擋牆)</h3><p>某些公司或學校環境會封鎖 SSH 預設的 22 端口，若連線失敗，請嘗試強制走 443 端口：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T -p 443 git@ssh.github.com</span><br></pre></td></tr></table></figure>
 <p>若看到 Hi username! You’ve successfully authenticated… 即代表設定完全正確。</p>
-<h3 id="2-執行-Git-Clone"><a href="#2-執行-Git-Clone" class="headerlink" title="2. 執行 Git Clone"></a>2. 執行 Git Clone</h3><p>回到 GitHub 倉庫頁面，點擊綠色的 Code 按鈕，切換到 SSH 分頁並複製網址（應以 <a href="mailto:&#x67;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;">git@github.com</a>… 開頭）。</p>
+<h3 id="2-執行-Git-Clone"><a href="#2-執行-Git-Clone" class="headerlink" title="2. 執行 Git Clone"></a>2. 執行 Git Clone</h3><p>回到 GitHub 倉庫頁面，點擊綠色的 Code 按鈕，切換到 SSH 分頁並複製網址（應以 <a href="mailto:&#x67;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#99;&#111;&#109;">git@github.com</a>… 開頭）。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 進入你想存放專案的資料夾 (例如：cd Desktop)</span></span><br><span class="line"><span class="comment"># 然後執行克隆</span></span><br><span class="line">git <span class="built_in">clone</span> git@github.com:robincheng-prog/EDAT.git</span><br></pre></td></tr></table></figure>
 <p>###3. 在 VS Code 中開啟</p>
 <p>下載完成後，輸入：</p>
@@ -140,16 +140,6 @@
                 }
                 $('.justified-gallery').justifiedGallery();
             }
-        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><script src="https://unpkg.com/mermaid@8.11.0/dist/mermaid.min.js"></script><script> 
-                if (window.mermaid) { 
-                    mermaid.initialize({ 
-                        startOnLoad: true, 
-                        theme: 'default', 
-                        flowchart: { useMaxWidth: true, htmlLabels: true }, 
-                        sequence: { useMaxWidth: true }, 
-                        gantt: { useMaxWidth: true } 
-                    });
-                }
-            </script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
             loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
         });</script></body></html>

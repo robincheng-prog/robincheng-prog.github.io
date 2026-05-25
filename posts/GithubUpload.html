@@ -72,7 +72,7 @@
 <h2 id="常見問題排錯-Q-A"><a href="#常見問題排錯-Q-A" class="headerlink" title="常見問題排錯 (Q&amp;A)"></a>常見問題排錯 (Q&amp;A)</h2><hr>
 <p>Q1: 出現 “Permission denied (publickey)” 錯誤？</p>
 <p>原因：您的電腦沒有正確配置 SSH Key，或者該 Key 沒有新增到 GitHub。</p>
-<p>檢查：輸入 ssh -T <a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;">git@github.com</a> 測試連線。如果失敗，請重新執行 SSH Key 產生與上傳流程。</p>
+<p>檢查：輸入 ssh -T <a href="mailto:&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#109;">git@github.com</a> 測試連線。如果失敗，請重新執行 SSH Key 產生與上傳流程。</p>
 <p>Q2: 出現 “remote origin already exists” 錯誤？</p>
 <p>原因：這代表您之前已經設定過遠端網址。</p>
 <p>解決：先刪除舊的再重新加入：</p>
@@ -126,6 +126,16 @@
                 }
                 $('.justified-gallery').justifiedGallery();
             }
-        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><script src="https://unpkg.com/mermaid@8.11.0/dist/mermaid.min.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><script src="https://unpkg.com/mermaid@8.11.0/dist/mermaid.min.js"></script><script> 
+                if (window.mermaid) { 
+                    mermaid.initialize({ 
+                        startOnLoad: true, 
+                        theme: 'default', 
+                        flowchart: { useMaxWidth: true, htmlLabels: true }, 
+                        sequence: { useMaxWidth: true }, 
+                        gantt: { useMaxWidth: true } 
+                    });
+                }
+            </script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
             loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
         });</script></body></html>

@@ -29,7 +29,7 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">Tags</a></li><li class="is-active"><a href="#" aria-current="page">other</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-22T08:12:50.000Z" title="5/22/2026, 4:12:50 PM">2026-05-22</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-22T08:54:26.864Z" title="5/22/2026, 4:54:26 PM">2026-05-22</time></span><span class="level-item">6 minutes read (About 844 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/selfExtracting.html">自解壓縮執行檔設計方案</a></p><div class="content"><p>本方案詳述如何將 demo 專案中所有的目錄結構與檔案，封裝成一個單一的自解壓安裝檔 (<code>demo_setup.exe</code>)。在執行時，此安裝檔會完整還原工作區的目錄結構，隨後自動調用執行目標批次檔 <code>bin\DC.bat</code>。</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">Tags</a></li><li class="is-active"><a href="#" aria-current="page">other</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-22T08:12:50.000Z" title="5/22/2026, 4:12:50 PM">2026-05-22</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-25T03:15:40.417Z" title="5/25/2026, 11:15:40 AM">2026-05-25</time></span><span class="level-item">6 minutes read (About 973 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/selfExtracting.html">自解壓縮執行檔設計方案</a></p><div class="content"><p>本方案詳述如何將 demo 專案中所有的目錄結構與檔案，封裝成一個單一的自解壓安裝檔 (<code>demo_setup.exe</code>)。在執行時，此安裝檔會完整還原工作區的目錄結構，隨後自動調用執行目標批次檔 <code>bin\DC.bat</code>。</p>
 <p>由於系統環境，本方案 <strong>100% 採用 Windows 10&#x2F;11 內建的原生封裝技術</strong>（IExpress 與 PowerShell）。</p>
 <hr>
 <h2 id="🛠️-架構設計與運作原理"><a href="#🛠️-架構設計與運作原理" class="headerlink" title="🛠️ 架構設計與運作原理"></a>🛠️ 架構設計與運作原理</h2><p>本方案由四個核心元件協同運作：</p>
@@ -39,7 +39,27 @@
 <li><strong><code>launch.bat</code> (自解壓啟動器)</strong>：封裝在安裝檔內的引導腳本，負責執行期解壓縮與呼叫主程式。</li>
 <li><strong><code>setup.sed</code> (IExpress 指引設定)</strong>：供 Windows 原生封裝工具 <code>iexpress.exe</code> 讀取的設定檔。</li>
 </ol>
-<h3 id="打包與執行流程圖"><a href="#打包與執行流程圖" class="headerlink" title="打包與執行流程圖"></a>打包與執行流程圖</h3><div style="text-align: center">
+<h3 id="打包與執行流程圖"><a href="#打包與執行流程圖" class="headerlink" title="打包與執行流程圖"></a>打包與執行流程圖</h3><pre class="mermaid">graph TD
+    subgraph A["開發編譯階段 (Developer Build)"]
+        build["build.bat"] -->|"1. 壓縮工作區"| zip("payload.zip")
+        build -->|"2. 建立啟動器"| launch("launch.bat")
+        build -->|"3. 生成設定檔"| sed("setup.sed")
+        zip --> iex["iexpress.exe"]
+        launch --> iex
+        sed --> iex
+        iex -->|"4. 輸出"| exe["edat_setup.exe"]
+    end
+
+
+    subgraph B["終端部署階段 (Client Deploy)"]
+        exe -->|"雙擊執行 edat_setup.exe"| temp["解壓至 Temp 暫存目錄"]
+        temp -->|"5. 自動調用"| run_launch["launch.bat"]
+        run_launch -->|"6. 解壓 payload.zip"| target["還原目錄結構至目標資料夾 C:\scot\dcdat"]
+        run_launch -->|"7. 調用執行"| dc["C:\scot\dcdat\bin\DC.bat"]
+    end</pre>
+
+
+<div style="text-align: center">
   <img src="/images/DeveloperBuild.png"/>
   <div>開發編程</div>
   <img src="/images/ClientDeploy.png"/>
@@ -47,7 +67,6 @@
 </div>
 
 <hr>
-<p>s</p>
 <h2 id="📦-元件細節設計"><a href="#📦-元件細節設計" class="headerlink" title="📦 元件細節設計"></a>📦 元件細節設計</h2><h3 id="1-建置指令檔-build-bat"><a href="#1-建置指令檔-build-bat" class="headerlink" title="1. 建置指令檔 (build.bat)"></a>1. 建置指令檔 (<code>build.bat</code>)</h3><p>位於專案根目錄下，執行時會執行以下操作：</p>
 <ul>
 <li><strong>清理舊檔</strong>：刪除先前的 <code>payload.zip</code>、<code>launch.bat</code>、<code>setup.sed</code> 與 <code>demo_setup.exe</code>。</li>
@@ -124,6 +143,6 @@
                 }
                 $('.justified-gallery').justifiedGallery();
             }
-        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><script src="https://unpkg.com/mermaid@8.11.0/dist/mermaid.min.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
             loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
         });</script></body></html>

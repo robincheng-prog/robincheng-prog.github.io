@@ -29,8 +29,9 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">Tags</a></li><li class="is-active"><a href="#" aria-current="page">git</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-21T07:41:42.000Z" title="5/21/2026, 3:41:42 PM">2026-05-21</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-21T07:48:44.314Z" title="5/21/2026, 3:48:44 PM">2026-05-21</time></span><span class="level-item">7 minutes read (About 1102 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/sourceTree.html">SourceTree 基礎操作教學指南</a></p><div class="content"><p>作者： <code>Ayden</code></p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">Tags</a></li><li class="is-active"><a href="#" aria-current="page">git</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-21T07:41:42.000Z" title="5/21/2026, 3:41:42 PM">2026-05-21</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-25T09:52:52.833Z" title="5/25/2026, 5:52:52 PM">2026-05-25</time></span><span class="level-item">7 minutes read (About 1105 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/sourceTree.html">SourceTree 基礎操作教學指南</a></p><div class="content"><p>作者： <code>Ayden</code></p>
 <p>本文件旨在幫助初學者快速上手 SourceTree 的介面與基本功能。SourceTree 是一款強大的 Git 圖形化介面工具，能讓你更直觀地管理程式碼版本。</p>
+<p><img src="/images/%E6%9E%B6%E6%A7%8B.png" alt="架構"></p>
 <hr>
 <h2 id="1-啟動與倉庫管理-Repository-Management"><a href="#1-啟動與倉庫管理-Repository-Management" class="headerlink" title="1. 啟動與倉庫管理 (Repository Management)"></a>1. 啟動與倉庫管理 (Repository Management)</h2><p>在 SourceTree 的初始分頁中，你可以管理你的所有專案。</p>
 <ul>
@@ -40,11 +41,10 @@
 <li><strong>Add (加入):</strong> 將電腦中現有的 Git 資料夾掛載到 SourceTree 列表中。</li>
 <li><strong>Create (建立):</strong> 在指定的資料夾初始化一個全新的 Git 倉庫。</li>
 </ul>
-<p><img src="/images/Repository_Management.png" alt="Repository Management"></p>
+<p><img src="/images/Repository_Management.png" alt="Repository_Management"></p>
 <hr>
 <h2 id="2-環境設定與-SSH-配置-Options-SSH"><a href="#2-環境設定與-SSH-配置-Options-SSH" class="headerlink" title="2. 環境設定與 SSH 配置 (Options &amp; SSH)"></a>2. 環境設定與 SSH 配置 (Options &amp; SSH)</h2><p>為了確保能順利提交代碼並與遠端伺服器連線，請確認以下設定：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tools--&gt;Options</span><br></pre></td></tr></table></figure>
-
+<p><kbd>Tools</kbd> &gt; <kbd>Options</kbd></p>
 <ul>
 <li><strong>使用者資訊 (Default user information):</strong><ul>
 <li><strong>Full Name:</strong> 設定你在 Commit 紀錄中顯示的名字。</li>
@@ -56,8 +56,7 @@
 <p><img src="/images/Options_SSH.png" alt="Options_SSH"></p>
 <hr>
 <h2 id="3-遠端倉庫與金鑰指定-Remote-Settings"><a href="#3-遠端倉庫與金鑰指定-Remote-Settings" class="headerlink" title="3. 遠端倉庫與金鑰指定 (Remote Settings)"></a>3. 遠端倉庫與金鑰指定 (Remote Settings)</h2><p>當您需要將專案推送到雲端時，必須設定遠端連結路徑，並指定正確的身份驗證金鑰。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Settins--&gt;Remotes</span><br></pre></td></tr></table></figure>
-
+<p><kbd>Settins</kbd> &gt; <kbd>Remotes</kbd></p>
 <ul>
 <li><strong>Remote name:</strong> 預設通常為 <code>origin</code>，這是遠端倉庫的代號。</li>
 <li><strong>URL &#x2F; Path:</strong> 填寫雲端倉庫的位址。<ul>
@@ -66,7 +65,7 @@
 </li>
 <li><strong>Remote Account:</strong> 連結特定的主機帳號（如 GitHub），以便進行更深層的整合操作。</li>
 </ul>
-<p><img src="/images/Remote_Settings.png" alt="Remote Settings"></p>
+<p><img src="/images/Remote_Settings.png" alt="Remote_Settings"></p>
 <hr>
 <h2 id="4-工作區介面解析-File-Status-View"><a href="#4-工作區介面解析-File-Status-View" class="headerlink" title="4. 工作區介面解析 (File Status View)"></a>4. 工作區介面解析 (File Status View)</h2><p>當你開啟一個專案後，最常用的就是「File Status」視圖，這裡處理「現在」的改動。</p>
 <h3 id="核心區域說明："><a href="#核心區域說明：" class="headerlink" title="核心區域說明："></a>核心區域說明：</h3><ul>
@@ -75,6 +74,7 @@
 <li><strong>未暫存區 (Unstaged files):</strong> 電腦中已被修改但尚未打包的檔案。</li>
 <li><strong>比對區 (Diff View):</strong> 點擊檔案可看具體改動（紅色代表刪除，綠色代表新增）。</li>
 </ul>
+<p><img src="/images/File_Status_View.png" alt="File_Status_View"></p>
 <hr>
 <h2 id="5-頂部工具列詳解-Action-Toolbar"><a href="#5-頂部工具列詳解-Action-Toolbar" class="headerlink" title="5. 頂部工具列詳解 (Action Toolbar)"></a>5. 頂部工具列詳解 (Action Toolbar)</h2><p>這是你對 Git 下指令的「動作按鈕區」，也是最核心的控制中心：</p>
 <ul>
@@ -92,14 +92,14 @@
 <li><strong>Discard (放棄修改):</strong> 點擊後會把你選取的檔案改動全部抹除，還原到最後一次存檔的狀態。</li>
 <li><strong>Tag (標籤):</strong> 為特定的 Commit 加上標籤（如 <code>v1.0</code>），方便日後快速回溯。</li>
 </ul>
-<p><img src="/images/File_Status_View.png" alt="File Status View"></p>
+<p><img src="/images/File_Status_View.png" alt="File_Status_View"></p>
 <hr>
 <h2 id="6-歷史紀錄與版本溯源-History-View"><a href="#6-歷史紀錄與版本溯源-History-View" class="headerlink" title="6. 歷史紀錄與版本溯源 (History View)"></a>6. 歷史紀錄與版本溯源 (History View)</h2><p>「History」視圖讓你查看專案的「過去」。</p>
 <ul>
 <li><strong>分支圖 (Graph):</strong> 以線條顯示分支的開叉與合併過程。</li>
 <li><strong>標籤指示:</strong> <code>main</code> 代表本地位置，<code>origin/main</code> 代表雲端位置。</li>
 </ul>
-<p><img src="/images/History_View.png" alt="History View"></p>
+<p><img src="/images/History_View.png" alt="History_View"></p>
 <hr>
 <h2 id="7-快速操作工作流"><a href="#7-快速操作工作流" class="headerlink" title="7. 快速操作工作流"></a>7. 快速操作工作流</h2><ol>
 <li><strong>修改:</strong> 在編輯器改完存檔。</li>

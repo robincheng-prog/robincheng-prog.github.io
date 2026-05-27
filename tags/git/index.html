@@ -29,7 +29,7 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">Tags</a></li><li class="is-active"><a href="#" aria-current="page">git</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-27T05:20:26.000Z" title="5/27/2026, 1:20:26 PM">2026-05-27</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-27T05:24:31.559Z" title="5/27/2026, 1:24:31 PM">2026-05-27</time></span><span class="level-item">5 minutes read (About 783 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/gitMerge.html">Git分支與合併</a></p><div class="content"><p>作者： <code>TJ</code></p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">Tags</a></li><li class="is-active"><a href="#" aria-current="page">git</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-27T05:20:26.000Z" title="5/27/2026, 1:20:26 PM">2026-05-27</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-27T06:02:52.331Z" title="5/27/2026, 2:02:52 PM">2026-05-27</time></span><span class="level-item">5 minutes read (About 783 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/gitMerge.html">Git分支與合併</a></p><div class="content"><p>作者： <code>TJ</code></p>
 <h2 id="Git分支與合併基本操作"><a href="#Git分支與合併基本操作" class="headerlink" title="Git分支與合併基本操作"></a><strong>Git分支與合併基本操作</strong></h2><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="概念說明"><a href="#概念說明" class="headerlink" title="概念說明"></a><strong>概念說明</strong></h2><p><em>在程式開發中，如需同一軟體但只針對不同需求的參數做調整，</em></p>
 <p><em>就會用到的分支（branch）與合併（merge），其範例操作如下：</em></p>
 <ol>
@@ -54,24 +54,24 @@
 </li>
 </ol>
 <p><strong>查看分支列表</strong></p>
-<p><code>git branch \--list</code></p>
+<p><code>git branch --list</code></p>
 <p><img src="/images/mergeex_image7.png"></p>
 <p>查看在分支[main]底下的操作記錄</p>
-<p><code>git log \--oneline \--graph \--decorate \--all</code></p>
+<p><code>git log --oneline --graph --decorate --all</code></p>
 <p><img src="/images/mergeex_image15.png"></p>
 <p>其中在說明[Initial commit]中，是新創repository的記錄，再上一行的說明[Add psucode.md]是新增文件<strong>psucode.md</strong>以及加入內容.</p>
 <p><strong>建立全新的分支</strong></p>
-<p><code>git branch \[branch name\]</code></p>
+<p><code>git branch [BRANCH_NAME]</code></p>
 <p><img src="/images/mergeex_image21.png"></p>
 <p>雖然已在此repository之中創建新的分支，但目前操控分支仍停留在[main]</p>
 <p>在查看記錄之中，此節點屬於分支[main]和[projectB]</p>
 <p><img src="/images/mergeex_image16.png"></p>
 <p><strong>切換到新創的分支</strong></p>
-<p><code>git switch \[branch name\]</code></p>
+<p><code>git switch [BRANCH_NAME]</code></p>
 <p><img src="/images/mergeex_image6.png"></p>
 <p>當查看操作記錄，會看到選定的分支換成[projectB]</p>
 <p><img src="/images/mergeex_image8.png"></p>
-<p>更新檔案[[[psucode.md]]]之後，可以看到選定分支節點已前進.</p>
+<p>更新檔案[psucode.md]之後，可以看到選定分支節點已前進.</p>
 <p><img src="/images/mergeex_image11.png"></p>
 <p>顯示內容:</p>
 <p><img src="/images/mergeex_image2.png"></p>
@@ -107,7 +107,7 @@
 <p><img src="/images/mergeex_image22.png"></p>
 <p>從操作記錄可以很清楚看到，在分支[main]先新增內容，然後合入分支[desfix]的修改內容</p>
 <p><strong>刪除指定的分支:</strong></p>
-<p><code>git branch -d \[branch name\]</code></p>
+<p><code>git branch -d [BRANCH_NAME]</code></p>
 <p><img src="/images/mergeex_image10.png"></p>
 <p>在刪除分支[desfix]之後，相關操作記錄還是存在，但分支名稱就消失了.</p>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-26T06:32:41.000Z" title="5/26/2026, 2:32:41 PM">2026-05-26</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-05-26T08:13:07.406Z" title="5/26/2026, 4:13:07 PM">2026-05-26</time></span><span class="level-item">17 minutes read (About 2477 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/gitContent.html">Git 查看內容常用指令</a></p><div class="content"><p>以下是 Git 中專門用來「查看內容」的常用指令：</p>

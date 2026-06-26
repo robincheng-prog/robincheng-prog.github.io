@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Tag: docker - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="My personal blog at work"><meta property="og:url" content="http://example.com/"><meta property="og:site_name" content="My personal blog at work"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:author" content="Robin Cheng"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com"},"headline":"My personal blog at work","image":["http://example.com/img/og_image.png"],"author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags/">Tags</a></li><li class="is-active"><a href="#" aria-current="page">docker</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-06-10T09:03:52.000Z" title="6/10/2026, 5:03:52 PM">2026-06-10</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-06-10T10:18:38.977Z" title="6/10/2026, 6:18:38 PM">2026-06-10</time></span><span class="level-item">17 minutes read (About 2502 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/dockerStart.html">學習 Docker</a></p><div class="content"><p>學習 Docker 是現代軟體開發、維運與 DevOps 領域的核心技能。Docker 是一種輕量級的虛擬化技術（容器技術），可以將應用程式與其依賴的環境打包在一起，讓程式在任何電腦上都能擁有完全相同的運行環境，實現「一次建置，到處執行」。<br>以下為您整理出結構化的 Docker 學習路徑與核心概念，幫助您從零開始建立完整的知識架構。</p>
+<h2 id="🐳-第一階段：核心觀念理解（先備知識）"><a href="#🐳-第一階段：核心觀念理解（先備知識）" class="headerlink" title="🐳 第一階段：核心觀念理解（先備知識）"></a>🐳 第一階段：核心觀念理解（先備知識）</h2><p>在動手寫 Code 之前，必須先理解 Docker 的三大核心元件與它和傳統虛擬機（VM）的差別。 [4] </p>
+<ul>
+<li>映像檔 (Image)： 唯讀的模板。它包含了應用程式的所有內容（程式碼、函式庫、設定檔等），可以把它想像成應用程式的「安裝檔」。</li>
+<li>容器 (Container)： 映像檔運行的實體。它就像是一個輕量級的獨立沙盒環境，具有自己的檔案系統、網路和行程，彼此完全隔離。 </li>
+<li>倉庫 (Registry)： 集中存放映像檔的地方。官方提供了 Docker Hub，您可以在上面找到各種官方及社群打包好的映像檔（例如 Ubuntu、MySQL、Nginx 等）。</li>
+<li>Docker 與 VM 的差異： VM 需要為每個應用程式安裝完整的客體作業系統 (OS)；而 Docker 容器直接共用主機的 OS 核心，因此啟動更快、資源佔用更少。</li>
+</ul>
+<h2 id="🚀-第二階段：動手實作（基礎指令與工作流程）"><a href="#🚀-第二階段：動手實作（基礎指令與工作流程）" class="headerlink" title="🚀 第二階段：動手實作（基礎指令與工作流程）"></a>🚀 第二階段：動手實作（基礎指令與工作流程）</h2><p>學習 Docker 最快的方法就是直接在終端機（Terminal）下指令操作。 </p>
+<ol>
+<li>安裝： 前往 Docker 官方網站下載並安裝 Docker Desktop（Windows&#x2F;Mac）或透過指令安裝 Docker Engine（Linux）。</li>
+<li>Hello World： 打開終端機，執行第一個指令 <code>docker run hello-world</code>，測試 Docker 是否安裝成功。</li>
+<li>基礎指令練習：</li>
+</ol>
+<ul>
+<li>docker pull：從倉庫下載映像檔。<ul>
+<li>docker images：列出目前本機擁有的映像檔。</li>
+<li>docker run：啟動一個容器（例如：docker run -d -p 80:80 nginx，這會啟動一個 Nginx 網頁伺服器）。</li>
+<li>docker ps：查看目前正在運行的容器（加上 -a 參數可查看所有容器）。</li>
+<li>docker stop &#x2F; docker start：停止或啟動容器。</li>
+<li>docker rm：刪除容器。</li>
+</ul>
+</li>
+</ul>
+<h2 id="📦-第三階段：進階實戰（打造專屬環境）"><a href="#📦-第三階段：進階實戰（打造專屬環境）" class="headerlink" title="📦 第三階段：進階實戰（打造專屬環境）"></a>📦 第三階段：進階實戰（打造專屬環境）</h2><p>當您熟悉基礎指令後，就可以開始學習如何將自己的專案容器化。 </p>
+<ul>
+<li>Dockerfile (映像檔定義檔)： 這是一個文字檔，裡面寫滿了一步一步的指令（例如基礎映像檔是什麼、要複製哪些檔案、需要安裝什麼套件等），用來建立自訂的 Image。 </li>
+<li>資料持久化 (Volumes)： 容器停止或刪除後，裡面的資料也會跟著消失。此時需要學習 Volume，將容器內的資料掛載到本機硬碟上保存。 </li>
+<li>網路設定 (Networking)： 學習如何讓多個 Docker 容器互相溝通，或者對外開放特定的埠口（Port）。</li>
+</ul>
+<h2 id="🛠️-第四階段：多容器管理-Docker-Compose"><a href="#🛠️-第四階段：多容器管理-Docker-Compose" class="headerlink" title="🛠️ 第四階段：多容器管理 (Docker Compose)"></a>🛠️ 第四階段：多容器管理 (Docker Compose)</h2><p>當您的專案不僅只有一個服務，而是包含前端、後端、資料庫等多個容器時，手動逐一啟動會非常複雜。</p>
+<ul>
+<li>學習撰寫 docker-compose.yml 檔案，只要一個指令 docker compose up，就能定義並啟動所有相關聯的容器服務。</li>
+</ul>
+<hr>
+<hr>
+<p>在 Linux 環境下使用 Python 是 Docker 最經典、也最友善的搭配。<br>我們可以用一個簡單的 Flask 網頁應用程式為例，帶你一步一步在 Linux 上建立、打包並執行你的第一個 Python Docker 容器。</p>
+<hr>
+<h2 id="📂-步驟-1：建立專案資料夾與-Python-程式"><a href="#📂-步驟-1：建立專案資料夾與-Python-程式" class="headerlink" title="📂 步驟 1：建立專案資料夾與 Python 程式"></a>📂 步驟 1：建立專案資料夾與 Python 程式</h2><p>首先，在 Linux 終端機中建立一個新資料夾，並寫好你的 Python 程式與套件清單。</p>
+<ol>
+<li>建立專案目錄：</li>
+</ol>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   <span class="built_in">mkdir</span> my-python-app &amp;&amp; <span class="built_in">cd</span> my-python-app</span><br><span class="line">```   </span><br><span class="line">   2. 建立 app.py：（使用你習慣的編輯器，如 nano app.py 或 vim app.py）</span><br><span class="line">```python   </span><br><span class="line">   from flask import Flaskapp = Flask(__name__)</span><br><span class="line">   </span><br><span class="line">   @app.route(<span class="string">&#x27;/&#x27;</span>)def hello_world():</span><br><span class="line">       <span class="built_in">return</span> <span class="string">&#x27;Hello, Docker! This is a Python app running in a container!&#x27;</span></span><br><span class="line">   <span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">       <span class="comment"># 注意：在 Docker 中，host 必須設定為 0.0.0.0 才能讓外部存取</span></span><br><span class="line">       app.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>, port=5000)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>建立 requirements.txt：（定義專案需要的套件）</li>
+</ol>
+ <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">   Flask==3.0.3</span><br><span class="line">```   </span><br><span class="line">   </span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 📄 步驟 2：撰寫 Dockerfile</span><br><span class="line">Dockerfile 是用來告訴 Docker 如何一步步打包你的應用程式。在同一個資料夾下建立一個檔名剛好就叫 Dockerfile 的檔案（沒有副檔名）：</span><br><span class="line"></span><br><span class="line">```dockerfile</span><br><span class="line"># 1. 使用官方的 Python 輕量版作為基礎映像檔</span><br><span class="line">FROM python:3.10-slim</span><br><span class="line"># 2. 設定容器內的工作目錄（接下來的指令都會在這裡執行）</span><br><span class="line">WORKDIR /app</span><br><span class="line"># 3. 先將本機的 requirements.txt 複製到容器中</span><br><span class="line">COPY requirements.txt .</span><br><span class="line"># 4. 在容器內安裝 Python 套件</span><br><span class="line">RUN pip install --no-cache-dir -r requirements.txt</span><br><span class="line"># 5. 將本機目前目錄下的所有檔案（包含 app.py）複製到容器的 /app 中</span><br><span class="line">COPY . .</span><br><span class="line"># 6. 宣告容器運行時會使用 5000 埠口</span><br><span class="line">EXPOSE 5000</span><br><span class="line"># 7. 容器啟動時預設要執行的指令</span><br><span class="line">CMD [&quot;python&quot;, &quot;app.py&quot;]</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="🛠️-步驟-3：建置與執行-Docker-容器"><a href="#🛠️-步驟-3：建置與執行-Docker-容器" class="headerlink" title="🛠️ 步驟 3：建置與執行 Docker 容器"></a>🛠️ 步驟 3：建置與執行 Docker 容器</h2><p>現在你已經準備好所有的檔案，接下來只要輸入兩行 Docker 指令。</p>
+<ol>
+<li>建置映像檔 (Build Image)：<br>   使用 -t 參數為你的映像檔取個名字（例如 my-python-app），注意指令最後面有一個點 .，代表以目前目錄作為建置上下文。</li>
+</ol>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">   docker build -t my-python-app .</span><br><span class="line"> ```  </span><br><span class="line">   (第一次執行時，Docker 會從網路上線上下載 python:3.10-slim 基礎環境，需要一點時間)</span><br><span class="line">   2. 啟動容器 (Run Container)：</span><br><span class="line"> ```bash  </span><br><span class="line">   docker run -d -p 5000:5000 --name my-running-app my-python-app</span><br><span class="line">```   </span><br><span class="line">   * -d：在背景運行（分離模式）。</span><br><span class="line">      * -p 5000:5000：將 Linux 主機的 5000 埠口，對應到容器內部的 5000 埠口。</span><br><span class="line">      * --name my-running-app：為這個運行的容器取個好記的名字。</span><br><span class="line">   </span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment">## 🎉 步驟 4：驗證成果</span></span><br><span class="line">容器成功啟動後，你可以透過以下方式測試：</span><br><span class="line"></span><br><span class="line">   1. 在 Linux 終端機測試：</span><br><span class="line">```bash   </span><br><span class="line">   curl http://localhost:5000</span><br><span class="line">```   </span><br><span class="line">   你應該會看到畫面上回應：Hello, Docker! This is a Python app running <span class="keyword">in</span> a container!。</span><br><span class="line">   2. 如果你的 Linux 有圖形介面或它是你的伺服器：</span><br><span class="line">   直接用瀏覽器打開 http://你的IP地址:5000 也能看到網頁。</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment">## 🧹 常用管理指令</span></span><br><span class="line">當你測試完畢，可以用以下指令來收拾環境：</span><br><span class="line"></span><br><span class="line">* 查看正在運行的容器： docker ps</span><br><span class="line">* 停止容器： docker stop my-running-app</span><br><span class="line">* 刪除容器（停止後才能刪除）： docker <span class="built_in">rm</span> my-running-app</span><br><span class="line">* 查看容器的 Python 日誌（Log）： docker logs my-running-app</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">在進行 Python 開發時，每次修改程式碼都要重新執行 docker build 是非常低效的。透過 Volume 掛載（Bind Mount），我們可以把 Linux 本機的專案目錄直接「同步」到 Docker 容器內部。</span><br><span class="line">這樣一來，你在 Linux 上改了程式碼，容器內會立刻生效，再搭配 Flask 的 Debug 模式（自動重載），就能實現儲存檔案即更新的極速開發體驗！</span><br><span class="line">以下是具體的設定與執行步驟：</span><br><span class="line"></span><br><span class="line"><span class="comment">## 🔄 步驟 1：修改 app.py 啟用自動重載</span></span><br><span class="line"></span><br><span class="line">為了讓 Flask 偵測到程式碼變更並自動重啟服務，我們需要開啟 debug=True。</span><br><span class="line">請修改你的 app.py：</span><br><span class="line">```python</span><br><span class="line">from flask import Flaskapp = Flask(__name__)</span><br><span class="line"></span><br><span class="line">@app.route(<span class="string">&#x27;/&#x27;</span>)def hello_world():</span><br><span class="line">    <span class="comment"># 你可以稍後修改這段文字來測試</span></span><br><span class="line">    <span class="built_in">return</span> <span class="string">&#x27;Hello, Docker! Code reloading is working!&#x27;</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 啟用 debug 模式，這樣檔案一變更，Flask 就會自動重新載入</span></span><br><span class="line">    app.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>, port=5000, debug=True)</span><br></pre></td></tr></table></figure>
+
+<h2 id="🚀-步驟-2：使用-Volume-指令啟動容器"><a href="#🚀-步驟-2：使用-Volume-指令啟動容器" class="headerlink" title="🚀 步驟 2：使用 Volume 指令啟動容器"></a>🚀 步驟 2：使用 Volume 指令啟動容器</h2><p>這次我們不需要重新 docker build。我們直接使用 -v 參數，將本機的程式碼目錄掛載進去。<br>請在專案目錄（my-python-app）下執行以下指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  -p 5000:5000 \</span><br><span class="line">  --name python-dev-app \</span><br><span class="line">  -v $(<span class="built_in">pwd</span>):/app \</span><br><span class="line">  my-python-app</span><br></pre></td></tr></table></figure>
+<p>💡 指令核心參數解析：</p>
+<ul>
+<li>-v $(pwd):&#x2F;app：這是開發加速的關鍵！</li>
+<li>$(pwd)：Linux 指令，代表「目前本機的絕對路徑」。<ul>
+<li>:&#x2F;app：對應到容器內部的 &#x2F;app 目錄。</li>
+<li>這行字的意思是：用本機目前的程式碼，暫時覆蓋掉容器內的 &#x2F;app 目錄。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="🎉-步驟-3：測試即時修改、即時生效"><a href="#🎉-步驟-3：測試即時修改、即時生效" class="headerlink" title="🎉 步驟 3：測試即時修改、即時生效"></a>🎉 步驟 3：測試即時修改、即時生效</h2><p>現在，見證奇蹟的時刻到了：</p>
+<ol>
+<li>測試目前的網頁：</li>
+</ol>
+<pre><code class="language-bash">   curl http://localhost:5000
+</code></pre>
+<p>   畫面會顯示：Hello, Docker! Code reloading is working!<br>   2. 修改本機程式碼：<br>   用編輯器打開本機的 app.py，將回傳文字修改為 Hello, Live Reloading! 並儲存檔案。<br>   3. 再次測試：<br>   不用重構 Image，不用重啟 Container，直接再次執行：</p>
+<pre><code class="language-bash">   curl http://localhost:5000
+</code></pre>
+<p>   你會發現網頁內容已經變成 Hello, Live Reloading! 了！</p>
+<hr>
+<h2 id="⚠️-Linux-環境下的權限小陷阱"><a href="#⚠️-Linux-環境下的權限小陷阱" class="headerlink" title="⚠️ Linux 環境下的權限小陷阱"></a>⚠️ Linux 環境下的權限小陷阱</h2><p>在 Linux 上使用 Volume 掛載時，初學者常遇到兩個常見問題：</p>
+<ul>
+<li>檔案權限衝突：Docker 容器預設以 root 身分執行。如果你的容器會在掛載目錄內「產生新檔案」（例如寫入 Log 或 SQLite 資料庫），那些檔案在本機的擁有者會變成 root，導致你在 Linux 本機無法修改它們。</li>
+<li>解決方式：在 docker run 時加入 <code>--user $(id -u):$(id -g)</code> 參數，讓容器內的 Python 改用你目前 Linux 帳號的 UID&#x2F;GID 來執行。</li>
+</ul>
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">28</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">7</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-06-10T09:03:52.000Z">2026-06-10</time></p><p class="title"><a href="/posts/dockerStart.html">學習 Docker</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-06-09T01:10:39.000Z">2026-06-09</time></p><p class="title"><a href="/posts/openShell.html">NVIDIA OpenShell</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-06-02T05:22:56.000Z">2026-06-02</time></p><p class="title"><a href="/posts/aiTokenAgent.html">AI 運作方式 從 token 到 agent</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-06-01T02:50:24.000Z">2026-06-01</time></p><p class="title"><a href="/posts/vsCodeGithub.html">在 VS Code 中操作 GitHub</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-05-27T05:20:26.000Z">2026-05-27</time></p><p class="title"><a href="/posts/gitMerge.html">Git分支與合併</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/06/"><span class="level-start"><span class="level-item">June 2026</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">24</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/VS-Code/"><span class="tag">VS_Code</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ai/"><span class="tag">ai</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/docker/"><span class="tag">docker</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/github/"><span class="tag">github</span><span class="tag">10</span></a></div><div class="control"><a class="tags has-addons" href="/tags/other/"><span class="tag">other</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

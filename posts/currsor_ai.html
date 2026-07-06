@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Cursor 編輯器從零到一完整指南 - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Cursor 是基於 VS Code 開發的，如果你本來就使用 VS Code，將可以無痛轉換，並體驗 AI 帶來的全新開發流程。  第一步：下載與安裝 下載安裝檔: 預估時間：1 分鐘.  前往 Cursor 官方網站，系統會自動偵測您的作業系統（Windows &amp;#x2F; macOS &amp;#x2F; Linux），點擊 Download 下載。   執行安裝: 預估時間：2 分鐘.  Wind"><meta property="og:type" content="blog"><meta property="og:title" content="Cursor 編輯器從零到一完整指南"><meta property="og:url" content="http://example.com/posts/currsor_ai.html"><meta property="og:site_name" content="My personal blog at work"><meta property="og:description" content="Cursor 是基於 VS Code 開發的，如果你本來就使用 VS Code，將可以無痛轉換，並體驗 AI 帶來的全新開發流程。  第一步：下載與安裝 下載安裝檔: 預估時間：1 分鐘.  前往 Cursor 官方網站，系統會自動偵測您的作業系統（Windows &amp;#x2F; macOS &amp;#x2F; Linux），點擊 Download 下載。   執行安裝: 預估時間：2 分鐘.  Wind"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/images/TheCursorAIInterface.png"><meta property="article:published_time" content="2026-07-06T06:47:48.000Z"><meta property="article:modified_time" content="2026-07-06T08:51:02.378Z"><meta property="article:author" content="Robin Cheng"><meta property="article:tag" content="ai"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/images/TheCursorAIInterface.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/posts/currsor_ai.html"},"headline":"Cursor 編輯器從零到一完整指南","image":["http://example.com/images/TheCursorAIInterface.png"],"datePublished":"2026-07-06T06:47:48.000Z","dateModified":"2026-07-06T08:51:02.378Z","author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"Cursor 是基於 VS Code 開發的，如果你本來就使用 VS Code，將可以無痛轉換，並體驗 AI 帶來的全新開發流程。  第一步：下載與安裝 下載安裝檔: 預估時間：1 分鐘.  前往 Cursor 官方網站，系統會自動偵測您的作業系統（Windows &#x2F; macOS &#x2F; Linux），點擊 Download 下載。   執行安裝: 預估時間：2 分鐘.  Wind"}</script><link rel="canonical" href="http://example.com/posts/currsor_ai.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-07-06T06:47:48.000Z" title="7/6/2026, 2:47:48 PM">2026-07-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-07-06T08:51:02.378Z" title="7/6/2026, 4:51:02 PM">2026-07-06</time></span><span class="level-item">8 minutes read (About 1245 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">Cursor 編輯器從零到一完整指南</h1><div class="content"><p>Cursor 是基於 VS Code 開發的，如果你本來就使用 VS Code，將可以無痛轉換，並體驗 AI 帶來的全新開發流程。</p>
+<hr>
+<h2 id="第一步：下載與安裝"><a href="#第一步：下載與安裝" class="headerlink" title="第一步：下載與安裝"></a>第一步：下載與安裝</h2><ol>
+<li><p><strong>下載安裝檔:</strong> 預估時間：1 分鐘.</p>
+<ul>
+<li>前往 <a target="_blank" rel="noopener" href="https://www.cursor.com/">Cursor 官方網站</a>，系統會自動偵測您的作業系統（Windows &#x2F; macOS &#x2F; Linux），點擊 <strong>Download</strong> 下載。</li>
+</ul>
+</li>
+<li><p><strong>執行安裝:</strong> 預估時間：2 分鐘.</p>
+<ul>
+<li><strong>Windows：</strong> 雙擊執行 <code>.exe</code> 檔，依指示完成安裝。</li>
+<li><strong>macOS：</strong> 打開 <code>.dmg</code> 檔，將 Cursor 圖示拖曳到 「應用程式 (Applications)」資料夾中。</li>
+</ul>
+</li>
+<li><p><strong>初始設定導覽 (Setup Wizard):</strong> 核心步驟！.</p>
+<p>第一次開啟 Cursor 時，會跳出引導畫面，這三個設定至關重要：</p>
+<ul>
+<li><strong>Keyboard Shortcuts：</strong> 選擇你習慣的快捷鍵模式（建議直接選 <strong>VS Code</strong>）。</li>
+<li><strong>Language Pack：</strong> 可以選擇繁體中文（如果想要介面中文化）。</li>
+<li><strong>VS Code Extensions Import：</strong> <strong>強烈建議勾選！</strong> 這會一鍵把你原本 VS Code 的所有外掛、主題、設定完全複製過來。</li>
+</ul>
+</li>
+<li><p><strong>註冊與登入:</strong> 啟用 AI 的關鍵.</p>
+<ul>
+<li>點擊 <strong>Sign Up</strong> 註冊一個 Cursor 帳號（直接用 Google 或 GitHub 連動最快）。<strong>登入後才能獲得每個月免費的進階 AI 模型使用額度（如 GPT-4o, Claude 3.5 Sonnet）。</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="第二步：基礎設定與優化（磨亮你的工具）"><a href="#第二步：基礎設定與優化（磨亮你的工具）" class="headerlink" title="第二步：基礎設定與優化（磨亮你的工具）"></a>第二步：基礎設定與優化（磨亮你的工具）</h2><p>進入編輯器後，建議先進行以下設定，讓 AI 更貼近你的開發需求：</p>
+<h3 id="1-配置專案上下文-重要：-cursorrules"><a href="#1-配置專案上下文-重要：-cursorrules" class="headerlink" title="1. 配置專案上下文 (重要：.cursorrules)"></a>1. 配置專案上下文 (重要：<code>.cursorrules</code>)</h3><p>在你的專案根目錄下，建立一個名為 <code>.cursorrules</code> 的純文字檔案。這個檔案是寫給 AI 看的「專案說明書」。</p>
+<blockquote>
+<p><strong>例如你在寫 React，可以在裡面寫：</strong><br><code>&quot;本專案使用 React 18 與 Tailwind CSS，請一律使用 TypeScript 撰寫，元件請使用 Arrow Function，並確保符合繁體中文語境。&quot;</code><br>這樣一來，AI 每次幫你寫代碼時，都會自動遵守這些規範，不會寫出不合規格的代碼。</p>
+</blockquote>
+<h3 id="2-開啟進階模型"><a href="#2-開啟進階模型" class="headerlink" title="2. 開啟進階模型"></a>2. 開啟進階模型</h3><ol>
+<li>按下快捷鍵 <code>Ctrl + ,</code> (Mac 為 <code>Cmd + ,</code>) 打開設定。</li>
+<li>在左側找到 <strong>Cursor Settings</strong> $\rightarrow$ <strong>Models</strong>。</li>
+<li>確保你常用的模型（如 <code>claude-3.5-sonnet</code> 或 <code>gpt-4o</code>）是有勾選開啟的。在日常編程中，<strong>Claude 3.5 Sonnet</strong> 的程式碼邏輯與架構能力通常更受工程師推薦。<br><img src="/images/TheCursorAIInterface.png"></li>
+</ol>
+<hr>
+<h2 id="第三步：最後運行與-AI-核心實戰"><a href="#第三步：最後運行與-AI-核心實戰" class="headerlink" title="第三步：最後運行與 AI 核心實戰"></a>第三步：最後運行與 AI 核心實戰</h2><p>設定完成後，我們直接開一個新專案來運行。請點選選單的 <strong>File -&gt; Open Folder</strong>，打開或新建一個乾淨的資料夾。</p>
+<p>接下來，你不需要自己敲鍵盤，試著用以下三個核心功能讓 Cursor 幫你運行：</p>
+<h3 id="實戰-1：Ctrl-K-Mac-Cmd-K-——-行內生成-Inline-Edit"><a href="#實戰-1：Ctrl-K-Mac-Cmd-K-——-行內生成-Inline-Edit" class="headerlink" title="實戰 1：Ctrl + K (Mac: Cmd + K) —— 行內生成 (Inline Edit)"></a>實戰 1：<code>Ctrl + K</code> (Mac: <code>Cmd + K</code>) —— 行內生成 (Inline Edit)</h3><ol>
+<li>在編輯器中建立一個新檔案（例如 <code>index.html</code> 或 <code>app.js</code>）。</li>
+<li>在空白畫面上直接按下 <code>Ctrl + K</code>，會跳出一個輸入框。</li>
+<li>輸入：<code>幫我寫一個倒數計時器的網頁，要有精美的現代感 UI 按鈕</code>，然後按下 Enter。</li>
+<li>你會看到 AI 開始現場串流撰寫代碼，滿意後點擊 <strong>Accept</strong>（或按 <code>Ctrl + Enter</code>）接收代碼。</li>
+</ol>
+<h3 id="實戰-2：Ctrl-L-Mac-Cmd-L-——-程式碼對話-Chat"><a href="#實戰-2：Ctrl-L-Mac-Cmd-L-——-程式碼對話-Chat" class="headerlink" title="實戰 2：Ctrl + L (Mac: Cmd + L) —— 程式碼對話 (Chat)"></a>實戰 2：<code>Ctrl + L</code> (Mac: <code>Cmd + L</code>) —— 程式碼對話 (Chat)</h3><ol>
+<li>選中畫面上剛剛生成的某一段代碼，然後按下 <code>Ctrl + L</code>。</li>
+<li>這段代碼會被自動丟到右側的 <strong>AI Sidebar</strong>。</li>
+<li>你可以在右側問它：<code>這段程式碼的邏輯是什麼？有沒有潛在的記憶體洩漏風險？</code> 它會逐行幫你解釋並給予優化建議。</li>
+</ol>
+<h3 id="實戰-3：Ctrl-I-Mac-Cmd-I-——-多檔案協同編輯-Composer"><a href="#實戰-3：Ctrl-I-Mac-Cmd-I-——-多檔案協同編輯-Composer" class="headerlink" title="實戰 3：Ctrl + I (Mac: Cmd + I) —— 多檔案協同編輯 (Composer)"></a>實戰 3：<code>Ctrl + I</code> (Mac: <code>Cmd + I</code>) —— 多檔案協同編輯 (Composer)</h3><p>這是 Cursor 最強大的終極武器。當你想要擴充功能，但牽涉到多個檔案時：</p>
+<ol>
+<li>按下 <code>Ctrl + I</code> 打開 Composer 視窗。</li>
+<li>點擊輸入框中的 <code>@</code> 符號，選擇 <code>Files</code> 或 <code>Folders</code>，把相關的檔案（例如 <code>style.css</code> 和 <code>index.html</code>）鎖定進來。</li>
+<li>輸入指令：<code>幫我把倒數計時器加上歷史紀錄功能，CSS 要同步調整樣式。</code></li>
+<li><strong>運行：</strong> 點擊 Submit，AI 會同時修改這兩個檔案。修改完畢後，你可以在畫面上即時預覽 Diff 變更，確認沒問題後點擊 <strong>Accept All</strong>。</li>
+</ol>
+<hr>
+<h2 id="💡-運行小叮嚀"><a href="#💡-運行小叮嚀" class="headerlink" title="💡 運行小叮嚀"></a>💡 運行小叮嚀</h2><p>當 AI 幫你寫完代碼後，你可以像平常一樣，在 Cursor 底部的 <strong>Terminal（終端機）</strong> 執行你的啟動指令（如 <code>npm run dev</code> 或直接用 Live Server 開啟網頁），直接檢視運行結果。如果畫面上出現報錯，直接複製報錯訊息丟給右側的 Chat，或者在終端機點擊 <strong>“Debug with AI”</strong>，Cursor 就會自動幫你修到好！</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Cursor 編輯器從零到一完整指南</p><p><a href="http://example.com/posts/currsor_ai.html">http://example.com/posts/currsor_ai.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Robin Cheng</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-07-06</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-07-06</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/ai/">ai</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/dockerStart.html"><span class="level-item">學習 Docker</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

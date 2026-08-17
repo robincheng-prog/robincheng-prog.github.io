@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>軟體物料清單 (SBOM) 與漏洞掃描導入指南 - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="作者： Ayden 一、 什麼是 SBOM？為什麼我們需要它？SBOM（Software Bill of Materials） 是軟體的「成分標籤」，詳細記錄了專案中所使用的所有第三方套件、開源元件及版本號。 導入主因：  合規要求： 歐盟網路韌性法案 (CRA) 等國際法規強制要求產品出廠需具備 SBOM，並有對應的漏洞管理機制。 零日漏洞快速應變： 當爆發重大資安漏洞（如 Log4j 事件）時"><meta property="og:type" content="blog"><meta property="og:title" content="軟體物料清單 (SBOM) 與漏洞掃描導入指南"><meta property="og:url" content="http://example.com/posts/sbom_flow.html"><meta property="og:site_name" content="My personal blog at work"><meta property="og:description" content="作者： Ayden 一、 什麼是 SBOM？為什麼我們需要它？SBOM（Software Bill of Materials） 是軟體的「成分標籤」，詳細記錄了專案中所使用的所有第三方套件、開源元件及版本號。 導入主因：  合規要求： 歐盟網路韌性法案 (CRA) 等國際法規強制要求產品出廠需具備 SBOM，並有對應的漏洞管理機制。 零日漏洞快速應變： 當爆發重大資安漏洞（如 Log4j 事件）時"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2026-08-17T08:25:37.000Z"><meta property="article:modified_time" content="2026-08-17T08:28:32.011Z"><meta property="article:author" content="Robin Cheng"><meta property="article:tag" content="cra"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/posts/sbom_flow.html"},"headline":"軟體物料清單 (SBOM) 與漏洞掃描導入指南","image":["http://example.com/img/og_image.png"],"datePublished":"2026-08-17T08:25:37.000Z","dateModified":"2026-08-17T08:28:32.011Z","author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"作者： Ayden 一、 什麼是 SBOM？為什麼我們需要它？SBOM（Software Bill of Materials） 是軟體的「成分標籤」，詳細記錄了專案中所使用的所有第三方套件、開源元件及版本號。 導入主因：  合規要求： 歐盟網路韌性法案 (CRA) 等國際法規強制要求產品出廠需具備 SBOM，並有對應的漏洞管理機制。 零日漏洞快速應變： 當爆發重大資安漏洞（如 Log4j 事件）時"}</script><link rel="canonical" href="http://example.com/posts/sbom_flow.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-17T08:25:37.000Z" title="8/17/2026, 4:25:37 PM">2026-08-17</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-17T08:28:32.011Z" title="8/17/2026, 4:28:32 PM">2026-08-17</time></span><span class="level-item">4 minutes read (About 644 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">軟體物料清單 (SBOM) 與漏洞掃描導入指南</h1><div class="content"><p>作者： Ayden</p>
+<h2 id="一、-什麼是-SBOM？為什麼我們需要它？"><a href="#一、-什麼是-SBOM？為什麼我們需要它？" class="headerlink" title="一、 什麼是 SBOM？為什麼我們需要它？"></a>一、 什麼是 SBOM？為什麼我們需要它？</h2><p><strong>SBOM（Software Bill of Materials）</strong> 是軟體的「成分標籤」，詳細記錄了專案中所使用的所有第三方套件、開源元件及版本號。</p>
+<p><strong>導入主因：</strong></p>
+<ol>
+<li><strong>合規要求：</strong> 歐盟網路韌性法案 (CRA) 等國際法規強制要求產品出廠需具備 SBOM，並有對應的漏洞管理機制。</li>
+<li><strong>零日漏洞快速應變：</strong> 當爆發重大資安漏洞（如 Log4j 事件）時，透過掃描 SBOM，能在幾秒鐘內確認我們的產品是否受影響，無須重新編譯原始碼。</li>
+</ol>
+<hr>
+<h2 id="二、-團隊標準工作流程-DevSecOps"><a href="#二、-團隊標準工作流程-DevSecOps" class="headerlink" title="二、 團隊標準工作流程 (DevSecOps)"></a>二、 團隊標準工作流程 (DevSecOps)</h2><p>為了保持開發效率並兼顧資安，我們將採用「產出」與「掃描」分離的職責分工模式：</p>
+<ul>
+<li><strong>開發團隊：</strong> 負責在編譯時，產出正確的 SBOM 檔案。</li>
+<li><strong>資安&#x2F;維運團隊：</strong> 拿著 SBOM 檔案進行漏洞比對。</li>
+</ul>
+<h3 id="工作流程圖"><a href="#工作流程圖" class="headerlink" title="工作流程圖"></a>工作流程圖</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[ C# / Python 專案 ]</span><br><span class="line">       │</span><br><span class="line">       ▼ (1) 執行 CycloneDX 工具</span><br><span class="line">[ 生成 sbom.json ]</span><br><span class="line">       │</span><br><span class="line">       ▼ (2) 執行 Grype / Trivy (或上傳至 Dependency-Track)</span><br><span class="line">[ 漏洞掃描報告 (CVE清單 / 降風險建議) ]</span><br></pre></td></tr></table></figure>
+
+<p><strong>分工優勢：</strong></p>
+<ul>
+<li>掃描工具不需要取得原始碼，保護程式碼隱私。</li>
+<li>不綁定特定掃描工具，隨時可抽換 Grype、Trivy 或 Dependency-Track。</li>
+</ul>
+<hr>
+<h2 id="三、-開發端實作步驟-如何產出-SBOM"><a href="#三、-開發端實作步驟-如何產出-SBOM" class="headerlink" title="三、 開發端實作步驟 (如何產出 SBOM)"></a>三、 開發端實作步驟 (如何產出 SBOM)</h2><p>我們統一採用國際主流的 <strong>CycloneDX (JSON格式)</strong> 作為 SBOM 標準。</p>
+<h3 id="📌-C-NET-專案"><a href="#📌-C-NET-專案" class="headerlink" title="📌 C# &#x2F; .NET 專案"></a>📌 C# &#x2F; .NET 專案</h3><p>使用社群主流的 OWASP CycloneDX 工具：</p>
+<ol>
+<li><strong>安裝全域工具：</strong><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet tool install --global CycloneDX</span><br></pre></td></tr></table></figure></li>
+<li><strong>產出 SBOM (JSON格式)：</strong><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet CycloneDX ./path/to/YourCoreLibrary.csproj -o ./sbom-output -F json</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="📌-Python-專案"><a href="#📌-Python-專案" class="headerlink" title="📌 Python 專案"></a>📌 Python 專案</h3><p>使用官方維護的 cyclonedx-bom 工具：</p>
+<ol>
+<li><strong>安裝套件：</strong><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install cyclonedx-bom</span><br></pre></td></tr></table></figure></li>
+<li><strong>產出 SBOM (掃描當前環境最準確)：</strong><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cyclonedx-py environment -o sbom.json</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="四、-資安端後續處理-如何掃描漏洞"><a href="#四、-資安端後續處理-如何掃描漏洞" class="headerlink" title="四、 資安端後續處理 (如何掃描漏洞)"></a>四、 資安端後續處理 (如何掃描漏洞)</h2><p>拿到開發團隊提供的 <code>sbom.json</code> 後，後續可交由 CI&#x2F;CD 或資安團隊透過以下工具進行漏洞比對：</p>
+<ul>
+<li><strong>Grype (推薦單機快掃)：</strong> 專為 SBOM 設計，速度極快。<br><code>grype sbom:./sbom.json</code></li>
+<li><strong>Trivy：</strong> 廣泛使用的 DevSecOps 掃描器。<br><code>trivy sbom ./sbom.json</code></li>
+<li><strong>OWASP Dependency-Track：</strong> 企業級漏洞管理平台。將 SBOM 上傳後，平台會每日自動比對最新 NVD 漏洞庫，爆發新漏洞時會自動告警，完全符合 CRA 法規要求。</li>
+</ul>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>軟體物料清單 (SBOM) 與漏洞掃描導入指南</p><p><a href="http://example.com/posts/sbom_flow.html">http://example.com/posts/sbom_flow.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Robin Cheng</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-08-17</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-08-17</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/cra/">cra</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/nvme_erase.html"><span class="level-item">隨身碟自動清除 NVMe SSD</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

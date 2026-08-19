@@ -29,7 +29,130 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-17T08:25:37.000Z" title="8/17/2026, 4:25:37 PM">2026-08-17</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-17T08:28:32.011Z" title="8/17/2026, 4:28:32 PM">2026-08-17</time></span><span class="level-item">4 minutes read (About 644 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/sbom_flow.html">軟體物料清單 (SBOM) 與漏洞掃描導入指南</a></p><div class="content"><p>作者： Ayden</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-19T03:43:45.000Z" title="8/19/2026, 11:43:45 AM">2026-08-19</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-19T03:52:37.352Z" title="8/19/2026, 11:52:37 AM">2026-08-19</time></span><span class="level-item">12 minutes read (About 1801 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/win_hmi.html">Windows 11 設定為 HMI</a></p><div class="content"><p>將 Windows 11 設定為工業或專用人機介面（HMI）時，核心目標是確保開機直接進入圖控軟體、關閉干擾通知、防止睡眠與防止操作員亂按系統。</p>
+<hr>
+<h2 id="✅-1-電源與睡眠設定（防止自動關機或休眠）"><a href="#✅-1-電源與睡眠設定（防止自動關機或休眠）" class="headerlink" title="✅ 1. 電源與睡眠設定（防止自動關機或休眠）"></a>✅ 1. 電源與睡眠設定（防止自動關機或休眠）</h2><p>HMI 需要 24 小時不間斷運行，絕不能進入省電模式。</p>
+<ul>
+<li><p>進入 設定 &gt; 系統 &gt; 電源與電池。</p>
+</li>
+<li><p>將「螢幕關閉時間」與「電腦進入睡眠狀態的時間」皆設為 「從不」 (Never)。</p>
+</li>
+<li><p>檢查控制台的傳統電源選項，確保 PCI Express 或 USB 選擇性暫停功能被停用，避免通訊模組斷線。</p>
+</li>
+</ul>
+<hr>
+<h2 id="✅-2-略過登入與自動開機登入（AutoLogon）"><a href="#✅-2-略過登入與自動開機登入（AutoLogon）" class="headerlink" title="✅ 2. 略過登入與自動開機登入（AutoLogon）"></a>✅ 2. 略過登入與自動開機登入（AutoLogon）</h2><p>開機後必須自動進入桌面並啟動 HMI 軟體，不能卡在密碼輸入畫面。</p>
+<ul>
+<li><p>按下 Win + R 鍵，輸入 netplwiz 並按 Enter。</p>
+</li>
+<li><p>在跳出的視窗中，取消勾選「必須輸入使用者名稱和密碼，才能使用這台電腦」。</p>
+</li>
+<li><p>點擊「確定」後，系統會要求你輸入一次目前的帳號與密碼以完成綁定。</p>
+</li>
+</ul>
+<hr>
+<h2 id="✅-3-設定-HMI-軟體開機自動執行"><a href="#✅-3-設定-HMI-軟體開機自動執行" class="headerlink" title="✅ 3. 設定 HMI 軟體開機自動執行"></a>✅ 3. 設定 HMI 軟體開機自動執行</h2><p>讓圖控軟體（如 InTouch、WinCC、KingView 或自寫 SCADA）隨 Windows 啟動。</p>
+<ul>
+<li><p>將你的 HMI 執行檔捷徑，放入 Windows 的啟動資料夾中：</p>
+<ol>
+<li><p>按下 Win + R，輸入 shell:startup 並按 Enter。</p>
+</li>
+<li><p>將 HMI 的捷徑貼到此資料夾中。</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="✅-4-關閉系統更新與干擾通知"><a href="#✅-4-關閉系統更新與干擾通知" class="headerlink" title="✅ 4. 關閉系統更新與干擾通知"></a>✅ 4. 關閉系統更新與干擾通知</h2><p>避免 HMI 運作中途跳出 Windows 更新重開機或右下角彈出通知。</p>
+<ul>
+<li><p>關閉通知：進入 設定 &gt; 系統 &gt; 通知，將通知總開關設為 關閉，或開啟「專注模式」。</p>
+</li>
+<li><p>暫緩 Windows 更新：</p>
+</li>
+<li><p>進入 設定 &gt; Windows 更新，選擇「暫停更新」拉到最長時間（家用&#x2F;專業版極限）。</p>
+</li>
+<li><p>若為企業長期穩定需求，建議直接評估使用 Windows 11 IoT Enterprise LTSC 版本並透過群組原則徹底關閉自動更新。</p>
+</li>
+</ul>
+<hr>
+<h2 id="✅-5-隱藏介面與防止誤觸（Kiosk-模式或調整工作列）"><a href="#✅-5-隱藏介面與防止誤觸（Kiosk-模式或調整工作列）" class="headerlink" title="✅ 5. 隱藏介面與防止誤觸（Kiosk 模式或調整工作列）"></a>✅ 5. 隱藏介面與防止誤觸（Kiosk 模式或調整工作列）</h2><p>如果希望操作員只能操作 HMI 畫面，不能點擊桌面或開啟瀏覽器：</p>
+<ul>
+<li><p>自動隱藏工作列：右鍵點選工作列選擇「工作列設定」&gt;「工作列行為」，勾選「自動隱藏工作列」。</p>
+</li>
+<li><p>鎖定快捷鍵與權限：透過 HMI 軟體自身的帳號權限（如 9 級權限或登入畫面）來管控操作員。如果是單一網頁或 UWP 應用程式，可進一步利用 Windows 11 的 指派存取權 (Assigned Access &#x2F; Kiosk 模式) 建立單一應用程式鎖定帳戶。</p>
+</li>
+</ul>
+<hr>
+<h2 id="Chrome-網頁型-HMI"><a href="#Chrome-網頁型-HMI" class="headerlink" title="Chrome 網頁型 HMI"></a>Chrome 網頁型 HMI</h2><hr>
+<p>由於 Windows 11 內建的「指派存取權 (Kiosk)」選單只強制綁定 Microsoft Edge，無法直接選取 Google Chrome 作為全螢幕 Kiosk 軟體。<br>既然你的 HMI 是網頁型且指定使用 Chrome，最佳的解決方案是利用 Chrome 內建的 Kiosk 模式（資訊看板模式），並搭配 Windows 的自動開機登入與自訂 Shell (殼層)。這樣操作員開機後，電腦只會跳出 Chrome 且完全隱藏 Windows 桌面與工作列，也無法按 F11 或 Alt+F4 退出。<br>以下是完整的設定步驟：</p>
+<h2 id="🛠️-第一步：建立專用的-Windows-本地帳戶"><a href="#🛠️-第一步：建立專用的-Windows-本地帳戶" class="headerlink" title="🛠️ 第一步：建立專用的 Windows 本地帳戶"></a>🛠️ 第一步：建立專用的 Windows 本地帳戶</h2><p>為了系統安全與日後維護，請先建立一個獨立的 HMI 操作員帳戶。</p>
+<ol>
+<li><p>進入 設定 &gt; 帳戶 &gt; 其他使用者。</p>
+</li>
+<li><p>點擊「新增帳戶」，選擇「我沒有這名人員的登入資訊」。</p>
+</li>
+<li><p>點擊「新增沒有 Microsoft 帳戶的使用者」，輸入名稱（例如：HMI_User），密碼可留空（方便自動登入）。</p>
+</li>
+</ol>
+<h2 id="🔑-第二步：設定該帳戶開機自動登入-Autologon"><a href="#🔑-第二步：設定該帳戶開機自動登入-Autologon" class="headerlink" title="🔑 第二步：設定該帳戶開機自動登入 (Autologon)"></a>🔑 第二步：設定該帳戶開機自動登入 (Autologon)</h2><ol>
+<li><p>按下 Win + R 鍵，輸入 netplwiz 並按 Enter。</p>
+</li>
+<li><p>取消勾選「必須輸入使用者名稱和密碼，才能使用這台電腦」。</p>
+</li>
+<li><p>點擊「確定」後，系統會要求輸入你希望開機自動登入的帳戶（填入 HMI_User）和密碼。</p>
+</li>
+</ol>
+<h2 id="🌐-第三步：建立-Chrome-Kiosk-的執行腳本"><a href="#🌐-第三步：建立-Chrome-Kiosk-的執行腳本" class="headerlink" title="🌐 第三步：建立 Chrome Kiosk 的執行腳本"></a>🌐 第三步：建立 Chrome Kiosk 的執行腳本</h2><p>我們需要準備一個腳本，讓 Windows 一開機就啟動 Chrome 的全螢幕鎖定模式。</p>
+<ol>
+<li><p>在桌面點右鍵 &gt; 新增 &gt; 文字文件（.txt 檔）。</p>
+</li>
+<li><p>將以下程式碼貼入文件中（請將網址修改為你的 HMI 實際網址）：</p>
+</li>
+</ol>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">:: 防止關閉後留下一片黑，重複啟動</span><br><span class="line">:loop</span><br><span class="line"><span class="string">&quot;C:\Program Files\Google\Chrome\Application\chrome.exe&quot;</span> --kiosk --no-first-run --disable-infobars --disable-session-crashed-bubble --no-default-browser-check <span class="string">&quot;http://localhost:8080&quot;</span></span><br><span class="line">goto loop</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>參數說明：–kiosk 開啟全螢幕且停用 F11；–disable-infobars 隱藏 Chrome 提示列；–disable-session-crashed-bubble 防止異常斷電後跳出「要還原網頁嗎」的干擾通知。</li>
+</ul>
+<ol start="3">
+<li>將此文字檔案另存新檔，檔名取為 start_hmi.bat（注意：副檔名必須是 .bat，不能是 .txt），並將此檔案移至硬碟根目錄（例如儲存在 C:\start_hmi.bat）。</li>
+</ol>
+<h2 id="🔒-第四步：取代-Windows-桌面（修改登錄檔-Shell）"><a href="#🔒-第四步：取代-Windows-桌面（修改登錄檔-Shell）" class="headerlink" title="🔒 第四步：取代 Windows 桌面（修改登錄檔 Shell）"></a>🔒 第四步：取代 Windows 桌面（修改登錄檔 Shell）</h2><p>這是最關鍵的一步。我們要讓 HMI_User 這個帳戶登入時，不要載入 Windows 的傳統桌面 (explorer.exe)，而是直接載入我們的 Chrome 腳本。這樣操作員就完全摸不到工作列、開始功能表和桌面。</p>
+<ol>
+<li><p>按下 Win + R，輸入 regedit 並按 Enter 開啟登錄編輯程式。</p>
+</li>
+<li><p>導覽至以下路徑：<br>   HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping\system.ini\boot</p>
+</li>
+<li><p>檢查右側的 Shell 數值資料，如果它是 SYS:Microsoft\Windows NT\CurrentVersion\Winlogon，請放心進行下一步（這代表允許針對不同使用者設定不同的桌面 Shell）。</p>
+</li>
+<li><p>關閉登錄編輯程式，並切換登入到你剛剛建立的 HMI_User 帳戶。</p>
+</li>
+<li><p>在 HMI_User 帳戶下，按下 Win + R，輸入 regedit 開啟登錄編輯程式。</p>
+</li>
+<li><p>導覽至目前使用者的路徑：<br>   HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Winlogon</p>
+</li>
+<li><p>在右側空白處點右鍵 &gt; 新增 &gt; 字串值，命名為 Shell。</p>
+</li>
+<li><p>連點兩下剛建立的 Shell，在「數值資料」填入剛才 .bat 檔的絕對路徑：C:\start_hmi.bat。</p>
+</li>
+</ol>
+<hr>
+<h2 id="💡-設定完成後的維護與退出方法"><a href="#💡-設定完成後的維護與退出方法" class="headerlink" title="💡 設定完成後的維護與退出方法"></a>💡 設定完成後的維護與退出方法</h2><ul>
+<li><p>實際運行效果：以後重啟電腦，Windows 11 會自動登入 HMI_User，並且畫面上只會出現 Chrome 顯示的 HMI 網頁，沒有滑鼠右鍵選單，沒有工作列，按 Alt + F4 或 F11 都無效。</p>
+</li>
+<li><p>工程師如何退出進行維護？</p>
+<ol>
+<li><p>在 HMI 畫面上按下 Ctrl + Alt + Del。</p>
+</li>
+<li><p>選擇「登出」或「切換使用者」。</p>
+</li>
+<li><p>切換回你的系統管理員帳戶，即可正常使用 Windows 11 桌面進行軟體修改或 PLC 通訊設定。</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>[</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-17T08:25:37.000Z" title="8/17/2026, 4:25:37 PM">2026-08-17</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-17T08:28:32.011Z" title="8/17/2026, 4:28:32 PM">2026-08-17</time></span><span class="level-item">4 minutes read (About 644 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/sbom_flow.html">軟體物料清單 (SBOM) 與漏洞掃描導入指南</a></p><div class="content"><p>作者： Ayden</p>
 <h2 id="一、-什麼是-SBOM？為什麼我們需要它？"><a href="#一、-什麼是-SBOM？為什麼我們需要它？" class="headerlink" title="一、 什麼是 SBOM？為什麼我們需要它？"></a>一、 什麼是 SBOM？為什麼我們需要它？</h2><p><strong>SBOM（Software Bill of Materials）</strong> 是軟體的「成分標籤」，詳細記錄了專案中所使用的所有第三方套件、開源元件及版本號。</p>
 <p><strong>導入主因：</strong></p>
 <ol>
@@ -162,7 +285,7 @@
 <h2 id="1-安裝合併工具"><a href="#1-安裝合併工具" class="headerlink" title="1. 安裝合併工具"></a>1. 安裝合併工具</h2><p>在你的電腦終端機（Terminal &#x2F; CMD）中執行以下指令來下載所需套件：  </p>
 <p>pip install spdx-tools<br>pip install git+<a target="_blank" rel="noopener" href="https://github.com/">https://github.com</a></p>
 <h2 id="2-執行深度合併指令"><a href="#2-執行深度合併指令" class="headerlink" title="2. 執行深度合併指令"></a>2. 執行深度合併指令</h2><p>將剛才下載的 NXP 檔案通通放入名為 sbom_inputs 的資料夾內，然後執行：</p>
-<p>python -m spdxmerge.SPDXMerge <br>  –docpath “.&#x2F;sbom_inputs” <br>  –outpath “.&#x2F;lpc55s69_combined_project.spdx.json” <br>  –name “LPC55S69_FreeRTOS_Project” <br>  –version “1.0.0” <br>  –mergetype 1 <br>  –author “Your Company Name” <br>  –email “<a href="mailto:&#100;&#x65;&#118;&#x65;&#x6c;&#111;&#x70;&#x65;&#x72;&#x40;&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#46;&#99;&#111;&#109;">developer@example.com</a>“ <br>  –filetype J</p>
+<p>python -m spdxmerge.SPDXMerge <br>  –docpath “.&#x2F;sbom_inputs” <br>  –outpath “.&#x2F;lpc55s69_combined_project.spdx.json” <br>  –name “LPC55S69_FreeRTOS_Project” <br>  –version “1.0.0” <br>  –mergetype 1 <br>  –author “Your Company Name” <br>  –email “<a href="mailto:&#x64;&#101;&#x76;&#x65;&#108;&#111;&#x70;&#101;&#114;&#x40;&#x65;&#120;&#97;&#x6d;&#x70;&#x6c;&#x65;&#46;&#x63;&#x6f;&#x6d;">developer@example.com</a>“ <br>  –filetype J</p>
 <ul>
 <li>–docpath：放所有 NXP 原始檔案的資料夾路徑。</li>
 <li>–outpath：合併完成後的最終單一檔案輸出路徑。</li>
@@ -914,97 +1037,7 @@
 
 
 
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-07-07T01:01:07.000Z" title="7/7/2026, 9:01:07 AM">2026-07-07</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-07-07T01:10:02.628Z" title="7/7/2026, 9:10:02 AM">2026-07-07</time></span><span class="level-item">17 minutes read (About 2624 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/cursorPlus.html">進一步發揮 Cursor 的威力</a></p><div class="content"><h2 id="學習如何使用-符號精準餵資料給-AI"><a href="#學習如何使用-符號精準餵資料給-AI" class="headerlink" title="學習如何使用 @ 符號精準餵資料給 AI"></a>學習如何使用 @ 符號精準餵資料給 AI</h2><p>在 Cursor 中，<code>@</code> 符號被稱為 <strong>Context Mentions（上下文提及）</strong>。它是引導 AI 的核心魔法——因為 AI 的回答品質完全取決於你給它的資料（Context）。</p>
-<p>如果你只輸入「幫我修這個 Bug」，AI 只能通靈；但如果你加上 <code>@</code>，你就能精準地把專案裡的檔案、甚至官方文件直接塞進 AI 的腦袋裡。</p>
-<p>以下為您整理 <code>@</code> 符號的詳細進階用法與實戰情境：</p>
-<hr>
-<h2 id="1-核心-標籤功能與進階情境"><a href="#1-核心-標籤功能與進階情境" class="headerlink" title="1. 核心 @ 標籤功能與進階情境"></a>1. 核心 <code>@</code> 標籤功能與進階情境</h2><table>
-<thead>
-<tr>
-<th>標籤名稱</th>
-<th>它是什麼？</th>
-<th>進階實戰情境</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><code>@Files</code></strong></td>
-<td>引入<strong>特定檔案</strong>。</td>
-<td><strong>跨檔案對齊邏輯：</strong> 當你在寫前端 API 請求時，直接在對話框輸入：<code>「根據 @apiSchema.ts 的型別定義，幫我寫出 @userCard.tsx 裡面的 Fetch 邏輯。」</code></td>
-</tr>
-<tr>
-<td><strong><code>@Folders</code></strong></td>
-<td>引入<strong>整個資料夾</strong>。</td>
-<td><strong>模組化重構：</strong> 當你想讓 AI 學習某個特定模組的架構時：<code>「我想在 @features 裡面新增一個購物車模組，請參考同資料夾下其他功能模組的檔案結構與命名規範。」</code></td>
-</tr>
-<tr>
-<td><strong><code>@Codebase</code></strong></td>
-<td>讓 AI <strong>掃描整個專案</strong>（會自動建立本地索引）。</td>
-<td><strong>全局除錯與宏觀分析：</strong> 當專案很大、出現莫名報錯時：<code>「在 @Codebase 中，有哪些地方可能導致記憶體洩漏？」</code> 或 <code>「幫我找出目前專案中所有處理 JWT Token 的邏輯並生成報告。」</code></td>
-</tr>
-<tr>
-<td><strong><code>@Docs</code></strong></td>
-<td>引入<strong>第三方官方文件</strong>。Cursor 內建了許多熱門框架（如 React, Next.js, Tailwind），你也可以自己貼上任何網站的 URL 讓 Cursor 即時爬取。</td>
-<td><strong>使用最新技術 &#x2F; 拒絕幻覺：</strong> 當你在用剛改版的新套件（例如 Next.js 最新架構），AI 的舊知識庫可能不支援。輸入：<code>「使用 @Next.js 的 App Router 新寫法，重構我這段代碼。」</code> 這樣 AI 就絕對不會用舊語法胡謅。</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="2-容易被忽略的「高階」-隱藏招式"><a href="#2-容易被忽略的「高階」-隱藏招式" class="headerlink" title="2. 容易被忽略的「高階」@ 隱藏招式"></a>2. 容易被忽略的「高階」<code>@</code> 隱藏招式</h2><p>除了檔案和文件，<code>@</code> 還能綁定許多系統層面的上下文：</p>
-<h3 id="💡-Web（聯網即時搜尋）"><a href="#💡-Web（聯網即時搜尋）" class="headerlink" title="💡 @Web（聯網即時搜尋）"></a>💡 <code>@Web</code>（聯網即時搜尋）</h3><ul>
-<li><strong>用途：</strong> 讓 AI 跳出本地端，直接去 Google 搜尋最新解答。</li>
-<li><strong>情境：</strong> 當你遇到一個剛發布不到幾天的全新 Bug，或是某個第三方 API 剛改版：</li>
-<li><em>指令：</em> <code>「查一下 @Web 關於這個最新報錯 [貼上報錯訊息]，目前社群有什麼解決方案？」</code></li>
-</ul>
-<h3 id="💡-Git（版本控制追蹤）"><a href="#💡-Git（版本控制追蹤）" class="headerlink" title="💡 @Git（版本控制追蹤）"></a>💡 <code>@Git</code>（版本控制追蹤）</h3><ul>
-<li><strong>用途：</strong> 讓 AI 讀取你的 Git Commit 歷史、Diff（變更內容）或 PR 資訊。</li>
-<li><strong>情境：</strong></li>
-<li><strong>寫 Commit Message：</strong> 寫完代碼懶得想 Commit？輸入 <code>「根據 @Git (Staged Changes) 幫我寫 3 個符合 Conventional Commits 規範的訊息。」</code></li>
-<li><strong>程式碼審查 (Code Review)：</strong> 在提交 PR 前，輸入 <code>「請幫我 Review @Git (Current Branch) 的修改，有沒有潛在效能問題？」</code></li>
-</ul>
-<h3 id="💡-Code-Definitions（特定程式碼片段）"><a href="#💡-Code-Definitions（特定程式碼片段）" class="headerlink" title="💡 @Code &#x2F; @Definitions（特定程式碼片段）"></a>💡 <code>@Code</code> &#x2F; <code>@Definitions</code>（特定程式碼片段）</h3><ul>
-<li><strong>用途：</strong> 精準鎖定某個特定的 Function（函數）或 Class（類別），而不用引入整支大檔案。</li>
-<li><strong>情境：</strong> 檔案很大（上千行），你只想讓 AI 修改某一小段：</li>
-<li><em>指令：</em> <code>「請優化 @userService.ts 裡面的 @createUser 函數的防呆邏輯。」</code></li>
-</ul>
-<hr>
-<h2 id="3-實戰組合技：在-Composer-Ctrl-I-中發揮最大威力"><a href="#3-實戰組合技：在-Composer-Ctrl-I-中發揮最大威力" class="headerlink" title="3. 實戰組合技：在 Composer (Ctrl + I) 中發揮最大威力"></a>3. 實戰組合技：在 <code>Composer</code> (Ctrl + I) 中發揮最大威力</h2><p>當你使用多檔案編輯功能（Composer）時，結合多個 <code>@</code> 標籤可以讓 AI 像資深架構師一樣工作：</p>
-<blockquote>
-<p><strong>終極情境：專案全面 TypeScript 化</strong><br>你開啟了 <code>Ctrl + I</code>，在輸入框中寫下：<br>➡️ <code>「我想把 @legacy_code 資料夾下的所有 JS 檔案轉換成 TS。請參考 @types/global.d.ts 的型別定義，並嚴格遵循 @TypeScript 官方文件的最新 Best Practices。如果有遇到外部 API 呼叫，請對照 @api_config.json。」</code></p>
-</blockquote>
-<p>這樣一來，AI 同時掌握了<strong>舊代碼、本地自訂型別、官方新規範、配置檔</strong>四個維度的資訊，寫出來的程式碼幾乎不需要手動修改就能直接執行。</p>
-<hr>
-<h2 id="⚠️-符號使用小提示（避坑指南）"><a href="#⚠️-符號使用小提示（避坑指南）" class="headerlink" title="⚠️ @ 符號使用小提示（避坑指南）"></a>⚠️ <code>@</code> 符號使用小提示（避坑指南）</h2><ol>
-<li><strong>精準度 &gt; 數量：</strong> 不要動不動就盲目使用 <code>@Codebase</code>。專案極大時，全局掃描會消耗較多 Token，且因為雜訊多，AI 的回答可能反而變得不夠精準。能用 <code>@Files</code> 或 <code>@Folders</code> 限制範圍時，盡量精準限制。</li>
-<li><strong>Docs 自訂功能：</strong> 如果你發現某個冷門套件不在 Cursor 預設的 <code>@Docs</code> 清單裡，你可以輸入 <code>@Docs</code> -&gt; 點擊 <code>Add New Doc</code> -&gt; 輸入該套件的文件網址（例如 <code>[https://mongoosejs.com/docs/](https://mongoosejs.com/docs/)</code>），Cursor 會在幾秒鐘內建立好該文件的索引，非常強大！</li>
-</ol>
-<hr>
-<h2 id="如何撰寫高效率的-cursorrules-範本"><a href="#如何撰寫高效率的-cursorrules-範本" class="headerlink" title="如何撰寫高效率的 .cursorrules 範本"></a>如何撰寫高效率的 .cursorrules 範本</h2><p>對於 Python 開發者來說，<code>.cursorrules</code> 同樣是大幅提升開發體驗的秘密武器。Python 雖然寫起來直覺，但因為是<strong>動態語言</strong>，如果沒有嚴格的規範，AI 很容易寫出型別混亂、排版不一，或是套件版本衝突的程式碼。</p>
-<p>以下為您量身打造一份適合 Python 開發者（以 FastAPI &#x2F; Poetry &#x2F; Modern Python 3.11+ 為例）的 <code>.cursorrules</code> 範本，以及 Python 專屬的進階心法。</p>
-<hr>
-<h2 id="📄-Python-開發-cursorrules-最佳實踐範本"><a href="#📄-Python-開發-cursorrules-最佳實踐範本" class="headerlink" title="📄 Python 開發 .cursorrules 最佳實踐範本"></a>📄 Python 開發 <code>.cursorrules</code> 最佳實踐範本</h2><p>你可以在 Python 專案的根目錄下建立 <code>.cursorrules</code>，並貼入以下內容：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 專案技術棧 (Tech Stack)</span></span><br><span class="line"><span class="bullet">-</span> 語言: Python 3.11+</span><br><span class="line"><span class="bullet">-</span> 主要框架: FastAPI (後端 API) / Pydantic v2 (資料驗證)</span><br><span class="line"><span class="bullet">-</span> 套件管理與虛擬環境: Poetry</span><br><span class="line"><span class="bullet">-</span> 測試框架: pytest</span><br><span class="line"><span class="bullet">-</span> 程式碼檢查與格式化: Ruff (Ruff check / Ruff format)</span><br><span class="line"></span><br><span class="line"><span class="section"># 核心原則與角色設定</span></span><br><span class="line">你是一位精通 Pythonic 編程、非同步架構 (asyncio) 與 Clean Code 的資深 Python 後端架構師。在生成或修改程式碼時，請一律遵守以下規範。</span><br><span class="line"></span><br><span class="line"><span class="section"># 語言與回應規範</span></span><br><span class="line"><span class="bullet">-</span> 一律使用 <span class="strong">**繁體中文 (zh-TW)**</span> 回答與解釋。</span><br><span class="line"><span class="bullet">-</span> 程式碼中的 Docstring 和註解請使用英文，但 API 錯誤訊息與日誌 log 一律使用繁體中文。</span><br><span class="line"><span class="bullet">-</span> 保持回答精簡，優先提供直接可用的程式碼區塊（Diff 格式）。</span><br><span class="line"></span><br><span class="line"><span class="section"># Python 程式碼風格與型別安全 (Pythonic Style)</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**型別提示 (Type Hints):**</span> 嚴格要求所有函式、方法都必須有明確的型別提示（包含參數與回傳值）。</span><br><span class="line">  <span class="code">```python</span></span><br><span class="line"><span class="code">  def get_user_by_id(user_id: int) -&gt; User | None:</span></span><br><span class="line"><span class="code">      ...</span></span><br><span class="line"><span class="code"></span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><strong>程式碼風格:</strong> 嚴格遵循 PEP 8 規範。一律使用 4 個空格縮進。</p>
-</li>
-<li><p><strong>命名規範:</strong> - 變數與函式: 蛇形命名法 (snake_case)</p>
-</li>
-<li><p>類別 (Class): 駝峰命名法 (PascalCase)</p>
-</li>
-<li><p>常數: 全大寫蛇形命名法 (UPPER_CASE_SNAKE)</p>
-</li>
-<li><p><strong>現代 Python 特性:</strong> 優先使用 Python 3.10+ 的新特性，例如使用 <code>|</code> 代替 <code>Optional</code> 或 <code>Union</code>（例如 <code>int | None</code>）。</p>
-</li>
-</ul>
-<h1 id="FastAPI-非同步最佳實踐"><a href="#FastAPI-非同步最佳實踐" class="headerlink" title="FastAPI &amp; 非同步最佳實踐"></a>FastAPI &amp; 非同步最佳實踐</h1><ul>
-<li><strong>非同步宣告:</strong> 凡是涉及資料庫 I&#x2F;O、外部 API 請求的路由與函式，一律使用 <code>async def</code>，並配合 <code>await</code>。如果是純 CPU 計算或不支援非同步的舊套件，才使用 <code>def</code>。</li>
-<li><strong>Pydantic 模型:</strong> 所有請求 (Request Body) 與回應 (Response Model) 必須建立明確的 <code>BaseModel</code>。</li>
-<li><strong>依賴注入:</strong> 善用 FastAPI 的 <code>Depends</code> 來管理資料庫 Session 或身份驗證邏輯。</li>
-</ul>
-<h1 id="錯誤處理與日誌-Exception-Logging"><a href="#錯誤處理與日誌-Exception-Logging" class="headerlink" title="錯誤處理與日誌 (Exception &amp; Logging)"></a>錯誤處理與日誌 (Exception &amp; Logging)</h1><ul>
-<li>嚴格禁止使用全捕捉的 <code>except:</code>，必須指定明確的異常類型（例如 <code>except ValueError:</code>）。</li>
-<li>禁止在程式碼中殘留 <code>print()</code>。所有偵錯與紀錄一律使用 Python 標準庫的 <code>logging</code>（例如 <code>logger.info()</code>, <code>logger.error()</code>）。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 🐍 Python 開發者的 Cursor 進階實戰情境</span><br><span class="line"></span><br><span class="line">將上面的 `.cursorrules` 部署好之後，你可以結合前面學到的 `@` 標籤，在 Python 開發中這樣用：</span><br><span class="line"></span><br><span class="line">### 情境 1：型別爆發與資料驗證 (AI 自動生成 Pydantic / Dataclasses)</span><br><span class="line">Python 的動態特性有時讓人頭痛。你可以利用 `Ctrl + K` 讓 AI 自動幫你把髒資料轉換成結構化模型：</span><br><span class="line">&gt; ➡️ **選中一段複雜的 JSON 資料，按 `Ctrl + K` 輸入：**</span><br><span class="line">&gt; `「根據這段 JSON，幫我產生符合專案規範的 Pydantic v2 欄位定義。記得加上適當的 Type Hints，並參考 @.cursorrules 中的命名規範。」`</span><br><span class="line"></span><br><span class="line">### 情境 2：自動化測試與 mock (pytest 實戰)</span><br><span class="line">寫測試通常是最花時間的。在 Cursor 中，你可以輕鬆跨檔案寫測試：</span><br><span class="line">1. 打開你的業務邏輯檔案（例如 `services/user.py`）。</span><br><span class="line">2. 按下 `Ctrl + I` (Composer)，在對話框輸入：</span><br><span class="line">&gt; ➡️ `「幫我針對 @user.py 裡面的 `register_user` 函式，在 `tests/test_user.py` 中撰寫完整的 pytest。必須包含成功與失敗（拋出 Exception）的情境，並使用 pytest-asyncio 處理非同步，遇到資料庫時請使用 mock。」`</span><br><span class="line"></span><br><span class="line">### 情境 3：套件升級與防幻覺 (`@Docs`)</span><br><span class="line">Python 的套件更新速度極快（例如 Pydantic v1 到 v2 有巨大語法改變，LangChain 的 API 每天都在變）。如果 AI 給你舊的語法，請立刻祭出 `@Docs`：</span><br><span class="line">&gt; ➡️ **在 Chat (`Ctrl + L`) 中輸入：**</span><br><span class="line">&gt; `「我想用 Pydantic 寫一個自訂驗證器，請參考 @Pydantic (貼上最新文件網址) 裡面的 @model_validator 寫法，不要用舊版的 @root_validator。」`</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 💡 Python 開發者特別提醒</span><br><span class="line"></span><br><span class="line">1.  **環境感知：** Cursor 會自動偵測你專案的虛擬環境（不論是 `.venv`、Conda 還是 Poetry）。如果發現 AI 語法提示失效，可以按 `Ctrl + Shift + P` 輸入 `Python: Select Interpreter`，確保 Cursor 指向你正確的虛擬環境，這樣 AI 在使用 `@Codebase` 時才能完美理解你 import 的第三方套件。</span><br><span class="line">2.  **Linting 配合：** 範本中推薦的 **Ruff** 是目前（2026年）Python 社群最快的檢查工具。當 AI 幫你串流生成程式碼後，如果不小心有一兩個縮排或未使用的 import，Ruff 擴充外掛會在你按下存檔的瞬間自動幫你修好，跟 Cursor 的自動生成形成完美的開發閉環。</span><br><span class="line"></span><br></pre></td></tr></table></figure></div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">Previous</a></div><div class="pagination-next"><a href="/page/2/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link" href="/page/3/">3</a></li><li><a class="pagination-link" href="/page/4/">4</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">39</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">9</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-17T08:25:37.000Z">2026-08-17</time></p><p class="title"><a href="/posts/sbom_flow.html">軟體物料清單 (SBOM) 與漏洞掃描導入指南</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-14T06:43:33.000Z">2026-08-14</time></p><p class="title"><a href="/posts/nvme_erase.html">隨身碟自動清除 NVMe SSD</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-14T02:01:57.000Z">2026-08-14</time></p><p class="title"><a href="/posts/nxp_sbom.html">NXP LPC55S69 SBOM (軟體物料清單)</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-11T06:36:30.000Z">2026-08-11</time></p><p class="title"><a href="/posts/modbus_ced_4c.html">智慧電表（CED-4C ML）Modbus RTU 自動化數據採集系統</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-10T09:51:38.000Z">2026-08-10</time></p><p class="title"><a href="/posts/python_webserver.html">Build Web Server by Python</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/08/"><span class="level-start"><span class="level-item">August 2026</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/07/"><span class="level-start"><span class="level-item">July 2026</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/06/"><span class="level-start"><span class="level-item">June 2026</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">24</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/VS-Code/"><span class="tag">VS_Code</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ai/"><span class="tag">ai</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/cra/"><span class="tag">cra</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/docker/"><span class="tag">docker</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/github/"><span class="tag">github</span><span class="tag">10</span></a></div><div class="control"><a class="tags has-addons" href="/tags/modbus/"><span class="tag">modbus</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/other/"><span class="tag">other</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">2</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">Previous</a></div><div class="pagination-next"><a href="/page/2/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link" href="/page/3/">3</a></li><li><a class="pagination-link" href="/page/4/">4</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">40</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">9</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-19T03:43:45.000Z">2026-08-19</time></p><p class="title"><a href="/posts/win_hmi.html">Windows 11 設定為 HMI</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-17T08:25:37.000Z">2026-08-17</time></p><p class="title"><a href="/posts/sbom_flow.html">軟體物料清單 (SBOM) 與漏洞掃描導入指南</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-14T06:43:33.000Z">2026-08-14</time></p><p class="title"><a href="/posts/nvme_erase.html">隨身碟自動清除 NVMe SSD</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-14T02:01:57.000Z">2026-08-14</time></p><p class="title"><a href="/posts/nxp_sbom.html">NXP LPC55S69 SBOM (軟體物料清單)</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-11T06:36:30.000Z">2026-08-11</time></p><p class="title"><a href="/posts/modbus_ced_4c.html">智慧電表（CED-4C ML）Modbus RTU 自動化數據採集系統</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/08/"><span class="level-start"><span class="level-item">August 2026</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/07/"><span class="level-start"><span class="level-item">July 2026</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/06/"><span class="level-start"><span class="level-item">June 2026</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">24</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/VS-Code/"><span class="tag">VS_Code</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ai/"><span class="tag">ai</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/cra/"><span class="tag">cra</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/docker/"><span class="tag">docker</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/github/"><span class="tag">github</span><span class="tag">10</span></a></div><div class="control"><a class="tags has-addons" href="/tags/modbus/"><span class="tag">modbus</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/other/"><span class="tag">other</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">2</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,

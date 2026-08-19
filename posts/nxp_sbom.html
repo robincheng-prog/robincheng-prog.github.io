@@ -53,7 +53,7 @@
 <h2 id="1-安裝合併工具"><a href="#1-安裝合併工具" class="headerlink" title="1. 安裝合併工具"></a>1. 安裝合併工具</h2><p>在你的電腦終端機（Terminal &#x2F; CMD）中執行以下指令來下載所需套件：  </p>
 <p>pip install spdx-tools<br>pip install git+<a target="_blank" rel="noopener" href="https://github.com/">https://github.com</a></p>
 <h2 id="2-執行深度合併指令"><a href="#2-執行深度合併指令" class="headerlink" title="2. 執行深度合併指令"></a>2. 執行深度合併指令</h2><p>將剛才下載的 NXP 檔案通通放入名為 sbom_inputs 的資料夾內，然後執行：</p>
-<p>python -m spdxmerge.SPDXMerge <br>  –docpath “.&#x2F;sbom_inputs” <br>  –outpath “.&#x2F;lpc55s69_combined_project.spdx.json” <br>  –name “LPC55S69_FreeRTOS_Project” <br>  –version “1.0.0” <br>  –mergetype 1 <br>  –author “Your Company Name” <br>  –email “<a href="mailto:&#x64;&#101;&#x76;&#x65;&#108;&#111;&#x70;&#101;&#114;&#x40;&#x65;&#120;&#97;&#x6d;&#x70;&#x6c;&#x65;&#46;&#x63;&#x6f;&#x6d;">developer@example.com</a>“ <br>  –filetype J</p>
+<p>python -m spdxmerge.SPDXMerge <br>  –docpath “.&#x2F;sbom_inputs” <br>  –outpath “.&#x2F;lpc55s69_combined_project.spdx.json” <br>  –name “LPC55S69_FreeRTOS_Project” <br>  –version “1.0.0” <br>  –mergetype 1 <br>  –author “Your Company Name” <br>  –email “<a href="mailto:&#x64;&#x65;&#x76;&#x65;&#x6c;&#x6f;&#112;&#101;&#x72;&#64;&#101;&#120;&#x61;&#109;&#112;&#x6c;&#x65;&#46;&#x63;&#111;&#x6d;">developer@example.com</a>“ <br>  –filetype J</p>
 <ul>
 <li>–docpath：放所有 NXP 原始檔案的資料夾路徑。</li>
 <li>–outpath：合併完成後的最終單一檔案輸出路徑。</li>

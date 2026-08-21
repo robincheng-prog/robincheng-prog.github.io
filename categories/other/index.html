@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Category: other - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="My personal blog at work"><meta property="og:url" content="http://example.com/"><meta property="og:site_name" content="My personal blog at work"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:author" content="Robin Cheng"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com"},"headline":"My personal blog at work","image":["http://example.com/img/og_image.png"],"author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/categories/">Categories</a></li><li class="is-active"><a href="#" aria-current="page">other</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-20T03:56:50.000Z" title="8/20/2026, 11:56:50 AM">2026-08-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:05:55.149Z" title="8/21/2026, 2:05:55 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/other/">other</a></span><span class="level-item">15 minutes read (About 2317 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/linux_hmi.html">Ubuntu 24.04 設定為 HMI</a></p><div class="content"><p>將 Ubuntu 24.04 設定為 HMI（人機介面）系統，主要需要關閉省電、設定自動登入、固定網路 IP、隱藏游標或解鎖觸控與全螢幕自動執行等關鍵設定。</p>
+<h2 id="1-系統電源與螢幕保護設定"><a href="#1-系統電源與螢幕保護設定" class="headerlink" title="1. 系統電源與螢幕保護設定"></a>1. 系統電源與螢幕保護設定</h2><p>工廠或設備的 HMI 需要常亮，不能進入休眠或關閉螢幕。</p>
+<ul>
+<li>開啟設定 (Settings) &gt; 電源 (Power)。</li>
+<li>將螢幕變暗 (Screen Blank) 設定為從不 (Never)。</li>
+<li>關閉自動掛起 (Automatic Suspend) 功能。</li>
+</ul>
+<h2 id="2-設定開機自動登入-Auto-Login"><a href="#2-設定開機自動登入-Auto-Login" class="headerlink" title="2. 設定開機自動登入 (Auto Login)"></a>2. 設定開機自動登入 (Auto Login)</h2><p>設備開機後應直接進入 HMI 畫面，不需要手動輸入密碼。</p>
+<ul>
+<li>前往設定 (Settings) &gt; 使用者 (Users)。</li>
+<li>點擊右上角解鎖（需要輸入密碼）。</li>
+<li>開啟自動登入 (Automatic Login) 開關。</li>
+</ul>
+<h2 id="3-固定網路-IP-Static-IP"><a href="#3-固定網路-IP-Static-IP" class="headerlink" title="3. 固定網路 IP (Static IP)"></a>3. 固定網路 IP (Static IP)</h2><p>HMI 通常需透過網卡與 PLC、SCADA 或伺服器穩定通訊。  </p>
+<ul>
+<li>Ubuntu 24.04 使用 Netplan 管理網路。</li>
+<li>編輯設定檔（路徑通常在 &#x2F;etc&#x2F;netplan&#x2F; 下的 yaml 檔案，例如 01-netcfg.yaml 或類似檔案）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nano /etc/netplan/00-installer-config.yaml</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改為固定 IP、子網路遮罩與閘道：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">network:</span><br><span class="line">  version: 2</span><br><span class="line">  ethernets:</span><br><span class="line">    enp1s0:  <span class="comment"># 請依實際網卡名稱修改</span></span><br><span class="line">      dhcp4: no</span><br><span class="line">      addresses:</span><br><span class="line">        - 192.168.1.100/24</span><br><span class="line">      routes:</span><br><span class="line">        - to: default</span><br><span class="line">          via: 192.168.1.1</span><br><span class="line">      nameservers:</span><br><span class="line">        addresses:</span><br></pre></td></tr></table></figure>
+<ul>
+<li>套用設定：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> netplan apply</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-觸控螢幕與游標校正"><a href="#4-觸控螢幕與游標校正" class="headerlink" title="4. 觸控螢幕與游標校正"></a>4. 觸控螢幕與游標校正</h2><p>若您的 HMI 螢幕為觸控式，需確認觸控座標對應正確。</p>
+<ul>
+<li>安裝與使用 xinput 或透過 Wayland&#x2F;X11 相關工具進行多螢幕觸控對應。</li>
+<li>若現場操作不需要滑鼠游標，可安裝 unclutter 套件來自動隱藏無動作時的游標：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install unclutter</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-HMI-應用程式開機自動啟動"><a href="#5-HMI-應用程式開機自動啟動" class="headerlink" title="5. HMI 應用程式開機自動啟動"></a>5. HMI 應用程式開機自動啟動</h2><ul>
+<li>將您的 HMI 執行檔（如 Node-RED、Qt 程式、Python 腳本或網頁瀏覽器全螢幕模式）加入開機自動執行。</li>
+<li>在 ~&#x2F;.config&#x2F;autostart&#x2F; 資料夾中建立一個 .desktop 啟動捷徑檔案，指定開機後自動載入 HMI 軟體。</li>
+</ul>
+<hr>
+<p>要將 Ubuntu 24.04 上的 Chrome 瀏覽器設定為開機自動進入「全螢幕且無法退出」的 Kiosk 模式（機台模式），請按照以下步驟設定：</p>
+<hr>
+<h2 id="1-建立自動啟動設定檔"><a href="#1-建立自動啟動設定檔" class="headerlink" title="1. 建立自動啟動設定檔"></a>1. 建立自動啟動設定檔</h2><p>Ubuntu 在開機登入後，會讀取使用者目錄下的啟動設定。</p>
+<ul>
+<li>開啟終端機（Ctrl + Alt + T），建立自動啟動資料夾：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p ~/.config/autostart</span><br></pre></td></tr></table></figure>
+<ul>
+<li>建立並編輯 Chrome 的啟動設定檔：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.config/autostart/chrome-kiosk.desktop</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-貼入-Kiosk-參數內容"><a href="#2-貼入-Kiosk-參數內容" class="headerlink" title="2. 貼入 Kiosk 參數內容"></a>2. 貼入 Kiosk 參數內容</h2><p>為了確保後端程式（例如 Node.js、Python、Go 等）完全啟動並開始監聽連接埠（Port）後，Chrome 才開啟網頁，最穩定的做法是使用一個 Shell 腳本（.sh）來控制先後順序，並透過偵測連接埠來精準判斷啟動時機。<br>請依照以下步驟調整設定：</p>
+<h3 id="2-1-建立啟動腳本"><a href="#2-1-建立啟動腳本" class="headerlink" title="2.1. 建立啟動腳本"></a>2.1. 建立啟動腳本</h3><p>我們將後端啟動指令與 Chrome 啟動指令寫在同一個腳本中。</p>
+<ul>
+<li>在您喜歡的路徑建立一個腳本（例如放在家目錄）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/start_hmi.sh</span><br></pre></td></tr></table></figure>
+<ul>
+<li>貼入以下腳本內容（<strong>請根據您的實際狀況修改註解處</strong>）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 啟動您的後端程式（請換成您實際的後端啟動指令與路徑）</span></span><br><span class="line"><span class="comment"># 範例：進入資料夾並在背景執行 node</span></span><br><span class="line"><span class="built_in">cd</span> /path/to/your/backend</span><br><span class="line">./your-backend-binary &amp;  <span class="comment"># 如果是編譯好的二進位檔</span></span><br><span class="line"><span class="comment"># node server.js &amp;      # 如果是 Node.js</span></span><br><span class="line"><span class="comment"># python3 app.py &amp;      # 如果是 Python</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 等待後端連接埠完全就緒（以 8080 連接埠為例）</span></span><br><span class="line"><span class="comment"># 使用 nc (netcat) 檢查連接埠，直到成功連上才往下執行</span></span><br><span class="line">PORT=8080</span><br><span class="line"><span class="keyword">while</span> ! nc -z localhost <span class="variable">$PORT</span>; <span class="keyword">do</span>   </span><br><span class="line">  <span class="built_in">sleep</span> 0.5</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 後端就緒後，啟動 Chrome 瀏覽器進入 Kiosk 模式</span></span><br><span class="line">google-chrome --kiosk --no-first-run --no-default-browser-check --disable-infobars --disable-session-crashed-bubble --incognito http://localhost:<span class="variable">$PORT</span></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>賦予腳本執行權限：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x ~/start_hmi.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-修改開機自動啟動設定檔"><a href="#2-2-修改開機自動啟動設定檔" class="headerlink" title="2.2. 修改開機自動啟動設定檔"></a>2.2. 修改開機自動啟動設定檔</h3><p>現在我們要讓 Ubuntu 開機時改為執行這個腳本，而不是直接執行 Chrome。</p>
+<ul>
+<li>編輯先前建立的自動啟動檔案：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.config/autostart/chrome-kiosk.desktop</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>將內容修改為指向您的腳本路徑（請將 your_username 換成您的 Ubuntu 帳號名稱）：</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Desktop Entry]</span></span><br><span class="line"><span class="attr">Type</span>=Application</span><br><span class="line"><span class="attr">Exec</span>=/home/your_username/start_hmi.sh</span><br><span class="line"><span class="attr">Hidden</span>=<span class="literal">false</span></span><br><span class="line"><span class="attr">NoDisplay</span>=<span class="literal">false</span></span><br><span class="line"><span class="attr">X-GNOME-Autostart-enabled</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">Name</span>=HMI Chrome Kiosk</span><br><span class="line"><span class="attr">Comment</span>=Start Backend and Chrome in Kiosk Mode</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-防呆與除錯提示（選用）"><a href="#2-3-防呆與除錯提示（選用）" class="headerlink" title="2.3. 防呆與除錯提示（選用）"></a>2.3. 防呆與除錯提示（選用）</h3><ul>
+<li><strong>確保安裝 netcat</strong>：上述腳本使用了 <code>nc</code> 指令來偵測連接埠。Ubuntu 24.04 通常內建，若無請安裝：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install netcat-openbsd</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>關閉網頁滑鼠右鍵：HMI 現場不希望操作人員點擊右鍵跳出檢查視窗。您可以在前端網頁的 JavaScript 中加入以下語法直接停用右鍵：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;contextmenu&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> event.<span class="title function_">preventDefault</span>());</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-解決異常關閉的提示視窗（防止跳出「未正常關閉」）"><a href="#3-解決異常關閉的提示視窗（防止跳出「未正常關閉」）" class="headerlink" title="3. 解決異常關閉的提示視窗（防止跳出「未正常關閉」）"></a>3. 解決異常關閉的提示視窗（防止跳出「未正常關閉」）</h2><p>如果現場停電或非正常關閉 HMI，下次開機 Chrome 會跳出「未正常關閉，是否還原分頁」的提示，這會擋住 HMI 畫面。<br>您可以透過修改啟動參數來停用此提示。請將上述 Exec 那一行修改並加上 </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--disable-session-crashed-bubble：</span><br><span class="line"></span><br><span class="line"><span class="attr">Exec</span>=google-chrome --kiosk --<span class="literal">no</span>-first-run --<span class="literal">no</span>-default-browser-check --disable-infobars --disable-session-crashed-bubble --incognito https://your-hmi-url.com</span><br></pre></td></tr></table></figure>
+
+<p>(提示：加上 –incognito 無痕模式可以確保每次開機都是乾淨的快取與 Session)</p>
+<h2 id="4-關閉螢幕側邊欄與上邊欄（選用）"><a href="#4-關閉螢幕側邊欄與上邊欄（選用）" class="headerlink" title="4. 關閉螢幕側邊欄與上邊欄（選用）"></a>4. 關閉螢幕側邊欄與上邊欄（選用）</h2><p>Ubuntu 預設的 GNOME 桌面在滑鼠移到邊緣時可能會滑出 Dock 欄。若希望徹底鎖定畫面：</p>
+<ul>
+<li>前往設定 (Settings) &gt; 外觀 (Appearance)。</li>
+<li>將 Dock 設定為自動隱藏 (Auto-hide the Dock)。</li>
+</ul>
+<hr>
+<p>要在 Ubuntu 24.04 上完全跳過 GNOME 桌面環境（不載入 Dock、上邊欄、桌面捷徑與其他系統 UI），並在開機登入後直接載入 Chrome 全螢幕，最乾淨且有效率的做法是使用 X11 獨立 Session (Custom X Session) 或是最輕量化的視窗管理器（如 Openbox）。<br>因為 Ubuntu 24.04 預設使用 Wayland，為了確保 HMI 與 Kiosk 的高穩定性，建議改用相容性最好的 X11。請按照以下步驟設定：</p>
+<hr>
+<h2 id="1-安裝輕量化視窗管理器"><a href="#1-安裝輕量化視窗管理器" class="headerlink" title="1. 安裝輕量化視窗管理器"></a>1. 安裝輕量化視窗管理器</h2><p>我們需要一個極輕量的環境來承載 Chrome，openbox 是工業機台最常使用的選擇，它沒有任何工作列或選單，只負責把 Chrome 放大到全螢幕。<br>在終端機輸入以下指令安裝：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install openbox xorg</span><br></pre></td></tr></table></figure>
+<h2 id="2-建立專屬的啟動腳本"><a href="#2-建立專屬的啟動腳本" class="headerlink" title="2. 建立專屬的啟動腳本"></a>2. 建立專屬的啟動腳本</h2><p>我們需要一個腳本來處理：啟動後端 → 等待後端就緒 → 開啟 Chrome → 當 Chrome 被關閉時自動重啟（防呆）。<br>建立並編輯腳本（假設放在 &#x2F;home&#x2F;YOUR_USER&#x2F;start_hmi.sh）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/start_hmi.sh</span><br></pre></td></tr></table></figure>
+
+<p>貼入以下內容（請將 your_backend_command 與 8080 換成您的實際設定）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 1. 關閉螢幕節電（防止進入黑畫面）</span></span><br><span class="line">xset s off</span><br><span class="line">xset -dpms</span><br><span class="line">xset s noblank</span><br><span class="line"><span class="comment"># 2. 在背景啟動您的後端程式# 範例：cd /path/to/backend &amp;&amp; ./your_backend &amp;</span></span><br><span class="line"><span class="built_in">cd</span> /home/$(<span class="built_in">whoami</span>)  <span class="comment"># 請換成您後端的實際路徑</span></span><br><span class="line">./your_backend_command &amp; </span><br><span class="line"><span class="comment"># 3. 等待後端連接埠完全就緒</span></span><br><span class="line">PORT=8080while ! nc -z localhost <span class="variable">$PORT</span>; <span class="keyword">do</span>   </span><br><span class="line">  <span class="built_in">sleep</span> 0.5done</span><br><span class="line"><span class="comment"># 4. 無限迴圈：確保 Chrome 萬一崩潰或被關閉時，會自動重新打開while true; do</span></span><br><span class="line">  google-chrome --kiosk --no-first-run --no-default-browser-check --disable-infobars --disable-session-crashed-bubble --incognito http://localhost:<span class="variable">$PORT</span></span><br><span class="line">  <span class="built_in">sleep</span> 1done</span><br></pre></td></tr></table></figure>
+
+<p>賦予腳本執行權限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x ~/start_hmi.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-設定-Openbox-啟動時執行該腳本"><a href="#3-設定-Openbox-啟動時執行該腳本" class="headerlink" title="3. 設定 Openbox 啟動時執行該腳本"></a>3. 設定 Openbox 啟動時執行該腳本</h2><p>當系統載入 Openbox 環境時，我們要讓它直接去執行剛剛寫好的 HMI 腳本。<br>建立 Openbox 的自動啟動目錄與設定檔：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p ~/.config/openbox</span><br><span class="line">nano ~/.config/openbox/autostart</span><br></pre></td></tr></table></figure>
+
+<p>在檔案中貼入這一行（請將 YOUR_USER 換成您的 Ubuntu 帳號名稱）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home/YOUR_USER/start_hmi.sh &amp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-設定系統開機預設進入-Openbox"><a href="#4-設定系統開機預設進入-Openbox" class="headerlink" title="4. 設定系統開機預設進入 Openbox"></a>4. 設定系統開機預設進入 Openbox</h2><p>我們要告訴 Ubuntu，這個帳號登入時不要載入傳統的 Ubuntu (GNOME) 桌面，而是載入 Openbox。<br>編輯或建立 ~&#x2F;.dmrc 檔案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.dmrc</span><br></pre></td></tr></table></figure>
+<p>貼入以下內容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Desktop]</span><br><span class="line">Session=openbox</span><br></pre></td></tr></table></figure>
+
+<p>同時，為了確保系統預設使用 X11 登入，請編輯 GDM3 設定檔：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nano /etc/gdm3/custom.conf</span><br></pre></td></tr></table></figure>
+
+<p>找到 #WaylandEnable&#x3D;false，將前方的 # 註解刪除，修改為：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WaylandEnable=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>儲存後離開。</p>
+<h2 id="5-測試與還原方法"><a href="#5-測試與還原方法" class="headerlink" title="5. 測試與還原方法"></a>5. 測試與還原方法</h2><ol>
+<li>完成上述設定後，重新開機。</li>
+<li>系統會自動登入，完全不會看到 Ubuntu 桌面、側邊欄或任何系統選單，而是直接白屏&#x2F;黑屏一瞬間，隨即全螢幕顯示您的 Chrome HMI 網頁。</li>
+<li>如何離開 HMI 進行維護？</li>
+</ol>
+<ul>
+<li>因為沒有桌面，若需要切換到終端機進行維護，請在鍵盤上按下 Ctrl + Alt + F3（或 F4~F6），即可進入純文字命令列登入帳號修改設定。<ul>
+<li>若想切換回圖形介面，按 Ctrl + Alt + F1 或 Ctrl + Alt + F2 即可切回 HMI 畫面。</li>
+</ul>
+</li>
+</ul>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-19T03:43:45.000Z" title="8/19/2026, 11:43:45 AM">2026-08-19</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:13:23.761Z" title="8/21/2026, 2:13:23 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/other/">other</a></span><span class="level-item">15 minutes read (About 2254 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/win_hmi.html">Windows 11 設定為 HMI</a></p><div class="content"><p>將 Windows 11 設定為工業或專用人機介面（HMI）時，核心目標是確保開機直接進入圖控軟體、關閉干擾通知、防止睡眠與防止操作員亂按系統。</p>
+<hr>
+<h2 id="✅-1-電源與睡眠設定（防止自動關機或休眠）"><a href="#✅-1-電源與睡眠設定（防止自動關機或休眠）" class="headerlink" title="✅ 1. 電源與睡眠設定（防止自動關機或休眠）"></a>✅ 1. 電源與睡眠設定（防止自動關機或休眠）</h2><p>HMI 需要 24 小時不間斷運行，絕不能進入省電模式。</p>
+<ul>
+<li><p>進入 設定 &gt; 系統 &gt; 電源與電池。</p>
+</li>
+<li><p>將「螢幕關閉時間」與「電腦進入睡眠狀態的時間」皆設為 「從不」 (Never)。</p>
+</li>
+<li><p>檢查控制台的傳統電源選項，確保 PCI Express 或 USB 選擇性暫停功能被停用，避免通訊模組斷線。</p>
+</li>
+</ul>
+<hr>
+<h2 id="✅-2-略過登入與自動開機登入（AutoLogon）"><a href="#✅-2-略過登入與自動開機登入（AutoLogon）" class="headerlink" title="✅ 2. 略過登入與自動開機登入（AutoLogon）"></a>✅ 2. 略過登入與自動開機登入（AutoLogon）</h2><p>開機後必須自動進入桌面並啟動 HMI 軟體，不能卡在密碼輸入畫面。</p>
+<ul>
+<li><p>按下 Win + R 鍵，輸入 netplwiz 並按 Enter。</p>
+</li>
+<li><p>在跳出的視窗中，取消勾選「必須輸入使用者名稱和密碼，才能使用這台電腦」。</p>
+</li>
+<li><p>點擊「確定」後，系統會要求你輸入一次目前的帳號與密碼以完成綁定。</p>
+</li>
+</ul>
+<hr>
+<h2 id="✅-3-設定-HMI-軟體開機自動執行"><a href="#✅-3-設定-HMI-軟體開機自動執行" class="headerlink" title="✅ 3. 設定 HMI 軟體開機自動執行"></a>✅ 3. 設定 HMI 軟體開機自動執行</h2><p>讓圖控軟體（如 InTouch、WinCC、KingView 或自寫 SCADA）隨 Windows 啟動。</p>
+<ul>
+<li><p>將你的 HMI 執行檔捷徑，放入 Windows 的啟動資料夾中：</p>
+<ol>
+<li><p>按下 Win + R，輸入 shell:startup 並按 Enter。</p>
+</li>
+<li><p>將 HMI 的捷徑貼到此資料夾中。</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="✅-4-關閉系統更新與干擾通知"><a href="#✅-4-關閉系統更新與干擾通知" class="headerlink" title="✅ 4. 關閉系統更新與干擾通知"></a>✅ 4. 關閉系統更新與干擾通知</h2><p>避免 HMI 運作中途跳出 Windows 更新重開機或右下角彈出通知。</p>
+<ul>
+<li><p>關閉通知：進入 設定 &gt; 系統 &gt; 通知，將通知總開關設為 關閉，或開啟「專注模式」。</p>
+</li>
+<li><p>暫緩 Windows 更新：</p>
+</li>
+<li><p>進入 設定 &gt; Windows 更新，選擇「暫停更新」拉到最長時間（家用&#x2F;專業版極限）。</p>
+</li>
+<li><p>若為企業長期穩定需求，建議直接評估使用 Windows 11 IoT Enterprise LTSC 版本並透過群組原則徹底關閉自動更新。</p>
+</li>
+</ul>
+<hr>
+<h2 id="✅-5-隱藏介面與防止誤觸（Kiosk-模式或調整工作列）"><a href="#✅-5-隱藏介面與防止誤觸（Kiosk-模式或調整工作列）" class="headerlink" title="✅ 5. 隱藏介面與防止誤觸（Kiosk 模式或調整工作列）"></a>✅ 5. 隱藏介面與防止誤觸（Kiosk 模式或調整工作列）</h2><p>如果希望操作員只能操作 HMI 畫面，不能點擊桌面或開啟瀏覽器：</p>
+<ul>
+<li><p>自動隱藏工作列：右鍵點選工作列選擇「工作列設定」&gt;「工作列行為」，勾選「自動隱藏工作列」。</p>
+</li>
+<li><p>鎖定快捷鍵與權限：透過 HMI 軟體自身的帳號權限（如 9 級權限或登入畫面）來管控操作員。如果是單一網頁或 UWP 應用程式，可進一步利用 Windows 11 的 指派存取權 (Assigned Access &#x2F; Kiosk 模式) 建立單一應用程式鎖定帳戶。</p>
+</li>
+</ul>
+<hr>
+<h2 id="Chrome-網頁型-HMI"><a href="#Chrome-網頁型-HMI" class="headerlink" title="Chrome 網頁型 HMI"></a>Chrome 網頁型 HMI</h2><hr>
+<p>由於 Windows 11 內建的「指派存取權 (Kiosk)」選單只強制綁定 Microsoft Edge，無法直接選取 Google Chrome 作為全螢幕 Kiosk 軟體。<br>既然你的 HMI 是網頁型且指定使用 Chrome，最佳的解決方案是利用 Chrome 內建的 Kiosk 模式（資訊看板模式），並搭配 Windows 的自動開機登入與自訂 Shell (殼層)。這樣操作員開機後，電腦只會跳出 Chrome 且完全隱藏 Windows 桌面與工作列，也無法按 F11 或 Alt+F4 退出。<br>以下是完整的設定步驟：</p>
+<h2 id="🛠️-第一步：建立專用的-Windows-本地帳戶"><a href="#🛠️-第一步：建立專用的-Windows-本地帳戶" class="headerlink" title="🛠️ 第一步：建立專用的 Windows 本地帳戶"></a>🛠️ 第一步：建立專用的 Windows 本地帳戶</h2><p>為了系統安全與日後維護，請先建立一個獨立的 HMI 操作員帳戶。</p>
+<ol>
+<li><p>進入 設定 &gt; 帳戶 &gt; 其他使用者。</p>
+</li>
+<li><p>點擊「新增帳戶」，選擇「我沒有這名人員的登入資訊」。</p>
+</li>
+<li><p>點擊「新增沒有 Microsoft 帳戶的使用者」，輸入名稱（例如：HMI_User），密碼可留空（方便自動登入）。</p>
+</li>
+</ol>
+<h2 id="🔑-第二步：設定該帳戶開機自動登入-Autologon"><a href="#🔑-第二步：設定該帳戶開機自動登入-Autologon" class="headerlink" title="🔑 第二步：設定該帳戶開機自動登入 (Autologon)"></a>🔑 第二步：設定該帳戶開機自動登入 (Autologon)</h2><ol>
+<li><p>按下 Win + R 鍵，輸入 netplwiz 並按 Enter。</p>
+</li>
+<li><p>取消勾選「必須輸入使用者名稱和密碼，才能使用這台電腦」。</p>
+</li>
+<li><p>點擊「確定」後，系統會要求輸入你希望開機自動登入的帳戶（填入 HMI_User）和密碼。</p>
+</li>
+</ol>
+<h2 id="🌐-第三步：建立-Chrome-Kiosk-的執行腳本"><a href="#🌐-第三步：建立-Chrome-Kiosk-的執行腳本" class="headerlink" title="🌐 第三步：建立 Chrome Kiosk 的執行腳本"></a>🌐 第三步：建立 Chrome Kiosk 的執行腳本</h2><p>我們需要準備一個腳本，讓 Windows 一開機就啟動 Chrome 的全螢幕鎖定模式。</p>
+<ol>
+<li><p>在桌面點右鍵 &gt; 新增 &gt; 文字文件（.txt 檔）。</p>
+</li>
+<li><p>將以下程式碼貼入文件中（請將網址修改為你的 HMI 實際網址）：</p>
+</li>
+</ol>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">   @<span class="built_in">echo</span> off</span><br><span class="line">:: ==========================================</span><br><span class="line">:: 1. 啟動後端程式</span><br><span class="line">:: ==========================================</span><br><span class="line">:: 使用 start 指令讓後端在背景執行，避免阻塞腳本</span><br><span class="line">:: 若後端是 .exe 執行檔：</span><br><span class="line">start <span class="string">&quot;&quot;</span> <span class="string">&quot;C:\YourBackendFolder\backend_server.exe&quot;</span></span><br><span class="line"></span><br><span class="line">:: 若後端是 Node.js (例如 index.js)：</span><br><span class="line">:: <span class="built_in">cd</span> /d <span class="string">&quot;C:\YourBackendFolder&quot;</span></span><br><span class="line">:: start <span class="string">&quot;&quot;</span> node index.js</span><br><span class="line"></span><br><span class="line">:: 若後端是 Python (例如 app.py)：</span><br><span class="line">:: <span class="built_in">cd</span> /d <span class="string">&quot;C:\YourBackendFolder&quot;</span></span><br><span class="line">:: start <span class="string">&quot;&quot;</span> python app.py</span><br><span class="line"></span><br><span class="line">:: ==========================================</span><br><span class="line">:: 2. 延遲等待（確保後端服務已完全啟動）</span><br><span class="line">:: ==========================================</span><br><span class="line">:: 這裡設定等待 5 秒鐘（可依後端啟動速度調整）</span><br><span class="line"><span class="built_in">timeout</span> /t 5 /nobreak &gt; nul</span><br><span class="line"></span><br><span class="line">:: ==========================================</span><br><span class="line">:: 3. 進入前端 Chrome 無限循環鎖定模式</span><br><span class="line">:: ==========================================</span><br><span class="line">:loop</span><br><span class="line"><span class="string">&quot;C:\Program Files\Google\Chrome\Application\chrome.exe&quot;</span> --kiosk --no-first-run --disable-infobars --disable-session-crashed-bubble --no-default-browser-check <span class="string">&quot;http://localhost:8080&quot;</span></span><br><span class="line">goto loop</span><br></pre></td></tr></table></figure>
+
+<h3 id="💡-關鍵設定說明"><a href="#💡-關鍵設定說明" class="headerlink" title="💡 關鍵設定說明"></a>💡 關鍵設定說明</h3><ul>
+<li><p>start “”：這個指令非常重要。如果不用 start，腳本會卡在後端程式那一行，直到後端被關閉才會執行下一行。加上 start “” 就能讓後端與前端「並行運作」。</p>
+</li>
+<li><p>timeout &#x2F;t 5：給後端程式 5 秒鐘建立資料庫連線或監聽連接埠（Port）。如果前端太快啟動，Chrome 可能會顯示「拒絕連線」的錯誤畫面。</p>
+</li>
+<li><p>路徑切換（cd &#x2F;d）：如果你的後端程式需要讀取同目錄下的設定檔（如 .env 或 config.json），請務必在 start 之前先切換目錄，否則會因為找不到檔案而閃退。</p>
+</li>
+</ul>
+<h3 id="⚠️-注意事項：如何讓後端在背景完全隱藏？"><a href="#⚠️-注意事項：如何讓後端在背景完全隱藏？" class="headerlink" title="⚠️ 注意事項：如何讓後端在背景完全隱藏？"></a>⚠️ 注意事項：如何讓後端在背景完全隱藏？</h3><p>  由於我們修改了該 Windows 帳戶的 Shell，這個 .bat 檔運行時只會出現一個黑色的命令提示字元視窗。</p>
+<ul>
+<li><p>預設狀況：前端 Chrome 會蓋在最上層，操作員看不到背景的黑視窗。</p>
+</li>
+<li><p>進階防呆：若擔心操作員透過某些手段（或後端出錯彈出視窗）看到後端黑畫面，建議檢查你的後端程式是否支援「背景服務模式」（例如將其註冊為 Windows 服務 (Windows Service)）。若註冊為服務，開機就會由系統自動默默啟動，你的 .bat 檔就只需要負責處理 Chrome 循環即可。</p>
+</li>
+</ul>
+<ol start="3">
+<li>將此文字檔案另存新檔，檔名取為 start_hmi.bat（注意：副檔名必須是 .bat，不能是 .txt），並將此檔案移至硬碟根目錄（例如儲存在 C:\start_hmi.bat）。</li>
+</ol>
+<h2 id="🔒-第四步：取代-Windows-桌面（修改登錄檔-Shell）"><a href="#🔒-第四步：取代-Windows-桌面（修改登錄檔-Shell）" class="headerlink" title="🔒 第四步：取代 Windows 桌面（修改登錄檔 Shell）"></a>🔒 第四步：取代 Windows 桌面（修改登錄檔 Shell）</h2><p>這是最關鍵的一步。我們要讓 HMI_User 這個帳戶登入時，不要載入 Windows 的傳統桌面 (explorer.exe)，而是直接載入我們的 Chrome 腳本。這樣操作員就完全摸不到工作列、開始功能表和桌面。</p>
+<ol>
+<li><p>按下 Win + R，輸入 regedit 並按 Enter 開啟登錄編輯程式。</p>
+</li>
+<li><p>導覽至以下路徑：<br>   HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping\system.ini\boot</p>
+</li>
+<li><p>檢查右側的 Shell 數值資料，如果它是 SYS:Microsoft\Windows NT\CurrentVersion\Winlogon，請放心進行下一步（這代表允許針對不同使用者設定不同的桌面 Shell）。</p>
+</li>
+<li><p>關閉登錄編輯程式，並切換登入到你剛剛建立的 HMI_User 帳戶。</p>
+</li>
+<li><p>在 HMI_User 帳戶下，按下 Win + R，輸入 regedit 開啟登錄編輯程式。</p>
+</li>
+<li><p>導覽至目前使用者的路徑：<br>   HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Winlogon</p>
+</li>
+<li><p>在右側空白處點右鍵 &gt; 新增 &gt; 字串值，命名為 Shell。</p>
+</li>
+<li><p>連點兩下剛建立的 Shell，在「數值資料」填入剛才 .bat 檔的絕對路徑：C:\start_hmi.bat。</p>
+</li>
+</ol>
+<hr>
+<h2 id="💡-設定完成後的維護與退出方法"><a href="#💡-設定完成後的維護與退出方法" class="headerlink" title="💡 設定完成後的維護與退出方法"></a>💡 設定完成後的維護與退出方法</h2><ul>
+<li><p>實際運行效果：以後重啟電腦，Windows 11 會自動登入 HMI_User，並且畫面上只會出現 Chrome 顯示的 HMI 網頁，沒有滑鼠右鍵選單，沒有工作列，按 Alt + F4 或 F11 都無效。</p>
+</li>
+<li><p>工程師如何退出進行維護？</p>
+<ol>
+<li><p>在 HMI 畫面上按下 Ctrl + Alt + Del。</p>
+</li>
+<li><p>選擇「登出」或「切換使用者」。</p>
+</li>
+<li><p>切換回你的系統管理員帳戶，即可正常使用 Windows 11 桌面進行軟體修改或 PLC 通訊設定。</p>
+</li>
+</ol>
+</li>
+</ul>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-14T06:43:33.000Z" title="8/14/2026, 2:43:33 PM">2026-08-14</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:07:12.832Z" title="8/21/2026, 2:07:12 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/other/">other</a></span><span class="level-item">16 minutes read (About 2330 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/nvme_erase.html">隨身碟自動清除 NVMe SSD</a></p><div class="content"><p>要做到「單一隨身碟、插上電腦、開機即全自動清除 NVMe SSD」，最完美的解決方案是使用 SystemRescue（一個基於 Arch Linux 修改、專為救援設計的 live 系統）。</p>
+<p>以下是完整的製作與設定說明。<br>-這份針對 SystemRescue 13.2 新版架構的「無網路、一插即蓋、全自動 NVMe 快速抹除隨身碟」完美設定指南。</p>
+<h2 id="在-SystemRescue-13-2-版本中，新版必須嚴格使用-autorun-exec-的多層級物件格式。"><a href="#在-SystemRescue-13-2-版本中，新版必須嚴格使用-autorun-exec-的多層級物件格式。" class="headerlink" title="在 SystemRescue 13.2 版本中，新版必須嚴格使用 autorun.exec 的多層級物件格式。"></a>在 SystemRescue 13.2 版本中，新版必須嚴格使用 autorun.exec 的多層級物件格式。</h2><h2 id="📂-隨身碟最終的檔案結構"><a href="#📂-隨身碟最終的檔案結構" class="headerlink" title="📂 隨身碟最終的檔案結構"></a>📂 隨身碟最終的檔案結構</h2><p>設定完成後，你的隨身碟根目錄中必須包含以下路徑與檔案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">隨身碟根目錄/</span><br><span class="line">└── sysrescue.d/</span><br><span class="line">    ├── 99-autorun.yaml  (自動執行組態檔 - 新版格式)</span><br><span class="line">    └── nvme_erase.sh    (純英文 NVMe 抹除腳本)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="📄-檔案一：99-autorun-yaml-自動執行組態檔"><a href="#📄-檔案一：99-autorun-yaml-自動執行組態檔" class="headerlink" title="📄 檔案一：99-autorun.yaml (自動執行組態檔)"></a>📄 檔案一：99-autorun.yaml (自動執行組態檔)</h2><p>請在隨身碟根目錄下建立 sysrescue.d 資料夾，並在裡面建立一個名為 99-autorun.yaml 的純文字檔案，複製並貼入以下 13.2 版專用格式：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">---autorun:</span></span><br><span class="line">  <span class="attr">exec:</span></span><br><span class="line">    <span class="attr">200:</span></span><br><span class="line">      <span class="attr">path:</span> <span class="string">&quot;bash&quot;</span></span><br><span class="line">      <span class="attr">parameters:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">&quot;/run/archiso/bootmnt/sysrescue.d/nvme_erase.sh&quot;</span></span><br><span class="line">    <span class="attr">300:</span></span><br><span class="line">      <span class="attr">path:</span> <span class="string">&quot;bash&quot;</span></span><br><span class="line">      <span class="attr">parameters:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">&quot;/run/archiso/img_dev/sysrescue.d/nvme_erase.sh&quot;</span></span><br></pre></td></tr></table></figure>
+<p>💡 新版原理解析：</p>
+<ol>
+<li>新版必須使用 exec: 搭配數字代碼（如 200）來排列執行順序。</li>
+<li>將執行命令（path）與腳本路徑（parameters）嚴格拆分。</li>
+<li>腳本同時寫入 200 與 300 兩個區塊，是為了同時相容隨身碟在不同主機板上被掛載為 bootmnt 或 img_dev 的極端情況，確保 100% 成功觸發。</li>
+</ol>
+<hr>
+<h2 id="📄-檔案二：nvme-erase-sh-純英文快速抹除腳本"><a href="#📄-檔案二：nvme-erase-sh-純英文快速抹除腳本" class="headerlink" title="📄 檔案二：nvme_erase.sh (純英文快速抹除腳本)"></a>📄 檔案二：nvme_erase.sh (純英文快速抹除腳本)</h2><p>在同一個 sysrescue.d 資料夾內，建立一個名為 nvme_erase.sh 的檔案，並貼入以下純英文腳本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># Clear the screen for a clean interface</span></span><br><span class="line">clear</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;==========================================&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;🔍 SYSTEMRESCUE AUTO-ERASE ACTIVATED&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;==========================================&quot;</span></span><br><span class="line"><span class="comment"># Search for NVMe devices using built-in lsblk</span></span><br><span class="line">DEVICES=$(lsblk -d -n -o NAME | grep <span class="string">&quot;^nvme&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> [ -z <span class="string">&quot;<span class="variable">$DEVICES</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;❌ Error: No NVMe SSDs detected in this system!&quot;</span></span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">&quot;Press [Enter] to reboot...&quot;</span></span><br><span class="line">    reboot</span><br><span class="line">    <span class="built_in">exit</span> 1fi</span><br><span class="line"><span class="comment"># Display detected NVMe drives and details</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;Found the following NVMe drive(s):\n&quot;</span></span><br><span class="line"><span class="built_in">printf</span> <span class="string">&quot;%-15s %-10s %-30s\n&quot;</span> <span class="string">&quot;Device Path&quot;</span> <span class="string">&quot;Size&quot;</span> <span class="string">&quot;Model&quot;</span></span><br><span class="line"><span class="built_in">printf</span> <span class="string">&quot;%-15s %-10s %-30s\n&quot;</span> <span class="string">&quot;-----------&quot;</span> <span class="string">&quot;----&quot;</span> <span class="string">&quot;-----&quot;</span></span><br><span class="line"><span class="keyword">for</span> dev <span class="keyword">in</span> <span class="variable">$DEVICES</span>; <span class="keyword">do</span></span><br><span class="line">    PATH_DEV=<span class="string">&quot;/dev/<span class="variable">$dev</span>&quot;</span></span><br><span class="line">    SIZE=$(lsblk -d -n -o SIZE <span class="string">&quot;<span class="variable">$PATH_DEV</span>&quot;</span>)</span><br><span class="line">    MODEL=$(<span class="built_in">cat</span> <span class="string">&quot;/sys/class/block/<span class="variable">$dev</span>/device/model&quot;</span> 2&gt;/dev/null | xargs)</span><br><span class="line">    <span class="built_in">printf</span> <span class="string">&quot;%-15s %-10s %-30s\n&quot;</span> <span class="string">&quot;<span class="variable">$PATH_DEV</span>&quot;</span> <span class="string">&quot;<span class="variable">$SIZE</span>&quot;</span> <span class="string">&quot;<span class="variable">$MODEL</span>&quot;</span><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;==========================================&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;⚠️  WARNING: ALL DATA ON THE DRIVES ABOVE WILL BE PERMANENTLY ERASED!&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;==========================================&quot;</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;Press [Enter] to CONFIRM and START NVMe Secure Erase...&quot;</span></span><br><span class="line"><span class="comment"># Start the hardware-level erasure processfor dev in $DEVICES; do</span></span><br><span class="line">    PATH_DEV=<span class="string">&quot;/dev/<span class="variable">$dev</span>&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\n⚡ Erasing device: <span class="variable">$PATH_DEV</span> ...&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Execute SystemRescue 13.2 built-in nvme-cli command</span></span><br><span class="line">    nvme format <span class="string">&quot;<span class="variable">$PATH_DEV</span>&quot;</span> --namespace-id=1 --ses=1</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> [ $? -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;✅ <span class="variable">$PATH_DEV</span> successfully erased!&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;❌ <span class="variable">$PATH_DEV</span> erase failed! (The drive might be frozen by BIOS).&quot;</span></span><br><span class="line">    fidone</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\n🎉 All tasks finished successfully.&quot;</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;Press [Enter] to power off the system...&quot;</span></span><br><span class="line">poweroff</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="製作與操作流程拆步驟說明。"><a href="#製作與操作流程拆步驟說明。" class="headerlink" title="製作與操作流程拆步驟說明。"></a>製作與操作流程拆步驟說明。</h2><h2 id="🛠️-第一階段：在現有的電腦上製作隨身碟（以-Windows-環境為例）-步驟-1：準備工具與下載檔案"><a href="#🛠️-第一階段：在現有的電腦上製作隨身碟（以-Windows-環境為例）-步驟-1：準備工具與下載檔案" class="headerlink" title="🛠️ 第一階段：在現有的電腦上製作隨身碟（以 Windows 環境為例）## 步驟 1：準備工具與下載檔案"></a>🛠️ 第一階段：在現有的電腦上製作隨身碟（以 Windows 環境為例）## 步驟 1：準備工具與下載檔案</h2><ol>
+<li>準備一支 4GB 或以上容量的隨身碟（注意：製作過程會清空這支隨身碟的資料，請先備份）。</li>
+<li>下載作業系統：前往官方網站下載 SystemRescue 13.2 ISO 映像檔，官方網站下載 <a target="_blank" rel="noopener" href="https://www.system-rescue.org/Download/">SystemRescue ISO 映像檔</a>（選擇相容一般電腦的 x86_64 版本）。</li>
+<li>下載燒錄軟體：下載免安裝的 <a target="_blank" rel="noopener" href="https://rufus.ie/">Rufus 燒錄工具</a> 。</li>
+</ol>
+<h2 id="步驟-2：使用-Rufus-燒錄系統"><a href="#步驟-2：使用-Rufus-燒錄系統" class="headerlink" title="步驟 2：使用 Rufus 燒錄系統"></a>步驟 2：使用 Rufus 燒錄系統</h2><ol>
+<li>將隨身碟插上電腦，並打開 Rufus。</li>
+<li>在「裝置 (Device)」欄位，選擇你剛插上的隨身碟。</li>
+<li>在「開機型式 (Boot selection)」欄位右側點選「選擇 (SELECT)」，並選取你剛剛下載的 systemrescue-13.2-amd64.iso 檔案。</li>
+<li>欄位「資料分割方案 (Partition scheme)」選擇 MBR（相容性最高，可支援舊型與新型主機板）；「目標系統 (Target system)」選擇 BIOS 或 UEFI。</li>
+<li>點選最下方的「執行 (START)」。如果彈出詢問視窗（例如以 ISO 或 DD 模式寫入），請直接保持預設推薦選項，點選「確定」，等待綠色進度條跑完顯示「準備就緒」。</li>
+</ol>
+<h2 id="步驟-3：在隨身碟中配置自動執行檔案"><a href="#步驟-3：在隨身碟中配置自動執行檔案" class="headerlink" title="步驟 3：在隨身碟中配置自動執行檔案"></a>步驟 3：在隨身碟中配置自動執行檔案</h2><ol>
+<li>燒錄完成後，不要拔掉隨身碟。直接在 Windows 的「本機&#x2F;我的電腦」中打開該隨身碟。</li>
+<li>在隨身碟的根目錄（最上層畫面）中，按滑鼠右鍵「新增」-&gt;「資料夾」，命名為 sysrescue.d。</li>
+<li>進入 sysrescue.d 資料夾內，按右鍵「新增」-&gt;「文字文件」。將檔案名稱連同副檔名完整修改為 99-autorun.yaml（請確保 Windows 有開啟「顯示副檔名」，不能變成 99-autorun.yaml.txt）。用記事本打開它，貼入上一文字提供的 YAML 內容並儲存。</li>
+<li>依樣畫葫蘆，在同一個地方新增第二個檔案，完整命名為 nvme_erase.sh。用記事本打開，貼入上一文字提供的 Shell 腳本內容並儲存。</li>
+</ol>
+<p>💡 檢查點：此時你的隨身碟裡面應該要有一個 sysrescue.d 資料夾，裡面躺著 99-autorun.yaml 和 nvme_erase.sh 兩個檔案。確認無誤後，即可安全彈出隨身碟。</p>
+<hr>
+<h2 id="💻-第二階段：在目標電腦上進行清除操作"><a href="#💻-第二階段：在目標電腦上進行清除操作" class="headerlink" title="💻 第二階段：在目標電腦上進行清除操作"></a>💻 第二階段：在目標電腦上進行清除操作</h2><h2 id="步驟-4：設定目標電腦由-USB-開機"><a href="#步驟-4：設定目標電腦由-USB-開機" class="headerlink" title="步驟 4：設定目標電腦由 USB 開機"></a>步驟 4：設定目標電腦由 USB 開機</h2><ol>
+<li>將製作好的隨身碟插上那台要清除 SSD 的目標電腦。</li>
+<li>按下電腦電源鍵開機，在畫面亮起的瞬間，連續狂按開機選單快捷鍵（常見廠牌如：ASUS 按 F8、Acer 按 F12、GIGABYTE&#x2F;聯想 按 F12、MSI 按 F11、HP 按 F9。如果是 DIY 電腦，通常是 F11 或 F12）。</li>
+<li>畫面上會跳出一個小視窗（Boot Menu），用鍵盤上下鍵選擇你的 USB 隨身碟名稱，然後按 Enter。</li>
+</ol>
+<h2 id="步驟-5：進入全自動抹除流程"><a href="#步驟-5：進入全自動抹除流程" class="headerlink" title="步驟 5：進入全自動抹除流程"></a>步驟 5：進入全自動抹除流程</h2><ol>
+<li>隨身碟開機成功後，會先看到 SystemRescue 的黑底白字 Grub 啟動選單。直接按 Enter（選擇第一項預設啟動，或放著不管它也會自動倒數進入）。</li>
+<li>電腦會開始跑一堆 Linux 的開機偵測指令（大約需要 15~30 秒，視電腦效能而定）。</li>
+<li>高潮來了： 系統一載入完畢，畫面的所有雜亂文字會被自動清空（Clear），然後立刻彈出你寫的純英文畫面：</li>
+</ol>
+<ul>
+<li>標題顯示：🔍 SYSTEMRESCUE AUTO-ERASE ACTIVATED<ul>
+<li>下方會整齊列出這台電腦上偵測到的 NVMe SSD 裝置路徑、容量與型號。</li>
+<li>最下方顯示黃色警告：⚠️ WARNING: ALL DATA ON THE DRIVES ABOVE WILL BE PERMANENTLY ERASED!</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>仔細核對畫面上顯示的 SSD 型號是否就是你想清除的那顆。</li>
+<li>確認無誤後，在鍵盤按下 Enter 鍵。</li>
+<li>系統會呼叫內建的硬體指令，這時畫面會顯示 ⚡ Erasing device: &#x2F;dev&#x2F;nvme0n1 …。</li>
+<li>大約只需 1~3 秒，畫面就會跳出綠色的 ✅ &#x2F;dev&#x2F;nvme0n1 successfully erased!。</li>
+<li>抹除結束後，畫面會跳出 🎉 All tasks finished successfully. Press [Enter] to power off the system…。</li>
+<li>最後再按一次 Enter 鍵，電腦就會自動關機，這時你就可以安全拔下隨身碟，這顆 SSD 的內容已經徹底灰飛煙滅，且完全不傷硬碟健康。</li>
+</ol>
+<hr>
+<h2 id="⚠️-離線操作時的終極排錯（萬一遇到-Erase-Failed）"><a href="#⚠️-離線操作時的終極排錯（萬一遇到-Erase-Failed）" class="headerlink" title="⚠️ 離線操作時的終極排錯（萬一遇到 Erase Failed）"></a>⚠️ 離線操作時的終極排錯（萬一遇到 Erase Failed）</h2><p>在沒有網路的環境下，如果執行到一半畫面跳出紅色的 ❌ &#x2F;dev&#x2F;nvme0n1 erase failed!，這 100% 不是隨身碟壞掉，而是主機板 BIOS 的硬體保護機制造成的。<br>因為許多主機板為了防止病毒破壞硬碟，開機時會自動把 SSD 狀態鎖定在 “Frozen” (凍結) 狀態，不准任何人發出清除指令。<br>這時的解決三板斧（照順序嘗試）：</p>
+<ol>
+<li>關閉 BIOS 鎖定：重啟電腦進入 BIOS 設定畫面（通常是按 Del 或 F2），尋找關鍵字如 Security Freeze Lock、SSD Secure Erase Support 或 Block Erase，將其設定為 Disabled (關閉)，存檔重開機即可。</li>
+<li>拔插解鎖法（桌機適用）：當腳本卡在失敗、要求你按 Enter 關機前，直接打開電腦機殼，把那顆 NVMe SSD 的訊號線&#x2F;電源線拔掉，數 3 秒後再插回去（此動作在 Linux 下會強制重設硬碟狀態並自動解鎖）。拔插好之後，直接在鍵盤按下 Ctrl + C 中斷腳本，然後輸入 bash &#x2F;run&#x2F;archiso&#x2F;bootmnt&#x2F;sysrescue.d&#x2F;nvme_erase.sh 重新手動觸發一次即可成功！</li>
+<li>改用 Crypto Erase (加密抹除)：有些新型 SSD 只吃加密抹除（一秒銷毀金鑰）。如果上面方法都失敗，你可以把隨身碟插回 Windows 電腦，用記事本打開 nvme_erase.sh，將裡面第 44 行的 –ses&#x3D;1 改成 –ses&#x3D;2，存檔後再去目標電腦跑一次，通常就能順利解決。</li>
+</ol>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-11T06:36:30.000Z" title="8/11/2026, 2:36:30 PM">2026-08-11</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:06:47.099Z" title="8/21/2026, 2:06:47 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/other/">other</a></span><span class="level-item">18 minutes read (About 2764 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/modbus_ced_4c.html">智慧電表（CED-4C ML）Modbus RTU 自動化數據採集系統</a></p><div class="content"><p>作者: Ayden</p>
+<h2 id="1-背景與問題描述（Problem-Statement）"><a href="#1-背景與問題描述（Problem-Statement）" class="headerlink" title="1. 背景與問題描述（Problem Statement）"></a>1. 背景與問題描述（Problem Statement）</h2><p>在開發智慧電表 <strong>CED-4C ML Modbus RTU 自動化數據採集系統</strong>時，原先採用 Python 標準串口套件 <strong>pyserial &#x2F; pymodbus</strong> 進行通訊，但在 Windows 環境下遇到串口無法重複開啟的問題。</p>
+<h3 id="1-1-問題現象"><a href="#1-1-問題現象" class="headerlink" title="1.1 問題現象"></a>1.1 問題現象</h3><ul>
+<li>程式<strong>第一次執行</strong>時，可以正常開啟 COM Port 並完成 Modbus RTU 通訊。</li>
+<li>程式停止後，再次執行時，系統會拋出以下錯誤：</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Cannot configure port, something went wrong.</span><br><span class="line">Original message:</span><br><span class="line">PermissionError(13, &#x27;連結到系統的某個裝置失去作用。&#x27;, None, 31)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>對應的 Windows 錯誤碼為：</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WinError 31</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>發生錯誤後，COM Port 會進入無法正常重新開啟的狀態。</li>
+</ul>
+<h3 id="1-2-硬體對照測試"><a href="#1-2-硬體對照測試" class="headerlink" title="1.2 硬體對照測試"></a>1.2 硬體對照測試</h3><p>使用 C&#x2F;C++ 開發的第三方串口除錯軟體，例如 <strong>Terminal v1.9b</strong>，進行相同的連線、斷線與重新連線測試：</p>
+<ul>
+<li>CTS &#x2F; DSR &#x2F; CD 燈號皆正常。</li>
+<li>COM Port 可以反覆開啟與關閉。</li>
+<li>RS485 通訊功能正常。</li>
+<li>CH340 USB-to-RS485 轉接晶片功能正常。</li>
+</ul>
+<p>因此可初步排除：</p>
+<blockquote>
+<p><strong>RS485 硬體線路、電表及 CH340 硬體本身故障。</strong></p>
+</blockquote>
+<p>問題主要集中於 <strong>Python Serial 通訊方式與 Windows CH340 驅動之間的相容性</strong>。</p>
+<hr>
+<h2 id="2-根因分析（Root-Cause-Analysis）"><a href="#2-根因分析（Root-Cause-Analysis）" class="headerlink" title="2. 根因分析（Root Cause Analysis）"></a>2. 根因分析（Root Cause Analysis）</h2><p>經過比對 Python 與原生 C&#x2F;C++ 串口操作流程後，推測問題主要來自以下幾個層面。</p>
+<h3 id="2-1-pyserial-底層配置機制"><a href="#2-1-pyserial-底層配置機制" class="headerlink" title="2.1 pyserial 底層配置機制"></a>2.1 pyserial 底層配置機制</h3><p>Python 的 <code>pyserial</code> 在呼叫 <code>open()</code> 時，會進一步透過 Windows Serial API 對 COM Port 進行通訊參數配置。</p>
+<p>其中包含：</p>
+<ul>
+<li><code>SetCommState</code></li>
+<li>DCB（Device Control Block）設定</li>
+<li>DTR &#x2F; RTS 狀態</li>
+<li>流量控制相關參數</li>
+</ul>
+<p>部分參數在重新開啟 COM Port 時會被重新配置，可能觸發 CH340 Windows 驅動的相容性問題。</p>
+<hr>
+<h3 id="2-2-CH340-Windows-驅動相容性問題"><a href="#2-2-CH340-Windows-驅動相容性問題" class="headerlink" title="2.2 CH340 Windows 驅動相容性問題"></a>2.2 CH340 Windows 驅動相容性問題</h3><p>在 Windows 環境下，CH340 驅動程式於處理特定 Serial DCB 重置與控制訊號設定時，可能產生異常狀態。</p>
+<p>可能造成：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Python Application</span><br><span class="line">       │</span><br><span class="line">       ▼</span><br><span class="line">    pyserial</span><br><span class="line">       │</span><br><span class="line">       ▼</span><br><span class="line"> Windows Serial API</span><br><span class="line">       │</span><br><span class="line">       ▼</span><br><span class="line"> CH340 Driver</span><br><span class="line">       │</span><br><span class="line">       ▼</span><br><span class="line"> USB Virtual COM Port</span><br><span class="line">       │</span><br><span class="line">       X</span><br><span class="line">  Port 異常 / WinError 31</span><br></pre></td></tr></table></figure>
+
+<p>當驅動進入異常狀態後，Windows 可能判定裝置已失去作用，最終產生：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PermissionError(13)</span><br><span class="line">WinError 31</span><br></pre></td></tr></table></figure>
+
+<p>並導致 COM Port 無法再次正常開啟。</p>
+<hr>
+<h3 id="2-3-原生-C-C-與-Python-套件的操作差異"><a href="#2-3-原生-C-C-與-Python-套件的操作差異" class="headerlink" title="2.3 原生 C&#x2F;C++ 與 Python 套件的操作差異"></a>2.3 原生 C&#x2F;C++ 與 Python 套件的操作差異</h3><p>C&#x2F;C++ 串口工具通常直接透過 Windows Win32 API 操作 Serial Handle，可以自行控制：</p>
+<ul>
+<li>COM Port 開啟</li>
+<li>Baud Rate</li>
+<li>Data Bits</li>
+<li>Stop Bits</li>
+<li>Parity</li>
+<li>Timeout</li>
+<li>Buffer</li>
+<li>DTR &#x2F; RTS</li>
+</ul>
+<p>因此，相較於 <code>pyserial</code> 的高階封裝，可以更精確地控制 Windows Serial API 的操作流程，避免不必要的 DCB 參數重置。</p>
+<hr>
+<h2 id="3-解決方案與架構轉型（Key-Solutions-Architecture）"><a href="#3-解決方案與架構轉型（Key-Solutions-Architecture）" class="headerlink" title="3. 解決方案與架構轉型（Key Solutions &amp; Architecture）"></a>3. 解決方案與架構轉型（Key Solutions &amp; Architecture）</h2><h3 id="3-1-繞過高階套件，改用-Native-Win32-C-API"><a href="#3-1-繞過高階套件，改用-Native-Win32-C-API" class="headerlink" title="3.1 繞過高階套件，改用 Native Win32 C API"></a>3.1 繞過高階套件，改用 Native Win32 C API</h3><p>針對 Windows 平台，放棄使用 <code>pyserial / pymodbus</code> 直接控制 COM Port，改使用 Python 內建的 <code>ctypes</code> 模組，直接呼叫 Windows <code>kernel32.dll</code> 的原生 API。</p>
+<p>主要使用 API 如下：</p>
+<table>
+<thead>
+<tr>
+<th>Win32 API</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>CreateFileW</code></td>
+<td>開啟 COM Port 並取得 Handle</td>
+</tr>
+<tr>
+<td><code>GetCommState</code></td>
+<td>取得目前 Serial DCB 設定</td>
+</tr>
+<tr>
+<td><code>SetCommState</code></td>
+<td>設定 Baud Rate、Parity、Data Bits 等參數</td>
+</tr>
+<tr>
+<td><code>SetCommTimeouts</code></td>
+<td>設定讀寫 Timeout</td>
+</tr>
+<tr>
+<td><code>PurgeComm</code></td>
+<td>清除 Serial Buffer</td>
+</tr>
+<tr>
+<td><code>ReadFile</code></td>
+<td>讀取 Serial Data</td>
+</tr>
+<tr>
+<td><code>WriteFile</code></td>
+<td>發送 Serial Data</td>
+</tr>
+<tr>
+<td><code>CloseHandle</code></td>
+<td>關閉 COM Port Handle</td>
+</tr>
+</tbody></table>
+<p>通訊參數固定設定為：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Baud Rate : 9600</span><br><span class="line">Data Bits : 8</span><br><span class="line">Parity    : None</span><br><span class="line">Stop Bits : 1</span><br></pre></td></tr></table></figure>
+
+<p>即：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">9600 8N1</span><br></pre></td></tr></table></figure>
+
+<p>透過直接控制 Win32 Serial API，可以降低高階 Python Serial 套件對 DCB 參數的額外操作，進而避開 CH340 驅動可能觸發的相容性問題。</p>
+<hr>
+<h3 id="3-2-跨平台自動相容架構（Cross-Platform-Engine）"><a href="#3-2-跨平台自動相容架構（Cross-Platform-Engine）" class="headerlink" title="3.2 跨平台自動相容架構（Cross-Platform Engine）"></a>3.2 跨平台自動相容架構（Cross-Platform Engine）</h3><p>考量未來可能部署至 Linux &#x2F; Raspberry Pi 等環境，因此將 Serial Engine 設計為平台自動選擇架構。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">            Application</span><br><span class="line">                 │</span><br><span class="line">                 ▼</span><br><span class="line">         Modbus RTU Engine</span><br><span class="line">                 │</span><br><span class="line">         ┌───────┴───────┐</span><br><span class="line">         │               │</span><br><span class="line">    Windows           Linux / macOS</span><br><span class="line">         │               │</span><br><span class="line">         ▼               ▼</span><br><span class="line">ctypes + kernel32     pyserial</span><br><span class="line">         │               │</span><br><span class="line">         ▼               ▼</span><br><span class="line">     Windows          OS Serial</span><br><span class="line">     Serial API          Driver</span><br></pre></td></tr></table></figure>
+
+<p>平台判斷方式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sys.platform.startswith(<span class="string">&quot;win&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>使用：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Python ctypes</span><br><span class="line">      ↓</span><br><span class="line">kernel32.dll</span><br><span class="line">      ↓</span><br><span class="line">Win32 Serial API</span><br><span class="line">      ↓</span><br><span class="line">CH340 / USB-to-RS485</span><br></pre></td></tr></table></figure>
+
+<p>以降低 <code>pyserial</code> 與 CH340 Windows Driver 之間的相容性問題。</p>
+<h3 id="Linux-macOS"><a href="#Linux-macOS" class="headerlink" title="Linux &#x2F; macOS"></a>Linux &#x2F; macOS</h3><p>則維持使用：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyserial</span><br></pre></td></tr></table></figure>
+
+<p>因此可以在不修改上層 Modbus 邏輯的情況下，依照執行平台自動切換 Serial Backend。</p>
+<hr>
+<h3 id="3-3-RS485-半雙工通訊時序防護（Bus-Timing-Control）"><a href="#3-3-RS485-半雙工通訊時序防護（Bus-Timing-Control）" class="headerlink" title="3.3 RS485 半雙工通訊時序防護（Bus Timing Control）"></a>3.3 RS485 半雙工通訊時序防護（Bus Timing Control）</h3><p>由於 RS485 屬於半雙工通訊，Master 與 Slave 需要在適當的時間點進行收發切換，因此在 Modbus RTU 輪詢流程中加入額外的 Timing Control。</p>
+<h4 id="Register-Delay"><a href="#Register-Delay" class="headerlink" title="Register Delay"></a>Register Delay</h4><p>在讀取電壓、電流、功率等多個暫存器時，每次 Register Read 之間加入：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">50 ms</span><br></pre></td></tr></table></figure>
+
+<p>延遲。</p>
+<p>目的：</p>
+<ul>
+<li>給予 RS485 收發器足夠的 TX &#x2F; RX 切換時間。</li>
+<li>避免連續 Request 造成封包遺失。</li>
+<li>降低部分 Register Read Timeout 的發生機率。</li>
+</ul>
+<h4 id="Inter-Device-Delay"><a href="#Inter-Device-Delay" class="headerlink" title="Inter-Device Delay"></a>Inter-Device Delay</h4><p>當輪詢不同 Slave ID 時，加入：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">100 ms</span><br></pre></td></tr></table></figure>
+
+<p>的 Bus Idle Time。</p>
+<p>目的：</p>
+<ul>
+<li>避免 Slave 間切換過快。</li>
+<li>降低 RS485 Bus Collision。</li>
+<li>提高多電表環境下的通訊穩定性。</li>
+</ul>
+<hr>
+<h2 id="4-模組化與組件解耦（Modularity-Decoupling）"><a href="#4-模組化與組件解耦（Modularity-Decoupling）" class="headerlink" title="4. 模組化與組件解耦（Modularity &amp; Decoupling）"></a>4. 模組化與組件解耦（Modularity &amp; Decoupling）</h2><p>為提升系統的交付、維護與擴充彈性，將整體系統拆分為三個主要組件：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────┐</span><br><span class="line">│     Modbus Data Collector   │</span><br><span class="line">└──────────────┬──────────────┘</span><br><span class="line">               │</span><br><span class="line">       ┌───────┼────────┐</span><br><span class="line">       ▼       ▼        ▼</span><br><span class="line">   Config   Simulator  Domain</span><br><span class="line">   Reader              Logic</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-1-讀取端組件與配置分離（config-reader-json）"><a href="#4-1-讀取端組件與配置分離（config-reader-json）" class="headerlink" title="4.1 讀取端組件與配置分離（config_reader.json）"></a>4.1 讀取端組件與配置分離（<code>config_reader.json</code>）</h3><p>將系統設定從核心程式碼中抽離，集中管理於：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config_reader.json</span><br></pre></td></tr></table></figure>
+
+<p>可設定項目包括：</p>
+<ul>
+<li>COM Port</li>
+<li>Baud Rate</li>
+<li>電表 Slave ID 清單</li>
+<li>碳排放係數</li>
+<li>目標輸出檔名</li>
+<li>其他採集參數</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;port&quot;</span><span class="punctuation">:</span> <span class="string">&quot;COM3&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;baudrate&quot;</span><span class="punctuation">:</span> <span class="number">9600</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;slave_ids&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">1</span><span class="punctuation">,</span> <span class="number">2</span><span class="punctuation">,</span> <span class="number">3</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;carbon_factor&quot;</span><span class="punctuation">:</span> <span class="number">0.466</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;output_file&quot;</span><span class="punctuation">:</span> <span class="string">&quot;data1.json&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>如此一來，使用者只需要修改 JSON 設定檔，即可增加或調整設備，不需要直接修改核心程式碼。</p>
+<hr>
+<h3 id="4-2-硬體對接模擬器組件（config-simulator-json）"><a href="#4-2-硬體對接模擬器組件（config-simulator-json）" class="headerlink" title="4.2 硬體對接模擬器組件（config_simulator.json）"></a>4.2 硬體對接模擬器組件（<code>config_simulator.json</code>）</h3><p>建立完整的多裝置 <strong>Modbus RTU Slave Simulator</strong>：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">modbus_simulator.py</span><br></pre></td></tr></table></figure>
+
+<p>用於在沒有實際電表的情況下，模擬多個 Modbus Slave Device。</p>
+<p>主要功能包括：</p>
+<ul>
+<li>支援多個 Slave ID。</li>
+<li>不同 Slave ID 可獨立回應。</li>
+<li>未註冊的 Slave ID 自動保持靜默。</li>
+<li>模擬即時電壓、電流等數值的小幅波動。</li>
+<li>模擬 IEEE 754 Big-Endian 32-bit Float。</li>
+<li>支援雙 USB-to-RS485 轉接器 A &#x2F; B 線路進行硬體對接測試。</li>
+</ul>
+<p>架構示意：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">       ┌──────────────┐</span><br><span class="line">       │ Modbus Master│</span><br><span class="line">       └───────┬──────┘</span><br><span class="line">               │</span><br><span class="line">            RS485 Bus</span><br><span class="line">               │</span><br><span class="line">    ┌──────────┴──────────┐</span><br><span class="line">    │                     │</span><br><span class="line">Slave ID 1            Slave ID 2</span><br><span class="line">    │                     │</span><br><span class="line">Simulator             Simulator</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-3-數據格式與領域邏輯（Domain-Logic）"><a href="#4-3-數據格式與領域邏輯（Domain-Logic）" class="headerlink" title="4.3 數據格式與領域邏輯（Domain Logic）"></a>4.3 數據格式與領域邏輯（Domain Logic）</h3><h4 id="IEEE-754-Float-解析"><a href="#IEEE-754-Float-解析" class="headerlink" title="IEEE 754 Float 解析"></a>IEEE 754 Float 解析</h4><p>Modbus Response 中的 4-Byte 浮點數使用 IEEE 754 Big-Endian 格式。</p>
+<p>Python 可透過：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">struct.unpack(<span class="string">&quot;&gt;f&quot;</span>, resp[<span class="number">3</span>:<span class="number">7</span>])</span><br></pre></td></tr></table></figure>
+
+<p>進行解析。</p>
+<p>其中：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;  = Big-Endian</span><br><span class="line">f  = 32-bit Floating Point</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="碳排放計算"><a href="#碳排放計算" class="headerlink" title="碳排放計算"></a>碳排放計算</h4><p>系統將電表的電力使用量轉換為對應的碳排放量。</p>
+<p>採用的電力排碳係數：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.466 kg CO2e / kWh</span><br></pre></td></tr></table></figure>
+
+<p>計算方式：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Carbon Emission</span><br><span class="line">    =</span><br><span class="line">Electricity Consumption × Carbon Factor</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">100 kWh × 0.466</span><br><span class="line">= 46.6 kg CO2e</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-系統整體架構"><a href="#5-系統整體架構" class="headerlink" title="5. 系統整體架構"></a>5. 系統整體架構</h2><p>完成重構後，系統架構如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">                         ┌──────────────────────┐</span><br><span class="line">                         │   config_reader.json │</span><br><span class="line">                         └──────────┬───────────┘</span><br><span class="line">                                    │</span><br><span class="line">                                    ▼</span><br><span class="line">┌──────────────┐          ┌─────────────────────┐</span><br><span class="line">│ CED-4C ML    │◄────────►│  Modbus Collector   │</span><br><span class="line">│ Smart Meter  │  RS485   │                     │</span><br><span class="line">└──────────────┘          └──────────┬──────────┘</span><br><span class="line">                                     │</span><br><span class="line">                            ┌────────┴────────┐</span><br><span class="line">                            │                 │</span><br><span class="line">                            ▼                 ▼</span><br><span class="line">                    Windows Serial       Linux/macOS</span><br><span class="line">                    ctypes/kernel32       pyserial</span><br><span class="line">                            │                 │</span><br><span class="line">                            └────────┬────────┘</span><br><span class="line">                                     │</span><br><span class="line">                                     ▼</span><br><span class="line">                              Domain Logic</span><br><span class="line">                                     │</span><br><span class="line">                    ┌────────────────┼────────────────┐</span><br><span class="line">                    ▼                ▼                ▼</span><br><span class="line">               Float Decode     Energy Data     Carbon Emission</span><br><span class="line">                    │                │                │</span><br><span class="line">                    └────────────────┼────────────────┘</span><br><span class="line">                                     ▼</span><br><span class="line">                                JSON Output</span><br></pre></td></tr></table></figure>
+
+<p>另外，可透過：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">modbus_simulator.py</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">Virtual / Hardware RS485 Bus</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">Multiple Modbus Slave IDs</span><br></pre></td></tr></table></figure>
+
+<p>進行軟體與硬體整合測試。</p>
+<hr>
+<h2 id="6-總結與後續建議（Summary-Next-Steps）"><a href="#6-總結與後續建議（Summary-Next-Steps）" class="headerlink" title="6. 總結與後續建議（Summary &amp; Next Steps）"></a>6. 總結與後續建議（Summary &amp; Next Steps）</h2><h3 id="6-1-軟體面"><a href="#6-1-軟體面" class="headerlink" title="6.1 軟體面"></a>6.1 軟體面</h3><p>當 Python 標準通訊套件，例如 <code>pyserial</code>，在特定 Windows Driver 環境下出現底層相容性問題時，可以考慮使用 Python <code>ctypes</code> 直接呼叫原生 Win32 API。</p>
+<p>相較於引入額外的 C&#x2F;C++ Library，此方式具有以下優點：</p>
+<ul>
+<li>不需要額外安裝第三方 C Library。</li>
+<li>可直接控制 Windows Serial API。</li>
+<li>可自行控制 DCB、Timeout、Buffer 等參數。</li>
+<li>可以降低高階 Serial Library 帶來的額外配置。</li>
+<li>更接近 C&#x2F;C++ 原生串口程式的操作方式。</li>
+</ul>
+<hr>
+<h3 id="6-2-硬體面"><a href="#6-2-硬體面" class="headerlink" title="6.2 硬體面"></a>6.2 硬體面</h3><p>若系統未來需要部署於<strong>長時間運作、工業現場或長期維運環境</strong>，建議優先選擇驅動與 Win32 Serial API 相容性較成熟的 USB-to-RS485 轉接方案。</p>
+<p>例如：</p>
+<ul>
+<li>FTDI <strong>FT232RL</strong></li>
+<li>Silicon Labs <strong>CP2102</strong></li>
+</ul>
+<p>相較於消費級 CH340 方案，這類晶片通常具有較成熟的 Windows 驅動支援，可降低 USB-to-RS485 轉接器造成的系統相容性風險。</p>
+<hr>
+<h2 id="7-最終成果"><a href="#7-最終成果" class="headerlink" title="7. 最終成果"></a>7. 最終成果</h2><p>經過架構調整後，系統由原本：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Python</span><br><span class="line">  │</span><br><span class="line">  ▼</span><br><span class="line">pyserial / pymodbus</span><br><span class="line">  │</span><br><span class="line">  ▼</span><br><span class="line">Windows</span><br><span class="line">  │</span><br><span class="line">  ▼</span><br><span class="line">CH340</span><br><span class="line">  │</span><br><span class="line">  X</span><br><span class="line">WinError 31</span><br></pre></td></tr></table></figure>
+
+<p>改善為：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">          ┌──────────────────┐</span><br><span class="line">          │ Modbus Collector │</span><br><span class="line">          └────────┬─────────┘</span><br><span class="line">                   │</span><br><span class="line">        ┌──────────┴──────────┐</span><br><span class="line">        │                     │</span><br><span class="line">     Windows              Linux/macOS</span><br><span class="line">        │                     │</span><br><span class="line">ctypes + kernel32          pyserial</span><br><span class="line">        │                     │</span><br><span class="line">        └──────────┬──────────┘</span><br><span class="line">                   │</span><br><span class="line">                 RS485</span><br><span class="line">                   │</span><br><span class="line">                   ▼</span><br><span class="line">               CED-4C ML</span><br></pre></td></tr></table></figure>
+
+<p>同時透過 <strong>設定檔分離、Modbus Slave Simulator、Domain Logic 模組化，以及 RS485 Timing Control</strong>，提升系統的：</p>
+<ul>
+<li><strong>通訊穩定性</strong></li>
+<li><strong>跨平台能力</strong></li>
+<li><strong>測試便利性</strong></li>
+<li><strong>設備擴充能力</strong></li>
+<li><strong>程式維護性</strong></li>
+<li><strong>長期部署可靠度</strong></li>
+</ul>
+<p>最終形成一套可支援實體電表、模擬器及不同作業系統環境的模組化 Modbus RTU 自動化數據採集架構。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-25T06:31:00.000Z" title="5/25/2026, 2:31:00 PM">2026-05-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:11:18.204Z" title="8/21/2026, 2:11:18 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/other/">other</a></span><span class="level-item">5 minutes read (About 798 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/selfExtractingTwo.html">自解壓縮執行檔設計方案二</a></p><div class="content"><p>本方案詳述如何將 EDAT 專案中所有的目錄結構與檔案，封裝成一個單一的自解壓安裝檔 (<code>edat_setup.exe</code>)。在執行時，此安裝檔會完整還原工作區的目錄結構，隨後自動調用執行目標批次檔 <code>bin\DC.bat</code>。</p>
+<p>由於 IExpress 工具過於老舊，在 modern Windows 10&#x2F;11 中存在長路徑限制、權限阻擋（需要系統管理員權限編譯與執行）等問題，<strong>本方案採用更現代、高相容性且免管理員權限的 Windows 原生 .NET C# 編譯器 (<code>csc.exe</code>) 技術</strong>來編譯自解壓安裝檔。</p>
+<hr>
+<h2 id="🛠️-架構設計與運作原理"><a href="#🛠️-架構設計與運作原理" class="headerlink" title="🛠️ 架構設計與運作原理"></a>🛠️ 架構設計與運作原理</h2><p>本方案由三個核心元件協同運作：</p>
+<ol>
+<li><strong><code>build.bat</code> (啟動引導)</strong>：在開發環境中執行的入口腳本，負責呼叫 PowerShell 建置核心。</li>
+<li><strong><code>build.ps1</code> (建置核心)</strong>：負責清理舊檔、將工作區打包成 <code>payload.zip</code>、產生 C# 自解壓原始碼並呼叫 <code>csc.exe</code> 編譯成 <code>edat_setup.exe</code>。</li>
+<li><strong><code>payload.zip</code> (壓縮內容)</strong>：包含 EDAT 所有程式碼、組件與目錄層級的臨時壓縮檔，會被內嵌至編譯產出的 EXE 資源中。</li>
+</ol>
+<h3 id="打包與執行流程圖"><a href="#打包與執行流程圖" class="headerlink" title="打包與執行流程圖"></a>打包與執行流程圖</h3><div style="text-align: center">
+  <img src="/images/DeveloperDeploy.png"/>
+  <div>開發編程和終端部署</div>
+</div>
+
+<hr>
+<h2 id="📦-元件細節設計"><a href="#📦-元件細節設計" class="headerlink" title="📦 元件細節設計"></a>📦 元件細節設計</h2><h3 id="1-建置引導檔-build-bat"><a href="#1-建置引導檔-build-bat" class="headerlink" title="1. 建置引導檔 (build.bat)"></a>1. 建置引導檔 (<code>build.bat</code>)</h3><p>位於專案根目錄，使用者直接執行的入口：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">powershell -NoProfile -ExecutionPolicy Bypass -File &quot;%~dp0build.ps1&quot;</span><br><span class="line">exit /b %ERRORLEVEL%</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-建置核心腳本-build-ps1"><a href="#2-建置核心腳本-build-ps1" class="headerlink" title="2. 建置核心腳本 (build.ps1)"></a>2. 建置核心腳本 (<code>build.ps1</code>)</h3><p>使用 PowerShell 編寫，完整建置流程如下：</p>
+<ul>
+<li><strong>清理舊檔</strong>：清除先前的 <code>payload.zip</code>、<code>Installer.cs</code> 與 <code>edat_setup.exe</code>。</li>
+<li><strong>打包工作區</strong>：使用 <code>Compress-Archive</code> 將專案內除了 <code>.git</code>、建置腳本與設計文件以外的所有檔案壓縮成 <code>payload.zip</code>。</li>
+<li><strong>產生 C# 原始碼</strong>：產生 <code>Installer.cs</code>。此程式在執行時會讀取內嵌的 <code>payload.zip</code> 資源，解壓至 <code>%APP_DRIVE%\%APP_DIR%</code>（預設為 <code>C:\scot\dcdat</code>），並執行 <code>bin\DC.bat</code>。</li>
+<li><strong>編譯封裝</strong>：調用 Windows 內建的 .NET 編譯器 <code>%SystemRoot%\Microsoft.NET\Framework64\v4.0.30319\csc.exe</code>，以 <code>/resource:payload.zip</code> 參數將壓縮檔封裝進執行檔，產出 <code>edat_setup.exe</code>。</li>
+<li><strong>暫存清理</strong>：自動刪除暫存的 <code>payload.zip</code> 與 <code>Installer.cs</code>。</li>
+</ul>
+<hr>
+<h2 id="📂-建議的程式異動"><a href="#📂-建議的程式異動" class="headerlink" title="📂 建議的程式異動"></a>📂 建議的程式異動</h2><h3 id="MODIFY-build-bat"><a href="#MODIFY-build-bat" class="headerlink" title="[MODIFY] build.bat"></a>[MODIFY] <a href="file:///d:/github/EDAT/build.bat">build.bat</a></h3><p>修改為調用 <code>build.ps1</code> 的簡潔引導腳本。</p>
+<h3 id="NEW-build-ps1"><a href="#NEW-build-ps1" class="headerlink" title="[NEW] build.ps1"></a>[NEW] <a href="file:///d:/github/EDAT/build.ps1">build.ps1</a></h3><p>新增 PowerShell 建置核心。</p>
+<hr>
+<h2 id="🧪-驗證與測試計畫"><a href="#🧪-驗證與測試計畫" class="headerlink" title="🧪 驗證與測試計畫"></a>🧪 驗證與測試計畫</h2><h3 id="手動測試驗證"><a href="#手動測試驗證" class="headerlink" title="手動測試驗證"></a>手動測試驗證</h3><ol>
+<li><strong>建置測試</strong>：<ul>
+<li>執行專案根目錄下的 <code>build.bat</code>。</li>
+<li>驗證根目錄下是否成功生成 <code>edat_setup.exe</code>，且無任何編譯報錯。</li>
+</ul>
+</li>
+<li><strong>安裝與還原測試</strong>：<ul>
+<li>將生成的 <code>edat_setup.exe</code> 放置至測試環境中執行。</li>
+<li>檢查 <code>C:\scot\dcdat\</code> 下是否完整還原了 <code>bin/</code>、<code>config/</code>、<code>devices/</code> 等所有子資料夾，且檔案大小均正確無誤。</li>
+</ul>
+</li>
+<li><strong>執行測試</strong>：<ul>
+<li>驗證解壓完畢後，是否已自動開啟終端機並正確執行了 <code>bin\DC.bat</code> 及其內部的所有初始化配置。</li>
+</ul>
+</li>
+</ol>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-22T08:12:50.000Z" title="5/22/2026, 4:12:50 PM">2026-05-22</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:11:01.166Z" title="8/21/2026, 2:11:01 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/other/">other</a></span><span class="level-item">9 minutes read (About 1374 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/selfExtracting.html">自解壓縮執行檔設計方案一</a></p><div class="content"><hr>
+<h2 id="以下方案會發生IExpress-編譯失敗（Exit-Code-1）的核心原因："><a href="#以下方案會發生IExpress-編譯失敗（Exit-Code-1）的核心原因：" class="headerlink" title="以下方案會發生IExpress 編譯失敗（Exit Code 1）的核心原因："></a>以下方案會發生IExpress 編譯失敗（Exit Code 1）的核心原因：</h2><h3 id="🔍-失敗原因分析"><a href="#🔍-失敗原因分析" class="headerlink" title="🔍 失敗原因分析"></a>🔍 失敗原因分析</h3><ol>
+<li>權限限制 (UAC Block)：在 Modern Windows (Windows 10&#x2F;11) 中，iexpress.exe 編譯程序以及 MakeCAB 精靈被歸類為高權限管理工具。如果目前的終端機沒有使用「系統管理員身分 (Administrator)」啟動，IExpress 在寫入報告檔案或呼叫 MakeCAB 指引時會被系統無聲阻擋，導致回傳錯誤碼 1。</li>
+<li>無互動 GUI 阻擋：iexpress.exe 是一個老舊的 GUI 應用程式。在無週邊（Headless）或背景服務容器中，一旦發生編譯或權限錯誤，它會試圖跳出 GUI 錯誤提示視窗而卡死或被強制中斷，因此無法在普通終端機下穩定自動化編譯。</li>
+</ol>
+<h3 id="💡-突破性解決方案：Windows-原生-C-編譯器-csc-exe"><a href="#💡-突破性解決方案：Windows-原生-C-編譯器-csc-exe" class="headerlink" title="💡 突破性解決方案：Windows 原生 C# 編譯器 (csc.exe)"></a>💡 突破性解決方案：Windows 原生 C# 編譯器 (csc.exe)</h3><ul>
+<li>為了徹底擺脫 IExpress 老舊、高權限要求以及不穩定的缺點，我探索了 Windows 10&#x2F;11 內建的 .NET C# 編譯器 (csc.exe)。</li>
+<li>每台 Windows 電腦在安裝 .NET Framework 時都會內建 csc.exe 編譯器（位於 C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe）。我們可以寫一個極其輕量化的 C# 自解壓啟動程式 Installer.cs，並將工作區的 payload.zip 作為內嵌資源 (Embedded Resource) 編譯進 edat_setup.exe 中！</li>
+</ul>
+<p>這樣做有以下巨大優勢：</p>
+<ul>
+<li>完全免管理員權限：編譯與生成 edat_setup.exe 不需要任何系統管理員權限。<br>100% 原生相容：不依賴 7-Zip 或任何第三方軟體，編譯速度極快且產生的 EXE 非常穩定。</li>
+<li>無縫自動化：C# 編譯器是標準的命令列工具，不會像 IExpress 一樣在發生錯誤時彈出 GUI 視窗。</li>
+<li>已成功實驗驗證：已在環境中完成小型測試程式的編譯與資源讀取測試，全部順利通過，功能完美運作！<br>請查看<a href="/posts/selfExtractingTwo.html" title="自解壓縮執行檔設計方案二">自解壓縮執行檔設計方案二</a></li>
+</ul>
+<hr>
+<hr>
+<p>本方案詳述如何將 demo 專案中所有的目錄結構與檔案，封裝成一個單一的自解壓安裝檔 (<code>demo_setup.exe</code>)。在執行時，此安裝檔會完整還原工作區的目錄結構，隨後自動調用執行目標批次檔 <code>bin\DC.bat</code>。</p>
+<p>由於系統環境，本方案 <strong>100% 採用 Windows 10&#x2F;11 內建的原生封裝技術</strong>（IExpress 與 PowerShell）。</p>
+<hr>
+<h2 id="🛠️-架構設計與運作原理"><a href="#🛠️-架構設計與運作原理" class="headerlink" title="🛠️ 架構設計與運作原理"></a>🛠️ 架構設計與運作原理</h2><p>本方案由四個核心元件協同運作：</p>
+<ol>
+<li><strong><code>build.bat</code> (建置指令)</strong>：在開發環境中執行的自動化打包腳本。</li>
+<li><strong><code>payload.zip</code> (壓縮內容)</strong>：包含 demo 所有程式碼、組件與目錄層級的壓縮檔。</li>
+<li><strong><code>launch.bat</code> (自解壓啟動器)</strong>：封裝在安裝檔內的引導腳本，負責執行期解壓縮與呼叫主程式。</li>
+<li><strong><code>setup.sed</code> (IExpress 指引設定)</strong>：供 Windows 原生封裝工具 <code>iexpress.exe</code> 讀取的設定檔。</li>
+</ol>
+<h3 id="打包與執行流程圖"><a href="#打包與執行流程圖" class="headerlink" title="打包與執行流程圖"></a>打包與執行流程圖</h3><div style="text-align: center">
+  <img src="/images/DeveloperBuild.png"/>
+  <div>開發編程</div>
+  <img src="/images/ClientDeploy.png"/>
+  <div>終端部署</div>
+</div>
+
+<hr>
+<h2 id="📦-元件細節設計"><a href="#📦-元件細節設計" class="headerlink" title="📦 元件細節設計"></a>📦 元件細節設計</h2><h3 id="1-建置指令檔-build-bat"><a href="#1-建置指令檔-build-bat" class="headerlink" title="1. 建置指令檔 (build.bat)"></a>1. 建置指令檔 (<code>build.bat</code>)</h3><p>位於專案根目錄下，執行時會執行以下操作：</p>
+<ul>
+<li><strong>清理舊檔</strong>：刪除先前的 <code>payload.zip</code>、<code>launch.bat</code>、<code>setup.sed</code> 與 <code>demo_setup.exe</code>。</li>
+<li><strong>打包工作區</strong>：調用 PowerShell 將專案目錄的所有檔案與子目錄（排除 <code>.git</code>、建置腳本與設計文件本身）壓縮為 <code>payload.zip</code>，確保目錄層級完整保留。</li>
+<li><strong>產生啟動器</strong>：自動寫入 <code>launch.bat</code> 至根目錄。</li>
+<li><strong>產生配置檔</strong>：自動寫入 <code>setup.sed</code> 至根目錄。</li>
+<li><strong>執行封裝</strong>：調用 <code>%SystemRoot%\System32\iexpress.exe /n /q setup.sed</code>，以無互動背景模式產出 <code>demo_setup.exe</code>。</li>
+<li><strong>暫存清理</strong>：自動刪除過程中的 <code>payload.zip</code>、<code>launch.bat</code> 與 <code>setup.sed</code>，保持專案乾淨。</li>
+</ul>
+<h3 id="2-啟動器批次檔-launch-bat"><a href="#2-啟動器批次檔-launch-bat" class="headerlink" title="2. 啟動器批次檔 (launch.bat)"></a>2. 啟動器批次檔 (<code>launch.bat</code>)</h3><p>封裝在 EXE 內的關鍵引導腳本，在解壓至臨時目錄後自動執行：</p>
+<ul>
+<li><strong>路徑偵測</strong>：支援 <code>%APP_DRIVE%</code> 與 <code>%APP_DIR%</code> 環境變數。若未配置，則預設指向標準路徑 <code>C:\scot\dcdat</code>（此為 <code>DC.bat</code> 預期執行與關聯檔案的正確系統路徑）。</li>
+<li><strong>目錄還原</strong>：調用 PowerShell 內建的 <code>Expand-Archive</code> 指令，將 <code>payload.zip</code> 解壓縮還原至目標路徑，覆蓋並還原完整的資料夾層級。</li>
+<li><strong>主程式調用</strong>：切換目錄至 <code>C:\scot\dcdat</code> 並呼叫執行 <code>bin\DC.bat</code>。</li>
+</ul>
+<hr>
+<h2 id="📂-建議的程式異動"><a href="#📂-建議的程式異動" class="headerlink" title="📂 建議的程式異動"></a>📂 建議的程式異動</h2><h3 id="新增-build-bat"><a href="#新增-build-bat" class="headerlink" title="[新增] build.bat"></a>[新增] <code>build.bat</code></h3><p>本專案的自動化封裝工具，已儲存於專案根目錄。</p>
+<hr>
+<h2 id="🧪-驗證與測試計畫"><a href="#🧪-驗證與測試計畫" class="headerlink" title="🧪 驗證與測試計畫"></a>🧪 驗證與測試計畫</h2><h3 id="手動測試驗證"><a href="#手動測試驗證" class="headerlink" title="手動測試驗證"></a>手動測試驗證</h3><ol>
+<li><strong>建置測試</strong>：<ul>
+<li>以系統管理員身分執行專案根目錄下的 <code>build.bat</code>。</li>
+<li>驗證根目錄下是否成功生成 <code>demo_setup.exe</code>，且無任何編譯報錯。</li>
+</ul>
+</li>
+<li><strong>安裝與還原測試</strong>：<ul>
+<li>將生成的 <code>demo_setup.exe</code> 放置至乾淨的測試環境中執行。</li>
+<li>檢查 <code>C:\demo\</code> 下是否完整還原了 <code>bin/</code>、<code>config/</code>、<code>devices/</code> 等所有子資料夾，且檔案大小均正確無誤。</li>
+</ul>
+</li>
+<li><strong>執行測試</strong>：<ul>
+<li>驗證解壓完畢後，是否已自動開啟終端機並正確執行了 <code>bin\DC.bat</code> 及其內部的所有初始化配置。</li>
+</ul>
+</li>
+</ol>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-21T07:41:42.000Z" title="5/21/2026, 3:41:42 PM">2026-05-21</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:11:31.433Z" title="8/21/2026, 2:11:31 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/other/">other</a></span><span class="level-item">7 minutes read (About 1105 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/sourceTree.html">SourceTree 基礎操作教學指南</a></p><div class="content"><p>作者： <code>Ayden</code></p>
+<p>本文件旨在幫助初學者快速上手 SourceTree 的介面與基本功能。SourceTree 是一款強大的 Git 圖形化介面工具，能讓你更直觀地管理程式碼版本。</p>
+<p><img src="/images/%E6%9E%B6%E6%A7%8B.png" alt="架構"></p>
+<hr>
+<h2 id="1-啟動與倉庫管理-Repository-Management"><a href="#1-啟動與倉庫管理-Repository-Management" class="headerlink" title="1. 啟動與倉庫管理 (Repository Management)"></a>1. 啟動與倉庫管理 (Repository Management)</h2><p>在 SourceTree 的初始分頁中，你可以管理你的所有專案。</p>
+<ul>
+<li><strong>Local (本地):</strong> 顯示已存在於你電腦硬碟中的 Git 專案列表。</li>
+<li><strong>Remote (遠端):</strong> 連結 GitHub&#x2F;GitLab 帳號後，可直接查看雲端上的專案。</li>
+<li><strong>Clone (複製):</strong> 將雲端倉庫（如 GitHub 網址）下載到本地電腦。</li>
+<li><strong>Add (加入):</strong> 將電腦中現有的 Git 資料夾掛載到 SourceTree 列表中。</li>
+<li><strong>Create (建立):</strong> 在指定的資料夾初始化一個全新的 Git 倉庫。</li>
+</ul>
+<p><img src="/images/Repository_Management.png" alt="Repository_Management"></p>
+<hr>
+<h2 id="2-環境設定與-SSH-配置-Options-SSH"><a href="#2-環境設定與-SSH-配置-Options-SSH" class="headerlink" title="2. 環境設定與 SSH 配置 (Options &amp; SSH)"></a>2. 環境設定與 SSH 配置 (Options &amp; SSH)</h2><p>為了確保能順利提交代碼並與遠端伺服器連線，請確認以下設定：</p>
+<p><kbd>Tools</kbd> &gt; <kbd>Options</kbd></p>
+<ul>
+<li><strong>使用者資訊 (Default user information):</strong><ul>
+<li><strong>Full Name:</strong> 設定你在 Commit 紀錄中顯示的名字。</li>
+<li><strong>Email Address:</strong> 必須與你的 Git 平台（如 GitHub）帳號信箱一致。</li>
+</ul>
+</li>
+<li><strong>SSH 客戶端設定:</strong> 建議使用 <code>OpenSSH</code> 並正確指向你的私鑰路徑。</li>
+</ul>
+<p><img src="/images/Options_SSH.png" alt="Options_SSH"></p>
+<hr>
+<h2 id="3-遠端倉庫與金鑰指定-Remote-Settings"><a href="#3-遠端倉庫與金鑰指定-Remote-Settings" class="headerlink" title="3. 遠端倉庫與金鑰指定 (Remote Settings)"></a>3. 遠端倉庫與金鑰指定 (Remote Settings)</h2><p>當您需要將專案推送到雲端時，必須設定遠端連結路徑，並指定正確的身份驗證金鑰。</p>
+<p><kbd>Settins</kbd> &gt; <kbd>Remotes</kbd></p>
+<ul>
+<li><strong>Remote name:</strong> 預設通常為 <code>origin</code>，這是遠端倉庫的代號。</li>
+<li><strong>URL &#x2F; Path:</strong> 填寫雲端倉庫的位址。<ul>
+<li><strong>進階技巧:</strong> 如果您有多組 SSH Key，可以在路徑前面使用別名（例如 <code>keyB-deploy:帳號/倉庫.git</code>），這能強制 SourceTree 使用您在 <code>config</code> 檔中定義的特定金鑰與該倉庫通訊。</li>
+</ul>
+</li>
+<li><strong>Remote Account:</strong> 連結特定的主機帳號（如 GitHub），以便進行更深層的整合操作。</li>
+</ul>
+<p><img src="/images/Remote_Settings.png" alt="Remote_Settings"></p>
+<hr>
+<h2 id="4-工作區介面解析-File-Status-View"><a href="#4-工作區介面解析-File-Status-View" class="headerlink" title="4. 工作區介面解析 (File Status View)"></a>4. 工作區介面解析 (File Status View)</h2><p>當你開啟一個專案後，最常用的就是「File Status」視圖，這裡處理「現在」的改動。</p>
+<h3 id="核心區域說明："><a href="#核心區域說明：" class="headerlink" title="核心區域說明："></a>核心區域說明：</h3><ul>
+<li><strong>左側導覽列:</strong> 切換「檔案狀態」、「歷史紀錄」、「分支管理」。</li>
+<li><strong>已暫存區 (Staged files):</strong> 準備要打包提交的檔案。</li>
+<li><strong>未暫存區 (Unstaged files):</strong> 電腦中已被修改但尚未打包的檔案。</li>
+<li><strong>比對區 (Diff View):</strong> 點擊檔案可看具體改動（紅色代表刪除，綠色代表新增）。</li>
+</ul>
+<p><img src="/images/File_Status_View.png" alt="File_Status_View"></p>
+<hr>
+<h2 id="5-頂部工具列詳解-Action-Toolbar"><a href="#5-頂部工具列詳解-Action-Toolbar" class="headerlink" title="5. 頂部工具列詳解 (Action Toolbar)"></a>5. 頂部工具列詳解 (Action Toolbar)</h2><p>這是你對 Git 下指令的「動作按鈕區」，也是最核心的控制中心：</p>
+<ul>
+<li><strong>Commit (提交):</strong> 將已暫存 (Staged) 的檔案「打包」並加上訊息備註，存入你電腦的本地紀錄中。</li>
+<li><strong>Pull (拉取) &#x2F; Push (推送):</strong> * <strong>Pull:</strong> 從雲端伺服器下載最新的進度到你的電腦。<ul>
+<li><strong>Push:</strong> 把你電腦裡的最新紀錄上傳到雲端伺服器分享給他人。</li>
+</ul>
+</li>
+<li><strong>Fetch (擷取):</strong> 檢查雲端有沒有新東西，但先不自動合併，讓你先掌握遠端動態。</li>
+<li><strong>Branch (分支) &#x2F; Merge (合併):</strong> * <strong>Branch:</strong> 建立「平行時空」或開外線來開發新功能，不影響主線。<ul>
+<li><strong>Merge:</strong> 將不同分支的開發成果合併在一起。</li>
+</ul>
+</li>
+<li><strong>Stash (暫存):</strong> 臨時的隱藏區。如果你程式寫到一半必須去處理緊急 Bug，可以用 Stash 將目前改動暫時「藏」起來。</li>
+<li><strong>Discard (放棄修改):</strong> 點擊後會把你選取的檔案改動全部抹除，還原到最後一次存檔的狀態。</li>
+<li><strong>Tag (標籤):</strong> 為特定的 Commit 加上標籤（如 <code>v1.0</code>），方便日後快速回溯。</li>
+</ul>
+<p><img src="/images/File_Status_View.png" alt="File_Status_View"></p>
+<hr>
+<h2 id="6-歷史紀錄與版本溯源-History-View"><a href="#6-歷史紀錄與版本溯源-History-View" class="headerlink" title="6. 歷史紀錄與版本溯源 (History View)"></a>6. 歷史紀錄與版本溯源 (History View)</h2><p>「History」視圖讓你查看專案的「過去」。</p>
+<ul>
+<li><strong>分支圖 (Graph):</strong> 以線條顯示分支的開叉與合併過程。</li>
+<li><strong>標籤指示:</strong> <code>main</code> 代表本地位置，<code>origin/main</code> 代表雲端位置。</li>
+</ul>
+<p><img src="/images/History_View.png" alt="History_View"></p>
+<hr>
+<h2 id="7-快速操作工作流"><a href="#7-快速操作工作流" class="headerlink" title="7. 快速操作工作流"></a>7. 快速操作工作流</h2><ol>
+<li><strong>修改:</strong> 在編輯器改完存檔。</li>
+<li><strong>暫存:</strong> 在 <code>Unstaged files</code> 點擊 <code>+</code> 移至 <code>Staged files</code>。</li>
+<li><strong>提交:</strong> 點擊 <code>Commit</code> 並輸入訊息。</li>
+<li><strong>同步:</strong> 點擊 <code>Push</code> 上傳至雲端。</li>
+</ol>
+<hr>
+<p><em>本教學由 SourceTree 介面截圖整理而成，適合 Git 入門使用者參考。</em></p>
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">42</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">5</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/CRA/"><span class="level-start"><span class="level-item">CRA</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/Docker/"><span class="level-start"><span class="level-item">Docker</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Gemini/"><span class="level-start"><span class="level-item">Gemini</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Git/"><span class="level-start"><span class="level-item">Git</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/GitHub/"><span class="level-start"><span class="level-item">GitHub</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/categories/Hexo/"><span class="level-start"><span class="level-item">Hexo</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/other/"><span class="level-start"><span class="level-item">other</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-20T03:56:50.000Z">2026-08-20</time></p><p class="title"><a href="/posts/linux_hmi.html">Ubuntu 24.04 設定為 HMI</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-19T06:12:36.000Z">2026-08-19</time></p><p class="title"><a href="/posts/m2354_sbom.html">Nuvoton M2354 BSP 軟體物料清單 (SBOM) 生成說明</a></p><p class="categories"><a href="/categories/CRA/">CRA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-19T03:43:45.000Z">2026-08-19</time></p><p class="title"><a href="/posts/win_hmi.html">Windows 11 設定為 HMI</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-17T08:25:37.000Z">2026-08-17</time></p><p class="title"><a href="/posts/sbom_flow.html">軟體物料清單 (SBOM) 與漏洞掃描導入指南</a></p><p class="categories"><a href="/categories/CRA/">CRA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-14T06:43:33.000Z">2026-08-14</time></p><p class="title"><a href="/posts/nvme_erase.html">隨身碟自動清除 NVMe SSD</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/08/"><span class="level-start"><span class="level-item">August 2026</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/07/"><span class="level-start"><span class="level-item">July 2026</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/06/"><span class="level-start"><span class="level-item">June 2026</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">24</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Ayden/"><span class="tag">Ayden</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Kenny/"><span class="tag">Kenny</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Robin/"><span class="tag">Robin</span><span class="tag">29</span></a></div><div class="control"><a class="tags has-addons" href="/tags/TJ/"><span class="tag">TJ</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tina/"><span class="tag">Tina</span><span class="tag">2</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

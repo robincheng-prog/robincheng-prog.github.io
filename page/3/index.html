@@ -29,7 +29,261 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-25T06:31:00.000Z" title="5/25/2026, 2:31:00 PM">2026-05-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:11:18.204Z" title="8/21/2026, 2:11:18 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/other/">other</a></span><span class="level-item">5 minutes read (About 798 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/selfExtractingTwo.html">自解壓縮執行檔設計方案二</a></p><div class="content"><p>本方案詳述如何將 EDAT 專案中所有的目錄結構與檔案，封裝成一個單一的自解壓安裝檔 (<code>edat_setup.exe</code>)。在執行時，此安裝檔會完整還原工作區的目錄結構，隨後自動調用執行目標批次檔 <code>bin\DC.bat</code>。</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-27T05:20:26.000Z" title="5/27/2026, 1:20:26 PM">2026-05-27</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:04:53.646Z" title="8/21/2026, 2:04:53 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/Git/">Git</a></span><span class="level-item">5 minutes read (About 783 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/gitMerge.html">Git分支與合併</a></p><div class="content"><p>作者： <code>TJ</code></p>
+<h2 id="Git分支與合併基本操作"><a href="#Git分支與合併基本操作" class="headerlink" title="Git分支與合併基本操作"></a><strong>Git分支與合併基本操作</strong></h2><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="概念說明"><a href="#概念說明" class="headerlink" title="概念說明"></a><strong>概念說明</strong></h2><p><em>在程式開發中，如需同一軟體但只針對不同需求的參數做調整，</em></p>
+<p><em>就會用到的分支（branch）與合併（merge），其範例操作如下：</em></p>
+<ol>
+<li><p><em>新創一個文件。</em></p>
+</li>
+<li><p><em>以此為原生專案使用。</em></p>
+</li>
+<li><p><em>因應原生專案下的延伸專案建立一個文件。</em></p>
+</li>
+<li><p><em>在這個分支上進行文件增加內容。</em></p>
+</li>
+</ol>
+<p><em>之後在某個延伸專案上發現錯誤，修正之後需引用到整個有的專案， 以下為處方式：</em></p>
+<ol>
+<li><p><em>切換到發佈文件用的分支。</em></p>
+</li>
+<li><p><em>在同一個提交上建立一個新分支，在這個分支上修正描述。</em></p>
+</li>
+<li><p><em>認可後，切回發佈文件用的分支，將修正用的分支合併進來，然後再推送（push）出去發佈。</em></p>
+</li>
+<li><p><em>切換到之前應用新需求的分支以繼續修改文件。</em></p>
+</li>
+</ol>
+<p><strong>查看分支列表</strong></p>
+<p><code>git branch --list</code></p>
+<p><img src="/images/mergeex_image7.png"></p>
+<p>查看在分支[main]底下的操作記錄</p>
+<p><code>git log --oneline --graph --decorate --all</code></p>
+<p><img src="/images/mergeex_image15.png"></p>
+<p>其中在說明[Initial commit]中，是新創repository的記錄，再上一行的說明[Add psucode.md]是新增文件<strong>psucode.md</strong>以及加入內容.</p>
+<p><strong>建立全新的分支</strong></p>
+<p><code>git branch [BRANCH_NAME]</code></p>
+<p><img src="/images/mergeex_image21.png"></p>
+<p>雖然已在此repository之中創建新的分支，但目前操控分支仍停留在[main]</p>
+<p>在查看記錄之中，此節點屬於分支[main]和[projectB]</p>
+<p><img src="/images/mergeex_image16.png"></p>
+<p><strong>切換到新創的分支</strong></p>
+<p><code>git switch [BRANCH_NAME]</code></p>
+<p><img src="/images/mergeex_image6.png"></p>
+<p>當查看操作記錄，會看到選定的分支換成[projectB]</p>
+<p><img src="/images/mergeex_image8.png"></p>
+<p>更新檔案[psucode.md]之後，可以看到選定分支節點已前進.</p>
+<p><img src="/images/mergeex_image11.png"></p>
+<p>顯示內容:</p>
+<p><img src="/images/mergeex_image2.png"></p>
+<p>當切換回分支[main]時，[<strong>HEAD</strong>]會指回[main]</p>
+<p><img src="/images/mergeex_image5.png"></p>
+<p>內容也會變回原本分支的原文:</p>
+<p><img src="/images/mergeex_image17.png"></p>
+<p>隨著分支的切換，同檔案下的內容也跟著改變.</p>
+<p>隨著分支的發展推進，會看到顯著的樹狀結構圖</p>
+<p><img src="/images/mergeex_image13.png"></p>
+<p>分支[main]持續向上更新</p>
+<p><img src="/images/mergeex_image20.png"></p>
+<p>目前在分支[main]內容</p>
+<p><img src="/images/mergeex_image4.png"></p>
+<p>目前在分支[projectB]內容</p>
+<p><img src="/images/mergeex_image9.png"></p>
+<p>分支記錄</p>
+<p><img src="/images/mergeex_image18.png"></p>
+<p><strong>合併分支:</strong></p>
+<p>創建新的分支，並切換到新創的分支[desfix]</p>
+<p><img src="/images/mergeex_image14.png"></p>
+<p>在分支[desfix]之下，內容修改</p>
+<p><img src="/images/mergeex_image19.png"></p>
+<p>切換回分支[main]</p>
+<p><img src="/images/mergeex_image3.png"></p>
+<p>執行合併(merge)動作</p>
+<p><img src="/images/mergeex_image12.png"></p>
+<p>指令中所謂合併(merge)分支[desfix]</p>
+<p>是將[desfix]的修改內容，併入到分支[main]之中</p>
+<p>合併前後內容:</p>
+<p><img src="/images/mergeex_image1.png"></p>
+<p>操作記錄:</p>
+<p><img src="/images/mergeex_image22.png"></p>
+<p>從操作記錄可以很清楚看到，在分支[main]先新增內容，然後合入分支[desfix]的修改內容</p>
+<p><strong>刪除指定的分支:</strong></p>
+<p><code>git branch -d [BRANCH_NAME]</code></p>
+<p><img src="/images/mergeex_image10.png"></p>
+<p>在刪除分支[desfix]之後，相關操作記錄還是存在，但分支名稱就消失了.</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-26T06:32:41.000Z" title="5/26/2026, 2:32:41 PM">2026-05-26</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:04:25.646Z" title="8/21/2026, 2:04:25 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/Git/">Git</a></span><span class="level-item">17 minutes read (About 2477 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/gitContent.html">Git 查看內容常用指令</a></p><div class="content"><p>以下是 Git 中專門用來「查看內容」的常用指令：</p>
+<h2 id="1-查看「檔案內容」與修改者"><a href="#1-查看「檔案內容」與修改者" class="headerlink" title="1. 查看「檔案內容」與修改者"></a>1. 查看「檔案內容」與修改者</h2><ul>
+<li>git blame &lt;檔案路徑&gt;：逐行顯示檔案內容，並標註每一行最後是由誰、在選定 Commit 中修改。</li>
+<li>git show <Commit_ID>:&lt;檔案路徑&gt;：直接在終端機印出該檔案在特定歷史版本中的完整內容。</li>
+</ul>
+<h2 id="2-查看「檔案差異（Diff）」"><a href="#2-查看「檔案差異（Diff）」" class="headerlink" title="2. 查看「檔案差異（Diff）」"></a>2. 查看「檔案差異（Diff）」</h2><ul>
+<li>git diff &lt;檔案路徑&gt;：查看工作區與暫存區（尚未 add 的修改）的內容差異。</li>
+<li>git diff –cached &lt;檔案路徑&gt;：查看已暫存（已 add 但尚未 commit）的內容差異。</li>
+<li>git diff <Commit_A> <Commit_B> &lt;檔案路徑&gt;：比較該檔案在兩個不同版本之間的內容改變。</li>
+</ul>
+<h2 id="3-查看「提交紀錄與變更內容」"><a href="#3-查看「提交紀錄與變更內容」" class="headerlink" title="3. 查看「提交紀錄與變更內容」"></a>3. 查看「提交紀錄與變更內容」</h2><ul>
+<li>git log -p &lt;檔案路徑&gt;：顯示該檔案的提交歷史，並逐筆列出每次修改的程式碼細節。</li>
+<li>git show <Commit_ID>：查看某次提交的詳細資訊，包含作者、時間以及該次提交所有檔案的修改內容。</li>
+<li>git log –stat：檢視歷史紀錄時，只顯示每次提交有哪些檔案被變更，以及各自新增&#x2F;刪除的行數統計。</li>
+</ul>
+<h2 id="4-查看「特定物件與檔案清單」"><a href="#4-查看「特定物件與檔案清單」" class="headerlink" title="4. 查看「特定物件與檔案清單」"></a>4. 查看「特定物件與檔案清單」</h2><ul>
+<li>git cat-file -p <Blob_ID>：檢視 Git 內部資料庫中特定 Blob 物件的原始內容。</li>
+<li>git ls-tree -r &lt;分支名或Commit_ID&gt;：列出特定版本中，專案內所有檔案的清單與其對應的物件 ID。</li>
+</ul>
+<blockquote>
+<p>在 Git 中搜尋檔案內容的特定關鍵字歷史，主要有兩種核心武器：</p>
+<ul>
+<li>git log -S（搜尋字&gt; 串出現次數的變化）</li>
+<li>git log -G（使用正規表示式搜尋）。</li>
+</ul>
+<p>這能幫您快速找出「某行程式碼」或「某個變數」是在哪一次提交被加進去或刪除的。</p>
+</blockquote>
+<h2 id="5-核心指令：按關鍵字搜尋歷史變更"><a href="#5-核心指令：按關鍵字搜尋歷史變更" class="headerlink" title="5. 核心指令：按關鍵字搜尋歷史變更"></a>5. 核心指令：按關鍵字搜尋歷史變更</h2><p>🔹 尋找關鍵字「新增」或「刪除」的提交（Pickaxe 搜尋）<br>這是最常用的指令。它會找出關鍵字「出現次數發生改變」的提交紀錄（例如：從無到有、或整行被刪除）。</p>
+<ul>
+<li><p>git log -S “關鍵字” -p</p>
+<p>-p：強烈建議加上，它會直接秀出該次提交的詳細程式碼差異（Diff），讓您一眼看到關鍵字在哪一行。</p>
+<p>🔹 使用正規表示式（Regex）搜尋變更</p>
+<p>   如果您想搜尋符合某種規則的文字，或者只要該行有被修改（即使關鍵字總數沒變）就列出來，請使用 -G：</p>
+</li>
+<li><p>git log -G “正規表示式” -p</p>
+<p> 範例：git log -G “func.*Auth” -p（尋找包含 func 且後面有 Auth 的程式碼變動）</p>
+</li>
+</ul>
+<h2 id="6-進階技巧：縮小搜尋範圍"><a href="#6-進階技巧：縮小搜尋範圍" class="headerlink" title="6. 進階技巧：縮小搜尋範圍"></a>6. 進階技巧：縮小搜尋範圍</h2><pre><code>🔹 限定只搜尋「特定檔案」
+   如果您已經知道該關鍵字大概在哪個檔案裡，務必在尾端加上檔案路徑，速度會快很多：
+</code></pre>
+<ul>
+<li><p>git log -S “關鍵字” -p – 檔案路徑</p>
+<p> 🔹 顯示精簡清單（只看 Commit 摘要）<br>如果不想看長長的程式碼差異，只想先列出哪幾次提交有動到這個字：</p>
+</li>
+<li><p>git log -S “關鍵字” –oneline</p>
+<p> 🔹 搜尋「所有分支」的歷史<br>預設只會搜尋目前所在的分支。若想連同其他分支、過去刪除的分支歷史一起撈，請加上 –all：</p>
+</li>
+<li><p>git log -S “關鍵字” –all -p</p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>💡 額外補充：只想搜尋「目前最新版本」的關鍵字？</p>
+<p>如果您不是要找歷史，只是想在目前所有檔案中找出誰用了這個關鍵字，請用 git grep（速度比萬用的 grep 快非常多）：</p>
+</blockquote>
+<ul>
+<li><p>git grep “關鍵字”</p>
+</li>
+<li><p>git grep -n “關鍵字”：連同文字在檔案的「行號」一起顯示。</p>
+</li>
+</ul>
+<hr>
+<p>在 Git 的工作流程中，檔案會經歷三個主要區域：<strong>工作區 (Working Directory)</strong>、<strong>暫存區 (Staging Area &#x2F; Index)</strong> 與 <strong>本地庫 (Local Repository &#x2F; HEAD)</strong>。<br>要比較這三者之間的內容差異，最核心的工具就是 git diff。以下為您整理對應的比較指令與心法：</p>
+<hr>
+<h2 id="7-核心比較指令"><a href="#7-核心比較指令" class="headerlink" title="7. 核心比較指令"></a>7. 核心比較指令</h2><pre><code>🔹 比較「工作區」與「暫存區」
+
+   當您修改了檔案，但還沒有執行 git add 時，想看自己改了什麼：
+</code></pre>
+<ul>
+<li><p>git diff</p>
+<p>意義：查看哪些修改尚未被記錄到暫存區。</p>
+<p>🔹 比較「暫存區」與「本地庫 (HEAD)」</p>
+<p>   當您執行了 git add，但還沒有執行 git commit 時，想確認準備要提交的內容：</p>
+</li>
+<li><p>git diff –cached</p>
+<p> (注意：git diff –staged 的效果完全相同，兩者挑一個好記的即可。)<br> 意義：查看下一次執行 git commit 時，會被送進本地庫的內容。<br> 🔹 比較「工作區」與「本地庫 (HEAD)」<br>想略過暫存區的狀態，直接看「目前目錄下的檔案」和「最後一次 Commit 的版本」有何不同：</p>
+</li>
+<li><p>git diff HEAD</p>
+<p> 意義：查看自從上一次提交以來，工作區累積的所有變更（包含已 add 與未 add 的修改）。</p>
+</li>
+</ul>
+<h2 id="8-進階實用技巧"><a href="#8-進階實用技巧" class="headerlink" title="8. 進階實用技巧"></a>8. 進階實用技巧</h2><p>📌 只查看特定檔案的差異</p>
+<pre><code>上述指令預設會比較整個專案。若只想專注在某個檔案，請在指令最後加上檔案路徑：
+</code></pre>
+<ul>
+<li>git diff README.md</li>
+<li>git diff –cached README.md</li>
+</ul>
+<p>📌 只想看檔案清單，不想看密密麻麻的程式碼</p>
+<pre><code>如果檔案改動很多，只想確認有哪些檔案狀態不同、影響了幾行，可以加上 --stat 參數：
+</code></pre>
+<ul>
+<li>git diff –stat</li>
+<li>git diff –cached –stat</li>
+</ul>
+<hr>
+<p>💡 快速總結圖解</p>
+<pre><code>git diff ＝ 工作區 🆚 暫存區
+
+git diff --cached ＝ 暫存區 🆚 本地庫 (HEAD)
+
+git diff HEAD ＝ 工作區 🆚 本地庫 (HEAD)
+</code></pre>
+<hr>
+<p>放棄工作區中「尚未暫存（尚未 git add）」的修改，可以依照您的需求範圍（單一檔案、整個專案）選擇以下對應的指令。</p>
+<p>執行後，這些檔案的內容將會直接還原到與暫存區（或最後一次提交）相同的狀態。</p>
+<hr>
+<h2 id="9-放棄「特定檔案」的修改"><a href="#9-放棄「特定檔案」的修改" class="headerlink" title="9. 放棄「特定檔案」的修改"></a>9. 放棄「特定檔案」的修改</h2><p>如果您只想還原某個或某些檔案，請執行：</p>
+<ul>
+<li>git restore &lt;檔案路徑&gt;</li>
+</ul>
+<p>範例：git restore README.md</p>
+<h2 id="10-放棄「整個專案（所有檔案）」的修改"><a href="#10-放棄「整個專案（所有檔案）」的修改" class="headerlink" title="10. 放棄「整個專案（所有檔案）」的修改"></a>10. 放棄「整個專案（所有檔案）」的修改</h2><p>如果您想一口氣取消目前所有已修改、但尚未暫存的檔案變更，請執行：</p>
+<ul>
+<li>git restore .</li>
+</ul>
+<p>(注意：點 . 代表當前目錄下的所有檔案)</p>
+<p><strong>⚠️ 重要提醒：這會動到「未追蹤的檔案（Untracked Files）」嗎？</strong></p>
+<p>  上述的 checkout 或 restore 指令只會影響 Git 已經在追蹤的檔案。如果您在工作區新建立了一個全新的檔案，但從未執行過 git add，上述指令不會刪除它。</p>
+<p>  如果您想連同這些「新建立、未追蹤的檔案&#x2F;資料夾」也一起清空：<br>  請執行清潔指令：</p>
+<ul>
+<li><p>git clean -fd</p>
+<ul>
+<li>-f (force)：強制刪除。</li>
+<li>-d：連同未追蹤的整個資料夾一起刪除。</li>
+</ul>
+</li>
+</ul>
+<p><strong>💡 實用備案：不想刪除，只想先「借放」到旁邊？</strong></p>
+<pre><code>如果您不確定未來會不會用到這些修改，直接刪除太冒險，建議使用 stash（暫存棧）功能把修改藏起來，等以後需要再拿出來：
+</code></pre>
+<ul>
+<li><p>git stash -u</p>
+<p> -u：連同未追蹤的新檔案一起打包藏起來，讓工作區瞬間變乾淨。</p>
+</li>
+</ul>
+<h2 id="11-檢查目前工作區是否已經完全回到乾淨狀態"><a href="#11-檢查目前工作區是否已經完全回到乾淨狀態" class="headerlink" title="11. 檢查目前工作區是否已經完全回到乾淨狀態"></a>11. 檢查目前工作區是否已經完全回到乾淨狀態</h2><p>  最核心且常用的指令是 git status。請在終端機執行：</p>
+<ul>
+<li>git status</li>
+</ul>
+<p><strong>🔍 如何判斷是否「完全乾淨」？</strong></p>
+<blockquote>
+<p>執行後，如果看到以下關鍵字，代表您的工作區非常乾淨，沒有任何未提交的變更：</p>
+<p>nothing to commit, working tree clean</p>
+</blockquote>
+<hr>
+<p><strong>⚠️ 如果畫面「不乾淨」，常見的狀態提示有哪些？</strong></p>
+<p>如果執行 git status 後沒有出現上述的 clean 訊息，通常會看到以下幾種狀況：</p>
+<ol>
+<li><p>工作區有未暫存的修改 (Changes not staged for commit):</p>
+<p> 畫面顯示：紅色的檔案名稱。</p>
+<p> 代表含意：有些追蹤中的檔案被修改了，但您還沒有執行 git add。</p>
+<p> 解決方式：若要放棄，請執行 git restore &lt;檔案&gt;。</p>
+</li>
+<li><p>有未追蹤的新檔案 (Untracked files):</p>
+<p> 畫面顯示：紅色的檔案名稱，出現在 “Untracked files:” 區塊。</p>
+<p> 代表含意：專案中出現了全新建立的檔案，且從未被納入 Git 管理。</p>
+<p> 解決方式：若想徹底刪除這些新檔案，請執行 git clean -fd。</p>
+</li>
+<li><p>暫存區有東西準備提交 (Changes to be committed):</p>
+<p> 畫面顯示：綠色的檔案名稱。</p>
+<p> 代表含意：有些修改已經執行了 git add，正等待被 commit。</p>
+<p> 解決方式：若想把這些綠色檔案退回工作區，請執行 git restore –staged &lt;檔案&gt;。</p>
+</li>
+</ol>
+<hr>
+<p><strong>💡 進階技巧：精簡版檢查</strong><br>如果您不想看太長的文章說明，只想快速確認有沒有髒檔案，可以加上 -s 參數：</p>
+<ul>
+<li>git status -s</li>
+</ul>
+<p>如果執行後完全沒有任何輸出內容，就代表工作區絕對乾淨！</p>
+<hr>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-25T06:31:00.000Z" title="5/25/2026, 2:31:00 PM">2026-05-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:11:18.204Z" title="8/21/2026, 2:11:18 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/other/">other</a></span><span class="level-item">5 minutes read (About 798 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/selfExtractingTwo.html">自解壓縮執行檔設計方案二</a></p><div class="content"><p>本方案詳述如何將 EDAT 專案中所有的目錄結構與檔案，封裝成一個單一的自解壓安裝檔 (<code>edat_setup.exe</code>)。在執行時，此安裝檔會完整還原工作區的目錄結構，隨後自動調用執行目標批次檔 <code>bin\DC.bat</code>。</p>
 <p>由於 IExpress 工具過於老舊，在 modern Windows 10&#x2F;11 中存在長路徑限制、權限阻擋（需要系統管理員權限編譯與執行）等問題，<strong>本方案採用更現代、高相容性且免管理員權限的 Windows 原生 .NET C# 編譯器 (<code>csc.exe</code>) 技術</strong>來編譯自解壓安裝檔。</p>
 <hr>
 <h2 id="🛠️-架構設計與運作原理"><a href="#🛠️-架構設計與運作原理" class="headerlink" title="🛠️ 架構設計與運作原理"></a>🛠️ 架構設計與運作原理</h2><p>本方案由三個核心元件協同運作：</p>
@@ -985,296 +1239,7 @@ class Test:
 
 
 
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-19T01:54:24.000Z" title="5/19/2026, 9:54:24 AM">2026-05-19</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:04:45.052Z" title="8/21/2026, 2:04:45 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/GitHub/">GitHub</a></span><span class="level-item">10 minutes read (About 1428 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/github_gfm.html">github gfm 說明</a></p><div class="content"><p>GitHub Flavored Markdown (GFM) 是 GitHub 基於標準 Markdown 語法進行擴充與修改的 Markdown 版本。它保留了傳統 Markdown 的易讀性，並增加了許多適合軟體開發者與專案管理使用的強大功能（如表格、工作列表等）。<br>以下為 GFM 的核心擴充功能與語法說明：</p>
-<hr>
-<h2 id="1-表格-Tables"><a href="#1-表格-Tables" class="headerlink" title="1. 表格 (Tables)"></a>1. 表格 (Tables)</h2><hr>
-<p>標準 Markdown 原生不支援表格，而 GFM 完美支援。使用豎線 | 分隔欄位，第二行使用破折號 - 區隔表頭，並可用冒號 : 控制對齊方式。 </p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| 項目名稱 | 數量 | 價格 |</span><br><span class="line">| :--- | :---: | ---: |</span><br><span class="line">| 靠左對齊 | 置中對齊 | 靠右對齊 |</span><br><span class="line">| 蘋果 | 10 | $15 |</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="left">項目名稱</th>
-<th align="center">數量</th>
-<th align="right">價格</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">靠左對齊</td>
-<td align="center">置中對齊</td>
-<td align="right">靠右對齊</td>
-</tr>
-<tr>
-<td align="left">蘋果</td>
-<td align="center">10</td>
-<td align="right">$15</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="2-工作列表-Task-Lists"><a href="#2-工作列表-Task-Lists" class="headerlink" title="2. 工作列表 (Task Lists)"></a>2. 工作列表 (Task Lists)</h2><hr>
-<p>在無序列表語法後面加上 [ ]（未勾選）或 [x]（已勾選），即可在 GitHub 介面上直接點選或呈現核取方塊。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> [x] 完成需求分析</span><br><span class="line"><span class="bullet">-</span> [ ] 撰寫 API 文件</span><br><span class="line"><span class="bullet">-</span> [ ] 部署測試伺服器</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><input checked="" disabled="" type="checkbox"> 完成需求分析</li>
-<li><input disabled="" type="checkbox"> 撰寫 API 文件</li>
-<li><input disabled="" type="checkbox"> 部署測試伺服器</li>
-</ul>
-<hr>
-<h2 id="3-程式碼區塊增強-Fenced-Code-Blocks"><a href="#3-程式碼區塊增強-Fenced-Code-Blocks" class="headerlink" title="3. 程式碼區塊增強 (Fenced Code Blocks)"></a>3. 程式碼區塊增強 (Fenced Code Blocks)</h2><hr>
-<p>GFM 允許使用三個反引號 &#96;&#96;&#96; 包裹多行程式碼，並在開頭指定程式語言，即可開啟語法高亮 (Syntax Highlighting)。此外，還支援直接呈現 Mermaid 圖表。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">greet</span>(<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>!`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="4-刪除線-Strikethrough"><a href="#4-刪除線-Strikethrough" class="headerlink" title="4. 刪除線 (Strikethrough)"></a>4. 刪除線 (Strikethrough)</h2><hr>
-<p>在需要刪除的文字前後加上兩個波浪符號 ~~。</p>
-<p>這是一段 <del>被刪除的舊文字</del> 更新後的文字。</p>
-<hr>
-<h2 id="5-自動連結與縮寫引用"><a href="#5-自動連結與縮寫引用" class="headerlink" title="5. 自動連結與縮寫引用"></a>5. 自動連結與縮寫引用</h2><hr>
-<ul>
-<li>網址自動轉換：在 GFM 中，直接輸入網址（如 <a target="_blank" rel="noopener" href="https://github.com)會自動被轉為可點擊的超連結,不需要使用標準的/">https://github.com）會自動被轉為可點擊的超連結，不需要使用標準的</a> <a href="URL">文字</a> 語法。</li>
-<li>Issue 與 PR 引用：輸入 #123 會自動連結到該專案編號 123 的 Issue 或 PR。</li>
-<li>使用者提及：輸入 @username 會自動通知並連結到該 GitHub 使用者的個人檔案。</li>
-<li>Commit 雜湊引用：直接輸入 Commit 的 SHA 雜湊值（例如 a1b2c3d），GitHub 會自動將其轉為該提交的連結。</li>
-</ul>
-<hr>
-<h2 id="6-表情符號支援-Emoji"><a href="#6-表情符號支援-Emoji" class="headerlink" title="6. 表情符號支援 (Emoji)"></a>6. 表情符號支援 (Emoji)</h2><hr>
-<p>GFM 支援使用前後冒號包圍的關鍵字來直接顯示 Emoji。</p>
-<p>這是一個讚 :thumbsup: 和一個愛心 :heart:</p>
-<p><img src="/images/thumbsup_heart.png"></p>
-<hr>
-<h2 id="7-忽略底線的單字強調"><a href="#7-忽略底線的單字強調" class="headerlink" title="7. 忽略底線的單字強調"></a>7. 忽略底線的單字強調</h2><hr>
-<p>在標準 Markdown 中，單字內的底線（如 foo_bar_baz）可能會被誤判為斜體。GFM 修正了這個問題，只有當底線兩旁有空格時才會觸發斜體，保護了程式碼變數命名的完整性。</p>
-<hr>
-<h2 id="8-分頁與換行優化"><a href="#8-分頁與換行優化" class="headerlink" title="8. 分頁與換行優化"></a>8. 分頁與換行優化</h2><hr>
-<p>GFM 對單純的換行處理更為直覺。在 GitHub 的評論區中，直接按下 Enter 鍵換行即可換行，不需要像傳統 Markdown 一樣在行末加上兩個空白鍵。 </p>
-<hr>
-<hr>
-<p>除了前面提到的擴充功能，GitHub Flavored Markdown (GFM) 還支援許多標準 Markdown 的核心語法，以及 GitHub 平台專屬的進階排版指令。<br>以下為您整理其他在寫 README 或 Issue 時非常常用的語法指令：</p>
-<hr>
-<h2 id="1-摺疊區塊-Collapsible-Details"><a href="#1-摺疊區塊-Collapsible-Details" class="headerlink" title="1. 摺疊區塊 (Collapsible Details)"></a>1. 摺疊區塊 (Collapsible Details)</h2><hr>
-<p>當文字或程式碼太長時，可以使用 HTML 的 <details> 標籤將內容隱藏，讓頁面更乾淨。讀者點擊箭頭才能展開看詳細內容。</p>
-<details>
-<summary>點擊展開看詳細程式碼</summary>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;這是一段被隱藏的秘密&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-</details>
-
-<hr>
-<h2 id="2-警告與提示區塊-Alerts"><a href="#2-警告與提示區塊-Alerts" class="headerlink" title="2. 警告與提示區塊 (Alerts)"></a>2. 警告與提示區塊 (Alerts)</h2><hr>
-<p>GitHub 官方支援的特殊引用語法，可以呈現出漂亮的彩色提示框。包含五種等級：</p>
-<blockquote>
-<p>[!NOTE]<br>這是藍色提示框：用於補充說明、背景資訊。</p>
-</blockquote>
-<blockquote>
-<p>[!TIP]<br>這是綠色提示框：用於提供更好的做法或建議。</p>
-</blockquote>
-<blockquote>
-<p>[!IMPORTANT]<br>這是紫色提示框：使用者必須知道的關鍵資訊。</p>
-</blockquote>
-<blockquote>
-<p>[!WARNING]<br>這是黃色提示框：需要立即注意的警告。</p>
-</blockquote>
-<blockquote>
-<p>[!CAUTION]<br>這是紅色提示框：可能帶來負面後果或危險的警告。</p>
-</blockquote>
-<p><img src="/images/color_note.png" alt="在README.md中顯示畫面"> </p>
-<hr>
-<h2 id="3-多媒體嵌與呈現-Media"><a href="#3-多媒體嵌與呈現-Media" class="headerlink" title="3. 多媒體嵌與呈現 (Media)"></a>3. 多媒體嵌與呈現 (Media)</h2><hr>
-<ul>
-<li>圖片大小控制：預設的 <img src="/%E7%B6%B2%E5%9D%80" alt="描述"> 無法調整大小。若要限定寬度，請改用 HTML 標籤：</li>
-</ul>
-<img src="圖片網址" width="300">
-
-<ul>
-<li>影片嵌入：直接把 .mp4 或 .mov 影片檔拖曳到 GitHub 的編輯框，它會自動生成支援線上撥放的語法。</li>
-</ul>
-<hr>
-<h2 id="4-顏色標記-Color-Chips"><a href="#4-顏色標記-Color-Chips" class="headerlink" title="4. 顏色標記 (Color Chips)"></a>4. 顏色標記 (Color Chips)</h2><hr>
-<p>如果你在撰寫樣式文件，可以用三個反引號包裹語言為 yaml，並輸入十六進位顏色碼，GitHub 會自動在前方顯示該顏色的色塊。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">color:</span> <span class="string">&quot;#FF5733&quot;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="5-錨點連結-Anchor-Links"><a href="#5-錨點連結-Anchor-Links" class="headerlink" title="5. 錨點連結 (Anchor Links)"></a>5. 錨點連結 (Anchor Links)</h2><hr>
-<p>在 GitHub 中，所有的標題（Heading）都會自動被轉為網頁錨點。你可以建立「回到目錄」或跳轉到特定段落的連結：</p>
-<h2 id="系統安裝說明點我跳轉到步驟二"><a href="#系統安裝說明點我跳轉到步驟二" class="headerlink" title="系統安裝說明點我跳轉到步驟二"></a>系統安裝說明<a href="#%E6%AD%A5%E9%A9%9F%E4%BA%8C">點我跳轉到步驟二</a></h2><h3 id="步驟一內容…"><a href="#步驟一內容…" class="headerlink" title="步驟一內容…"></a>步驟一內容…</h3><h3 id="步驟二內容…"><a href="#步驟二內容…" class="headerlink" title="步驟二內容…"></a>步驟二內容…</h3><p>小提醒：網址部分的標題英文字母必須全部小寫，且空格要變成減號 -（例如：## My Title 要寫成 (#my-title)）。</p>
-<hr>
-<h2 id="6-HTML-區塊置中與鍵盤樣式"><a href="#6-HTML-區塊置中與鍵盤樣式" class="headerlink" title="6. HTML 區塊置中與鍵盤樣式"></a>6. HTML 區塊置中與鍵盤樣式</h2><hr>
-<ul>
-<li>內容置中：Markdown 預設靠左。如果要置中文字或圖片，可使用 <code>&lt;p align=&quot;center&quot;&gt;內容&lt;/p&gt;</code>。</li>
-</ul>
- <p align="center">置中的內容</p>
-
-<ul>
-<li>鍵盤快捷鍵樣式：使用 <code>&lt;kbd&gt;</code> 標籤可以讓文字看起來像鍵盤按鍵。</li>
-</ul>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">markdown</span><br><span class="line">請按下 <span class="language-xml"><span class="tag">&lt;<span class="name">kbd</span>&gt;</span></span>Ctrl<span class="language-xml"><span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span> + <span class="language-xml"><span class="tag">&lt;<span class="name">kbd</span>&gt;</span></span>C<span class="language-xml"><span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span> 複製。</span><br></pre></td></tr></table></figure>
-<ul>
-<li>請按下 <kbd>Ctrl</kbd> + <kbd>C</kbd> 複製。</li>
-</ul>
-<hr>
-<p>如果你想進一步了解更細緻的規範，可以參考 <a target="_blank" rel="noopener" href="https://github.github.com/gfm/">GitHub 官方 GFM 規格說明書</a>。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-05-18T05:46:26.000Z" title="5/18/2026, 1:46:26 PM">2026-05-18</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:10:29.426Z" title="8/21/2026, 2:10:29 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/GitHub/">GitHub</a></span><span class="level-item">16 minutes read (About 2402 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/readme-example.html">README.md 範本說明</a></p><div class="content"><p><code>README.md</code> 範本要如何勾勒出了一份<strong>專業、易讀且結構完整的 README 檔</strong>核心要素。</p>
-<p>如果要寫出一份「README.md 內容說明（或撰寫指南）」，一份合格且讓人想讀的 README 應該包含以下<strong>五大核心維度</strong>與<strong>細分項目</strong>：</p>
-<hr>
-<h2 id="📄-核心維度一：專案門面與概述-Header-Overview"><a href="#📄-核心維度一：專案門面與概述-Header-Overview" class="headerlink" title="📄 核心維度一：專案門面與概述 (Header &amp; Overview)"></a>📄 核心維度一：專案門面與概述 (Header &amp; Overview)</h2><p>這部分是讀者點進專案後的前 3 秒印象，必須精準告訴別人「這是什麼」。</p>
-<ul>
-<li><strong>專案標題與標語 (Title &amp; Tagline)：</strong> 醒目的專案名稱，並用一句話（或主標題下方的引言）點出核心功能。</li>
-<li><strong>狀態徽章 (Badges)：</strong> 放置 GitHub Stars、Forks、License、npm 版本、測試覆蓋率等徽章，增加專案公信力。</li>
-<li><strong>專案封面圖&#x2F;Logo (Logo &amp; Banner)：</strong> 放置產品 Logo 或視覺封面，提升視覺質感。</li>
-<li><strong>快速導覽連結 (Quick Links)：</strong> 如線上展示（Demo）連結、官方文件連結、問題回報（Issues）連結。</li>
-<li><strong>目錄 (Table of Contents)：</strong> 當 README 內容較長時，提供錨點目錄，方便讀者快速跳轉。</li>
-</ul>
-<hr>
-<h2 id="🚀-核心維度二：功能展示與操作-Features-Demo"><a href="#🚀-核心維度二：功能展示與操作-Features-Demo" class="headerlink" title="🚀 核心維度二：功能展示與操作 (Features &amp; Demo)"></a>🚀 核心維度二：功能展示與操作 (Features &amp; Demo)</h2><p>讓使用者在下載前，就能直觀感受專案能做到什麼、畫面長怎樣。</p>
-<ul>
-<li><strong>動態&#x2F;靜態畫面展示 (Demo &#x2F; Screenshots)：</strong> 運用 GIF 動畫、操作截圖（1~3 張），直觀呈現產品介面或 CLI 互動過程。</li>
-<li><strong>功能清單 (Features Check-list)：</strong> 使用 Markdown 的核取方塊（<code>- [x]</code>）條列已完成或支援的核心功能。</li>
-<li><strong>測試帳號資訊 (Test Credentials)：</strong> 若專案包含登入系統，提供一組「僅供檢視」的測試帳密，方便他人體驗。</li>
-</ul>
-<hr>
-<h2 id="🛠️-核心維度三：開發者指南與安裝步步來-Getting-Started-Usage"><a href="#🛠️-核心維度三：開發者指南與安裝步步來-Getting-Started-Usage" class="headerlink" title="🛠️ 核心維度三：開發者指南與安裝步步來 (Getting Started &amp; Usage)"></a>🛠️ 核心維度三：開發者指南與安裝步步來 (Getting Started &amp; Usage)</h2><p>這部分是給想在本機端跑起專案的開發者看的，必須確保步驟清晰無誤。</p>
-<ul>
-<li><strong>環境與配置要求 (Prerequisites)：</strong> 明確列出限制，例如 Node.js 最低版本需求、需要哪些全域工具（如 npx）或 API Key。</li>
-<li><strong>安裝步驟 (Installation)：</strong> 從 <code>git clone</code>、移動資料夾、到安裝套件（如 <code>npm install</code>），提供一行行的終端機複製指令。</li>
-<li><strong>環境變數說明 (Environment Variables)：</strong> 說明 <code>.env</code> 檔案的複製與設定方式，並條列各個變數的用途。</li>
-<li><strong>運行專案與開啟 (Usage &amp; Running)：</strong> 提供啟動開發環境的指令（如 <code>npm run serve</code>），並標明本地瀏覽器對應的網址（如 <code>http://localhost:8080/</code>）。</li>
-</ul>
-<hr>
-<h2 id="📐-核心維度四：專案架構與技術棧-Architecture-Tech-Stack"><a href="#📐-核心維度四：專案架構與技術棧-Architecture-Tech-Stack" class="headerlink" title="📐 核心維度四：專案架構與技術棧 (Architecture &amp; Tech Stack)"></a>📐 核心維度四：專案架構與技術棧 (Architecture &amp; Tech Stack)</h2><p>幫助想深入研究原始碼、甚至參與貢獻的工程師快速理解專案內層。</p>
-<ul>
-<li><strong>資料夾&#x2F;檔案結構說明 (Project Structure)：</strong> 用樹狀圖（Tree）簡述核心資料夾（如 <code>views</code>、<code>controllers</code>、<code>assets</code>）的職責分工。</li>
-<li><strong>架構與設計模式 (Architecture)：</strong> 引導讀者查閱更詳細的架構文件（如 <code>ARCHITECTURE.md</code>）。</li>
-<li><strong>專案技術棧 (Tech Stack &amp; Tools)：</strong> 清晰羅列專案所使用的語言、核心框架（如 Vue、Vite）與關鍵第三方服務（如 Google Analytics）。</li>
-<li><strong>CI&#x2F;CD 自動化流程說明 (Continuous Integration &#x2F; Deployment)：</strong> 說明專案在發起 Pull Request 或 Merge 到特定分支時，會自動觸發的行為（如：環境建立、ESLint 掃描、測試、部署至 GitHub Pages）。</li>
-</ul>
-<hr>
-<h2 id="🤝-核心維度五：社群、版權與聯絡方式-Community-Footer"><a href="#🤝-核心維度五：社群、版權與聯絡方式-Community-Footer" class="headerlink" title="🤝 核心維度五：社群、版權與聯絡方式 (Community &amp; Footer)"></a>🤝 核心維度五：社群、版權與聯絡方式 (Community &amp; Footer)</h2><p>開源專案永續經營或個人職涯曝光的關鍵收尾。</p>
-<ul>
-<li><strong>貢獻指南 (Contributing)：</strong> 說明如何參與開源，提供 Fork、建立分支、Commit 到 Open PR 的標準工作流。</li>
-<li><strong>貢獻者與謝誌 (Contributors &amp; Acknowledgements)：</strong> 展示程式碼貢獻者或財務贊助者的頭像&#x2F;Logo，並致謝啟發本專案的其他開源工具、設計或資源。</li>
-<li><strong>作者與聯絡方式 (Author &amp; Contact)：</strong> 提供作者的社群連結（如 Twitter、GitHub、LinkedIn、部落格或 Email），建立信任感與個人品牌。</li>
-<li><strong>版權與授權說明 (License)：</strong> 聲明專案採用的開源協議（通常為 MIT 授權），保障雙方權益。</li>
-</ul>
-<hr>
-<h3 id="💡-給您的撰寫建議"><a href="#💡-給您的撰寫建議" class="headerlink" title="💡 給您的撰寫建議"></a>💡 給您的撰寫建議</h3><p>在向他人說明 README 該寫什麼時，可以強調「因地制宜」<strong>。如果只是一個</strong>小前端作品，重點應該放在「功能畫面、線上連結、技術棧、安裝運行」<strong>；如果是一個</strong>開源工具&#x2F;套件，重點則要轉移到「動態 Demo、使用參數（CLI 語法）、貢獻指南與 License」。</p>
-<hr>
-<p> 以下是一份空白的READM.md的內容，你可以依程式的方向作內容的增減：</p>
-<hr>
-<h1 id="📌-專案名稱-Project-Name"><a href="#📌-專案名稱-Project-Name" class="headerlink" title="📌 專案名稱 (Project Name)"></a>📌 專案名稱 (Project Name)</h1><blockquote>
-<p>這裡寫下用一句話介紹你的專案核心價值與功能（例如：一個基於 Node.js 的輕量級自動化 Markdown 生成工具）。</p>
-</blockquote>
-<p><img src="https://img.shields.io/github/stars/%E4%BD%A0%E7%9A%84%E5%B8%B3%E8%99%9F/%E4%BD%A0%E7%9A%84%E5%B0%88%E6%A1%88.svg"> ｜ <img src="https://img.shields.io/github/license/%E4%BD%A0%E7%9A%84%E5%B8%B3%E8%99%9F/%E4%BD%A0%E7%9A%84%E5%B0%88%E6%A1%88.svg"></p>
-<p><img src="/images/logo.png" alt="專案封面圖&#x2F;Logo"></p>
-<blockquote>
-<p>🔗 <a target="_blank" rel="noopener" href="https://your-demo-link.com/">線上觀看&#x2F;展示連結 (Live Demo)</a></p>
-</blockquote>
-<hr>
-<h2 id="🎯-專案導覽-Table-of-Contents"><a href="#🎯-專案導覽-Table-of-Contents" class="headerlink" title="🎯 專案導覽 (Table of Contents)"></a>🎯 專案導覽 (Table of Contents)</h2><ul>
-<li><a href="#-%E5%8A%9F%E8%83%BD%E7%89%B9%E9%BB%9E-features">功能特點</a></li>
-<li><a href="#-%E7%95%AB%E9%9D%A2%E5%B1%95%E7%A4%BA-screenshots">畫面展示</a></li>
-<li><a href="#-%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97-getting-started">上手指南</a></li>
-<li><a href="#-%E8%B3%87%E6%96%99%E5%A4%BE%E8%88%87%E6%9E%B6%E6%A7%8B%E8%AA%AA%E6%98%8E-project-structure">資料夾與架構說明</a></li>
-<li><a href="#-%E6%8A%80%E8%A1%93%E6%A3%A7%E8%88%87%E6%9C%8D%E5%8B%99-tech-stack">技術棧與服務</a></li>
-<li><a href="#-%E9%96%8B%E7%99%BC%E8%88%87%E8%B2%A2%E7%8D%BB-contributing">開發與貢獻</a></li>
-<li><a href="#-%E8%81%AF%E7%B5%A1%E4%BD%9C%E8%80%85%E8%88%87%E7%89%88%E6%AC%8A-author--license">聯絡作者與版權</a></li>
-</ul>
-<hr>
-<h2 id="✨-功能特點-Features"><a href="#✨-功能特點-Features" class="headerlink" title="✨ 功能特點 (Features)"></a>✨ 功能特點 (Features)</h2><h3 id="🔒-測試帳號密碼（僅供檢視）"><a href="#🔒-測試帳號密碼（僅供檢視）" class="headerlink" title="🔒 測試帳號密碼（僅供檢視）"></a>🔒 測試帳號密碼（僅供檢視）</h3><blockquote>
-<p>💡 建議只提供僅能觀看、不能操作刪除的帳號密碼。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">帳號：example@example.com</span><br><span class="line">密碼：example</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="💡-核心功能"><a href="#💡-核心功能" class="headerlink" title="💡 核心功能"></a>💡 核心功能</h3><ul>
-<li><input checked="" disabled="" type="checkbox"> 功能 A — 簡短說明功能內容（例如：支援多國語系自動切換）</li>
-<li><input checked="" disabled="" type="checkbox"> 功能 B — 簡短說明功能內容（例如：一鍵導出 PDF 與 Markdown）</li>
-<li><input disabled="" type="checkbox"> 功能 C (開發中) — 未來計畫加入的功能</li>
-</ul>
-<hr>
-<h2 id="📸-畫面展示-Screenshots-Demo"><a href="#📸-畫面展示-Screenshots-Demo" class="headerlink" title="📸 畫面展示 (Screenshots &#x2F; Demo)"></a>📸 畫面展示 (Screenshots &#x2F; Demo)</h2><blockquote>
-<p>建議提供 1~3 張 GIF 動態圖或靜態截圖，讓觀看者透過 README 就能直觀了解整體畫面。</p>
-</blockquote>
-<p><em>描述：這是主畫面的操作示意圖 &#x2F; CLI 互動過程</em></p>
-<hr>
-<h2 id="🚀-上手指南-Getting-Started"><a href="#🚀-上手指南-Getting-Started" class="headerlink" title="🚀 上手指南 (Getting Started)"></a>🚀 上手指南 (Getting Started)</h2><h3 id="📋-開發前配置要求-Prerequisites"><a href="#📋-開發前配置要求-Prerequisites" class="headerlink" title="📋 開發前配置要求 (Prerequisites)"></a>📋 開發前配置要求 (Prerequisites)</h3><ul>
-<li>Node.js 版本建議為：<code>18.x</code> 或以上</li>
-<li>需要預先申請的 API Key（例如：Google Map API）</li>
-</ul>
-<h3 id="🔧-安裝與運行步驟"><a href="#🔧-安裝與運行步驟" class="headerlink" title="🔧 安裝與運行步驟"></a>🔧 安裝與運行步驟</h3><p>請依序在終端機（Terminal）輸入以下指令：</p>
-<ol>
-<li><strong>複製專案倉庫 (Clone)</strong></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [https://github.com/你的帳號/你的專案.git](https://github.com/你的帳號/你的專案.git)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<ol start="2">
-<li><strong>移動到專案目錄內</strong></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 你的專案名稱</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<ol start="3">
-<li><strong>安裝相依套件</strong></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<ol start="4">
-<li><strong>環境變數設定</strong><br>請在終端機輸入以下指令來複製變數範本檔，並依據 <code>.env</code> 內容調整相關欄位：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> .env.example .<span class="built_in">env</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<p><em>環境變數說明：</em></p>
-<ul>
-<li><code>API_PATH</code>：後端 API 的主機介接位置。</li>
-<li><code>SECRET_KEY</code>：第三方驗證服務的金鑰。</li>
-</ul>
-<ol start="5">
-<li><strong>運行&#x2F;啟動專案</strong></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<ol start="6">
-<li><strong>開啟專案畫面</strong><br>在瀏覽器網址列輸入以下即可看到畫面：<code>http://localhost:3000/</code></li>
-</ol>
-<hr>
-<h2 id="📐-資料夾與架構說明-Project-Structure"><a href="#📐-資料夾與架構說明-Project-Structure" class="headerlink" title="📐 資料夾與架構說明 (Project Structure)"></a>📐 資料夾與架構說明 (Project Structure)</h2><blockquote>
-<p>用簡單的樹狀圖簡述專案核心資料夾的職責，幫助其他開發者快速看懂程式碼分工。</p>
-</blockquote>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">my-project</span><br><span class="line">├── /src              # 核心程式碼放置處</span><br><span class="line">│   ├── /components   # 共用 UI 組件</span><br><span class="line">│   ├── /views        # 頁面/畫面放置處</span><br><span class="line">│   └── /utils        # 工具函式與商業邏輯</span><br><span class="line">├── .env.example      # 環境變數範本檔</span><br><span class="line">├── ARCHITECTURE.md   # 深度架構設計說明書</span><br><span class="line">└── README.md         # 本說明文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>💡 關於專案的詳細架構與設計模式，請查閱 <a target="_blank" rel="noopener" href="https://www.google.com/search?q=./ARCHITECTURE.md">ARCHITECTURE.md</a>。</p>
-</blockquote>
-<hr>
-<h2 id="🛠️-技術棧與服務-Tech-Stack"><a href="#🛠️-技術棧與服務-Tech-Stack" class="headerlink" title="🛠️ 技術棧與服務 (Tech Stack)"></a>🛠️ 技術棧與服務 (Tech Stack)</h2><ul>
-<li><strong>核心技術：</strong> HTML5, CSS3, JavaScript (ES6+)</li>
-<li><strong>框架與工具：</strong> React v18 &#x2F; Vue v3, Vite, TailwindCSS</li>
-<li><strong>第三方服務：</strong> Firebase (資料庫), Google Analytics (數據分析)</li>
-<li><strong>CI&#x2F;CD 自動化流程：</strong> * 當發起 <strong>Pull Request</strong> 時：會自動執行環境建立、安裝相依套件與 ESLint 語法掃描。</li>
-<li>當程式碼 <strong>Merge 到 main 分支</strong> 時：會自動執行單元測試並編譯，最後自動部署到 GitHub Pages。</li>
-</ul>
-<hr>
-<h2 id="🤝-開發與貢獻-Contributing"><a href="#🤝-開發與貢獻-Contributing" class="headerlink" title="🤝 開發與貢獻 (Contributing)"></a>🤝 開發與貢獻 (Contributing)</h2><p>歡迎任何形式的貢獻（Contributions）、回報 Bug（Issues）或提出新特性（Feature Requests）！</p>
-<ol>
-<li>Fork 本專案</li>
-<li>建立您的特性分支 (<code>git checkout -b feature/AmazingFeature</code>)</li>
-<li>提交您的修改 (<code>git commit -m &#39;Add some AmazingFeature&#39;</code>)</li>
-<li>推送到該分支 (<code>git push origin feature/AmazingFeature</code>)</li>
-<li>開啟一個 Pull Request</li>
-</ol>
-<hr>
-<h2 id="👤-作者-📝-版權-Author-License"><a href="#👤-作者-📝-版權-Author-License" class="headerlink" title="👤 作者 &amp; 📝 版權 (Author &amp; License)"></a>👤 作者 &amp; 📝 版權 (Author &amp; License)</h2><h3 id="作者資訊"><a href="#作者資訊" class="headerlink" title="作者資訊"></a>作者資訊</h3><ul>
-<li><strong>姓名&#x2F;暱稱</strong> - <a target="_blank" rel="noopener" href="https://www.google.com/search?q=https://github.com/%E4%BD%A0%E7%9A%84Github%E5%B8%B3%E8%99%9F">@你的Github帳號</a></li>
-<li><strong>聯絡方式：</strong> <a target="_blank" rel="noopener" href="https://www.google.com/search?q=%E4%BD%A0%E7%9A%84%E9%80%A3%E7%B5%90">LinkedIn</a> ｜ <a target="_blank" rel="noopener" href="https://www.google.com/search?q=%E4%BD%A0%E7%9A%84%E9%80%A3%E7%B5%90">Twitter</a> ｜ <a href="">Email</a></li>
-</ul>
-<h3 id="版權說明"><a href="#版權說明" class="headerlink" title="版權說明"></a>版權說明</h3><p>本專案採用 <strong>MIT 授權許可</strong> 進行保護。詳情請參閱 <a target="_blank" rel="noopener" href="https://www.google.com/search?q=./LICENSE">LICENSE</a> 檔案。</p>
-<hr>
-<p><em>This README was written with ❤️ by your name</em></p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/2/">Previous</a></div><div class="pagination-next"><a href="/page/4/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link is-current" href="/page/3/">3</a></li><li><a class="pagination-link" href="/page/4/">4</a></li><li><a class="pagination-link" href="/page/5/">5</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">42</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">5</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/CRA/"><span class="level-start"><span class="level-item">CRA</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/Docker/"><span class="level-start"><span class="level-item">Docker</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Gemini/"><span class="level-start"><span class="level-item">Gemini</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Git/"><span class="level-start"><span class="level-item">Git</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/GitHub/"><span class="level-start"><span class="level-item">GitHub</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/categories/Hexo/"><span class="level-start"><span class="level-item">Hexo</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/other/"><span class="level-start"><span class="level-item">other</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-20T03:56:50.000Z">2026-08-20</time></p><p class="title"><a href="/posts/linux_hmi.html">Ubuntu 24.04 設定為 HMI</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-19T06:12:36.000Z">2026-08-19</time></p><p class="title"><a href="/posts/m2354_sbom.html">Nuvoton M2354 BSP 軟體物料清單 (SBOM) 生成說明</a></p><p class="categories"><a href="/categories/CRA/">CRA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-19T03:43:45.000Z">2026-08-19</time></p><p class="title"><a href="/posts/win_hmi.html">Windows 11 設定為 HMI</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-17T08:25:37.000Z">2026-08-17</time></p><p class="title"><a href="/posts/sbom_flow.html">軟體物料清單 (SBOM) 與漏洞掃描導入指南</a></p><p class="categories"><a href="/categories/CRA/">CRA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-14T06:43:33.000Z">2026-08-14</time></p><p class="title"><a href="/posts/nvme_erase.html">隨身碟自動清除 NVMe SSD</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/08/"><span class="level-start"><span class="level-item">August 2026</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/07/"><span class="level-start"><span class="level-item">July 2026</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/06/"><span class="level-start"><span class="level-item">June 2026</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">24</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Ayden/"><span class="tag">Ayden</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Kenny/"><span class="tag">Kenny</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Robin/"><span class="tag">Robin</span><span class="tag">29</span></a></div><div class="control"><a class="tags has-addons" href="/tags/TJ/"><span class="tag">TJ</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tina/"><span class="tag">Tina</span><span class="tag">2</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/2/">Previous</a></div><div class="pagination-next"><a href="/page/4/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link is-current" href="/page/3/">3</a></li><li><a class="pagination-link" href="/page/4/">4</a></li><li><a class="pagination-link" href="/page/5/">5</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">44</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">5</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/CRA/"><span class="level-start"><span class="level-item">CRA</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/Docker/"><span class="level-start"><span class="level-item">Docker</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Gemini/"><span class="level-start"><span class="level-item">Gemini</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Git/"><span class="level-start"><span class="level-item">Git</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/GitHub/"><span class="level-start"><span class="level-item">GitHub</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/categories/Hexo/"><span class="level-start"><span class="level-item">Hexo</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/other/"><span class="level-start"><span class="level-item">other</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-25T03:06:57.000Z">2026-08-25</time></p><p class="title"><a href="/posts/ZephyrGuide.html">Zephyr入門指南</a></p><p class="categories"><a href="/categories/CRA/">CRA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-21T06:16:20.000Z">2026-08-21</time></p><p class="title"><a href="/posts/HexoCategories.html">Hexo 中為文章建立與設定分類</a></p><p class="categories"><a href="/categories/Hexo/">Hexo</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-20T03:56:50.000Z">2026-08-20</time></p><p class="title"><a href="/posts/linux_hmi.html">Ubuntu 24.04 設定為 HMI</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-19T06:12:36.000Z">2026-08-19</time></p><p class="title"><a href="/posts/m2354_sbom.html">Nuvoton M2354 BSP 軟體物料清單 (SBOM) 生成說明</a></p><p class="categories"><a href="/categories/CRA/">CRA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-19T03:43:45.000Z">2026-08-19</time></p><p class="title"><a href="/posts/win_hmi.html">Windows 11 設定為 HMI</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/08/"><span class="level-start"><span class="level-item">August 2026</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/07/"><span class="level-start"><span class="level-item">July 2026</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/06/"><span class="level-start"><span class="level-item">June 2026</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">24</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Ayden/"><span class="tag">Ayden</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Kenny/"><span class="tag">Kenny</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Robin/"><span class="tag">Robin</span><span class="tag">31</span></a></div><div class="control"><a class="tags has-addons" href="/tags/TJ/"><span class="tag">TJ</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tina/"><span class="tag">Tina</span><span class="tag">2</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,

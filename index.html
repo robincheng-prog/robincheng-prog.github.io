@@ -29,7 +29,123 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-20T03:56:50.000Z" title="8/20/2026, 11:56:50 AM">2026-08-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:05:55.149Z" title="8/21/2026, 2:05:55 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/other/">other</a></span><span class="level-item">15 minutes read (About 2317 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/linux_hmi.html">Ubuntu 24.04 設定為 HMI</a></p><div class="content"><p>將 Ubuntu 24.04 設定為 HMI（人機介面）系統，主要需要關閉省電、設定自動登入、固定網路 IP、隱藏游標或解鎖觸控與全螢幕自動執行等關鍵設定。</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-25T03:06:57.000Z" title="8/25/2026, 11:06:57 AM">2026-08-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-28T05:54:22.124Z" title="8/28/2026, 1:54:22 PM">2026-08-28</time></span><span class="level-item"><a class="link-muted" href="/categories/CRA/">CRA</a></span><span class="level-item">12 minutes read (About 1743 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/ZephyrGuide.html">Zephyr入門指南</a></p><div class="content"><h2 id="1-設定Zephyr"><a href="#1-設定Zephyr" class="headerlink" title="1. 設定Zephyr"></a>1. 設定Zephyr</h2><h3 id="1-1-準備-Zephyr-環境"><a href="#1-1-準備-Zephyr-環境" class="headerlink" title="1.1 準備 Zephyr 環境"></a>1.1 準備 Zephyr 環境</h3><p>本說明將引導您完成在 Windows 作業系統上使用 Visual Studio Code (VS Code) 和 MCUXpresso 擴充功能啟動並執行 Zephyr 開發環境的基本步驟。<br>本次演示旨在讓設定變得快速簡便，以便您現在就可以開始開發應用程序，而無需陷入細節。</p>
+<ol>
+<li>下載並安裝 VS Code</li>
+</ol>
+<p>  <img src="/images/VS_Code.png" alt="Visual Studio Code"></p>
+<ol start="2">
+<li>安裝適用於 VS Code 的 MCUXpresso 擴展，並添加 NXP 的官方擴展以啟用嵌入式開發功能。</li>
+</ol>
+<p>  <img src="/images/VS_Code_MCUXpresso.png" alt="VS Code with MCUXpresso"></p>
+<ol start="3">
+<li>運行 MCUXpresso 安裝程式。使用安裝程式設定軟體開發工具包 (SDK)、工具鏈和環境。</li>
+</ol>
+<p>  <img src="/images/MCUXpresso_Installer.png" alt="MCUXpresso Installer"></p>
+<ol start="4">
+<li>安裝 Zephyr 倉庫。克隆並配置 Zephyr 倉庫以完成設定(下載需要大量的間時）。</li>
+</ol>
+<p>  <img src="/images/MCUXpresso_Installer_Zephyr.png" alt="MCUXpresso Installer Zephyr"></p>
+<ol start="5">
+<li>安裝 MCUXpresso 設定工具。Zephyr的引腳工具支援適用於 25.03 及更高版本。</li>
+</ol>
+<p>   <img src="/images/MCUXpresso_Installer_comfig_tool.png" alt="MCUXpresso Installer config tool"></p>
+<ol start="6">
+<li>安裝 MCUXpresso 安全設定工具</li>
+</ol>
+<p>   <img src="/images/MCUXpresso_Installer_secure_tool.png" alt="MCUXpresso Installer secure tool"></p>
+<h3 id="1-2-安裝工具鏈"><a href="#1-2-安裝工具鏈" class="headerlink" title="1.2 安裝工具鏈"></a>1.2 安裝工具鏈</h3><p>NXP 為 VSCode 提供了一個名為 MCUXpresso for VS Code 的免費擴充功能。<br>下載 VS Code 以存取擴充功能庫。</p>
+<p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/download">取得 VS Code</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.nxp.com/design/design-center/training/TIP-GETTING-STARTED-WITH-MCUXPRESSO-FOR-VS-CODE">請按照以下教學</a>學習如何在主機上安裝 VS Code。</p>
+<h3 id="1-3-使用-Zephyr-Developer-快速啟動您的設計"><a href="#1-3-使用-Zephyr-Developer-快速啟動您的設計" class="headerlink" title="1.3 使用 Zephyr Developer 快速啟動您的設計"></a>1.3 使用 Zephyr Developer 快速啟動您的設計</h3><p>MCUXpresso 安裝程式包含一個名為「Zephyr Developer」的選項，可讓您下載除 Zephyr SDK 之外的所有必要元件、工具和相依性。 Zephyr SDK 包含適用於 Zephyr 及其支援的每種架構的工具鏈，其中包括編譯器、彙編器、連結器以及建立 Zephyr 應用程式所需的其他程式。</p>
+<p>在 MCUXpresso for VSCode 的「快速啟動面板」中找到 MCUXpresso 安裝程式。</p>
+<p><img src="/images/Zephyr_Developer.png" alt="Zephyr Developer"></p>
+<h3 id="1-4-MCUXpresso-配置工具"><a href="#1-4-MCUXpresso-配置工具" class="headerlink" title="1.4 MCUXpresso 配置工具"></a>1.4 MCUXpresso 配置工具</h3><p>MCUXpresso 配置工具是一套整合的配置工具，可引導使用者建立新的 MCUXpresso SDK 專案。它還包含引腳和時脈工具，用於產生自訂板級支援的初始化 C 程式碼。引腳工具具有圖形使用者介面 (GUI)，可協助使用者選擇應用程式使用的所有所需訊號，並配置引腳復用和引腳設定。從 v25.03 版本開始，設定工具可以為 i.MX RT1xxx 和 MCX 裝置產生 Zephyr 板級 pinctrl 檔案。 Zephyr 使用 pinctrl 來設定係統單晶片 (SOC) 的接腳和接腳重複使用設定。</p>
+<p>點擊下面的「取得 MCUXpresso 設定工具」按鈕，即可取得設定工具安裝程式。</p>
+<p><a target="_blank" rel="noopener" href="https://www.nxp.com/design/design-center/software/development-software/mcuxpresso-software-and-tools-/mcuxpresso-config-tools-pins-clocks-and-peripherals:MCUXpresso-Config-Tools">取得 MCUXpresso 設定工具</a></p>
+<h3 id="1-5-編程和配置工具"><a href="#1-5-編程和配置工具" class="headerlink" title="1.5 編程和配置工具"></a>1.5 編程和配置工具</h3><p>MCUXpresso 安全配置 (SEC) 工具是一款基於圖形使用者介面 (GUI) 的應用程序，旨在簡化在恩智浦 (NXP) 微控制器單元 (MCU) 裝置上產生和配置可引導執行檔的流程。我們建議所有使用者先使用 MCUXpresso SEC 工具進行試運行和大量生產。它支援在生產階段對恩智浦微控制器進行安全編程和設備配置。下載該工具後，您可以在「說明」標籤下找到使用者指南。請依照「處理器特定工作流程」章節中針對您的開發板的說明進行操作。</p>
+<p><a target="_blank" rel="noopener" href="https://www.nxp.com/document/guide/getting-started-with-zephyr:GS-ZEPHYR#">下載 SEC</a></p>
+<h3 id="1-6-熟悉-VS-Code-的-MCUXpresso"><a href="#1-6-熟悉-VS-Code-的-MCUXpresso" class="headerlink" title="1.6 熟悉 VS Code 的 MCUXpresso"></a>1.6 熟悉 VS Code 的 MCUXpresso</h3><p>MCUXpresso for VS Code 的主要功能特性</p>
+<p>剛開始使用 MCUXpresso for VS Code 時，了解一些關鍵功能和工具會很有幫助，它們可以簡化您的開發體驗。本節將為您提供一個概覽，而非深入講解，讓您快速上手。</p>
+<p>快速入門面板</p>
+<p>快速入門面板是您建立、匯入和管理專案的啟動平台。它提供了常用任務的捷徑。其中最常用的快捷方式是「從儲存庫導入範例」和「開啟 MCUXpresso 安裝程式」。</p>
+<p>專案視圖</p>
+<p><img src="/images/GS-Zephyr-IMG2.png"></p>
+<p>這裡是您的工作區和專案文件所在的位置。了解 Zephyr 專案的結構將有助於您更有效地瀏覽和管理程式碼。</p>
+<p>設備樹</p>
+<p><img src="/images/GS-Zephyr-IMG3.png"></p>
+<p>設備樹描述了硬體佈局和配置。編譯 Zephyr 專案並刷新設備樹視圖後，它將以樹狀結構顯示專案硬體層次結構。您也可以查看節點及其關聯值。</p>
+<p>完美建造</p>
+<p><img src="/images/GS-Zephyr-IMG4.png"></p>
+<p>全新建置用於從頭開始清理和重建專案。在切換配置或解決建置問題時，它尤其有用。</p>
+<p>偵錯</p>
+<p><img src="/images/GS-Zephyr-IMG5.png"></p>
+<p>MCUXpresso for VSCode 可與多種調試器整合。借助它，您可以學習如何設定斷點、單步執行程式碼以及檢查變量，從而有效地進行故障排除。</p>
+<p>終端機和串口監視器</p>
+<p><img src="/images/GS-Zephyr-IMG6.png"></p>
+<p>該終端機旨在實現與導入的儲存庫進行命令列互動。串口終端可讓您透過 UART 與開發板進行互動。這對於日誌記錄、調試和即時通訊非常有用。</p>
+<h3 id="1-7-硬體準備"><a href="#1-7-硬體準備" class="headerlink" title="1.7 硬體準備"></a>1.7 硬體準備</h3><p>本步驟指南將以 FRDM-MCXC242 開發板為例，指導您如何開始使用 Zephyr。當然，您也可以使用其他評估板，並遵循相同的基本流程。</p>
+<ol>
+<li>選擇您的評估委員會</li>
+</ol>
+<p>本指南使用 FRDM-MCXC242 開發板，您也可以使用其他支援的開發板，但請務必：</p>
+<ul>
+<li>確認您的主機板是否支援 Zephyr</li>
+<li>請檢查是否有任何針對特定電路板的設定說明</li>
+</ul>
+<ol start="2">
+<li>更新板載調試器韌體<br>大多數評估板都帶有板載調試器。為確保相容性和穩定性：請確認您評估板的調試器韌體已更新至最新版本。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.nxp.com/design/design-center/software/development-software/mcuxpresso-software-and-tools-/linkserver-for-microcontrollers:LINKSERVER">從LinkServer 韌體頁面</a>下載最新韌體。選擇合適的韌體類型：</p>
+<ul>
+<li>Cortex 微控制器軟體介面標準偵錯存取連接埠 (CMSIS-DAP)</li>
+<li>Segger J-Link</li>
+</ul>
+<ol start="3">
+<li><p>如果您的開發板沒有板載偵錯器，請將外部偵錯器連接到目標開發板。</p>
+</li>
+<li><p>給電路板供電<br>開發過程中需要為開發板供電。常用供電方式包括：</p>
+</li>
+</ol>
+<ul>
+<li>USB 連接線（最常見）</li>
+<li>圓筒形插孔連接器（適用於某些電路板）</li>
+</ul>
+<ol start="5">
+<li>將電路板插入電源</li>
+</ol>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-21T06:16:20.000Z" title="8/21/2026, 2:16:20 PM">2026-08-21</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-24T09:53:18.847Z" title="8/24/2026, 5:53:18 PM">2026-08-24</time></span><span class="level-item"><a class="link-muted" href="/categories/Hexo/">Hexo</a></span><span class="level-item">4 minutes read (About 564 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/HexoCategories.html">Hexo 中為文章建立與設定分類</a></p><div class="content"><p>在 Hexo 中為文章建立與設定分類，主要需要完成兩個部分：<strong>在文章內標註分類</strong>，以及<strong>建立一個用來顯示分類的獨立頁面</strong>。</p>
+<p>以下是完整的設定步驟：</p>
+<h2 id="1-為文章加上分類-Front-matter-設定"><a href="#1-為文章加上分類-Front-matter-設定" class="headerlink" title="1. 為文章加上分類 (Front-matter 設定)"></a>1. 為文章加上分類 (Front-matter 設定)</h2><p>你需要打開 <code>source/_posts/</code> 資料夾下的 Markdown 文章檔案，在最上方的 YAML 區塊（Front-matter）中加入 <code>categories</code> 屬性。</p>
+<p><strong>單一分類寫法：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">我的第一篇文章</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2026-08-21 13:00:00</span></span><br><span class="line"><span class="attr">categories:</span> </span><br><span class="line">  <span class="bullet">-</span> <span class="string">技術筆記</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>多層級（子分類）寫法：</strong><br>如果你希望有階層關係（例如：技術筆記 &gt; Hexo教學），請確保它們有正確的縮排：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Hexo</span> <span class="string">分類設定教學</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2026-08-21 13:00:00</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">技術筆記</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Hexo教學</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-批次處理：為「所有未分類文章」設定預設分類"><a href="#2-批次處理：為「所有未分類文章」設定預設分類" class="headerlink" title="2. 批次處理：為「所有未分類文章」設定預設分類"></a>2. 批次處理：為「所有未分類文章」設定預設分類</h2><p>如果你有很多舊文章懶得一篇篇加上分類，Hexo 提供了一個內建的預設值功能。打開網站根目錄下的 <code>_config.yml</code>，找到 <code>default_category</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 預設為 uncategorized，你可以改成想要的名稱</span></span><br><span class="line"><span class="attr">default_category:</span> <span class="string">日常隨筆</span></span><br></pre></td></tr></table></figure>
+
+<p>設定後，只要文章內沒有寫 <code>categories</code>，Hexo 就會自動把它歸類到「日常隨筆」中。</p>
+<hr>
+<h2 id="3-建立並顯示「分類-Categories-」頁面"><a href="#3-建立並顯示「分類-Categories-」頁面" class="headerlink" title="3. 建立並顯示「分類 (Categories)」頁面"></a>3. 建立並顯示「分類 (Categories)」頁面</h2><p>有了分類後，你需要一個專屬頁面讓讀者瀏覽。</p>
+<p><strong>步驟 A：生成分類頁面</strong><br>在終端機輸入以下指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+
+<p><strong>步驟 B：修改頁面屬性</strong><br>這會在 <code>source/categories/</code> 產生一個 <code>index.md</code> 檔案。打開它，加上 <code>type: &quot;categories&quot;</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">categories</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2026-08-21 13:30:00</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">&quot;categories&quot;</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<p><em>(注意：這個檔案裡面不需要寫任何內文，主題會自動抓取分類資料來渲染。)</em></p>
+<p><strong>步驟 C：在主題選單中顯示</strong><br>打開你所使用主題的設定檔（例如 <code>_config.next.yml</code> 或 <code>_config.butterfly.yml</code>），找到 <code>menu</code> 區塊，將 categories 的註解拿掉或新增上去：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-folder</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-archive</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-重新生成並預覽"><a href="#4-重新生成並預覽" class="headerlink" title="4. 重新生成並預覽"></a>4. 重新生成並預覽</h2><p>完成上述設定後，清除快取並重新啟動本地伺服器測試：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-20T03:56:50.000Z" title="8/20/2026, 11:56:50 AM">2026-08-20</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:05:55.149Z" title="8/21/2026, 2:05:55 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/other/">other</a></span><span class="level-item">15 minutes read (About 2317 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/linux_hmi.html">Ubuntu 24.04 設定為 HMI</a></p><div class="content"><p>將 Ubuntu 24.04 設定為 HMI（人機介面）系統，主要需要關閉省電、設定自動登入、固定網路 IP、隱藏游標或解鎖觸控與全螢幕自動執行等關鍵設定。</p>
 <h2 id="1-系統電源與螢幕保護設定"><a href="#1-系統電源與螢幕保護設定" class="headerlink" title="1. 系統電源與螢幕保護設定"></a>1. 系統電源與螢幕保護設定</h2><p>工廠或設備的 HMI 需要常亮，不能進入休眠或關閉螢幕。</p>
 <ul>
 <li>開啟設定 (Settings) &gt; 電源 (Power)。</li>
@@ -493,7 +609,7 @@
 <h2 id="1-安裝合併工具"><a href="#1-安裝合併工具" class="headerlink" title="1. 安裝合併工具"></a>1. 安裝合併工具</h2><p>在你的電腦終端機（Terminal &#x2F; CMD）中執行以下指令來下載所需套件：  </p>
 <p>pip install spdx-tools<br>pip install spdxmerge</p>
 <h2 id="2-執行深度合併指令"><a href="#2-執行深度合併指令" class="headerlink" title="2. 執行深度合併指令"></a>2. 執行深度合併指令</h2><p>將剛才下載的 NXP 檔案通通放入名為 sbom_inputs 的資料夾內，然後執行：</p>
-<p>python -m spdxmerge.SPDXMerge <br>  –docpath “.&#x2F;sbom_inputs” <br>  –outpath “.&#x2F;lpc55s69_combined_project.spdx.json” <br>  –name “LPC55S69_FreeRTOS_Project” <br>  –version “1.0.0” <br>  –mergetype 1 <br>  –author “Your Company Name” <br>  –email “<a href="mailto:&#x64;&#x65;&#118;&#101;&#x6c;&#111;&#x70;&#x65;&#x72;&#x40;&#x65;&#120;&#x61;&#x6d;&#112;&#108;&#x65;&#46;&#99;&#x6f;&#x6d;">developer@example.com</a>“ <br>  –filetype J</p>
+<p>python -m spdxmerge.SPDXMerge <br>  –docpath “.&#x2F;sbom_inputs” <br>  –outpath “.&#x2F;lpc55s69_combined_project.spdx.json” <br>  –name “LPC55S69_FreeRTOS_Project” <br>  –version “1.0.0” <br>  –mergetype 1 <br>  –author “Your Company Name” <br>  –email “<a href="mailto:&#x64;&#101;&#118;&#x65;&#x6c;&#111;&#112;&#101;&#114;&#64;&#101;&#120;&#x61;&#x6d;&#x70;&#108;&#x65;&#46;&#x63;&#111;&#109;">developer@example.com</a>“ <br>  –filetype J</p>
 <ul>
 <li>–docpath：放所有 NXP 原始檔案的資料夾路徑。</li>
 <li>–outpath：合併完成後的最終單一檔案輸出路徑。</li>
@@ -798,291 +914,7 @@
 <p>Open any web browser and navigate to <code>http://127.0.0.1:5000</code>.</p>
 <h3 id="Method-B-Automated-Batch-File-Launch-run-bat"><a href="#Method-B-Automated-Batch-File-Launch-run-bat" class="headerlink" title="Method B: Automated Batch File Launch (run.bat)"></a>Method B: Automated Batch File Launch (run.bat)</h3><p>Create a file named <code>run.bat</code> to start the Python server and open the page automatically in Google Chrome :</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">title</span> Python Web Server Launcher</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> Starting Web Server...</span><br><span class="line"><span class="built_in">start</span> &quot;Web Server&quot; python server.py</span><br><span class="line"></span><br><span class="line">:: Wait <span class="number">2</span> seconds <span class="keyword">for</span> server initialization</span><br><span class="line">timeout /t <span class="number">2</span> /nobreak &gt;<span class="built_in">nul</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> Opening Webpage <span class="keyword">in</span> Chrome ...</span><br><span class="line"><span class="built_in">start</span> chrome &quot;http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">5000</span>&quot;</span><br><span class="line"></span><br><span class="line"><span class="keyword">exit</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-10T01:15:13.000Z" title="8/10/2026, 9:15:13 AM">2026-08-10</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T06:03:15.337Z" title="8/21/2026, 2:03:15 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/CRA/">CRA</a></span><span class="level-item">11 minutes read (About 1724 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/eu_cra.html">歐盟網路韌性法案 (EU CRA) 安全開發技術文件說明</a></p><div class="content"><p>作者： Ｋenny Tsai</p>
-<p><strong>產品名稱：</strong> [請填寫產品名稱]<br><strong>產品型號&#x2F;版本：</strong> [請填寫硬體型號&#x2F;軟體版本]<br><strong>文件版本：</strong> V1.0<br><strong>發布日期：</strong> [YYYY-MM-DD]<br><strong>製造商名稱：</strong> [請填寫公司名稱]  </p>
-<hr>
-<h2 id="1-文件基本資訊與產品定義-General-Information-Product-Description"><a href="#1-文件基本資訊與產品定義-General-Information-Product-Description" class="headerlink" title="1. 文件基本資訊與產品定義 (General Information &amp; Product Description)"></a>1. 文件基本資訊與產品定義 (General Information &amp; Product Description)</h2><h3 id="1-1-產品基本資訊"><a href="#1-1-產品基本資訊" class="headerlink" title="1.1 產品基本資訊"></a>1.1 產品基本資訊</h3><ul>
-<li><strong>產品名稱與型號：</strong> [請填寫產品名稱 &#x2F; 軟硬體版本號]</li>
-<li><strong>產品類別 (CRA Category)：</strong><ul>
-<li><input disabled="" type="checkbox"> Default (預設類別 - 一般 IoT&#x2F;軟體)</li>
-<li><input disabled="" type="checkbox"> Class I Critical (第一類關鍵產品 - 如 VPN、密碼管理器、微控制器)</li>
-<li><input disabled="" type="checkbox"> Class II Critical (第二類關鍵產品 - 如 OS、工業防火牆、HSM)</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-2-預期用途與運行環境"><a href="#1-2-預期用途與運行環境" class="headerlink" title="1.2 預期用途與運行環境"></a>1.2 預期用途與運行環境</h3><ul>
-<li><strong>預期用途：</strong> [說明產品功能與核心用途]</li>
-<li><strong>部署環境：</strong> [例如：家用局域網、工業 OT 網路、B2B SaaS 雲端、車載網路]</li>
-<li><strong>潛在非預期用途&#x2F;安全邊界：</strong> [說明不建議部署的情境或安全邊界聲明]</li>
-</ul>
-<h3 id="1-3-規格摘要"><a href="#1-3-規格摘要" class="headerlink" title="1.3 規格摘要"></a>1.3 規格摘要</h3><ul>
-<li><strong>硬體架構：</strong> [主要晶片 MCU&#x2F;SoC、記憶體大小、硬體 Trust Root&#x2F;TPM 規格]</li>
-<li><strong>軟體&#x2F;作業系統：</strong> [OS 名稱及版本、核心 Kernel 版本]</li>
-<li><strong>網路與實體介面：</strong> [Ethernet, Wi-Fi 6, BLE 5.0, USB, REST API, MQTT, UART&#x2F;JTAG]</li>
-</ul>
-<hr>
-<h2 id="2-網絡安全風險評估報告-Cybersecurity-Risk-Assessment"><a href="#2-網絡安全風險評估報告-Cybersecurity-Risk-Assessment" class="headerlink" title="2. 網絡安全風險評估報告 (Cybersecurity Risk Assessment)"></a>2. 網絡安全風險評估報告 (Cybersecurity Risk Assessment)</h2><h3 id="2-1-威脅建模-Threat-Modeling"><a href="#2-1-威脅建模-Threat-Modeling" class="headerlink" title="2.1 威脅建模 (Threat Modeling)"></a>2.1 威脅建模 (Threat Modeling)</h3><ul>
-<li><strong>採用框架：</strong> [ STRIDE &#x2F; PASTA &#x2F; ISO&#x2F;IEC 21434 &#x2F; IEC 62443 ]</li>
-<li><strong>資產識別 (Assets)：</strong><ul>
-<li>核心數據：[金鑰、存取憑證、用戶個人資料]</li>
-<li>韌體&#x2F;程式碼：[Bootloader、主應用程式碼、演算法]</li>
-<li>控制介面：[管理員 API、調試介面、OTA 升級通道]</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-2-風險矩陣與緩解措施-Risk-Matrix-Mitigations"><a href="#2-2-風險矩陣與緩解措施-Risk-Matrix-Mitigations" class="headerlink" title="2.2 風險矩陣與緩解措施 (Risk Matrix &amp; Mitigations)"></a>2.2 風險矩陣與緩解措施 (Risk Matrix &amp; Mitigations)</h3><table>
-<thead>
-<tr>
-<th align="left">識別威脅 (Threat)</th>
-<th align="left">風險等級</th>
-<th align="left">緩解措施 (Mitigation Measure)</th>
-<th align="left">對應 CRA 條款要求</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>未授權韌體刷入</strong></td>
-<td align="left">高 (High)</td>
-<td align="left">啟用 Secure Boot 與 RSA-4096 &#x2F; ECC 簽章驗證</td>
-<td align="left">Annex I, Part I (1)</td>
-</tr>
-<tr>
-<td align="left"><strong>敏感數據傳輸洩漏</strong></td>
-<td align="left">中 (Medium)</td>
-<td align="left">預設強制 TLS 1.3 密碼套件加密</td>
-<td align="left">Annex I, Part I (2)</td>
-</tr>
-<tr>
-<td align="left"><strong>中間人攻擊 (MitM)</strong></td>
-<td align="left">高 (High)</td>
-<td align="left">實作雙向認證 (mTLS) 與證書釘紮 (Certificate Pinning)</td>
-<td align="left">Annex I, Part I (2)</td>
-</tr>
-<tr>
-<td align="left"><strong>暴力破解存取權限</strong></td>
-<td align="left">中 (Medium)</td>
-<td align="left">登入失敗鎖定機制與速率限制 (Rate Limiting)</td>
-<td align="left">Annex I, Part I (3)</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="3-安全架構與設計規範-Security-Architecture-Design"><a href="#3-安全架構與設計規範-Security-Architecture-Design" class="headerlink" title="3. 安全架構與設計規範 (Security Architecture &amp; Design)"></a>3. 安全架構與設計規範 (Security Architecture &amp; Design)</h2><h3 id="3-1-信任根與硬體安全-Hardware-Root-of-Trust"><a href="#3-1-信任根與硬體安全-Hardware-Root-of-Trust" class="headerlink" title="3.1 信任根與硬體安全 (Hardware Root of Trust)"></a>3.1 信任根與硬體安全 (Hardware Root of Trust)</h3><ul>
-<li><strong>安全啟動 (Secure Boot)：</strong> 建立開機鏈信任根，防止非授權韌體執行。</li>
-<li><strong>密鑰安全儲存：</strong> 私鑰與敏感憑證儲存於 [ TPM 2.0 &#x2F; HSM &#x2F; Secure Element &#x2F; eFuse ] 中。</li>
-</ul>
-<h3 id="3-2-存取控制與身份驗證-Security-by-Default"><a href="#3-2-存取控制與身份驗證-Security-by-Default" class="headerlink" title="3.2 存取控制與身份驗證 (Security-by-Default)"></a>3.2 存取控制與身份驗證 (Security-by-Default)</h3><ul>
-<li><strong>無硬編碼密碼：</strong> 嚴禁預設密碼 (No Hardcoded Passwords)。</li>
-<li><strong>首次開機安全：</strong> 強制要求使用者首次啟動時更換密碼，或使用單一設備獨立預設密碼 (Unique Default Password)。</li>
-<li><strong>權限控管：</strong> 採用角色存取控制 (RBAC) 與最小權限原則 (Least Privilege)。</li>
-</ul>
-<h3 id="3-3-介面硬化-Interface-Hardening"><a href="#3-3-介面硬化-Interface-Hardening" class="headerlink" title="3.3 介面硬化 (Interface Hardening)"></a>3.3 介面硬化 (Interface Hardening)</h3><ul>
-<li><strong>實體埠關閉：</strong> 量產版本預設停用或焊接封鎖 Debug UART &#x2F; JTAG 介面。</li>
-<li><strong>服務最小化：</strong> 關閉未使用的網路服務與埠號 (如 Telnet, HTTP 80 埠)。</li>
-</ul>
-<hr>
-<h2 id="4-安全開發生命週期-Secure-SDLC-Process"><a href="#4-安全開發生命週期-Secure-SDLC-Process" class="headerlink" title="4. 安全開發生命週期 (Secure SDLC Process)"></a>4. 安全開發生命週期 (Secure SDLC Process)</h2><h3 id="4-1-原始碼安全規範"><a href="#4-1-原始碼安全規範" class="headerlink" title="4.1 原始碼安全規範"></a>4.1 原始碼安全規範</h3><ul>
-<li><strong>靜態檢測 (SAST)：</strong> 於 CI&#x2F;CD Pipeline 整合 [ SonarQube &#x2F; Fortify &#x2F; Checkmarx ]，告警標準設定為 Zero Critical Vulnerability。</li>
-<li><strong>動態檢測 (DAST) &#x2F; 模糊測試 (Fuzzing)：</strong> 定期執行 API 及 protocol 模糊測試。</li>
-</ul>
-<h3 id="4-2-機密資訊管理-Secrets-Management"><a href="#4-2-機密資訊管理-Secrets-Management" class="headerlink" title="4.2 機密資訊管理 (Secrets Management)"></a>4.2 機密資訊管理 (Secrets Management)</h3><ul>
-<li><strong>代碼庫管理：</strong> 使用 [ GitGuardian &#x2F; Trufflehog ] 掃描原始碼，禁止提交 API Key 或 Private Key。</li>
-<li><strong>運行期密鑰管理：</strong> 使用 [ HashiCorp Vault &#x2F; AWS KMS &#x2F; 環境變數 ] 動態注入。</li>
-</ul>
-<h3 id="4-3-第三方套件稽核"><a href="#4-3-第三方套件稽核" class="headerlink" title="4.3 第三方套件稽核"></a>4.3 第三方套件稽核</h3><ul>
-<li><strong>開源管理流程：</strong> 引進第三方 Lib 前進行授權與已知 CVE 漏洞檢測。</li>
-</ul>
-<hr>
-<h2 id="5-軟體物料清單管理-SBOM-Supply-Chain-Security"><a href="#5-軟體物料清單管理-SBOM-Supply-Chain-Security" class="headerlink" title="5. 軟體物料清單管理 (SBOM &amp; Supply Chain Security)"></a>5. 軟體物料清單管理 (SBOM &amp; Supply Chain Security)</h2><h3 id="1-1-SBOM-格式與產出機制"><a href="#1-1-SBOM-格式與產出機制" class="headerlink" title="1.1 SBOM 格式與產出機制"></a>1.1 SBOM 格式與產出機制</h3><ul>
-<li><strong>自動化生成工具：</strong> 整合於 CI&#x2F;CD 流程中 (使用 [ Syft &#x2F; Trivy &#x2F; Black Duck ])。</li>
-<li><strong>匯出格式：</strong> [ CycloneDX JSON &#x2F; SPDX JSON ] 機器可讀格式。</li>
-</ul>
-<h3 id="1-2-SBOM-核心欄位涵蓋"><a href="#1-2-SBOM-核心欄位涵蓋" class="headerlink" title="1.2 SBOM 核心欄位涵蓋"></a>1.2 SBOM 核心欄位涵蓋</h3><ul>
-<li><input checked="" disabled="" type="checkbox"> 元件名稱 (Component Name)</li>
-<li><input checked="" disabled="" type="checkbox"> 版本號 (Version)</li>
-<li><input checked="" disabled="" type="checkbox"> 供應商&#x2F;作者 (Supplier)</li>
-<li><input checked="" disabled="" type="checkbox"> 唯一識別碼 (PURL &#x2F; CPE)</li>
-<li><input checked="" disabled="" type="checkbox"> 授權條款 (License)</li>
-<li><input checked="" disabled="" type="checkbox"> 依賴關係圖譜 (Dependency Graph)</li>
-</ul>
-<h3 id="1-3-CVE-自動化動態掃描"><a href="#1-3-CVE-自動化動態掃描" class="headerlink" title="1.3 CVE 自動化動態掃描"></a>1.3 CVE 自動化動態掃描</h3><ul>
-<li><strong>比對頻率：</strong> 每日&#x2F;每週將 SBOM 與 NVD &#x2F; OSV 資料庫進行比對。</li>
-<li><strong>漏洞通報機制：</strong> 發現 High&#x2F;Critical CVE 時自動触發 Jira&#x2F;Slack 告警。</li>
-</ul>
-<hr>
-<h2 id="6-漏洞管理與協調披露策略-Vulnerability-Handling-CVD"><a href="#6-漏洞管理與協調披露策略-Vulnerability-Handling-CVD" class="headerlink" title="6. 漏洞管理與協調披露策略 (Vulnerability Handling &amp; CVD)"></a>6. 漏洞管理與協調披露策略 (Vulnerability Handling &amp; CVD)</h2><h3 id="6-1-漏洞披露政策-CVD-Policy"><a href="#6-1-漏洞披露政策-CVD-Policy" class="headerlink" title="6.1 漏洞披露政策 (CVD Policy)"></a>6.1 漏洞披露政策 (CVD Policy)</h3><ul>
-<li><strong>資安聯繫管道：</strong> <code>security@[company_domain].com</code></li>
-<li><strong>security.txt 設置：</strong> 於 <code>https://[company_domain]/.well-known/security.txt</code> 部署法規標準檔。</li>
-<li><strong>PSIRT 團隊職責：</strong> 專責接收、驗證、分析與回應外部資安通報。</li>
-</ul>
-<h3 id="6-2-漏洞修補-SLA-Patch-Management"><a href="#6-2-漏洞修補-SLA-Patch-Management" class="headerlink" title="6.2 漏洞修補 SLA (Patch Management)"></a>6.2 漏洞修補 SLA (Patch Management)</h3><ul>
-<li><strong>緊急漏洞 (Critical&#x2F;High CVE)：</strong> [ X ] 天內釋出修補檔&#x2F;臨時緩解方案。</li>
-<li><strong>中低風險漏洞 (Medium&#x2F;Low CVE)：</strong> 併入下一次定期版本更新 ([ Y ] 天內)。</li>
-</ul>
-<hr>
-<h2 id="7-安全更新與事件通報機制-Secure-Update-Incident-Response"><a href="#7-安全更新與事件通報機制-Secure-Update-Incident-Response" class="headerlink" title="7. 安全更新與事件通報機制 (Secure Update &amp; Incident Response)"></a>7. 安全更新與事件通報機制 (Secure Update &amp; Incident Response)</h2><h3 id="7-1-安全更新機制-OTA-FOTA"><a href="#7-1-安全更新機制-OTA-FOTA" class="headerlink" title="7.1 安全更新機制 (OTA &#x2F; FOTA)"></a>7.1 安全更新機制 (OTA &#x2F; FOTA)</h3><ul>
-<li><strong>傳輸與簽章防護：</strong> 升級包使用 ECC-256 簽章，並透過 TLS 加密傳輸。</li>
-<li><strong>防呆與降級保護：</strong> 支援雙 Bank (A&#x2F;B) 備份刷寫及防降級機制 (Rollback Protection)。</li>
-<li><strong>安全維護承諾期：</strong> 本產品承諾提供至少 <strong>[ 5 ] 年</strong>（至 YYYY-MM-DD）免費安全修補更新。</li>
-</ul>
-<h3 id="7-2-歐盟事件通報-SOP-EU-CRA-Reporting"><a href="#7-2-歐盟事件通報-SOP-EU-CRA-Reporting" class="headerlink" title="7.2 歐盟事件通報 SOP (EU CRA Reporting)"></a>7.2 歐盟事件通報 SOP (EU CRA Reporting)</h3><p>當發現被主動利用的零日漏洞或重大資安事件時，觸發以下程序：</p>
-<ul>
-<li><strong>24 小時內 (早期預警)：</strong> 通報 ENISA 與國家級 CSIRT，說明事件影響範圍。</li>
-<li><strong>72 小時內 (事件通知)：</strong> 提交初步風險評估報告與緩解措施。</li>
-<li><strong>1 個月內 (最終報告)：</strong> 提交根本原因分析 (RCA) 與終極修補方案。</li>
-</ul>
-<hr>
-<h2 id="8-測試驗證與合規聲明-Testing-Verification-DoC"><a href="#8-測試驗證與合規聲明-Testing-Verification-DoC" class="headerlink" title="8. 測試驗證與合規聲明 (Testing, Verification &amp; DoC)"></a>8. 測試驗證與合規聲明 (Testing, Verification &amp; DoC)</h2><h3 id="8-1-測試報告摘要"><a href="#8-1-測試報告摘要" class="headerlink" title="8.1 測試報告摘要"></a>8.1 測試報告摘要</h3><ul>
-<li><strong>滲透測試 (Penetration Test)：</strong> 由 [ 第三方資安公司 &#x2F; 內部獨立測試小組 ] 於 YYYY-MM-DD 完成，修補複測全數通過。</li>
-<li><strong>自動化掃描報告：</strong> SAST、SCA 掃描通過證明附於 [ 附錄 B ]。</li>
-</ul>
-<h3 id="8-2-歐盟符合性聲明-EU-DoC-草案"><a href="#8-2-歐盟符合性聲明-EU-DoC-草案" class="headerlink" title="8.2 歐盟符合性聲明 (EU DoC 草案)"></a>8.2 歐盟符合性聲明 (EU DoC 草案)</h3><ul>
-<li><strong>聲明內文：</strong> 本公司特此聲明，上述產品完全符合歐盟《網路韌性法案》(EU Cyber Resilience Act) 附件一及附件七之規定。</li>
-<li><strong>標誌授權：</strong> 於產品本體&#x2F;包裝標註 <strong>CE 標誌</strong>。</li>
-</ul>
-<hr>
-<h2 id="附錄：實務自我查核清單-CRA-Compliance-Checklist"><a href="#附錄：實務自我查核清單-CRA-Compliance-Checklist" class="headerlink" title="附錄：實務自我查核清單 (CRA Compliance Checklist)"></a>附錄：實務自我查核清單 (CRA Compliance Checklist)</h2><ul>
-<li><input disabled="" type="checkbox"> <strong>SBOM 是否為機器可讀格式？</strong> (CycloneDX &#x2F; SPDX JSON，非 PDF)</li>
-<li><input disabled="" type="checkbox"> <strong>是否已設定 security.txt？</strong> (符合 CVD 通報規範)</li>
-<li><input disabled="" type="checkbox"> <strong>是否具備防降級與數位簽章的 OTA 更新機制？</strong></li>
-<li><input disabled="" type="checkbox"> <strong>產品包裝&#x2F;官網是否明確標示安全更新終止年份？</strong> (至少 5 年)</li>
-<li><input disabled="" type="checkbox"> <strong>內部是否已建立 24h &#x2F; 72h 歐盟通報 SOP？</strong></li>
-<li><input disabled="" type="checkbox"> <strong>若有 ISO 27001 &#x2F; IEC 62443-4-1 認證，相關程序書是否已連結引用？</strong></li>
-</ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-05T01:33:17.000Z" title="8/5/2026, 9:33:17 AM">2026-08-05</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-21T05:56:24.217Z" title="8/21/2026, 1:56:24 PM">2026-08-21</time></span><span class="level-item"><a class="link-muted" href="/categories/CRA/">CRA</a></span><span class="level-item">19 minutes read (About 2882 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/cra.html">歐盟《網路韌性法案》</a></p><div class="content"><p>歐盟《網路韌性法案》（<strong>Cyber Resilience Act, CRA</strong> &#x2F; EU 2024&#x2F;2847）是歐盟針對具備數位元素產品（Products with Digital Elements, PDEs）所頒布的首個橫向強制性網路安全法規。</p>
-<hr>
-<h2 id="1-核心規範原則"><a href="#1-核心規範原則" class="headerlink" title="1. 核心規範原則"></a>1. 核心規範原則</h2><p>CRA 將資安責任直接歸屬於製造商、進口商與經銷商，主要原則包括：</p>
-<ul>
-<li><strong>設計即安全（Secure-by-Design &amp; Default）：</strong> 產品在規劃與開發階段即須納入網路安全考量，且預設設定需具備安全性。</li>
-<li><strong>全生命週期管理：</strong> 製造商必須在產品生命週期內（至少 5 年或產品預期壽命期間）提供免費的資安更新與漏洞修補。</li>
-<li><strong>軟體物料清單（SBOM）：</strong> 強制記錄與維護元件清單，確保供應鏈與第三方／開源套件的透明度與風險控制。</li>
-<li><strong>CE 標誌強制認證：</strong> 符合 CRA 要求的產品才可貼上 CE 標誌並於歐盟市場銷售。</li>
-</ul>
-<hr>
-<h2 id="2-適用範圍與排除對象"><a href="#2-適用範圍與排除對象" class="headerlink" title="2. 適用範圍與排除對象"></a>2. 適用範圍與排除對象</h2><h3 id="適用範圍"><a href="#適用範圍" class="headerlink" title="適用範圍"></a>適用範圍</h3><p>涵蓋所有直接或間接連接至網路或裝置的<strong>硬體與軟體產品</strong>，例如：</p>
-<ul>
-<li><strong>消費性電子：</strong> 智慧家電、網路攝影機、穿戴式裝置、路由器等。</li>
-<li><strong>工業與商業設備：</strong> 工業控制器（PLC）、感測器、網關（IoT Gateway）及管理軟體。</li>
-<li><strong>獨立軟體：</strong> 操作系統、韌體、應用軟體及各類聯網工具。</li>
-</ul>
-<h3 id="排除對象"><a href="#排除對象" class="headerlink" title="排除對象"></a>排除對象</h3><p>已有其他專屬嚴格資安法規監管的產品不適用 CRA：</p>
-<ul>
-<li>醫療器材（受 MDR &#x2F; IVDR 規範）</li>
-<li>車用設備（受 UN R155 &#x2F; R156 等車用標準規範）</li>
-<li>民航航空設備與國防軍事產品</li>
-</ul>
-<hr>
-<h2 id="3-產品風險等級與合格評鑑模式"><a href="#3-產品風險等級與合格評鑑模式" class="headerlink" title="3. 產品風險等級與合格評鑑模式"></a>3. 產品風險等級與合格評鑑模式</h2><p>CRA 依據產品的資安風險高低，將產品劃分為不同等級並採取不同的合格評鑑模式（Conformity Assessment）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────┐</span><br><span class="line">│                    CRA 產品風險類別                     │</span><br><span class="line">├───────────────┬─────────────────────────────────────────┤</span><br><span class="line">│ 預設類別      │ 一般 PDE（占約 90% 的產品）             │</span><br><span class="line">│ Default       │ 模式：自我宣告（Self-Assessment）       │</span><br><span class="line">├───────────────┼─────────────────────────────────────────┤</span><br><span class="line">│ 重要產品      │ Class I（如：密碼管理器、網路介面卡）   │</span><br><span class="line">│ Critical      │ 模式：套用調和標準可自認，或經第三方評鑑│</span><br><span class="line">│ Class I &amp; II  ├─────────────────────────────────────────┤</span><br><span class="line">│               │ Class II（如：防火牆、PKI 系統、微處理器│</span><br><span class="line">│               │ 模式：必須通過第三方驗證（Notified Body│</span><br><span class="line">├───────────────┼─────────────────────────────────────────┤</span><br><span class="line">│ 關鍵產品      │ Critical / Highly Critical（如：智慧電網│</span><br><span class="line">│ Critical      │ 模式：強制第三方認證或歐盟資安認證計畫  │</span><br><span class="line">└───────────────┴─────────────────────────────────────────┘</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><strong>預設 &#x2F; 一般產品（Default &#x2F; Non-Critical）：</strong></li>
-</ol>
-<ul>
-<li><strong>評鑑方式：</strong> 製造商可透過自我宣告（Self-assessment）確認符合 CRA 技術要求並簽署 EU Declaration of Conformity。</li>
-</ul>
-<ol start="2">
-<li><strong>重要產品 Class I（Important Class I）：</strong></li>
-</ol>
-<ul>
-<li><strong>評鑑方式：</strong> 若有完全套用歐盟「調和標準（Harmonised Standards）」，可採用自我宣告；若無，則需由歐盟認可之第三方合格評鑑機構（Notified Body）進行審查。</li>
-</ul>
-<ol start="3">
-<li><strong>重要產品 Class II（Important Class II）與關鍵產品（Critical）：</strong></li>
-</ol>
-<ul>
-<li><strong>評鑑方式：</strong> <strong>強制要求第三方驗證</strong>或取得指定之歐盟網路安全認證計畫（EUCC）證書。</li>
-</ul>
-<hr>
-<h2 id="4-關鍵時間軸"><a href="#4-關鍵時間軸" class="headerlink" title="4. 關鍵時間軸"></a>4. 關鍵時間軸</h2><table>
-<thead>
-<tr>
-<th>時間</th>
-<th>里程碑與法律義務</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>2024 年 12 月 10 日</strong></td>
-<td>CRA 法案正式生效（進入過渡期）。</td>
-</tr>
-<tr>
-<td><strong>2026 年 6 月 11 日</strong></td>
-<td>合格評鑑機構（Notified Body）相關要求生效。</td>
-</tr>
-<tr>
-<td><strong>2026 年 9 月 11 日</strong></td>
-<td><strong>漏洞與資安事件通報義務強制上路</strong>（發生主動利用漏洞或重大事件時，須於 24 小時內通報 ENISA 與主管機關）。</td>
-</tr>
-<tr>
-<td><strong>2027 年 12 月 11 日</strong></td>
-<td><strong>CRA 全面強制實施</strong>（不符合資安要求之產品不得在歐盟市場銷售）。</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="5-罰則機制"><a href="#5-罰則機制" class="headerlink" title="5. 罰則機制"></a>5. 罰則機制</h2><p>若未遵守 CRA 規範，違規企業將面臨重罰：</p>
-<ul>
-<li><strong>技術要求未合規：</strong> 最高 <strong>1,500 萬歐元</strong> 或 <strong>全球年營業額 2.5%</strong>（以較高者為準）。</li>
-<li><strong>通報義務未履行：</strong> 最高 <strong>1,000 萬歐元</strong> 或 <strong>全球年營業額 2.0%</strong>（以較高者為準）。</li>
-<li>監管機關有權要求違規產品下架、召回或禁止在歐盟境內銷售。</li>
-</ul>
-<hr>
-<h2 id="6-企業因應建議與現行參考標準"><a href="#6-企業因應建議與現行參考標準" class="headerlink" title="6. 企業因應建議與現行參考標準"></a>6. 企業因應建議與現行參考標準</h2><p>由於歐盟 CRA 的調和標準（Harmonised Standards）仍在由 CEN&#x2F;CENELEC 與 ETSI 陸續制定與調和中，現階段企業可基於以下既有國際資安標準建置合規體系：</p>
-<ul>
-<li><strong>工業控制與嵌入式設備：</strong> <strong>ISA&#x2F;IEC 62443</strong>（特別是 62443-4-1 安全開發生命週期與 62443-4-2 元件安全）。</li>
-<li><strong>消費性物聯網（IoT）：</strong> <strong>ETSI EN 303 645</strong>。</li>
-<li><strong>軟體供應鏈與 SBOM：</strong> <strong>SPDX</strong> 或 <strong>CycloneDX</strong> 格式標準。</li>
-<li><strong>通用資安驗證：</strong> ISO&#x2F;IEC 27001、ISO&#x2F;IEC 29147（漏洞揭露）及 ISO&#x2F;IEC 30111（漏洞處理）。</li>
-</ul>
-<hr>
-<h2 id="如何判定我的數位產品在歐盟-CRA-下屬於一般類別、Class-I-還是-Class-II"><a href="#如何判定我的數位產品在歐盟-CRA-下屬於一般類別、Class-I-還是-Class-II" class="headerlink" title="如何判定我的數位產品在歐盟 CRA 下屬於一般類別、Class I 還是 Class II"></a>如何判定我的數位產品在歐盟 CRA 下屬於一般類別、Class I 還是 Class II</h2><p>判定數位產品在歐盟 CRA（Cyber Resilience Act）下的分類，關鍵在於「產品的核心功能」<strong>以及</strong>「產品若遭受破壞後可能造成的風險與連帶影響層面」。</p>
-<p>歐盟 CRA 採用「負面清單法（Exclusion &#x2F; Designated List）」<strong>：先檢查產品是否屬於 <strong>Annex III（重要產品 Class I &#x2F; II）</strong> 或 <strong>Annex IV（關鍵產品）</strong>；若皆不在清單上，則預設歸類為</strong>一般類別（Default）。</p>
-<p>您可以依照以下<strong>三步驟</strong>來進行判定：</p>
-<hr>
-<h3 id="第一步：是否落在-Annex-III-Class-II（高風險重要產品）？"><a href="#第一步：是否落在-Annex-III-Class-II（高風險重要產品）？" class="headerlink" title="第一步：是否落在 Annex III Class II（高風險重要產品）？"></a>第一步：是否落在 Annex III Class II（高風險重要產品）？</h3><p>若產品具備極為關鍵的資安防護、系統底層控制或防篡改功能，通常屬於 <strong>Class II</strong>。此類產品強制必須由第三方機構（Notified Body）進行審查驗證。</p>
-<p><strong>常見 Class II 產品項目包括：</strong></p>
-<ul>
-<li><strong>底層虛擬化與容器系統：</strong> Hypervisors、Container runtime systems。</li>
-<li><strong>資安防護設備：</strong> 防火牆（Firewalls）、入侵偵測與預防系統（IDS&#x2F;IPS）。</li>
-<li><strong>高安全性晶片與硬體：</strong> 具備防篡改能力的微處理器&#x2F;微控制器（Tamper-resistant microprocessors &#x2F; microcontrollers）。</li>
-</ul>
-<blockquote>
-<p>💡 <strong>評鑑方式：</strong> 不可自我宣告，必須通過第三方認證（Modules B+C 或 Module H）。</p>
-</blockquote>
-<hr>
-<h3 id="第二步：是否落在-Annex-III-Class-I（中風險重要產品）？"><a href="#第二步：是否落在-Annex-III-Class-I（中風險重要產品）？" class="headerlink" title="第二步：是否落在 Annex III Class I（中風險重要產品）？"></a>第二步：是否落在 Annex III Class I（中風險重要產品）？</h3><p>若產品具備身分驗證、加密、網路管理或保護關鍵隱私&#x2F;安全等功能，但未達到 Class II 的底層影響力，則屬於 <strong>Class I</strong>。</p>
-<p><strong>常見 Class I 產品項目包括：</strong></p>
-<ul>
-<li><strong>資安與憑證工具：</strong> 密碼管理器（Password managers）、PKI 憑證核發軟體、VPN 軟體&#x2F;設備、防毒&#x2F;掃毒軟體。</li>
-<li><strong>網路與系統管理：</strong> 網路管理系統、SIEM 系統、引導管理器（Boot managers）、作業系統（OS）、網路介面卡、路由器、數據機與交換器。</li>
-<li><strong>安全相關晶片與組件：</strong> 具備資安相關功能的 MCU、MPU、ASIC 與 FPGA。</li>
-<li><strong>特殊消費性&#x2F;物聯網裝置：</strong></li>
-<li>智慧家庭安全產品（如智慧門鎖、監控攝影機、嬰兒監視器、警報系統）。</li>
-<li>具備社交互動或定位追蹤功能的聯網玩具。</li>
-<li>具備健康監測功能或兒童專用的個人穿戴式裝置。</li>
-</ul>
-<blockquote>
-<p>💡 <strong>評鑑方式：</strong> 若完全符合歐盟調和標準（Harmonised Standards），<strong>可採用自我宣告（Self-assessment）</strong>；若缺乏適用標準，則需經由第三方驗證。</p>
-</blockquote>
-<hr>
-<h3 id="第三步：是否不在清單內？（歸類為-Default-一般產品）"><a href="#第三步：是否不在清單內？（歸類為-Default-一般產品）" class="headerlink" title="第三步：是否不在清單內？（歸類為 Default 一般產品）"></a>第三步：是否不在清單內？（歸類為 Default 一般產品）</h3><p>歐盟約有 <strong>80%～90%</strong> 的數位產品屬於此類別。只要產品不具備上述專用的高風險資安功能，且未列入 Annex III &#x2F; IV，即屬於<strong>一般類別（Default）</strong>。</p>
-<p><strong>常見 Default 產品包括：</strong></p>
-<ul>
-<li>一般消費性電子（如一般智慧家電、一般藍牙音響、智慧手錶&#x2F;手環（非兒童用且無特殊健康數據監測））</li>
-<li>一般工業用非安全相關之感測器與資料擷取模組</li>
-<li>一般應用軟體（如文字處理軟體、圖像編輯軟體、相機 App 等）</li>
-<li>一般微控制器&#x2F;單晶片（未宣稱具備硬體資安防護功能者）</li>
-</ul>
-<blockquote>
-<p>💡 <strong>評鑑方式：</strong> 製造商直接進行**內部生產控制與自我宣告（Self-assessment）**並貼上 CE 標誌即可。</p>
-</blockquote>
-<hr>
-<h3 id="分類流程判斷法"><a href="#分類流程判斷法" class="headerlink" title="分類流程判斷法"></a>分類流程判斷法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[ 您的數位產品 ]</span><br><span class="line">       │</span><br><span class="line">       ▼</span><br><span class="line"> 產品是否具備資安核心功能（如防火牆、PKI、防篡改 MCU、Hypervisor）？</span><br><span class="line">       ├─── YES ➔ 屬於 Class II（必須經 Notified Body 第三方驗證）</span><br><span class="line">       │</span><br><span class="line">       ▼</span><br><span class="line"> 產品是否列於 Annex III Class I（如密碼管理、VPN、智慧門鎖、網路介面、帶資安功能的 MCU）？</span><br><span class="line">       ├─── YES ➔ 屬於 Class I（有套用調和標準可自認，無則需第三方）</span><br><span class="line">       │</span><br><span class="line">       ▼</span><br><span class="line"> NO ➔ 屬於 Default 一般類別（內部生產控制，直接自我宣告）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="⚠️-特別注意事項：組件與整體產品的關係"><a href="#⚠️-特別注意事項：組件與整體產品的關係" class="headerlink" title="⚠️ 特別注意事項：組件與整體產品的關係"></a>⚠️ 特別注意事項：組件與整體產品的關係</h3><p>如果您的產品<strong>整合了屬於 Class I 或 Class II 的零件</strong>（例如您的智慧工業控制板選用了具備資安功能的 Class I MCU），<strong>整體產品並不一定會被直接升級為 Class I 或 Class II</strong>。</p>
-<ul>
-<li>CRA 的分類是看「產品作為一個整體（Product as a whole）」對外呈現的功能與主要用途。</li>
-<li>只有當整體產品本身的核心功能就是 Annex III 所列出的項目時，才需要遵照相應的更高階合格評鑑程序。</li>
-</ul>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">Previous</a></div><div class="pagination-next"><a href="/page/2/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/5/">5</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">42</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">5</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/CRA/"><span class="level-start"><span class="level-item">CRA</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/Docker/"><span class="level-start"><span class="level-item">Docker</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Gemini/"><span class="level-start"><span class="level-item">Gemini</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Git/"><span class="level-start"><span class="level-item">Git</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/GitHub/"><span class="level-start"><span class="level-item">GitHub</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/categories/Hexo/"><span class="level-start"><span class="level-item">Hexo</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/other/"><span class="level-start"><span class="level-item">other</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-20T03:56:50.000Z">2026-08-20</time></p><p class="title"><a href="/posts/linux_hmi.html">Ubuntu 24.04 設定為 HMI</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-19T06:12:36.000Z">2026-08-19</time></p><p class="title"><a href="/posts/m2354_sbom.html">Nuvoton M2354 BSP 軟體物料清單 (SBOM) 生成說明</a></p><p class="categories"><a href="/categories/CRA/">CRA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-19T03:43:45.000Z">2026-08-19</time></p><p class="title"><a href="/posts/win_hmi.html">Windows 11 設定為 HMI</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-17T08:25:37.000Z">2026-08-17</time></p><p class="title"><a href="/posts/sbom_flow.html">軟體物料清單 (SBOM) 與漏洞掃描導入指南</a></p><p class="categories"><a href="/categories/CRA/">CRA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-14T06:43:33.000Z">2026-08-14</time></p><p class="title"><a href="/posts/nvme_erase.html">隨身碟自動清除 NVMe SSD</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/08/"><span class="level-start"><span class="level-item">August 2026</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/07/"><span class="level-start"><span class="level-item">July 2026</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/06/"><span class="level-start"><span class="level-item">June 2026</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">24</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Ayden/"><span class="tag">Ayden</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Kenny/"><span class="tag">Kenny</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Robin/"><span class="tag">Robin</span><span class="tag">29</span></a></div><div class="control"><a class="tags has-addons" href="/tags/TJ/"><span class="tag">TJ</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tina/"><span class="tag">Tina</span><span class="tag">2</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">Previous</a></div><div class="pagination-next"><a href="/page/2/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/5/">5</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.png" alt="Robin Cheng"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Robin Cheng</p><p class="is-size-6 is-block">software engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>台灣, 台北</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives/"><p class="title">44</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories/"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags/"><p class="title">5</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/AI/"><span class="level-start"><span class="level-item">AI</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/CRA/"><span class="level-start"><span class="level-item">CRA</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/Docker/"><span class="level-start"><span class="level-item">Docker</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Gemini/"><span class="level-start"><span class="level-item">Gemini</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Git/"><span class="level-start"><span class="level-item">Git</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/GitHub/"><span class="level-start"><span class="level-item">GitHub</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/categories/Hexo/"><span class="level-start"><span class="level-item">Hexo</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/other/"><span class="level-start"><span class="level-item">other</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-25T03:06:57.000Z">2026-08-25</time></p><p class="title"><a href="/posts/ZephyrGuide.html">Zephyr入門指南</a></p><p class="categories"><a href="/categories/CRA/">CRA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-21T06:16:20.000Z">2026-08-21</time></p><p class="title"><a href="/posts/HexoCategories.html">Hexo 中為文章建立與設定分類</a></p><p class="categories"><a href="/categories/Hexo/">Hexo</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-20T03:56:50.000Z">2026-08-20</time></p><p class="title"><a href="/posts/linux_hmi.html">Ubuntu 24.04 設定為 HMI</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-19T06:12:36.000Z">2026-08-19</time></p><p class="title"><a href="/posts/m2354_sbom.html">Nuvoton M2354 BSP 軟體物料清單 (SBOM) 生成說明</a></p><p class="categories"><a href="/categories/CRA/">CRA</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2026-08-19T03:43:45.000Z">2026-08-19</time></p><p class="title"><a href="/posts/win_hmi.html">Windows 11 設定為 HMI</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/08/"><span class="level-start"><span class="level-item">August 2026</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/07/"><span class="level-start"><span class="level-item">July 2026</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/06/"><span class="level-start"><span class="level-item">June 2026</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2026/05/"><span class="level-start"><span class="level-item">May 2026</span></span><span class="level-end"><span class="level-item tag">24</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Ayden/"><span class="tag">Ayden</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Kenny/"><span class="tag">Kenny</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Robin/"><span class="tag">Robin</span><span class="tag">31</span></a></div><div class="control"><a class="tags has-addons" href="/tags/TJ/"><span class="tag">TJ</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Tina/"><span class="tag">Tina</span><span class="tag">2</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,

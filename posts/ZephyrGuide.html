@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Zephyr入門指南 - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="1. 設定Zephyr1.1 準備 Zephyr 環境本說明將引導您完成在 Windows 作業系統上使用 Visual Studio Code (VS Code) 和 MCUXpresso 擴充功能啟動並執行 Zephyr 開發環境的基本步驟。本次演示旨在讓設定變得快速簡便，以便您現在就可以開始開發應用程序，而無需陷入細節。  下載並安裝 VS Code      安裝適用於 VS Code 的"><meta property="og:type" content="blog"><meta property="og:title" content="Zephyr入門指南"><meta property="og:url" content="http://example.com/posts/ZephyrGuide.html"><meta property="og:site_name" content="My personal blog at work"><meta property="og:description" content="1. 設定Zephyr1.1 準備 Zephyr 環境本說明將引導您完成在 Windows 作業系統上使用 Visual Studio Code (VS Code) 和 MCUXpresso 擴充功能啟動並執行 Zephyr 開發環境的基本步驟。本次演示旨在讓設定變得快速簡便，以便您現在就可以開始開發應用程序，而無需陷入細節。  下載並安裝 VS Code      安裝適用於 VS Code 的"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/images/VS_Code.png"><meta property="og:image" content="http://example.com/images/VS_Code_MCUXpresso.png"><meta property="og:image" content="http://example.com/images/MCUXpresso_Installer.png"><meta property="og:image" content="http://example.com/images/MCUXpresso_Installer_Zephyr.png"><meta property="og:image" content="http://example.com/images/MCUXpresso_Installer_comfig_tool.png"><meta property="og:image" content="http://example.com/images/MCUXpresso_Installer_secure_tool.png"><meta property="og:image" content="http://example.com/images/Zephyr_Developer.png"><meta property="og:image" content="http://example.com/images/GS-Zephyr-IMG2.png"><meta property="og:image" content="http://example.com/images/GS-Zephyr-IMG3.png"><meta property="og:image" content="http://example.com/images/GS-Zephyr-IMG4.png"><meta property="og:image" content="http://example.com/images/GS-Zephyr-IMG5.png"><meta property="og:image" content="http://example.com/images/GS-Zephyr-IMG6.png"><meta property="article:published_time" content="2026-08-25T03:06:57.000Z"><meta property="article:modified_time" content="2026-08-28T05:54:22.124Z"><meta property="article:author" content="Robin Cheng"><meta property="article:tag" content="Robin"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/images/VS_Code.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/posts/ZephyrGuide.html"},"headline":"Zephyr入門指南","image":["http://example.com/images/VS_Code.png","http://example.com/images/VS_Code_MCUXpresso.png","http://example.com/images/MCUXpresso_Installer.png","http://example.com/images/MCUXpresso_Installer_Zephyr.png","http://example.com/images/MCUXpresso_Installer_comfig_tool.png","http://example.com/images/MCUXpresso_Installer_secure_tool.png","http://example.com/images/Zephyr_Developer.png","http://example.com/images/GS-Zephyr-IMG2.png","http://example.com/images/GS-Zephyr-IMG3.png","http://example.com/images/GS-Zephyr-IMG4.png","http://example.com/images/GS-Zephyr-IMG5.png","http://example.com/images/GS-Zephyr-IMG6.png"],"datePublished":"2026-08-25T03:06:57.000Z","dateModified":"2026-08-28T05:54:22.124Z","author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"1. 設定Zephyr1.1 準備 Zephyr 環境本說明將引導您完成在 Windows 作業系統上使用 Visual Studio Code (VS Code) 和 MCUXpresso 擴充功能啟動並執行 Zephyr 開發環境的基本步驟。本次演示旨在讓設定變得快速簡便，以便您現在就可以開始開發應用程序，而無需陷入細節。  下載並安裝 VS Code      安裝適用於 VS Code 的"}</script><link rel="canonical" href="http://example.com/posts/ZephyrGuide.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-08-25T03:06:57.000Z" title="8/25/2026, 11:06:57 AM">2026-08-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-08-28T05:54:22.124Z" title="8/28/2026, 1:54:22 PM">2026-08-28</time></span><span class="level-item"><a class="link-muted" href="/categories/CRA/">CRA</a></span><span class="level-item">12 minutes read (About 1743 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">Zephyr入門指南</h1><div class="content"><h2 id="1-設定Zephyr"><a href="#1-設定Zephyr" class="headerlink" title="1. 設定Zephyr"></a>1. 設定Zephyr</h2><h3 id="1-1-準備-Zephyr-環境"><a href="#1-1-準備-Zephyr-環境" class="headerlink" title="1.1 準備 Zephyr 環境"></a>1.1 準備 Zephyr 環境</h3><p>本說明將引導您完成在 Windows 作業系統上使用 Visual Studio Code (VS Code) 和 MCUXpresso 擴充功能啟動並執行 Zephyr 開發環境的基本步驟。<br>本次演示旨在讓設定變得快速簡便，以便您現在就可以開始開發應用程序，而無需陷入細節。</p>
+<ol>
+<li>下載並安裝 VS Code</li>
+</ol>
+<p>  <img src="/images/VS_Code.png" alt="Visual Studio Code"></p>
+<ol start="2">
+<li>安裝適用於 VS Code 的 MCUXpresso 擴展，並添加 NXP 的官方擴展以啟用嵌入式開發功能。</li>
+</ol>
+<p>  <img src="/images/VS_Code_MCUXpresso.png" alt="VS Code with MCUXpresso"></p>
+<ol start="3">
+<li>運行 MCUXpresso 安裝程式。使用安裝程式設定軟體開發工具包 (SDK)、工具鏈和環境。</li>
+</ol>
+<p>  <img src="/images/MCUXpresso_Installer.png" alt="MCUXpresso Installer"></p>
+<ol start="4">
+<li>安裝 Zephyr 倉庫。克隆並配置 Zephyr 倉庫以完成設定(下載需要大量的間時）。</li>
+</ol>
+<p>  <img src="/images/MCUXpresso_Installer_Zephyr.png" alt="MCUXpresso Installer Zephyr"></p>
+<ol start="5">
+<li>安裝 MCUXpresso 設定工具。Zephyr的引腳工具支援適用於 25.03 及更高版本。</li>
+</ol>
+<p>   <img src="/images/MCUXpresso_Installer_comfig_tool.png" alt="MCUXpresso Installer config tool"></p>
+<ol start="6">
+<li>安裝 MCUXpresso 安全設定工具</li>
+</ol>
+<p>   <img src="/images/MCUXpresso_Installer_secure_tool.png" alt="MCUXpresso Installer secure tool"></p>
+<h3 id="1-2-安裝工具鏈"><a href="#1-2-安裝工具鏈" class="headerlink" title="1.2 安裝工具鏈"></a>1.2 安裝工具鏈</h3><p>NXP 為 VSCode 提供了一個名為 MCUXpresso for VS Code 的免費擴充功能。<br>下載 VS Code 以存取擴充功能庫。</p>
+<p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/download">取得 VS Code</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.nxp.com/design/design-center/training/TIP-GETTING-STARTED-WITH-MCUXPRESSO-FOR-VS-CODE">請按照以下教學</a>學習如何在主機上安裝 VS Code。</p>
+<h3 id="1-3-使用-Zephyr-Developer-快速啟動您的設計"><a href="#1-3-使用-Zephyr-Developer-快速啟動您的設計" class="headerlink" title="1.3 使用 Zephyr Developer 快速啟動您的設計"></a>1.3 使用 Zephyr Developer 快速啟動您的設計</h3><p>MCUXpresso 安裝程式包含一個名為「Zephyr Developer」的選項，可讓您下載除 Zephyr SDK 之外的所有必要元件、工具和相依性。 Zephyr SDK 包含適用於 Zephyr 及其支援的每種架構的工具鏈，其中包括編譯器、彙編器、連結器以及建立 Zephyr 應用程式所需的其他程式。</p>
+<p>在 MCUXpresso for VSCode 的「快速啟動面板」中找到 MCUXpresso 安裝程式。</p>
+<p><img src="/images/Zephyr_Developer.png" alt="Zephyr Developer"></p>
+<h3 id="1-4-MCUXpresso-配置工具"><a href="#1-4-MCUXpresso-配置工具" class="headerlink" title="1.4 MCUXpresso 配置工具"></a>1.4 MCUXpresso 配置工具</h3><p>MCUXpresso 配置工具是一套整合的配置工具，可引導使用者建立新的 MCUXpresso SDK 專案。它還包含引腳和時脈工具，用於產生自訂板級支援的初始化 C 程式碼。引腳工具具有圖形使用者介面 (GUI)，可協助使用者選擇應用程式使用的所有所需訊號，並配置引腳復用和引腳設定。從 v25.03 版本開始，設定工具可以為 i.MX RT1xxx 和 MCX 裝置產生 Zephyr 板級 pinctrl 檔案。 Zephyr 使用 pinctrl 來設定係統單晶片 (SOC) 的接腳和接腳重複使用設定。</p>
+<p>點擊下面的「取得 MCUXpresso 設定工具」按鈕，即可取得設定工具安裝程式。</p>
+<p><a target="_blank" rel="noopener" href="https://www.nxp.com/design/design-center/software/development-software/mcuxpresso-software-and-tools-/mcuxpresso-config-tools-pins-clocks-and-peripherals:MCUXpresso-Config-Tools">取得 MCUXpresso 設定工具</a></p>
+<h3 id="1-5-編程和配置工具"><a href="#1-5-編程和配置工具" class="headerlink" title="1.5 編程和配置工具"></a>1.5 編程和配置工具</h3><p>MCUXpresso 安全配置 (SEC) 工具是一款基於圖形使用者介面 (GUI) 的應用程序，旨在簡化在恩智浦 (NXP) 微控制器單元 (MCU) 裝置上產生和配置可引導執行檔的流程。我們建議所有使用者先使用 MCUXpresso SEC 工具進行試運行和大量生產。它支援在生產階段對恩智浦微控制器進行安全編程和設備配置。下載該工具後，您可以在「說明」標籤下找到使用者指南。請依照「處理器特定工作流程」章節中針對您的開發板的說明進行操作。</p>
+<p><a target="_blank" rel="noopener" href="https://www.nxp.com/document/guide/getting-started-with-zephyr:GS-ZEPHYR#">下載 SEC</a></p>
+<h3 id="1-6-熟悉-VS-Code-的-MCUXpresso"><a href="#1-6-熟悉-VS-Code-的-MCUXpresso" class="headerlink" title="1.6 熟悉 VS Code 的 MCUXpresso"></a>1.6 熟悉 VS Code 的 MCUXpresso</h3><p>MCUXpresso for VS Code 的主要功能特性</p>
+<p>剛開始使用 MCUXpresso for VS Code 時，了解一些關鍵功能和工具會很有幫助，它們可以簡化您的開發體驗。本節將為您提供一個概覽，而非深入講解，讓您快速上手。</p>
+<p>快速入門面板</p>
+<p>快速入門面板是您建立、匯入和管理專案的啟動平台。它提供了常用任務的捷徑。其中最常用的快捷方式是「從儲存庫導入範例」和「開啟 MCUXpresso 安裝程式」。</p>
+<p>專案視圖</p>
+<p><img src="/images/GS-Zephyr-IMG2.png"></p>
+<p>這裡是您的工作區和專案文件所在的位置。了解 Zephyr 專案的結構將有助於您更有效地瀏覽和管理程式碼。</p>
+<p>設備樹</p>
+<p><img src="/images/GS-Zephyr-IMG3.png"></p>
+<p>設備樹描述了硬體佈局和配置。編譯 Zephyr 專案並刷新設備樹視圖後，它將以樹狀結構顯示專案硬體層次結構。您也可以查看節點及其關聯值。</p>
+<p>完美建造</p>
+<p><img src="/images/GS-Zephyr-IMG4.png"></p>
+<p>全新建置用於從頭開始清理和重建專案。在切換配置或解決建置問題時，它尤其有用。</p>
+<p>偵錯</p>
+<p><img src="/images/GS-Zephyr-IMG5.png"></p>
+<p>MCUXpresso for VSCode 可與多種調試器整合。借助它，您可以學習如何設定斷點、單步執行程式碼以及檢查變量，從而有效地進行故障排除。</p>
+<p>終端機和串口監視器</p>
+<p><img src="/images/GS-Zephyr-IMG6.png"></p>
+<p>該終端機旨在實現與導入的儲存庫進行命令列互動。串口終端可讓您透過 UART 與開發板進行互動。這對於日誌記錄、調試和即時通訊非常有用。</p>
+<h3 id="1-7-硬體準備"><a href="#1-7-硬體準備" class="headerlink" title="1.7 硬體準備"></a>1.7 硬體準備</h3><p>本步驟指南將以 FRDM-MCXC242 開發板為例，指導您如何開始使用 Zephyr。當然，您也可以使用其他評估板，並遵循相同的基本流程。</p>
+<ol>
+<li>選擇您的評估委員會</li>
+</ol>
+<p>本指南使用 FRDM-MCXC242 開發板，您也可以使用其他支援的開發板，但請務必：</p>
+<ul>
+<li>確認您的主機板是否支援 Zephyr</li>
+<li>請檢查是否有任何針對特定電路板的設定說明</li>
+</ul>
+<ol start="2">
+<li>更新板載調試器韌體<br>大多數評估板都帶有板載調試器。為確保相容性和穩定性：請確認您評估板的調試器韌體已更新至最新版本。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.nxp.com/design/design-center/software/development-software/mcuxpresso-software-and-tools-/linkserver-for-microcontrollers:LINKSERVER">從LinkServer 韌體頁面</a>下載最新韌體。選擇合適的韌體類型：</p>
+<ul>
+<li>Cortex 微控制器軟體介面標準偵錯存取連接埠 (CMSIS-DAP)</li>
+<li>Segger J-Link</li>
+</ul>
+<ol start="3">
+<li><p>如果您的開發板沒有板載偵錯器，請將外部偵錯器連接到目標開發板。</p>
+</li>
+<li><p>給電路板供電<br>開發過程中需要為開發板供電。常用供電方式包括：</p>
+</li>
+</ol>
+<ul>
+<li>USB 連接線（最常見）</li>
+<li>圓筒形插孔連接器（適用於某些電路板）</li>
+</ul>
+<ol start="5">
+<li>將電路板插入電源</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Zephyr入門指南</p><p><a href="http://example.com/posts/ZephyrGuide.html">http://example.com/posts/ZephyrGuide.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Robin Cheng</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-08-25</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-08-28</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Robin/">Robin</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/HexoCategories.html"><span class="level-item">Hexo 中為文章建立與設定分類</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>如何在 Visual Studio 2022 / 2026 / VS Code 上產生符合歐盟 CRA 規範的 SBOM - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="本指南說明如何在 Visual Studio (2022 &amp;#x2F; 2026) 或 Visual Studio Code 開發環境中，使用 CycloneDX .NET CLI 工具為 C# 專案產生符合**歐盟網路彈性法案（EU Cyber Resilience Act, CRA）**要求之 CycloneDX 1.6 格式軟體物料清單（SBOM）。  跨 IDE 與跨版本相容性說明 備註："><meta property="og:type" content="blog"><meta property="og:title" content="如何在 Visual Studio 2022 / 2026 / VS Code 上產生符合歐盟 CRA 規範的 SBOM"><meta property="og:url" content="http://example.com/posts/VisualStudio_sbon.html"><meta property="og:site_name" content="My personal blog at work"><meta property="og:description" content="本指南說明如何在 Visual Studio (2022 &amp;#x2F; 2026) 或 Visual Studio Code 開發環境中，使用 CycloneDX .NET CLI 工具為 C# 專案產生符合**歐盟網路彈性法案（EU Cyber Resilience Act, CRA）**要求之 CycloneDX 1.6 格式軟體物料清單（SBOM）。  跨 IDE 與跨版本相容性說明 備註："><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2026-09-03T03:33:43.000Z"><meta property="article:modified_time" content="2026-09-03T04:03:27.208Z"><meta property="article:author" content="Robin Cheng"><meta property="article:tag" content="Tina"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/posts/VisualStudio_sbon.html"},"headline":"如何在 Visual Studio 2022 / 2026 / VS Code 上產生符合歐盟 CRA 規範的 SBOM","image":["http://example.com/img/og_image.png"],"datePublished":"2026-09-03T03:33:43.000Z","dateModified":"2026-09-03T04:03:27.208Z","author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"本指南說明如何在 Visual Studio (2022 &#x2F; 2026) 或 Visual Studio Code 開發環境中，使用 CycloneDX .NET CLI 工具為 C# 專案產生符合**歐盟網路彈性法案（EU Cyber Resilience Act, CRA）**要求之 CycloneDX 1.6 格式軟體物料清單（SBOM）。  跨 IDE 與跨版本相容性說明 備註："}</script><link rel="canonical" href="http://example.com/posts/VisualStudio_sbon.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-09-03T03:33:43.000Z" title="9/3/2026, 11:33:43 AM">2026-09-03</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-09-03T04:03:27.208Z" title="9/3/2026, 12:03:27 PM">2026-09-03</time></span><span class="level-item"><a class="link-muted" href="/categories/CRA/">CRA</a></span><span class="level-item">5 minutes read (About 814 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">如何在 Visual Studio 2022 / 2026 / VS Code 上產生符合歐盟 CRA 規範的 SBOM</h1><div class="content"><p>本指南說明如何在 <strong>Visual Studio (2022 &#x2F; 2026)</strong> 或 <strong>Visual Studio Code</strong> 開發環境中，使用 <strong>CycloneDX .NET CLI</strong> 工具為 C# 專案產生符合**歐盟網路彈性法案（EU Cyber Resilience Act, CRA）**要求之 <strong>CycloneDX 1.6</strong> 格式軟體物料清單（SBOM）。</p>
+<hr>
+<h2 id="跨-IDE-與跨版本相容性說明"><a href="#跨-IDE-與跨版本相容性說明" class="headerlink" title="跨 IDE 與跨版本相容性說明"></a>跨 IDE 與跨版本相容性說明</h2><blockquote>
+<p><strong>備註</strong>：</p>
+<p>本指南中的指令與操作步驟<strong>完全相容於 Visual Studio 2022、Visual Studio 2026 以及 Visual Studio Code</strong>。</p>
+<p>由於 CycloneDX CLI 本質上是透過 .NET SDK（<code>dotnet</code> CLI）獨立運作，並不依賴特定的 IDE 內部引擎，因此無論使用哪一種開發工具或升級版本，命令與流程皆完全一致。</p>
+</blockquote>
+<hr>
+<h2 id="為什麼選擇-CycloneDX-格式？"><a href="#為什麼選擇-CycloneDX-格式？" class="headerlink" title="為什麼選擇 CycloneDX 格式？"></a>為什麼選擇 CycloneDX 格式？</h2><ul>
+<li><strong>歐盟 CRA 最佳相容性</strong>：原生支援 VEX (Vulnerability Exploitability eXchange)，便於追蹤與標註漏洞可利用性。</li>
+<li><strong>符合德國 BSI 指引</strong>：德國資訊安全局發布的 TR-03183 指南（針對 CRA SBOM 之具體實施指引）已將 CycloneDX 1.6 列為主要採納標準。</li>
+<li><strong>開發者友善</strong>：支援輕量化 JSON &#x2F; XML 格式，適合自動化整合與技術文件歸檔。</li>
+</ul>
+<hr>
+<h2 id="完整操作步驟"><a href="#完整操作步驟" class="headerlink" title="完整操作步驟"></a>完整操作步驟</h2><h3 id="步驟一：開啟內建終端機-Terminal"><a href="#步驟一：開啟內建終端機-Terminal" class="headerlink" title="步驟一：開啟內建終端機 (Terminal)"></a>步驟一：開啟內建終端機 (Terminal)</h3><p>根據您使用的開發工具開啟終端機：</p>
+<ul>
+<li><strong>Visual Studio (2022 &#x2F; 2026)</strong>：點選頂端選單 <strong>檢視 (View) &gt; 終端機 (Terminal)</strong> (或按快捷鍵 <code>Ctrl + </code> <code> </code> )。</li>
+<li><strong>Visual Studio Code</strong>：點選頂端選單 <strong>Terminal &gt; New Terminal</strong> (或按快捷鍵 <code>Ctrl + </code> <code> </code> )。</li>
+</ul>
+<hr>
+<h3 id="步驟二：安裝-CycloneDX-NET-CLI-工具"><a href="#步驟二：安裝-CycloneDX-NET-CLI-工具" class="headerlink" title="步驟二：安裝 CycloneDX .NET CLI 工具"></a>步驟二：安裝 CycloneDX .NET CLI 工具</h3><p>在終端機中執行以下命令安裝全域工具（僅需執行一次）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet tool install --global CycloneDX</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong>：</p>
+<p>若先前已安裝過，可執行升級命令以確保工具為最新版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet tool update --global CycloneDX</span><br></pre></td></tr></table></figure></blockquote>
+<hr>
+<h3 id="步驟三：執行命令產生-SBOM"><a href="#步驟三：執行命令產生-SBOM" class="headerlink" title="步驟三：執行命令產生 SBOM"></a>步驟三：執行命令產生 SBOM</h3><p>在終端機切換至方案檔 (<code>.sln</code>) 所在的目錄，執行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet CycloneDX YourSolution.sln -o ./sbom --spec-version 1.6 --json</span><br></pre></td></tr></table></figure>
+
+<h4 id="參數說明："><a href="#參數說明：" class="headerlink" title="參數說明："></a>參數說明：</h4><ul>
+<li><code>YourSolution.sln</code>：指定要掃描的方案檔（請替換為您的 <code>.sln</code> 檔案名稱；若不指定檔名，亦可用 <code>.</code> 代替，工具會自動掃描目前目錄下的套件配置）。</li>
+<li><code>-o ./sbom</code>：指定輸出的資料夾路徑。</li>
+<li><code>--spec-version 1.6</code>（或簡寫 <code>-spv 1.6</code>）：指定產出 CycloneDX 1.6 規範版本（適用於 CLI 6.0+ 版本）。</li>
+<li><code>--json</code>：指定輸出檔案格式為 JSON。</li>
+</ul>
+<hr>
+<h3 id="步驟四：自訂-SBOM-檔案名稱（推薦）"><a href="#步驟四：自訂-SBOM-檔案名稱（推薦）" class="headerlink" title="步驟四：自訂 SBOM 檔案名稱（推薦）"></a>步驟四：自訂 SBOM 檔案名稱（推薦）</h3><p>歐盟 CRA 及 CycloneDX 規範<strong>並未強制限制檔案名稱</strong>（預設產出檔名為 <code>bom.json</code>）。</p>
+<p>為方便產品生命週期管理與稽核，建議將檔名加上<strong>專案名稱</strong>與<strong>版本號</strong>。可以直接在 <code>-o</code> 參數指定完整檔案名稱：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet CycloneDX YourSolution.sln -o ./sbom/YourProject-v1.0.0-sbom.json --spec-version 1.6 --json</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="產出結果驗證與歸檔"><a href="#產出結果驗證與歸檔" class="headerlink" title="產出結果驗證與歸檔"></a>產出結果驗證與歸檔</h2><ol>
+<li><strong>檢查檔案</strong>：開啟產出的 <code>.json</code> 檔案，確認頂層欄位包含 <code>&quot;specVersion&quot;: &quot;1.6&quot;</code>，且 <code>&quot;components&quot;</code> 完整列出專案所引用的 NuGet 套件與版號。</li>
+<li><strong>CRA 備查要求</strong>：將產出的 SBOM 檔案納入版本控制，並隨每次產品發布（Release）歸檔於技術文件中，以備歐盟 CRA 合規審查。</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>如何在 Visual Studio 2022 / 2026 / VS Code 上產生符合歐盟 CRA 規範的 SBOM</p><p><a href="http://example.com/posts/VisualStudio_sbon.html">http://example.com/posts/VisualStudio_sbon.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Robin Cheng</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-09-03</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-09-03</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Tina/">Tina</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/ZephyrGuide.html"><span class="level-item">Zephyr入門指南</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

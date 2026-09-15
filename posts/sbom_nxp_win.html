@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>LPC55S6x 專案自動產出符合 CRA 規範的 SBOM ( Windows 版 ) - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="LPC55S6x 專案自動產出符合 CRA 規範的 SBOM ( Windows 版 ) 在  Windows  環境下，要針對 LPC55S6x + FreeRTOS 專案自動產出符合 CRA 規範的 SBOM，最推薦的做法是將 SBOM 工具直接整合進 CMakeLists.txt 的建置流程中。 這樣一來，每次在 VS code 建置時，就會自動掃描原始碼、外部 SDK、FreeRTOS 套"><meta property="og:type" content="blog"><meta property="og:title" content="LPC55S6x 專案自動產出符合 CRA 規範的 SBOM ( Windows 版 )"><meta property="og:url" content="http://example.com/posts/sbom_nxp_win.html"><meta property="og:site_name" content="My personal blog at work"><meta property="og:description" content="LPC55S6x 專案自動產出符合 CRA 規範的 SBOM ( Windows 版 ) 在  Windows  環境下，要針對 LPC55S6x + FreeRTOS 專案自動產出符合 CRA 規範的 SBOM，最推薦的做法是將 SBOM 工具直接整合進 CMakeLists.txt 的建置流程中。 這樣一來，每次在 VS code 建置時，就會自動掃描原始碼、外部 SDK、FreeRTOS 套"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/images/notejs_setup.png"><meta property="og:image" content="http://example.com/images/jdk21.png"><meta property="og:image" content="http://example.com/images/vscode_build.png"><meta property="og:image" content="http://example.com/images/cra_sbom.png"><meta property="article:published_time" content="2026-09-15T05:36:20.000Z"><meta property="article:modified_time" content="2026-09-15T05:44:12.104Z"><meta property="article:author" content="Robin Cheng"><meta property="article:tag" content="TJ"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/images/notejs_setup.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/posts/sbom_nxp_win.html"},"headline":"LPC55S6x 專案自動產出符合 CRA 規範的 SBOM ( Windows 版 )","image":["http://example.com/images/notejs_setup.png","http://example.com/images/jdk21.png","http://example.com/images/vscode_build.png","http://example.com/images/cra_sbom.png"],"datePublished":"2026-09-15T05:36:20.000Z","dateModified":"2026-09-15T05:44:12.104Z","author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"LPC55S6x 專案自動產出符合 CRA 規範的 SBOM ( Windows 版 ) 在  Windows  環境下，要針對 LPC55S6x + FreeRTOS 專案自動產出符合 CRA 規範的 SBOM，最推薦的做法是將 SBOM 工具直接整合進 CMakeLists.txt 的建置流程中。 這樣一來，每次在 VS code 建置時，就會自動掃描原始碼、外部 SDK、FreeRTOS 套"}</script><link rel="canonical" href="http://example.com/posts/sbom_nxp_win.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-09-15T05:36:20.000Z" title="9/15/2026, 1:36:20 PM">2026-09-15</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-09-15T05:44:12.104Z" title="9/15/2026, 1:44:12 PM">2026-09-15</time></span><span class="level-item"><a class="link-muted" href="/categories/CRA/">CRA</a></span><span class="level-item">8 minutes read (About 1178 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">LPC55S6x 專案自動產出符合 CRA 規範的 SBOM ( Windows 版 )</h1><div class="content"><p>LPC55S6x 專案自動產出符合 CRA 規範的 SBOM ( Windows 版 )</p>
+<p>在  <strong>Windows</strong>  環境下，要針對 <code>LPC55S6x + FreeRTOS</code> 專案自動產出符合 <strong>CRA</strong> 規範的 <strong>SBOM</strong>，最推薦的做法是將 SBOM 工具直接整合進 CMakeLists.txt 的建置流程中。</p>
+<p>這樣一來，每次在 <strong>VS code</strong> 建置時，就會自動掃描原始碼、外部 SDK、FreeRTOS 套件，並輸出最新的 CycloneDX 或 SPDX 檔案。</p>
+<hr>
+<h2 id="📋-目錄"><a href="#📋-目錄" class="headerlink" title="📋 目錄"></a>📋 目錄</h2><ol>
+<li><a href="#%E6%AD%A5%E9%A9%9F-1%E6%BA%96%E5%82%99-windows-%E5%BF%85%E8%A6%81%E7%92%B0%E5%A2%83">步驟 1：準備 Windows 必要環境</a></li>
+<li><a href="#%E6%AD%A5%E9%A9%9F-2%E4%BF%AE%E6%94%B9-cmakelists.txt">步驟 2：修改 CMakeLists.txt</a></li>
+<li><a href="#%E6%AD%A5%E9%A9%9F-3%E5%9C%A8-vs-code-%E5%BB%BA%E7%BD%AE%E8%88%87%E7%94%A2%E5%87%BA-sbom">步驟 3：在 VS Code 建置與產出 SBOM</a></li>
+<li><a href="#%E5%BE%8C%E7%BA%8C%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C%E8%88%87%E9%A9%97%E8%AD%89">後續常見問題與驗證</a></li>
+</ol>
+<hr>
+<h2 id="步驟-1：準備-Windows-必要環境"><a href="#步驟-1：準備-Windows-必要環境" class="headerlink" title="步驟 1：準備 Windows 必要環境"></a>步驟 1：準備 Windows 必要環境</h2><p><code>cdxgen</code> 在進行 C 語言語意剖析時，需依賴 <strong>Node.js</strong> 的 CLI 工具以及 <strong>Java (JDK)</strong> 的語法樹分析（AST）解析器。</p>
+<h3 id="1-1-安裝-Node-js-含-npm"><a href="#1-1-安裝-Node-js-含-npm" class="headerlink" title="1.1 安裝 Node.js (含 npm)"></a>1.1 安裝 Node.js (含 npm)</h3><ol>
+<li>下載並安裝 <a target="_blank" rel="noopener" href="https://nodejs.org/">Node.js LTS 版本</a>。</li>
+<li>全程採用預設選項安裝（確認勾選 <code>Add to PATH</code> 與 <code>npm package manager</code>）。<br><img src="/images/notejs_setup.png"></li>
+</ol>
+<h3 id="1-2-安裝-OpenJDK-JDK-21-或-17"><a href="#1-2-安裝-OpenJDK-JDK-21-或-17" class="headerlink" title="1.2 安裝 OpenJDK (JDK 21 或 17+)"></a>1.2 安裝 OpenJDK (JDK 21 或 17+)</h3><ol>
+<li>下載並安裝 <a target="_blank" rel="noopener" href="https://adoptium.net/">Adoptium Temurin JDK 21</a> 的 <code>.msi</code> 檔。</li>
+<li>安裝時請確保勾選：<ul>
+<li>🟢 <strong>Set JAVA_HOME variable</strong></li>
+<li>🟢 <strong>Add to PATH</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="/images/jdk21.png"></p>
+<h3 id="1-3-全域安裝-cdxgen"><a href="#1-3-全域安裝-cdxgen" class="headerlink" title="1.3 全域安裝 cdxgen"></a>1.3 全域安裝 <code>cdxgen</code></h3><p>開啟 PowerShell 或 CMD 執行全域安裝指令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="literal">-g</span> @cyclonedx/cdxgen</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="步驟-2：修改-CMakeLists-txt"><a href="#步驟-2：修改-CMakeLists-txt" class="headerlink" title="步驟 2：修改 CMakeLists.txt"></a>步驟 2：修改 CMakeLists.txt</h2><p>在 VS Code 環境下使用 CMake Tools 時，必須確保 CMake 產生 <strong><code>compile_commands.json</code></strong>（編譯資料庫），供 <code>cdxgen</code> 解析 C&#x2F;C++ 原始碼依賴。</p>
+<p>請將專案根目錄的 <code>CMakeLists.txt</code> 新增或修改以下內容：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.15</span>)</span><br><span class="line"><span class="keyword">project</span>(LPC55S69_Project C CXX)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 強制輸出編譯資料庫 (compile_commands.json)</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_EXPORT_COMPILE_COMMANDS <span class="keyword">ON</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># 專案目標檔與 SDK 相關設定 (請替換為您原本的 executable 名稱)</span></span><br><span class="line"><span class="comment"># ------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># add_executable(lpc55s69_app $&#123;YOUR_SOURCE_FILES&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Windows &amp; VS Code 相容之 CycloneDX SBOM 自動產生器</span></span><br><span class="line"><span class="comment"># ------------------------------------------------------------------</span></span><br><span class="line"><span class="keyword">find_program</span>(CDXGEN_EXECUTABLE </span><br><span class="line">    NAMES cdxgen cdxgen.cmd cdxgen.bat</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(CDXGEN_EXECUTABLE)</span><br><span class="line">    <span class="keyword">message</span>(STATUS <span class="string">&quot;Found cdxgen: $&#123;CDXGEN_EXECUTABLE&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># compile_commands.json 所在位置 (即 build 目錄)</span></span><br><span class="line">    <span class="keyword">set</span>(REAL_BUILD_DIR <span class="string">&quot;$&#123;CMAKE_CURRENT_BINARY_DIR&#125;&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># SBOM 最終輸出的檔案路徑 (預設產出於專案根目錄)</span></span><br><span class="line">    <span class="keyword">set</span>(SBOM_OUTPUT_FILE <span class="string">&quot;$&#123;CMAKE_SOURCE_DIR&#125;/bom.cyclonedx.json&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 新增自動化建置 Target</span></span><br><span class="line">    <span class="keyword">add_custom_target</span>(generate_sbom ALL</span><br><span class="line">        <span class="keyword">COMMAND</span> <span class="variable">$&#123;CDXGEN_EXECUTABLE&#125;</span> -t c -o <span class="string">&quot;$&#123;SBOM_OUTPUT_FILE&#125;&quot;</span> .</span><br><span class="line">        COMMENT <span class="string">&quot;Generating CRA-compliant CycloneDX SBOM via cdxgen...&quot;</span></span><br><span class="line">        WORKING_DIRECTORY <span class="string">&quot;$&#123;REAL_BUILD_DIR&#125;&quot;</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 確保主要韌體 (.elf/.bin) 編譯完成後才執行 SBOM 產生</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">TARGET</span> lpc55s69_app)</span><br><span class="line">        <span class="keyword">add_dependencies</span>(generate_sbom lpc55s69_app)</span><br><span class="line">    <span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span>()</span><br><span class="line">    <span class="keyword">message</span>(WARNING <span class="string">&quot;cdxgen Executable not found! Please run &#x27;npm install -g @cyclonedx/cdxgen&#x27;&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="步驟-3：在-VS-Code-建置與產出-SBOM"><a href="#步驟-3：在-VS-Code-建置與產出-SBOM" class="headerlink" title="步驟 3：在 VS Code 建置與產出 SBOM"></a>步驟 3：在 VS Code 建置與產出 SBOM</h2><p>利用 VS Code 的 <strong>CMake Tools</strong> 擴充套件可以輕鬆完成圖形化或命令列建置。</p>
+<h3 id="方式-A：使用-VS-Code-狀態列（UI-建置）"><a href="#方式-A：使用-VS-Code-狀態列（UI-建置）" class="headerlink" title="方式 A：使用 VS Code 狀態列（UI 建置）"></a>方式 A：使用 VS Code 狀態列（UI 建置）</h3><ol>
+<li><strong>選擇工具鏈 (Kit)</strong>：<br>點擊 VS Code 底部狀態列的 <strong><code>CMake: [No Kit Selected]</code></strong>，選擇對應 LPC55S6x 的 <strong>Arm GNU Toolchain</strong> (例如 <code>arm-none-eabi-gcc</code>)。</li>
+<li><strong>選擇 Target</strong>：<br>在底部狀態列點擊 <code>[all]</code> 或目標檔案。</li>
+<li><strong>執行建置</strong>：<br>點擊底部狀態列的 <strong><code>Build</code></strong>（或按快捷鍵 <code>F7</code>）。</li>
+</ol>
+<p><img src="/images/vscode_build.png"></p>
+<ol start="4">
+<li><strong>確認產出</strong>：<br>建置完成後，打開 VS Code 的檔案瀏覽器，確認專案根目錄是否產出 <strong><code>bom.cyclonedx.json</code></strong>。<br><img src="/images/cra_sbom.png"></li>
+</ol>
+<h3 id="方式-B：使用-VS-Code-內建-Terminal-CLI-建置"><a href="#方式-B：使用-VS-Code-內建-Terminal-CLI-建置" class="headerlink" title="方式 B：使用 VS Code 內建 Terminal (CLI 建置)"></a>方式 B：使用 VS Code 內建 Terminal (CLI 建置)</h3><ol>
+<li>按 <code>Ctrl + ~</code> 開啟 VS Code 內建 Terminal (PowerShell)。</li>
+<li>執行建置：<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake <span class="literal">--build</span> build</span><br></pre></td></tr></table></figure></li>
+<li>若僅想單獨執行 SBOM 產出 Target：<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake <span class="literal">--build</span> build <span class="literal">--target</span> generate_sbom</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="後續常見問題與驗證"><a href="#後續常見問題與驗證" class="headerlink" title="後續常見問題與驗證"></a>後續常見問題與驗證</h2><h3 id="a-npm-無法執行解決法-PowerShell-權限問題"><a href="#a-npm-無法執行解決法-PowerShell-權限問題" class="headerlink" title="a. npm 無法執行解決法 (PowerShell 權限問題)"></a>a. <code>npm</code> 無法執行解決法 (PowerShell 權限問題)</h3><p>如果在 VS Code 的 Terminal 輸入 <code>npm</code> 時出現：</p>
+<blockquote>
+<p><em><code>npm : 因為這個系統上已停用指令碼執行，所以無法載入 npm.ps1...</code></em></p>
+</blockquote>
+<p><strong>解決方案</strong>：</p>
+<ol>
+<li>以一般使用者身份開啟 VS Code 內建 Terminal。</li>
+<li>執行以下指令解除 PowerShell 當前使用者的安全限制：<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> RemoteSigned <span class="literal">-Scope</span> CurrentUser</span><br></pre></td></tr></table></figure></li>
+<li>輸入 <strong><code>Y</code></strong> 按 Enter 確認。</li>
+<li><strong>重啟 VS Code</strong> 讓環境設定生效。</li>
+</ol>
+<h3 id="b-測試-Node-js、Java、cdxgen-與-npm"><a href="#b-測試-Node-js、Java、cdxgen-與-npm" class="headerlink" title="b. 測試 Node.js、Java、cdxgen 與 npm"></a>b. 測試 Node.js、Java、cdxgen 與 npm</h3><p>請在 VS Code Terminal 中逐一驗證以下工具是否可正確讀取：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 驗證 Node.js 與 npm</span></span><br><span class="line">node <span class="literal">-v</span></span><br><span class="line">npm <span class="literal">-v</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 驗證 Java 環境 (語義分析必需)</span></span><br><span class="line">java <span class="literal">-version</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 驗證 cdxgen 工具</span></span><br><span class="line">cdxgen <span class="literal">--version</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>💡 <strong>預期結果</strong>：全部指令皆正常輸出版本號，且未出現 <code>CommandNotFoundException</code> 或權限錯誤。</p>
+</blockquote>
+<h3 id="c-手動獨立測試-cdxgen-免透過-CMake"><a href="#c-手動獨立測試-cdxgen-免透過-CMake" class="headerlink" title="c. 手動獨立測試 cdxgen (免透過 CMake)"></a>c. 手動獨立測試 cdxgen (免透過 CMake)</h3><p>若需驗證 <code>cdxgen</code> 針對現有專案的獨立掃描能力：</p>
+<ol>
+<li>確保已於 VS Code 完成一次 Build 並產出 <code>build/compile_commands.json</code>。</li>
+<li>切換至 <code>build</code> 目錄手動執行：<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cdxgen <span class="literal">-t</span> c <span class="literal">-o</span> ..\bom.cyclonedx.json .</span><br></pre></td></tr></table></figure></li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>LPC55S6x 專案自動產出符合 CRA 規範的 SBOM ( Windows 版 )</p><p><a href="http://example.com/posts/sbom_nxp_win.html">http://example.com/posts/sbom_nxp_win.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Robin Cheng</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-09-15</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-09-15</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/TJ/">TJ</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/sbom_nxp.html"><span class="level-item">LPC55S6x 專案自動產出符合 CRA 規範的 SBOM</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

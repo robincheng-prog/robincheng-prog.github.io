@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>SBOM 的工具安裝,獨立生成與合併流程 - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="使用 Syft、cdxgen 與 cyclonedx-cli 可以完成 SBOM 的工具安裝、獨立生成與合併流程。使用專案中Ｃmake 生成的compile_commands.json來完成."><meta property="og:type" content="blog"><meta property="og:title" content="SBOM 的工具安裝,獨立生成與合併流程"><meta property="og:url" content="http://example.com/posts/sbom_nxp2.html"><meta property="og:site_name" content="My personal blog at work"><meta property="og:description" content="使用 Syft、cdxgen 與 cyclonedx-cli 可以完成 SBOM 的工具安裝、獨立生成與合併流程。使用專案中Ｃmake 生成的compile_commands.json來完成."><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2026-09-17T08:34:14.000Z"><meta property="article:modified_time" content="2026-09-17T08:41:11.041Z"><meta property="article:author" content="Robin Cheng"><meta property="article:tag" content="Robin"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/posts/sbom_nxp2.html"},"headline":"SBOM 的工具安裝,獨立生成與合併流程","image":["http://example.com/img/og_image.png"],"datePublished":"2026-09-17T08:34:14.000Z","dateModified":"2026-09-17T08:41:11.041Z","author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"使用 Syft、cdxgen 與 cyclonedx-cli 可以完成 SBOM 的工具安裝、獨立生成與合併流程。使用專案中Ｃmake 生成的compile_commands.json來完成."}</script><link rel="canonical" href="http://example.com/posts/sbom_nxp2.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-09-17T08:34:14.000Z" title="9/17/2026, 4:34:14 PM">2026-09-17</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-09-17T08:41:11.041Z" title="9/17/2026, 4:41:11 PM">2026-09-17</time></span><span class="level-item"><a class="link-muted" href="/categories/CRA/">CRA</a></span><span class="level-item">7 minutes read (About 1071 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">SBOM 的工具安裝,獨立生成與合併流程</h1><div class="content"><p>使用 <strong>Syft</strong>、<strong>cdxgen</strong> 與 <strong>cyclonedx-cli</strong> 可以完成 SBOM 的工具安裝、獨立生成與合併流程。<br>使用專案中Ｃmake 生成的compile_commands.json來完成.</p>
+<span id="more"></span>
+
+<h2 id="1-安裝必要工具"><a href="#1-安裝必要工具" class="headerlink" title="1. 安裝必要工具"></a><strong>1. 安裝必要工具</strong></h2><p>請確保系統已安裝 <code>curl</code> 與 Node.js (<code>npm</code>) 環境，接著執行以下指令安裝掃描與合併工具：</p>
+<ul>
+<li><strong>安裝 Syft</strong>（目錄與套件特徵掃描）：<br>&#x2F;usr&#x2F;local&#x2F;bin 需要系統管理者權限才能寫入，請在管道後方加入 sudo：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | <span class="built_in">sudo</span> sh -s -- -b /usr/local/bin</span><br></pre></td></tr></table></figure>
+<p>驗證方式：在終端機執行 syft –version，若輸出工具版本號即代表安裝完成。</p>
+<ul>
+<li><strong>安裝 cdxgen</strong>（程式碼與編譯依賴深度掃描）：<br>cdxgen 基於 Node.js 開發，請透過 npm 全域安裝：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> npm install -g @cyclonedx/cdxgen</span><br></pre></td></tr></table></figure>
+<p>驗證方式：在終端機執行 cdxgen –version，確認能正常顯示工具版本。</p>
+<ul>
+<li><strong>安裝 cyclonedx-cli</strong>（專門用於合併 CycloneDX 檔案）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> npm install -g @cyclonedx/cyclonedx-cli</span><br></pre></td></tr></table></figure>
+<p>如無法安裝可以在以下的位置下載binary檔：<br><a target="_blank" rel="noopener" href="https://github.com/CycloneDX/cyclonedx-cli/releases">cyclonedx-cli binary</a></p>
+<hr>
+<h2 id="2-分別生成-SBOM-檔案"><a href="#2-分別生成-SBOM-檔案" class="headerlink" title="2. 分別生成 SBOM 檔案"></a><strong>2. 分別生成 SBOM 檔案</strong></h2><p>在專案根目錄下，分別透過工具產出兩份 CycloneDX JSON 檔案：</p>
+<ul>
+<li>**生成 <code>sbom.syft.json**</code>：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syft <span class="built_in">dir</span>:. --output cyclonedx-json=sbom.syft.json</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**生成 <code>sbom.cdxgen.json**</code>：<br><em>(若為 C&#x2F;C++ 專案，請先執行 <code>cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</code> 並將 <code>compile_commands.json</code> 複製至專案根目錄)</em></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cdxgen -t c --deep -o sbom.cdxgen.json .</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-合併兩份-SBOM-為單一-CycloneDX-JSON"><a href="#3-合併兩份-SBOM-為單一-CycloneDX-JSON" class="headerlink" title="3. 合併兩份 SBOM 為單一 CycloneDX JSON"></a><strong>3. 合併兩份 SBOM 為單一 CycloneDX JSON</strong></h2><p>使用 <code>cyclonedx-cli</code> 將 <code>sbom.syft.json</code> 與 <code>sbom.cdxgen.json</code> 合併成 <code>sbom.merged.json</code>：</p>
+<ul>
+<li><strong>做法 A：單層扁平合併 (Flat Merge)</strong><br>將所有元件直接併入同一層級的清單中：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cyclonedx-cli merge --input-files sbom.cdxgen.json sbom.syft.json --output-file sbom.merged.json</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>做法 B：階層樹狀合併 (Hierarchical Merge)</strong><br>若要維持掃描來源的父子樹狀關係，必須補上 <code>--name</code> 與 <code>--version</code> 參數指定頂層主元件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cyclonedx-cli merge \</span><br><span class="line">    --input-files sbom.cdxgen.json sbom.syft.json \</span><br><span class="line">    --output-file sbom.merged.json \</span><br><span class="line">    --hierarchical \</span><br><span class="line">    --name <span class="string">&quot;MyProject&quot;</span> \</span><br><span class="line">    --version <span class="string">&quot;1.0.0&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>（選擇性）剔除重複元件</strong><br>若合併後發現相同名稱的元件重複出現，可使用 <code>jq</code> 依照元件名稱過濾：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jq <span class="string">&#x27;.components |= unique_by(.name)&#x27;</span> sbom.merged.json &gt; sbom.final.json</span><br></pre></td></tr></table></figure>
+<hr>
+<p>最後生成的sbom.final.json檔，以下是其說明：</p>
+<hr>
+<p>這是一份符合 CycloneDX v1.7 標準的完整 SBOM (sbom.final.json)，成功整合了 Syft 與 cdxgen 兩大工具的掃描結果，並完成去重與階層合併。</p>
+<p><strong>基本元資料 (Metadata)</strong></p>
+<ul>
+<li><p><strong>專案名稱</strong>：<code>Interactive_Lanelight</code> (版本 <code>1.0.0</code>)</p>
+</li>
+<li><p><strong>標準格式</strong>：CycloneDX v1.7 (JSON 格式)</p>
+</li>
+<li><p><strong>生成工具</strong>：<code>cdxgen</code> (v12.8.4) + <code>syft</code> (v1.51.1)</p>
+</li>
+</ul>
+<hr>
+<h2 id="核心分析與元件結構"><a href="#核心分析與元件結構" class="headerlink" title="核心分析與元件結構"></a><strong>核心分析與元件結構</strong></h2><h3 id="1-二進位檔與動態庫-由-Syft-產出"><a href="#1-二進位檔與動態庫-由-Syft-產出" class="headerlink" title="1. 二進位檔與動態庫 (由 Syft 產出)"></a><strong>1. 二進位檔與動態庫 (由 Syft 產出)</strong></h3><ul>
+<li><p><strong>執行檔與工具</strong>：包含 <code>blhost.exe</code> (NXP Bootloader 工具)、<code>testiobox.exe</code>、<code>rebooter.exe</code> 以及多組測試程式。每個檔案均帶有完整的 SHA-1 與 SHA-256 雜湊值（例如 <code>libusb-1.0.dll</code> 的 SHA-256）。</p>
+</li>
+<li><p><strong>第三方庫</strong>：明確識別出 <code>libusb-1.0</code> (版本 <code>1.0.22.11315</code>)，並自動產生了多組 CPE (Common Platform Enumeration) 識別碼（如 <code>cpe:2.3:a:libusb-1.0:libusb_1.0:...</code>），便於資安工具比對漏洞。</p>
+</li>
+</ul>
+<h3 id="2-NXP-韌體原始碼與模組-由-cdxgen-深度解析"><a href="#2-NXP-韌體原始碼與模組-由-cdxgen-深度解析" class="headerlink" title="2. NXP 韌體原始碼與模組 (由 cdxgen 深度解析)"></a><strong>2. NXP 韌體原始碼與模組 (由 cdxgen 深度解析)</strong></h3><ul>
+<li><p><strong>NXP LPC55S69 SDK 驅動</strong>：精確列出晶片硬體抽象層模組，包含 <code>fsl_clock</code>, <code>fsl_gpio</code>, <code>fsl_power</code>, <code>fsl_usart</code>, <code>fsl_spi</code>, <code>fsl_iap</code> 等。</p>
+</li>
+<li><p><strong>核心與 middleware</strong>：偵測到 <code>core_cm33.h</code> (Cortex-M33 CMSIS 核心)、<code>FreeRTOS</code> 即時作業系統標頭檔 以及 <code>SEGGER_RTT</code> 調試模組。</p>
+</li>
+<li><p><strong>專案業務邏輯</strong>：識別出專案獨有的功能模組，例如 <code>drv_ws281x_spi.c</code> (WS2812 LED 驅動)、<code>NCR_Usb.c</code> (USB 通訊) 以及 <code>main.c</code>。</p>
+</li>
+</ul>
+<h3 id="3-編譯環境與系統工具鏈"><a href="#3-編譯環境與系統工具鏈" class="headerlink" title="3. 編譯環境與系統工具鏈"></a><strong>3. 編譯環境與系統工具鏈</strong></h3><ul>
+<li><strong>Linux 核心與編譯套件</strong>：紀錄了編譯時相依的 Ubuntu 系統標頭檔與 GCC 工具鏈，如 <code>libc6-dev</code> (<code>2.39</code>), <code>libgcc-13-dev</code>, <code>linux-headers-6.8.0</code>。</li>
+</ul>
+<h3 id="4-完整相依性網絡-dependencies"><a href="#4-完整相依性網絡-dependencies" class="headerlink" title="4. 完整相依性網絡 (dependencies)"></a><strong>4. 完整相依性網絡 (<code>dependencies</code>)</strong></h3><ul>
+<li>建立了頂層專案 <code>Interactive_Lanelight@1.0.0</code> 對下層所有二進位檔與 C 語言原始碼模組的關聯樹，符合歐盟 CRA 對軟體供應鏈可追溯性 (Traceability) 的要求。</li>
+</ul>
+<p>其他相關說明<br><a href="sbom-nxp.md">LPC55S6x 專案自動產出符合 CRA 規範的 SBOM </a></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>SBOM 的工具安裝,獨立生成與合併流程</p><p><a href="http://example.com/posts/sbom_nxp2.html">http://example.com/posts/sbom_nxp2.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Robin Cheng</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-09-17</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-09-17</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Robin/">Robin</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/sbom_nxp_win.html"><span class="level-item">LPC55S6x 專案自動產出符合 CRA 規範的 SBOM ( Windows 版 )</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

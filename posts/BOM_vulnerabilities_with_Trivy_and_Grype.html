@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>如何使用 Trivy 與 Grype 對 CycloneDX SBOM 進行漏洞掃描 - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="本指南接續〈如何手動補充與檢查 CycloneDX SBOM〉，說明如何在 Windows PowerShell 使用 Trivy 與 Grype 掃描 CycloneDX JSON SBOM，並比較兩套工具的結果。  重要：漏洞掃描結果會隨工具版本、漏洞資料庫時間及比對策略改變。報告應記錄掃描時間、工具版本及使用的 SBOM 檔名，方便後續追蹤。"><meta property="og:type" content="blog"><meta property="og:title" content="如何使用 Trivy 與 Grype 對 CycloneDX SBOM 進行漏洞掃描"><meta property="og:url" content="http://example.com/posts/BOM_vulnerabilities_with_Trivy_and_Grype.html"><meta property="og:site_name" content="My personal blog at work"><meta property="og:description" content="本指南接續〈如何手動補充與檢查 CycloneDX SBOM〉，說明如何在 Windows PowerShell 使用 Trivy 與 Grype 掃描 CycloneDX JSON SBOM，並比較兩套工具的結果。  重要：漏洞掃描結果會隨工具版本、漏洞資料庫時間及比對策略改變。報告應記錄掃描時間、工具版本及使用的 SBOM 檔名，方便後續追蹤。"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/images/trivy-scan-result.png"><meta property="og:image" content="http://example.com/images/grype-scan-result.png"><meta property="article:published_time" content="2026-10-21T06:35:02.000Z"><meta property="article:modified_time" content="2026-10-21T06:50:47.940Z"><meta property="article:author" content="Robin Cheng"><meta property="article:tag" content="Tina"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/images/trivy-scan-result.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/posts/BOM_vulnerabilities_with_Trivy_and_Grype.html"},"headline":"如何使用 Trivy 與 Grype 對 CycloneDX SBOM 進行漏洞掃描","image":["http://example.com/images/trivy-scan-result.png","http://example.com/images/grype-scan-result.png"],"datePublished":"2026-10-21T06:35:02.000Z","dateModified":"2026-10-21T06:50:47.940Z","author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"本指南接續〈如何手動補充與檢查 CycloneDX SBOM〉，說明如何在 Windows PowerShell 使用 Trivy 與 Grype 掃描 CycloneDX JSON SBOM，並比較兩套工具的結果。  重要：漏洞掃描結果會隨工具版本、漏洞資料庫時間及比對策略改變。報告應記錄掃描時間、工具版本及使用的 SBOM 檔名，方便後續追蹤。"}</script><link rel="canonical" href="http://example.com/posts/BOM_vulnerabilities_with_Trivy_and_Grype.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-10-21T06:35:02.000Z" title="10/21/2026, 2:35:02 PM">2026-10-21</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-10-21T06:50:47.940Z" title="10/21/2026, 2:50:47 PM">2026-10-21</time></span><span class="level-item"><a class="link-muted" href="/categories/CRA/">CRA</a></span><span class="level-item">19 minutes read (About 2775 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">如何使用 Trivy 與 Grype 對 CycloneDX SBOM 進行漏洞掃描</h1><div class="content"><p>本指南接續<a href="manually-enrich-and-validate-SBOM.md">〈如何手動補充與檢查 CycloneDX SBOM〉</a>，說明如何在 Windows PowerShell 使用 <strong>Trivy</strong> 與 <strong>Grype</strong> 掃描 CycloneDX JSON SBOM，並比較兩套工具的結果。</p>
+<blockquote>
+<p><strong>重要</strong>：漏洞掃描結果會隨工具版本、漏洞資料庫時間及比對策略改變。報告應記錄掃描時間、工具版本及使用的 SBOM 檔名，方便後續追蹤。</p>
+</blockquote>
+<span id="more"></span>
+
+<hr>
+<h2 id="一、掃描前準備"><a href="#一、掃描前準備" class="headerlink" title="一、掃描前準備"></a>一、掃描前準備</h2><p>準備下列檔案：</p>
+<ul>
+<li>已完成補充並通過 CycloneDX Schema 驗證的 SBOM。</li>
+<li>與 SBOM 對應的正式 Release。</li>
+<li>Trivy 或 Grype 的 Windows x64 官方執行檔。</li>
+</ul>
+<p>本指南的 PowerShell 範例使用：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$SbomPath</span> = <span class="string">&#x27;C:\Work\CRA\sbom\OpPredict_sbom-v10_cyclonedx-1.6_20261019.json&#x27;</span></span><br><span class="line"><span class="variable">$ReportDir</span> = <span class="string">&#x27;C:\Work\CRA\vulnerability-reports&#x27;</span></span><br><span class="line"><span class="built_in">New-Item</span> <span class="literal">-ItemType</span> Directory <span class="literal">-Path</span> <span class="variable">$ReportDir</span> <span class="literal">-Force</span> | <span class="built_in">Out-Null</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="二、下載-Trivy"><a href="#二、下載-Trivy" class="headerlink" title="二、下載 Trivy"></a>二、下載 Trivy</h2><p>Trivy 應從 Aqua Security 官方 GitHub Releases 下載：</p>
+<ul>
+<li>最新版本：<a target="_blank" rel="noopener" href="https://github.com/aquasecurity/trivy/releases/latest/">https://github.com/aquasecurity/trivy/releases/latest/</a></li>
+<li>官方文件：<a target="_blank" rel="noopener" href="https://trivy.dev/docs/latest/">https://trivy.dev/docs/latest/</a></li>
+</ul>
+<p>本次初次測試使用 <code>trivy_0.74.0_windows-64bit.zip</code>；截至 2026 年 10 月 19 日，官方最新版本為 <code>0.76.0</code>。正式掃描前應再次查看 Releases，不要長期依賴本文件記載的版本號。</p>
+<ol>
+<li>從官方 Releases 下載 Windows 64-bit 壓縮檔，例如 <code>trivy_0.76.0_windows-64bit.zip</code>。</li>
+<li>將壓縮檔解壓縮到準備執行掃描的資料夾。</li>
+<li>開啟 PowerShell，切換到解壓縮後的資料夾並確認工具可以執行：</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\trivy.exe <span class="literal">--version</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="三、使用-Trivy-掃描-SBOM"><a href="#三、使用-Trivy-掃描-SBOM" class="headerlink" title="三、使用 Trivy 掃描 SBOM"></a>三、使用 Trivy 掃描 SBOM</h2><h3 id="基本掃描"><a href="#基本掃描" class="headerlink" title="基本掃描"></a>基本掃描</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\trivy.exe sbom <span class="variable">$SbomPath</span></span><br></pre></td></tr></table></figure>
+
+<p>Trivy 會自動辨識 CycloneDX JSON。第一次執行通常會下載漏洞資料庫，因此需要網路連線並可能等待數分鐘。</p>
+<h3 id="儲存完整-JSON-報告"><a href="#儲存完整-JSON-報告" class="headerlink" title="儲存完整 JSON 報告"></a>儲存完整 JSON 報告</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.\trivy.exe sbom `</span><br><span class="line">  <span class="literal">--format</span> json `</span><br><span class="line">  <span class="literal">--output</span> <span class="string">&quot;<span class="variable">$ReportDir</span>\OpPredict_trivy.json&quot;</span> `</span><br><span class="line">  <span class="variable">$SbomPath</span></span><br></pre></td></tr></table></figure>
+
+<p>JSON 適合保存完整掃描證據及後續程式處理；終端機表格適合人工快速閱讀。</p>
+<p>一般使用情境不需要另外操作漏洞資料庫；Trivy 會在需要時自動下載或更新。若終端機出現資料庫下載訊息，等待完成即可。</p>
+<hr>
+<h2 id="四、Trivy-結果判讀"><a href="#四、Trivy-結果判讀" class="headerlink" title="四、Trivy 結果判讀"></a>四、Trivy 結果判讀</h2><p>主要欄位：</p>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Library</td>
+<td>SBOM 中被比對到的套件名稱</td>
+</tr>
+<tr>
+<td>Vulnerability</td>
+<td>CVE 或其他漏洞識別碼</td>
+</tr>
+<tr>
+<td>Severity</td>
+<td>工具依資料來源判定的嚴重度</td>
+</tr>
+<tr>
+<td>Installed Version</td>
+<td>SBOM 記錄的目前版本</td>
+</tr>
+<tr>
+<td>Fixed Version</td>
+<td>上游已知修正版本</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>漏洞資料來源記錄的修正狀態</td>
+</tr>
+</tbody></table>
+<p><code>Status: fixed</code> 表示上游已提供修正版，<strong>不表示目前安裝版本已完成修正</strong>。應比較 Installed Version 與 Fixed Version。</p>
+<h3 id="本次-OpPredict-範例"><a href="#本次-OpPredict-範例" class="headerlink" title="本次 OpPredict 範例"></a>本次 OpPredict 範例</h3><p>Trivy 0.74.0 的終端機結果顯示 NuGet 類型共 2 筆：</p>
+<p><img src="/images/trivy-scan-result.png" alt="Trivy 0.74.0 掃描 OpPredict CycloneDX SBOM 的結果"></p>
+<p><em>圖 1：Trivy 0.74.0 掃描結果。畫面同時顯示第三方 SBOM 警告、4 個被跳過的 device-driver，以及 1 筆 Critical 與 1 筆 High 漏洞。</em></p>
+<table>
+<thead>
+<tr>
+<th>元件</th>
+<th align="right">目前版本</th>
+<th>漏洞</th>
+<th>嚴重度</th>
+<th>報告列出的修正版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>System.Text.Encodings.Web</td>
+<td align="right">4.7.1</td>
+<td>CVE-2021-26701</td>
+<td>Critical</td>
+<td>4.5.1、4.7.2、5.0.1</td>
+</tr>
+<tr>
+<td>System.Text.RegularExpressions</td>
+<td align="right">4.3.0</td>
+<td>CVE-2019-0820</td>
+<td>High</td>
+<td>4.3.1</td>
+</tr>
+</tbody></table>
+<p>修正時仍應回到專案的直接／間接 NuGet 相依關係確認相容版本，完成升級、重新建置、測試、重建 SBOM，再重新掃描。</p>
+<h3 id="被跳過的元件"><a href="#被跳過的元件" class="headerlink" title="被跳過的元件"></a>被跳過的元件</h3><p>本次 Trivy 顯示下列 <code>device-driver</code> 類型不受該次 SBOM 掃描支援，因此被跳過：</p>
+<ul>
+<li>JENSYS64 driver</li>
+<li>WinIo64 driver</li>
+<li>JENSYS32 driver</li>
+<li>WinIo32 driver</li>
+</ul>
+<p>被跳過不等於安全，也不等於沒有漏洞。這些項目應另外查核：</p>
+<ul>
+<li>原廠安全公告及 CVE。</li>
+<li>檔案版本、數位簽章與 SHA-256。</li>
+<li>驅動程式來源及是否仍受維護。</li>
+<li>Windows Driver Blocklist、Microsoft 或硬體供應商公告。</li>
+</ul>
+<p>Trivy 官方也提醒，以其他工具產生的 SBOM 作為輸入時，可能因缺少 Trivy 自訂 properties 而影響偵測準確度。因此應保留警告文字，不要只保存最後的漏洞數字。</p>
+<hr>
+<h2 id="五、下載-Grype"><a href="#五、下載-Grype" class="headerlink" title="五、下載 Grype"></a>五、下載 Grype</h2><p>Grype 應從 Anchore 官方來源取得：</p>
+<ul>
+<li>最新版本：<a target="_blank" rel="noopener" href="https://github.com/anchore/grype/releases/latest/">https://github.com/anchore/grype/releases/latest/</a></li>
+<li>官方安裝文件：<a target="_blank" rel="noopener" href="https://oss.anchore.com/docs/installation/grype/">https://oss.anchore.com/docs/installation/grype/</a></li>
+</ul>
+<p>截至 2026 年 10 月 19 日，官方最新版本為 <code>0.120.1</code>。Windows 可下載 <code>grype_0.120.1_windows_amd64.zip</code>；實際使用時仍應重新確認最新版本。</p>
+<ol>
+<li>從官方 Releases 下載 Windows AMD64 壓縮檔，例如 <code>grype_0.120.1_windows_amd64.zip</code>。</li>
+<li>將壓縮檔解壓縮到準備執行掃描的資料夾。</li>
+<li>開啟 PowerShell，切換到解壓縮後的資料夾並確認工具可以執行：</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\grype.exe version</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、使用-Grype-掃描-SBOM"><a href="#六、使用-Grype-掃描-SBOM" class="headerlink" title="六、使用 Grype 掃描 SBOM"></a>六、使用 Grype 掃描 SBOM</h2><h3 id="基本掃描-1"><a href="#基本掃描-1" class="headerlink" title="基本掃描"></a>基本掃描</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\grype.exe <span class="variable">$SbomPath</span></span><br></pre></td></tr></table></figure>
+
+<p>Grype 會由檔案內容自動辨識 SBOM 格式，第一次執行通常會下載漏洞資料庫，因此需要網路連線並可能等待數分鐘。</p>
+<h3 id="儲存-JSON-報告"><a href="#儲存-JSON-報告" class="headerlink" title="儲存 JSON 報告"></a>儲存 JSON 報告</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.\grype.exe <span class="variable">$SbomPath</span> `</span><br><span class="line">  <span class="literal">--output</span> json `</span><br><span class="line">  <span class="literal">--file</span> <span class="string">&quot;<span class="variable">$ReportDir</span>\OpPredict_grype.json&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>一般使用情境不需要另外操作漏洞資料庫；Grype 會在需要時自動下載或更新。若希望終端機以 CVE 而不是 GHSA 為主，可在基本指令最後加上 <code>--by-cve</code>。</p>
+<hr>
+<h2 id="七、Grype-結果判讀"><a href="#七、Grype-結果判讀" class="headerlink" title="七、Grype 結果判讀"></a>七、Grype 結果判讀</h2><p><img src="/images/grype-scan-result.png" alt="Grype 0.120.1 掃描 OpPredict CycloneDX SBOM 的結果"></p>
+<p><em>圖 2：Grype 0.120.1 掃描結果。兩筆漏洞的狀態皆為 fixed，代表上游已有修正版；畫面同時提供 EPSS 與 Risk 資訊。</em></p>
+<p>Grype 的主要欄位包括目前版本（Installed）、修正版本（Fixed In）、漏洞識別碼、嚴重度、EPSS 與 Risk。<code>fixed</code> 同樣只代表已有修正版，不表示產品目前使用的版本已完成修正。</p>
+<p>Grype 預設可能優先顯示 GHSA 識別碼；使用 <code>--by-cve</code> 可改以 CVE 顯示。JSON 報告中的 match type 也應納入判讀：<code>exact-direct-match</code>、<code>exact-indirect-match</code> 通常可信度較高，<code>cpe-match</code> 則應額外人工確認。</p>
+<hr>
+<h2 id="八、Trivy-與-Grype-比較"><a href="#八、Trivy-與-Grype-比較" class="headerlink" title="八、Trivy 與 Grype 比較"></a>八、Trivy 與 Grype 比較</h2><table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>Trivy</th>
+<th>Grype</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>維護組織</td>
+<td>Aqua Security</td>
+<td>Anchore</td>
+</tr>
+<tr>
+<td>CycloneDX SBOM 輸入</td>
+<td>支援 JSON；使用 <code>trivy sbom</code></td>
+<td>支援 JSON&#x2F;XML；使用 <code>sbom:</code> 或自動判斷</td>
+</tr>
+<tr>
+<td>預設文字報告</td>
+<td>Table</td>
+<td>Table</td>
+</tr>
+<tr>
+<td>結構化報告</td>
+<td>JSON、SARIF 等</td>
+<td>JSON、SARIF、CycloneDX 等</td>
+</tr>
+<tr>
+<td>CI 嚴重度門檻</td>
+<td><code>--severity</code> 搭配 <code>--exit-code</code></td>
+<td><code>--fail-on</code></td>
+</tr>
+<tr>
+<td>漏洞資料庫</td>
+<td>Trivy DB，首次掃描通常自動下載</td>
+<td>Grype DB，預設自動檢查更新</td>
+</tr>
+<tr>
+<td>結果判讀特色</td>
+<td>顯示 Installed／Fixed Version 與來源嚴重度</td>
+<td>JSON 提供 match type；另提供 EPSS、risk 等排序資訊</td>
+</tr>
+<tr>
+<td>第三方 SBOM 注意事項</td>
+<td>官方明確警告可能因缺少自訂 properties 而降低準確度</td>
+<td>依 SBOM 的 PURL、CPE、套件名稱及版本進行比對</td>
+</tr>
+</tbody></table>
+<p>兩套工具結果可能不同，常見原因包括：</p>
+<ul>
+<li>漏洞資料庫來源與更新時間不同。</li>
+<li>套件名稱、PURL、CPE 正規化方式不同。</li>
+<li>嚴重度採用的資料來源不同。</li>
+<li>直接比對、間接比對或 CPE 推測比對策略不同。</li>
+<li>SBOM 缺少版本、PURL、CPE 或工具特定 properties。</li>
+<li>某些 CycloneDX component type 不在工具支援範圍。</li>
+</ul>
+<p>不應只選擇漏洞數較少的工具。建議以兩者結果的聯集建立初步清單，再逐筆確認：</p>
+<ol>
+<li>CVE 是否確實對應 SBOM 中的元件與版本。</li>
+<li>是直接相依或間接相依。</li>
+<li>受影響程式碼是否存在於實際交付檔案。</li>
+<li>產品是否會執行到受影響功能。</li>
+<li>是否存在官方修正版或其他緩解措施。</li>
+<li>兩套工具的資料來源、match type 與嚴重度依據。</li>
+</ol>
+<p>Grype JSON 中的 <code>exact-direct-match</code>、<code>exact-indirect-match</code> 通常可信度較高；<code>cpe-match</code> 應額外人工確認。Trivy JSON 則可查看 <code>SeveritySource</code> 與各供應商嚴重度。</p>
+<h3 id="本次同一份-OpPredict-SBOM-的實測比較"><a href="#本次同一份-OpPredict-SBOM-的實測比較" class="headerlink" title="本次同一份 OpPredict SBOM 的實測比較"></a>本次同一份 OpPredict SBOM 的實測比較</h3><p>2026 年 10 月 19 日以 Trivy 0.74.0 與 Grype 0.120.1 掃描 <code>OpPredict_sbom-v10_cyclonedx-1.6_20261019.json</code>，兩套工具都找到相同的兩個漏洞：</p>
+<table>
+<thead>
+<tr>
+<th>元件與版本</th>
+<th>CVE</th>
+<th>Trivy</th>
+<th>Grype</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>System.Text.Encodings.Web 4.7.1</td>
+<td>CVE-2021-26701</td>
+<td>Critical；列出不同版本分支的多個修正版本</td>
+<td>Critical；Fixed In 4.7.2</td>
+</tr>
+<tr>
+<td>System.Text.RegularExpressions 4.3.0</td>
+<td>CVE-2019-0820</td>
+<td>High；Fixed Version 4.3.1</td>
+<td>High；Fixed In 4.3.1</td>
+</tr>
+</tbody></table>
+<p>Grype 預設報告可能優先顯示 GHSA 識別碼；加上 <code>--by-cve</code> 後可統一顯示上述 CVE。這兩筆在 Grype JSON 中都是 <code>exact-direct-match</code>。</p>
+<p>此次兩套工具的漏洞數相同，表示這兩個 NuGet 套件的結果具有較好的交叉驗證；但不代表其他原生 DLL、EXE 或 driver 已被完整掃描。Trivy 明確警告跳過 4 個 <code>device-driver</code>，Grype 沒有顯示相同警告也不能推論它已完成驅動程式漏洞分析。缺少可比對版本或生態系識別碼的 generic 元件，兩套工具都可能無法從套件漏洞資料庫得到結果。</p>
+<p>實測使用的 Grype DB 狀態為 valid、Schema <code>v6.1.10</code>，Built 時間為 <code>2026-10-19T06:39:15Z</code>。日後重新掃描時應記錄當次實際 DB 狀態，結果可能隨資料庫更新而改變。</p>
+<hr>
+<h2 id="九、建議的比較流程"><a href="#九、建議的比較流程" class="headerlink" title="九、建議的比較流程"></a>九、建議的比較流程</h2><p>對同一份 SBOM，在相近時間依序執行：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\trivy.exe sbom <span class="variable">$SbomPath</span></span><br><span class="line">.\grype.exe <span class="variable">$SbomPath</span> <span class="literal">--by-cve</span></span><br></pre></td></tr></table></figure>
+
+<p>比較報告時，至少記錄：</p>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>Trivy</th>
+<th>Grype</th>
+<th>人工確認結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CVE</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>元件與版本</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>嚴重度及來源</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>修正版本</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>比對方式／可信度</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>是否適用於產品</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>修正或緩解措施</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="十、發現漏洞後的處理流程"><a href="#十、發現漏洞後的處理流程" class="headerlink" title="十、發現漏洞後的處理流程"></a>十、發現漏洞後的處理流程</h2><ol>
+<li>在專案檔及套件相依樹確認漏洞元件是直接或間接相依。</li>
+<li>查閱套件供應商、安全公告及 CVE 官方資料。</li>
+<li>選擇與產品相容的修正版，不要只依掃描器顯示的第一個版本升級。</li>
+<li>重新建置並執行功能、相容性及回歸測試。</li>
+<li>以新的正式 Release 重新計算 SHA-256。</li>
+<li>重新產生及人工補充 SBOM，遞增 SBOM 文件版本並同步更新檔名。</li>
+<li>使用最新漏洞資料庫重新執行 Trivy 與 Grype。</li>
+<li>保存修正前後報告與處理紀錄。</li>
+</ol>
+<p>若經分析確認漏洞不影響產品，可建立 VEX，記錄 <code>not_affected</code> 的理由與證據。不可直接刪除或忽略掃描結果而不留下決策紀錄。</p>
+<hr>
+<h2 id="十一、掃描紀錄與歸檔清單"><a href="#十一、掃描紀錄與歸檔清單" class="headerlink" title="十一、掃描紀錄與歸檔清單"></a>十一、掃描紀錄與歸檔清單</h2><p>每次正式掃描至少保存：</p>
+<ul>
+<li>本次使用的 SBOM 原始檔。</li>
+<li>對應的產品版本與 Release 識別資訊。</li>
+<li>掃描日期、時間與時區。</li>
+<li>Trivy／Grype 版本。</li>
+<li>漏洞資料庫版本或更新時間。</li>
+<li>完整 JSON 報告，必要時另附 SARIF 或表格報告。</li>
+<li>工具警告、被跳過的元件及掃描限制。</li>
+<li>人工確認、修正、接受風險或 VEX 判定紀錄。</li>
+</ul>
+<p>建議報告檔名包含產品、SBOM 文件版本、工具、工具版本及日期，例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OpPredict_sbom-v10_trivy-0.76.0_20261019.json</span><br><span class="line">OpPredict_sbom-v10_grype-0.120.1_20261019.json</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="十二、官方參考資料"><a href="#十二、官方參考資料" class="headerlink" title="十二、官方參考資料"></a>十二、官方參考資料</h2><ul>
+<li>Trivy Releases：<a target="_blank" rel="noopener" href="https://github.com/aquasecurity/trivy/releases/latest/">https://github.com/aquasecurity/trivy/releases/latest/</a></li>
+<li>Trivy SBOM scanning：<a target="_blank" rel="noopener" href="https://trivy.dev/docs/latest/target/sbom/">https://trivy.dev/docs/latest/target/sbom/</a></li>
+<li>Trivy Reporting：<a target="_blank" rel="noopener" href="https://trivy.dev/docs/latest/configuration/reporting/">https://trivy.dev/docs/latest/configuration/reporting/</a></li>
+<li>Grype Releases：<a target="_blank" rel="noopener" href="https://github.com/anchore/grype/releases/latest/">https://github.com/anchore/grype/releases/latest/</a></li>
+<li>Grype Installation：<a target="_blank" rel="noopener" href="https://oss.anchore.com/docs/installation/grype/">https://oss.anchore.com/docs/installation/grype/</a></li>
+<li>Grype Supported Scan Targets：<a target="_blank" rel="noopener" href="https://oss.anchore.com/docs/guides/vulnerability/scan-targets/">https://oss.anchore.com/docs/guides/vulnerability/scan-targets/</a></li>
+<li>Grype Vulnerability Database：<a target="_blank" rel="noopener" href="https://oss.anchore.com/docs/guides/vulnerability/database/">https://oss.anchore.com/docs/guides/vulnerability/database/</a></li>
+<li>Grype Result Interpretation：<a target="_blank" rel="noopener" href="https://oss.anchore.com/docs/guides/vulnerability/interpreting-results/">https://oss.anchore.com/docs/guides/vulnerability/interpreting-results/</a></li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>如何使用 Trivy 與 Grype 對 CycloneDX SBOM 進行漏洞掃描</p><p><a href="http://example.com/posts/BOM_vulnerabilities_with_Trivy_and_Grype.html">http://example.com/posts/BOM_vulnerabilities_with_Trivy_and_Grype.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Robin Cheng</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-10-21</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-10-21</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Tina/">Tina</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/posts/manually_enrich_and_validate_SBOM.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item">如何手動補充與檢查 CycloneDX SBOM</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/jetson_orin_nx_qwen2_5_coder.html"><span class="level-item">Jetson 架構上順暢跑起 Qwen2.5-Coder 7B</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

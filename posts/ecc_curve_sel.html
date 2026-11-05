@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>E2354 Crypto ECC ECDH firmware code 開發分享 - My personal blog at work</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="My personal blog at work"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="My personal blog at work"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="main.c 說明 E2354 CRYPTO ECC ECDH 程式的初始化、金鑰產生、共用值計算與驗證方式。用來確認雙方算出的 ECDH 值相同；安全金鑰衍生及訊息驗證的完整安全通訊協定。 編譯時曲線設定ECC_CURVE_SEL 選擇曲線，程式透過條件編譯設定對應的硬體曲線代碼 ECC_CURVE_TYPE 與位元數 ECC_KEY_SIZE。設定為： 1#define ECC_CURVE_S"><meta property="og:type" content="blog"><meta property="og:title" content="E2354 Crypto ECC ECDH firmware code 開發分享"><meta property="og:url" content="http://example.com/posts/ecc_curve_sel.html"><meta property="og:site_name" content="My personal blog at work"><meta property="og:description" content="main.c 說明 E2354 CRYPTO ECC ECDH 程式的初始化、金鑰產生、共用值計算與驗證方式。用來確認雙方算出的 ECDH 值相同；安全金鑰衍生及訊息驗證的完整安全通訊協定。 編譯時曲線設定ECC_CURVE_SEL 選擇曲線，程式透過條件編譯設定對應的硬體曲線代碼 ECC_CURVE_TYPE 與位元數 ECC_KEY_SIZE。設定為： 1#define ECC_CURVE_S"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2026-11-05T07:46:36.000Z"><meta property="article:modified_time" content="2026-11-05T07:48:30.171Z"><meta property="article:author" content="Robin Cheng"><meta property="article:tag" content="Kenny"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/posts/ecc_curve_sel.html"},"headline":"E2354 Crypto ECC ECDH firmware code 開發分享","image":["http://example.com/img/og_image.png"],"datePublished":"2026-11-05T07:46:36.000Z","dateModified":"2026-11-05T07:48:30.171Z","author":{"@type":"Person","name":"Robin Cheng"},"publisher":{"@type":"Organization","name":"My personal blog at work","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"main.c 說明 E2354 CRYPTO ECC ECDH 程式的初始化、金鑰產生、共用值計算與驗證方式。用來確認雙方算出的 ECDH 值相同；安全金鑰衍生及訊息驗證的完整安全通訊協定。 編譯時曲線設定ECC_CURVE_SEL 選擇曲線，程式透過條件編譯設定對應的硬體曲線代碼 ECC_CURVE_TYPE 與位元數 ECC_KEY_SIZE。設定為： 1#define ECC_CURVE_S"}</script><link rel="canonical" href="http://example.com/posts/ecc_curve_sel.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-11-05T07:46:36.000Z" title="11/5/2026, 3:46:36 PM">2026-11-05</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-11-05T07:48:30.171Z" title="11/5/2026, 3:48:30 PM">2026-11-05</time></span><span class="level-item"><a class="link-muted" href="/categories/other/">other</a></span><span class="level-item">11 minutes read (About 1620 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">E2354 Crypto ECC ECDH firmware code 開發分享</h1><div class="content"><p><a href="./main.c"><code>main.c</code></a> 說明 E2354 CRYPTO ECC ECDH 程式的初始化、金鑰產生、共用值計算與驗證方式。用來確認雙方算出的 ECDH 值相同；安全金鑰衍生及訊息驗證的完整安全通訊協定。</p>
+<h2 id="編譯時曲線設定"><a href="#編譯時曲線設定" class="headerlink" title="編譯時曲線設定"></a>編譯時曲線設定</h2><p><code>ECC_CURVE_SEL</code> 選擇曲線，程式透過條件編譯設定對應的硬體曲線代碼 <code>ECC_CURVE_TYPE</code> 與位元數 <code>ECC_KEY_SIZE</code>。設定為：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> ECC_CURVE_SEL  P_256</span></span><br></pre></td></tr></table></figure>
+
+<p>可選代碼及位元數如下：</p>
+<table>
+<thead>
+<tr>
+<th>類型</th>
+<th>可選曲線</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P-curve</td>
+<td><code>P_192</code>、<code>P_224</code>、<code>P_256</code>、<code>P_384</code>、<code>P_521</code></td>
+</tr>
+<tr>
+<td>K-curve</td>
+<td><code>K_163</code>、<code>K_233</code>、<code>K_283</code>、<code>K_409</code>、<code>K_571</code></td>
+</tr>
+<tr>
+<td>B-curve</td>
+<td><code>B_163</code>、<code>B_233</code>、<code>B_283</code>、<code>B_409</code>、<code>B_571</code></td>
+</tr>
+</tbody></table>
+<p>切換曲線時，應確認該曲線受目標晶片與所用 BSP 驅動支援，且位元數和曲線代碼配對正確。私鑰、公鑰及 ECDH 運算都必須使用同一曲線。</p>
+<span id="more"></span>
+
+<h2 id="程式各部分"><a href="#程式各部分" class="headerlink" title="程式各部分"></a>程式各部分</h2><h3 id="系統、UART-與-CRPT-中斷"><a href="#系統、UART-與-CRPT-中斷" class="headerlink" title="系統、UART 與 CRPT 中斷"></a>系統、UART 與 CRPT 中斷</h3><ul>
+<li><code>SYS_Init()</code> 啟用 HIRC，設定核心時脈為 96 MHz，並啟用 UART0 與 CRPT 模組時脈；同時設定 UART0 RX&#x2F;TX 多功能腳位。</li>
+<li><code>DEBUG_PORT_Init()</code> 設定 UART 為 115200 baud、8 資料位、無同位、1 停止位。</li>
+<li><code>main()</code> 啟用 <code>CRPT_IRQn</code> 與 ECC 中斷。<code>CRPT_IRQHandler()</code> 將中斷交由 <code>ECC_DriverISR(CRPT)</code> 處理。</li>
+<li><code>RNG_Open()</code> 初始化隨機數產生器，之後由 <code>GenPrivateKey()</code> 呼叫 <code>RNG_Random()</code> 取得私鑰候選值。</li>
+</ul>
+<h3 id="私鑰產生：GenPrivateKey"><a href="#私鑰產生：GenPrivateKey" class="headerlink" title="私鑰產生：GenPrivateKey()"></a>私鑰產生：<code>GenPrivateKey()</code></h3><p>函式先依曲線位元數配置暫存陣列，呼叫 <code>RNG_Random()</code> 取得隨機字，再將每個位元組轉成十六進位字元，形成驅動程式使用的私鑰字串。之後以 <code>ECC_IsPrivateKeyValid()</code> 檢查候選值；不符合時會嘗試調整最高位元組的有效位數並重新檢查，仍不符合則繼續產生候選值。</p>
+<p>私鑰字串與座標使用十六進位文字緩衝區。<code>d</code>、<code>d2</code>、<code>Qx</code>、<code>Qy</code>、<code>Qx2</code>、<code>Qy2</code>、<code>k</code>、<code>k2</code> 均配置為 168 bytes，供程式保存結果及字串終止字元。</p>
+<h3 id="公鑰產生"><a href="#公鑰產生" class="headerlink" title="公鑰產生"></a>公鑰產生</h3><p>分別呼叫：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ECC_GeneratePublicKey(CRPT, ECC_CURVE_TYPE, d, Qx, Qy)</span><br><span class="line">ECC_GeneratePublicKey(CRPT, ECC_CURVE_TYPE, d2, Qx2, Qy2)</span><br></pre></td></tr></table></figure>
+
+<p>每次呼叫以私鑰和曲線計算公鑰點，輸出 X、Y 座標。回傳值小於 0 時，印出錯誤訊息並跳到結尾的無限迴圈。</p>
+<p>在呼叫前將 <code>SysTick-&gt;VAL</code> 歸零，完成後以 <code>0xffffff - SysTick-&gt;VAL</code> 計算經過的計數值，並依 <code>CyclesPerUs</code> 換算成毫秒輸出。這是運算時間觀察值，並非完整的效能基準測試。</p>
+<h3 id="ECDH-共用值計算與比對"><a href="#ECDH-共用值計算與比對" class="headerlink" title="ECDH 共用值計算與比對"></a>ECDH 共用值計算與比對</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ECC_GenerateSecretZ(CRPT, ECC_CURVE_TYPE, d,  Qx2, Qy2, k)</span><br><span class="line">ECC_GenerateSecretZ(CRPT, ECC_CURVE_TYPE, d2, Qx,  Qy,  k2)</span><br></pre></td></tr></table></figure>
+
+<p>第一個呼叫使用 A 的私鑰與 B 的公鑰；第二個呼叫使用 B 的私鑰與 A 的公鑰。雙方應得到相同的 ECDH 結果。以 <code>strcmp(k, k2)</code> 比較兩個十六進位字串，輸出 <code>Share key match. Test OK</code> 或 <code>Share key mismatch!!</code>。</p>
+<p>在<code>ECC_GenerateSecretZ()</code> 將 ECDH 結果輸出為字串；不要把它直接當作已完成衍生、可直接用於所有用途的對稱金鑰。</p>
+<h2 id="ECDH-金鑰交換設計流程"><a href="#ECDH-金鑰交換設計流程" class="headerlink" title="ECDH 金鑰交換設計流程"></a>ECDH 金鑰交換設計流程</h2><p>以下流程圖整合了原始流程圖所描述的完整金鑰交換設計，並標出 <code>main.c</code> 實際執行的步驟。綠色實線流程是範例程式的主要路徑；虛線框中的公鑰傳輸、對端公鑰驗證、安全通訊則是產品整合時需要另行實作的步驟。</p>
+<pre class="mermaid">flowchart TD
+    Start([系統啟動]) --> Init[系統初始化<br/>HIRC、UART0、CRPT 時脈]
+    Init --> Engine[啟用 CRPT ECC 中斷<br/>RNG_Open]
+
+    subgraph KeyGen[階段一：金鑰生成]
+        Engine --> Priv[使用 RNG_Random 產生候選私鑰<br/>ECC_IsPrivateKeyValid 檢查]
+        Priv --> Pub[呼叫 ECC_GeneratePublicKey<br/>計算公鑰 Q = d × G]
+    end
+
+    subgraph Exchange[階段二：公鑰交換]
+        Pub -.-> Send[傳送本地公鑰 Q_local]
+        Send -.-> Receive[接收對端公鑰 Q_remote]
+        Receive -.-> Validate{驗證對端公鑰<br/>格式、曲線及有效性}
+    end
+
+    subgraph Derive[階段三：共用值與工作金鑰]
+        Validate -. 有效 .-> Secret[呼叫 ECC_GenerateSecretZ<br/>計算 ECDH 共用值]
+        Secret -.-> AES[將衍生的 AES-256 金鑰<br/>交由經驗證加密機制使用]
+        AES -.-> Secure([進入安全通訊])
+    end
+
+    Validate -. 無效 .-> Abort([中止交換並回報錯誤])
+    Secret -. 運算失敗 .-> Abort
+
+    classDef actual fill:#e8f5e9,stroke:#388e3c,color:#1b5e20
+    classDef design fill:#e3f2fd,stroke:#1976d2,color:#0d47a1,stroke-dasharray:5 5
+    classDef decision fill:#fff8e1,stroke:#f9a825,color:#5d4037
+    classDef error fill:#ffebee,stroke:#d32f2f,color:#b71c1c
+    class Start,Init,Engine,Priv,Pub,Demo,CalcA,CalcB,Pass,Mismatch actual
+    class Send,Receive,Secret,AES,Secure design
+    class Validate,Compare decision
+    class Abort error</pre>
+
+<p>實際裝置交換時，A 與 B 的私鑰應各自留在本機，只傳送公鑰。以雙方的私鑰及對方公鑰計算共用值，並比較結果。</p>
+<h2 id="執行與觀察"><a href="#執行與觀察" class="headerlink" title="執行與觀察"></a>執行與觀察</h2><p>將 FW 建置並燒錄至 E2354，透過 UART0、115200 baud 的序列終端機觀察輸出。正常流程會顯示 A、B 的私鑰、公鑰座標、運算時間、兩方共用值，以及最後的比對結果。</p>
+<h2 id="限制與安全注意事項"><a href="#限制與安全注意事項" class="headerlink" title="限制與安全注意事項"></a>限制與安全注意事項</h2><ol>
+<li><strong>會將私鑰與共用值印到 UART。</strong> 僅適合開發及功能驗證；正式產品不得輸出私鑰或共用秘密，也應在不再需要時清除秘密資料。</li>
+<li><strong>沒有實際交換資料或驗證通訊對象。</strong> 正式協定需安全傳送並驗證對端公鑰，以防止中間人攻擊；也需處理不合法或不可信任的對端輸入。</li>
+<li><strong>資料加密流程。</strong> 將 ECDH 結果轉成具用途區隔的工作金鑰，再搭配經驗證的加密方案。</li>
+<li><strong>注意 <code>RNG_Random()</code> 的字數限制。</strong> 每次最多填入 8 個 32-bit word，且可能以回傳值 <code>0</code> 表示逾時。<code>GenPrivateKey()</code> 忽略該回傳值；預設 P-256 需要 8 words，但選用大於 256 bits 的曲線時，單次呼叫無法填滿其所配置的緩衝區。使用較大曲線前，應先確認並修改隨機數取得策略，且檢查 RNG 呼叫結果。</li>
+<li><strong>確認整體錯誤處理。</strong> 檢查 ECC 公鑰與 ECDH 函式的負值回傳，但未檢查 <code>RNG_Open()</code>、<code>RNG_Random()</code> 的結果；正式程式應明確處理初始化或隨機數產生失敗。</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>E2354 Crypto ECC ECDH firmware code 開發分享</p><p><a href="http://example.com/posts/ecc_curve_sel.html">http://example.com/posts/ecc_curve_sel.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Robin Cheng</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-11-05</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-11-05</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Kenny/">Kenny</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>Afdian.net</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/icarus_mermaid.html"><span class="level-item">在 Hexo 的 Icarus 主題中支援 Mermaid 圖表</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="My personal blog at work" height="28"></a><p class="is-size-7"><span>&copy; 2026 Robin Cheng</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><script src="https://cdn.jsdelivr.net/npm/mermaid@8.11.0/dist/mermaid.min.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

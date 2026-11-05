@@ -54,7 +54,7 @@
 <h2 id="1-安裝合併工具"><a href="#1-安裝合併工具" class="headerlink" title="1. 安裝合併工具"></a>1. 安裝合併工具</h2><p>在你的電腦終端機（Terminal &#x2F; CMD）中執行以下指令來下載所需套件：  </p>
 <p>pip install spdx-tools<br>pip install spdxmerge</p>
 <h2 id="2-執行深度合併指令"><a href="#2-執行深度合併指令" class="headerlink" title="2. 執行深度合併指令"></a>2. 執行深度合併指令</h2><p>將剛才下載的 NXP 檔案通通放入名為 sbom_inputs 的資料夾內，然後執行：</p>
-<p>python -m spdxmerge.SPDXMerge <br>  –docpath “.&#x2F;sbom_inputs” <br>  –outpath “.&#x2F;lpc55s69_combined_project.spdx.json” <br>  –name “LPC55S69_FreeRTOS_Project” <br>  –version “1.0.0” <br>  –mergetype 1 <br>  –author “Your Company Name” <br>  –email “<a href="mailto:&#x64;&#x65;&#x76;&#101;&#x6c;&#111;&#112;&#x65;&#114;&#x40;&#101;&#120;&#x61;&#109;&#112;&#x6c;&#x65;&#x2e;&#99;&#111;&#x6d;">developer@example.com</a>“ <br>  –filetype J</p>
+<p>python -m spdxmerge.SPDXMerge <br>  –docpath “.&#x2F;sbom_inputs” <br>  –outpath “.&#x2F;lpc55s69_combined_project.spdx.json” <br>  –name “LPC55S69_FreeRTOS_Project” <br>  –version “1.0.0” <br>  –mergetype 1 <br>  –author “Your Company Name” <br>  –email “<a href="mailto:&#100;&#101;&#118;&#x65;&#108;&#111;&#x70;&#x65;&#x72;&#x40;&#x65;&#120;&#x61;&#109;&#x70;&#108;&#x65;&#x2e;&#99;&#x6f;&#x6d;">developer@example.com</a>“ <br>  –filetype J</p>
 <ul>
 <li>–docpath：放所有 NXP 原始檔案的資料夾路徑。</li>
 <li>–outpath：合併完成後的最終單一檔案輸出路徑。</li>
@@ -120,6 +120,6 @@
                 }
                 $('.justified-gallery').justifiedGallery();
             }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><script src="https://cdn.jsdelivr.net/npm/mermaid@8.11.0/dist/mermaid.min.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><script src="https://cdn.jsdelivr.net/npm/mermaid@11.5.0/dist/mermaid.min.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
             loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
         });</script></body></html>
